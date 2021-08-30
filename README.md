@@ -1,2 +1,1 @@
-# software-engineering-project
-Software Engineering project
+# Software Engineering project
