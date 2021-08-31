@@ -13,6 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
         // hej alla
 
-        int hej = 10;
+        int calle = 1;
     }
 }
