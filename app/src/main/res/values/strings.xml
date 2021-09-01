@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">covid_tracker</string>
+    <string name="button_login">Login</string>
+    <string name="vaccin_info">Vaccin-Info</string>
+    <string name="vaccin_dashboard">Vaccin-Dashboard</string>
 </resources>
