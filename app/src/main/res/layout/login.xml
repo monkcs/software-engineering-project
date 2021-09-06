@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
 
         android:textColor="@color/black"
-        android:background=""
+        android:background="@color/white"
         android:text="@string/button_signUp"/>
 
 </LinearLayout>

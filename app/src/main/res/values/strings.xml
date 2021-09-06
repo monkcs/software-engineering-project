@@ -9,4 +9,5 @@
     <string name="Password">Password</string>
     <string name="email">Enter e-mail</string>
     <string name="AppName">Covid-Tracker</string>
+    <string name="Button">testtest</string>
 </resources>
