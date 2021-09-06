@@ -5,5 +5,20 @@
     <string name="vaccin_info">Vaccin-Info</string>
     <string name="vaccin_dashboard">Vaccin-Dashboard</string>
     <string name="Login">Login</string>
-    <string name="Button">Button</string>
+    <string name="New_user">New user?</string>
+    <string name="Password">Password</string>
+    <string name="email">Enter e-mail</string>
+    <string name="AppName">Covid-Tracker</string>
+    <string name="Button">testtest</string>
+
+    <string name="faq">FAQ</string>
+    <string name="info_about_corona">Info about Corona</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="train">Train</string>
+    <string name="bus">Bus</string>
+    <string name="bokavaccin">Bokavaccin</string>
+    <string name="digital_health">Digital Health</string>
+    <string name="statistik">Statistik</string>
+    <string name="todo">TODO</string>
+
 </resources>

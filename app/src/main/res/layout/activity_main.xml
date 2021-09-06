@@ -13,8 +13,10 @@
         android:layout_height="wrap_content" >
 
         <Button
+            android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/redish"
             android:text="@string/button_login" />
 
 
@@ -27,13 +29,17 @@
         android:background="?android:attr/listDivider" />
 
     <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/redish"
         android:text="vaccin_infoformation" />
 
     <Button
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/redish"
         android:text="@string/vaccin_dashboard" />
 
 </LinearLayout>
