@@ -22,16 +22,16 @@
     </LinearLayout>
 
     <LinearLayout
+        android:gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom">
+        android:layout_height="match_parent">
 
 
         <View
 
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@drawable/background_bottom" />
+            android:layout_height="100dp"
+            android:background="@drawable/background_bottom"/>
     </LinearLayout>
 
 
