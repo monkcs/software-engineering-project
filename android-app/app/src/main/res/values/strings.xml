@@ -20,5 +20,14 @@
     <string name="digital_health">Digital Health</string>
     <string name="statistik">Statistik</string>
     <string name="todo">TODO</string>
+    <string name="email2">Skriv om Email</string>
+    <string name="firstname">Förnamn</string>
+    <string name="lastname">Efternamn</string>
+    <string name="phone_nr">Mobil nummer</string>
+    <string name="yyyy_mm_dd">YYYY-MM-DD</string>
+    <string name="address">Address</string>
+    <string name="stad">Stad</string>
+    <string name="zipcode">Post kod</string>
+    <string name="city">stad</string>
 
 </resources>

@@ -2,12 +2,19 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center">
 
+
+    <View
+        android:id="@+id/header_view"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:background="@drawable/background">
+
+    </View>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,20 +26,30 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="@string/email"
+        android:autofillHints="emailAddress"
         android:textSize="22sp"
         android:inputType="textEmailAddress"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="Skriv om Email"
+        android:hint="@string/email2"
         android:textSize="22sp"
         android:inputType="textEmailAddress"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="Namn"
+        android:hint="@string/firstname"
+        android:autofillHints="name"
+        android:textSize="22sp"
+        android:inputType="textPersonName"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/lastname"
+        android:autofillHints="name"
         android:textSize="22sp"
         android:inputType="textPersonName"/>
 
@@ -48,7 +65,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="Mobil nummer"
+        android:hint="@string/phone_nr"
+        android:autofillHints="phone"
         android:textSize="22sp"
         android:inputType="phone"/>
 
@@ -56,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="YYYY-MM-DD"
+        android:hint="@string/yyyy_mm_dd"
         android:textSize="22sp"
         android:inputType="date"/>
 
@@ -64,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="Address"
+        android:hint="@string/address"
         android:textSize="22sp"
         android:inputType="text"/>
 
@@ -72,7 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="Stad"
+        android:hint="@string/city"
         android:textSize="22sp"
         android:inputType="text"/>
 
@@ -80,7 +98,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="Post kod"
+        android:hint="@string/zipcode"
+        android:autofillHints="postalCode"
         android:textSize="22sp"
         android:inputType="textPostalAddress"/>
 
@@ -91,5 +110,10 @@
         android:text="@string/button_signUp"
         android:textColor="@color/redish"/>
 
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/background_bottom"/>
 
 </LinearLayout>
