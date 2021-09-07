@@ -1,0 +1,18 @@
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
+
+signup      : PUT (name, email, password, address, contactinfo)
+
+login       : GET (email, password) -> name
+
+appointment : GET (email, password) -> pre-current-comming bookings,
+            : DELETE (email, password, appointment-id)
+
+available   : GET (email, password) -> all available-id
+            : POST (email, password, available-id) -> appointment-id
+
+user        : GET (email, password) -> name, email, address, contactinfo
+
+
+
+
+
