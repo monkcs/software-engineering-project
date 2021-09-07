@@ -27,8 +27,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-public void openLogin(){
+public void openLogin()
+{
         Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+}
+
+public void openDashboard()
+{
+        Intent intent = new Intent(this, Dashboard.class);
         startActivity(intent);
 }
 
@@ -49,6 +56,7 @@ public void openLogin(){
 
             case R.id.button3:
                 System.out.println("button3");
+                openDashboard();
                 break;
 
         }
