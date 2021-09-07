@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Covid_tracker">
         <activity
+            android:name=".Boka_vaccin"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -18,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Dashboard"
             android:exported="true">
@@ -28,15 +30,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-         <activity
- 
+        <activity
             android:name=".Login"
-            android:exported="true">
-                   
-         </activity>
-
-
+            android:exported="true"></activity>
     </application>
 
 </manifest>

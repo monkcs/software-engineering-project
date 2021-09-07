@@ -78,6 +78,7 @@
                 android:layout_weight="1">
 
                 <RelativeLayout
+                    android:id="@+id/bokavaccin1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/holo_red_light">
@@ -100,6 +101,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         android:contentDescription="@string/todo"
+                        android:focusable="true"
                         app:srcCompat="@android:drawable/ic_menu_edit"
                         tools:ignore="ImageContrastCheck,ImageContrastCheck" />
                 </RelativeLayout>
