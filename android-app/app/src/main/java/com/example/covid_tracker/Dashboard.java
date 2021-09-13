@@ -26,6 +26,8 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
         bokavaccin1.setOnClickListener(this);
     }
 
+
+
     public void Login(){
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
@@ -56,3 +58,4 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
         }
     }
 }
+  

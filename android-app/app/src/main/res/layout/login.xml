@@ -22,7 +22,8 @@
         android:gravity="center"
         android:hint="@string/email"
         android:textSize="22sp"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress"
+        android:id="@+id/email"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -30,15 +31,18 @@
         android:gravity="center"
         android:hint="@string/Password"
         android:textSize="22sp"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:id="@+id/password"/>
 
     <Button
-        android:id="@+id/Login"
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
         android:text="@string/button_login"
-        android:textColor="@color/redish" />
+
+        android:textColor="@color/redish"
+        android:id="@+id/btnLogIn"/>
+
 
     <LinearLayout
     android:layout_width="match_parent"
@@ -55,10 +59,13 @@
             android:id="@+id/Signup"
             android:layout_width="wrap_content"
 
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:text="@string/button_signUp"
-            android:textColor="@color/black" />
+
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:text="@string/button_signUp"
+        android:id="@+id/btnReg"/>
+
+
 
 </LinearLayout>
 </LinearLayout>
