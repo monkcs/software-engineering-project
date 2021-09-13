@@ -12,14 +12,23 @@ import android.widget.RelativeLayout;
 
 public class Dashboard extends AppCompatActivity implements OnClickListener {
 
+    private Button logindashbord;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        logindashbord = (Button) findViewById(R.id.LoginDashbord);
+        logindashbord.setOnClickListener(this);
 
         RelativeLayout bokavaccin1 = (RelativeLayout) findViewById(R.id.bokavaccin1);
         bokavaccin1.setOnClickListener(this);
+    }
+
+    public void Login(){
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
     }
 
     public void openBokavaccin()
@@ -38,6 +47,11 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
                 openBokavaccin();
                 break;
 
+            case R.id.LoginDashbord:
+                System.out.println("login button has been pressed");
+
+                Login();
+                break;
 
         }
     }

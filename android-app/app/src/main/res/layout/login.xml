@@ -33,11 +33,12 @@
         android:inputType="textPassword"/>
 
     <Button
+        android:id="@+id/Login"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
+        android:layout_height="wrap_content"
         android:text="@string/button_login"
-        android:textColor="@color/redish"/>
+        android:textColor="@color/redish" />
 
     <LinearLayout
     android:layout_width="match_parent"
@@ -50,13 +51,14 @@
         android:text="@string/New_user"
          />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/Signup"
+            android:layout_width="wrap_content"
 
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:text="@string/button_signUp"/>
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="@string/button_signUp"
+            android:textColor="@color/black" />
 
 </LinearLayout>
 </LinearLayout>
