@@ -23,4 +23,18 @@
     <string name="welecome_booking">Hej</string>
 
 
+    <string name="email2">Skriv om Email</string>
+    <string name="firstname">Förnamn</string>
+    <string name="lastname">Efternamn</string>
+    <string name="phone_nr">Mobil nummer</string>
+    <string name="yyyy_mm_dd">YYYY-MM-DD</string>
+    <string name="address">Address</string>
+    <string name="stad">Stad</string>
+    <string name="zipcode">Post kod</string>
+    <string name="city">stad</string>
+    <string name="wronguser">Not an administror?</string>
+    <string name="goback">Go back</string>
+    <string name="isadmin">Is an Administrator?</string>
+    <string name="admin_login">Admin login here</string>
+
 </resources>
