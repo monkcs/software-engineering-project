@@ -23,13 +23,13 @@
 
         </activity>
 
-        <activity android:name=".LoginDashboard"></activity>
+        <activity android:name=".LoginDashboard"/>
 
         
         <activity
             android:name=".Boka_vaccin"
-            android:exported="true"></activity>
->
+            android:exported="true"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
