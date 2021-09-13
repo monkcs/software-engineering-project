@@ -72,6 +72,20 @@ public class Login extends AppCompatActivity implements OnClickListener{
                 break;
         }
     }
+
+
+    public void signUp(){
+        Intent intent = new Intent(this, Regristering.class);
+        startActivity(intent);
+    }
+    public void loginAdmin(){
+        Intent intent = new Intent(this, Administartorlogin.class);
+        startActivity(intent);
+    }
+
+
+
+}
         
         class AttemptLogin extends AsyncTask<String, String, String> {
         boolean failure = false;
@@ -132,23 +146,9 @@ public class Login extends AppCompatActivity implements OnClickListener{
         }
     }
 
-}
+
 
       
       
-    }
 
-
-    public void signUp(){
-        Intent intent = new Intent(this, Regristering.class);
-        startActivity(intent);
-    }
-    public void loginAdmin(){
-        Intent intent = new Intent(this, Administartorlogin.class);
-        startActivity(intent);
-    }
-
-    
-
-}
 
