@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class Boka_vaccin2 extends AppCompatActivity {
 
+//ändring
 
     CalendarView calendarView;
     TextView mydate, outputvaccin, outputvaccin2;
