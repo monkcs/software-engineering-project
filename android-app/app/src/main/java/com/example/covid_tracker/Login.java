@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class Login extends AppCompatActivity implements OnClickListener{
     private EditText user_email, user_password;
-    private Button BtnLogin, BtnReg;
+    private Button BtnLogin, BtnReg, adminloginButton;
 
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
@@ -37,30 +38,41 @@ public class Login extends AppCompatActivity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_login);
 
+
         user_email = (EditText) findViewById(R.id.email);
         user_password = (EditText) findViewById(R.id.password);
         BtnLogin = (Button) findViewById(R.id.btnLogIn);
         BtnReg = (Button) findViewById(R.id.btnReg);
 
-        BtnReg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Regristering.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        // BtnLogin.setOnClickListener(new View.OnClickListener(){
+       
+        adminloginButton = (Button) findViewById(R.id.adminLogin);
+        
+
+        BtnReg.setOnClickListener(this);
+        adminloginButton.setOnClickListener(this);
+   
         BtnLogin.setOnClickListener(this);
     }
-        @Override
-        public void onClick (View v){
-        if(v.getId() == R.id.btnLogIn){
-            //case R.id.btnLogIn:
-                new AttemptLogin().execute();
-        }
-        }
+  public void onClick(View view) {
+        switch (view.getId()) {
 
+
+            case R.id.btnLogIn:
+                new AttemptLogin().execute();
+                break;
+
+            case R.id.btnReg:
+                System.out.println("login button has been pressed");
+                //TODO signup
+                signUp();
+                break;
+
+            case R.id.adminLogin:
+                loginAdmin();
+                break;
+        }
+    }
+        
         class AttemptLogin extends AsyncTask<String, String, String> {
         boolean failure = false;
 
@@ -119,6 +131,24 @@ public class Login extends AppCompatActivity implements OnClickListener{
             }
         }
     }
+
+}
+
+      
+      
+    }
+
+
+    public void signUp(){
+        Intent intent = new Intent(this, Regristering.class);
+        startActivity(intent);
+    }
+    public void loginAdmin(){
+        Intent intent = new Intent(this, Administartorlogin.class);
+        startActivity(intent);
+    }
+
+    
 
 }
 

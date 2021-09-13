@@ -22,7 +22,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@android:drawable/ic_menu_revert" />
+            app:navigationIcon="@android:drawable/ic_menu_revert">
+
+            <Button
+                android:id="@+id/LoginDashbord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/Login"
+                tools:layout_editor_absoluteX="303dp"
+                tools:layout_editor_absoluteY="4dp" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
 
         <TextView
             android:id="@+id/textView"
@@ -249,7 +262,7 @@
                         android:layout_below="@id/cycle"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="@string/bus"
+                        android:text="temp"
                         android:textSize="24sp"
                         app:fontFamily="sans-serif" />
 
@@ -283,7 +296,7 @@
                         android:layout_below="@id/airplane"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="@string/train"
+                        android:text="temp"
                         android:textSize="24sp"
                         app:fontFamily="sans-serif" />
 

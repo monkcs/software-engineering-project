@@ -20,6 +20,8 @@
     <string name="digital_health">Digital Health</string>
     <string name="statistik">Statistik</string>
     <string name="todo">TODO</string>
+    <string name="welecome_booking">Hej</string>
+
     <string name="email2">Skriv om Email</string>
     <string name="firstname">Förnamn</string>
     <string name="lastname">Efternamn</string>
@@ -29,7 +31,14 @@
     <string name="stad">Stad</string>
     <string name="zipcode">Post kod</string>
     <string name="city">stad</string>
+
     <string name="amanda">Hej Amanda</string>
     <string name="welecome_booking">Bokning</string>string/>
+
+    <string name="wronguser">Not an administror?</string>
+    <string name="goback">Go back</string>
+    <string name="isadmin">Is an Administrator?</string>
+    <string name="admin_login">Admin login here</string>
+
 
 </resources>
