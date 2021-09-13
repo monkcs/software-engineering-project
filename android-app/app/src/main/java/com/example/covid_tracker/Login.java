@@ -85,7 +85,7 @@ public class Login extends AppCompatActivity implements OnClickListener{
 
 
 
-}
+
         
         class AttemptLogin extends AsyncTask<String, String, String> {
         boolean failure = false;
@@ -146,7 +146,7 @@ public class Login extends AppCompatActivity implements OnClickListener{
         }
     }
 
-
+}
 
       
       
