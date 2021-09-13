@@ -29,5 +29,7 @@
     <string name="stad">Stad</string>
     <string name="zipcode">Post kod</string>
     <string name="city">stad</string>
+    <string name="amanda">Hej Amanda</string>
+    <string name="welecome_booking">Bokning</string>string/>
 
 </resources>

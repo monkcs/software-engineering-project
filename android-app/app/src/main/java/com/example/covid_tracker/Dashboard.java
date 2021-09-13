@@ -22,23 +22,9 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
         bokavaccin1.setOnClickListener(this);
     }
 
-    public void openBokavaccin()
-    {
-        Intent intent = new Intent(this, Boka_vaccin.class);
-        startActivity(intent);
-    }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
 
-
-            case R.id.bokavaccin1:
-                System.out.println("button has been pressed");
-                openBokavaccin();
-                break;
-
-
-        }
     }
 }
