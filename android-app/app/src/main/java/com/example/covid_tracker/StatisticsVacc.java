@@ -1,11 +1,14 @@
 package com.example.covid_tracker;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -80,6 +83,7 @@ public class StatisticsVacc extends AppCompatActivity {
         actv_searchRegion.setAdapter(adapter);
 
         btn_searchRegion.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
 
@@ -93,6 +97,8 @@ public class StatisticsVacc extends AppCompatActivity {
                 GetAdminOneDoses taskGetAdminOneDoses_onClick = new GetAdminOneDoses();
                 GetAdminTwoDoses taskGetAdminTwoDoses_onClick = new GetAdminTwoDoses();
                 GetTotalAdminDoses taskGetAdminDoses_onClick = new GetTotalAdminDoses();
+
+                hideKeybaord(view);
 
 
                 if(region_input.length() == 0)
@@ -136,6 +142,12 @@ public class StatisticsVacc extends AppCompatActivity {
         });
 
 
+    }
+
+    /*source: https://www.tutorialspoint.com/how-to-close-or-hide-the-virtual-keyboard-on-android*/
+    private void hideKeybaord(View v) {
+        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
     }
 
     private int calcIntPercent(int a, int b) {
