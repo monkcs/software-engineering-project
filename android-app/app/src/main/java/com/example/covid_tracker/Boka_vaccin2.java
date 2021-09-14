@@ -3,11 +3,14 @@ package com.example.covid_tracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
@@ -15,14 +18,16 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
-public class Boka_vaccin2 extends AppCompatActivity {
+public class Boka_vaccin2 extends AppCompatActivity implements View.OnClickListener {
 
-//ändring
 
     CalendarView calendarView;
-    TextView mydate, outputvaccin, outputvaccin2;
+    TextView mydate, outputvaccin, outputvaccin2, outputvaccin3;
     TextInputLayout textInputLayout;
     AutoCompleteTextView autoCompleteTextView;
+    private Button vaccinet1;
+    private Button vaccinet2;
+    private Button bookAppoint;
 
     ArrayList<String> arraylist;
     ArrayAdapter<String> adapter;
@@ -34,8 +39,19 @@ public class Boka_vaccin2 extends AppCompatActivity {
 
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         mydate = (TextView) findViewById(R.id.mydate);
+
         outputvaccin = (TextView) findViewById(R.id.output_vaccin);
         outputvaccin2 = (TextView) findViewById(R.id.output_vaccin2);
+
+        outputvaccin3 = (TextView) findViewById(R.id.output_vaccin3);
+
+        vaccinet1 = (Button) findViewById(R.id.vaccinet1);
+        vaccinet2 = (Button) findViewById(R.id.vaccinet2);
+        bookAppoint = (Button) findViewById(R.id.bookAppoint);
+
+        vaccinet1.setOnClickListener(this);
+        vaccinet2.setOnClickListener(this);
+        bookAppoint.setOnClickListener(this);
 
         textInputLayout = (TextInputLayout) findViewById(R.id.textInputLayout);
         autoCompleteTextView = (AutoCompleteTextView)  findViewById(R.id.autoCompleteTextView);
@@ -52,6 +68,7 @@ public class Boka_vaccin2 extends AppCompatActivity {
         autoCompleteTextView.setAdapter(adapter);
 
         autoCompleteTextView.setThreshold(1);
+
 
 
 
@@ -75,5 +92,35 @@ public class Boka_vaccin2 extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void openBokavaccin()
+    {
+        Intent intent = new Intent(this, Boka_vaccin.class);
+
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+
+            case R.id.vaccinet1:
+                outputvaccin3.setText("Dos 1");
+
+                break;
+
+
+            case R.id.vaccinet2:
+                outputvaccin3.setText("Dos 2");
+
+                break;
+
+            case R.id.bookAppoint:
+                System.out.println("Du har bokat: " + outputvaccin3.getText() + " i " + outputvaccin2.getText() + " den " +outputvaccin.getText());
+                openBokavaccin();
+                break;
+        }
     }
 }

@@ -8,7 +8,7 @@
        android:id="@+id/greeding"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="@string/welecome_booking"
+       android:text="welcome"
        android:gravity="center"
        android:textColor="@color/white"
        android:textSize="26dp"/>

@@ -33,19 +33,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     button3.setOnClickListener(this);
 
 
+
     }
 
-public void openLogin()
-{
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
-}
+    public void openLogin()
+    {
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+    }
 
-public void openDashboard()
-{
-        Intent intent = new Intent(this, Dashboard.class);
-        startActivity(intent);
-}
+    public void openDashboard()
+    {
+            Intent intent = new Intent(this, Dashboard.class);
+            startActivity(intent);
+    }
+
+
 
     @Override
     public void onClick(View view) {
@@ -66,7 +69,6 @@ public void openDashboard()
                 System.out.println("button3");
                 openDashboard();
                 break;
-
         }
     }
 }
