@@ -167,7 +167,6 @@ public class StatisticsVacc extends AppCompatActivity {
 
         reader.readLine();
 
-
         while((line = reader.readLine()) != null){
             //split by ',' (.csv file)
             String [] tokens = line.split(",");
@@ -175,40 +174,45 @@ public class StatisticsVacc extends AppCompatActivity {
             //read data
             VaccineSample sample = new VaccineSample();
 
-            if(!tokens[0].equals(".")) sample.setRegion_id(Integer.parseInt(tokens[0]));
+            if(validElement(tokens[0])) sample.setRegion_id(Integer.parseInt(tokens[0]));
             else{
                 sample.setRegion_id(0);
             }
             sample.setRegion_name(tokens[1]);
-            if(!tokens[2].equals(".")) sample.setCounty_id(Integer.parseInt(tokens[2]));
+            if(validElement(tokens[2])) sample.setCounty_id(Integer.parseInt(tokens[2]));
             else{
                 sample.setCounty_id(0);
             }
             sample.setCounty_name(tokens[3]);
             sample.setAge(tokens[4]);
-            if(!tokens[5].equals(".")) sample.setPopulation(Integer.parseInt(tokens[5]));
+            if(validElement(tokens[5])) sample.setPopulation(Integer.parseInt(tokens[5]));
             else{
                 sample.setPopulation(0);
             }
-            if(!tokens[6].equals(".")) sample.setOne_dose(Integer.parseInt(tokens[6]));
+            if(validElement(tokens[6])) sample.setOne_dose(Integer.parseInt(tokens[6]));
             else{
                 sample.setOne_dose(0);
             }
-            if(!tokens[7].equals(".")) sample.setTwo_dose(Integer.parseInt(tokens[7]));
+            if(validElement(tokens[7])) sample.setTwo_dose(Integer.parseInt(tokens[7]));
             else{
                 sample.setTwo_dose(0);
             }
-            if(!tokens[8].equals(".")) sample.setShare_oneDose(Double.parseDouble(tokens[8]));
+            if(validElement(tokens[8])) sample.setShare_oneDose(Double.parseDouble(tokens[8]));
             else{
                 sample.setShare_oneDose(0);
             }
-            if(!tokens[9].equals(".")) sample.setShare_twoDose(Double.parseDouble(tokens[9]));
+            if(validElement(tokens[9])) sample.setShare_twoDose(Double.parseDouble(tokens[9]));
             else{
                 sample.setShare_twoDose(0);
             }
 
             vaccineSamples.add(sample);
         }
+    }
+
+    private boolean validElement(String string) {
+        if(string.equals(".") || string.length() < 1) return false;
+        return true;
     }
 
     class GetTotalDistDoses extends AsyncTask<String, String, Integer> {
