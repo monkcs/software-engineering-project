@@ -26,7 +26,7 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
         logindashbord.setOnClickListener(this);
 
         RelativeLayout bokavaccin1 = (RelativeLayout) findViewById(R.id.bokavaccin1);
-        RelativeLayout digitalhelth = (RelativeLayout) findViewById(R.id.DigitalHealth);
+        RelativeLayout digitalhelth = (RelativeLayout) findViewById(R.id.digitalHealth);
         bokavaccin1.setOnClickListener(this);
 
 
@@ -79,7 +79,7 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
 
                 Login();
                 break;
-            case  R.id.DigitalHealth:
+            case  R.id.digitalHealth:
                 openDigitalHelth();
         }
     }
