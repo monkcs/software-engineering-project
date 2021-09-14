@@ -20,11 +20,20 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
 
         RelativeLayout bokavaccin1 = (RelativeLayout) findViewById(R.id.bokavaccin1);
         bokavaccin1.setOnClickListener(this);
+
+        RelativeLayout statistics = (RelativeLayout) findViewById(R.id.btn_statistics);
+        statistics.setOnClickListener(this);
     }
 
     public void openBokavaccin()
     {
-        Intent intent = new Intent(this, Boka_vaccin.class);
+        //Intent intent = new Intent(this, Boka_vaccin.class);
+        //startActivity(intent);
+    }
+
+    public void openStat()
+    {
+        Intent intent = new Intent(this, StatisticsMenu.class);
         startActivity(intent);
     }
 
@@ -36,6 +45,9 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
             case R.id.bokavaccin1:
                 System.out.println("button has been pressed");
                 openBokavaccin();
+                break;
+            case R.id.btn_statistics:
+                openStat();
                 break;
 
 
