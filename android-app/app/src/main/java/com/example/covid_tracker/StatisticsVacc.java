@@ -5,25 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -33,11 +20,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
+
 
 public class StatisticsVacc extends AppCompatActivity {
     Button btn_searchRegion;
@@ -46,6 +32,8 @@ public class StatisticsVacc extends AppCompatActivity {
     String [] regions = {"Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland", "Jämtland/Härjedalen", "Jönköping", "Kalmar", "Kronoberg",
                         "Norrbotten", "Skåne", "Stockholm", "Södermanland", "Uppsala", "Värmland", "Västerbotten", "Västernorrland", "Västmanland",
                         "Västra Götaland", "Örebro", "Östergötland"};
+
+    private final List<VaccineSample> vaccineSamples = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -138,9 +126,9 @@ public class StatisticsVacc extends AppCompatActivity {
                     totalDoses = tempCalc + tempCalc2;
 
                     tv_adminOneDose.setText("" + oneDose);
-                    tv_adminOneDosePerc.setText("" + calcIntPerc(oneDose, pop) + " %");
+                    tv_adminOneDosePerc.setText("" + calcIntPercent(oneDose, pop) + " %");
                     tv_adminTwoDose.setText("" + twoDose);
-                    tv_adminTwoDosePerc.setText("" + calcIntPerc(twoDose, pop) + " %");
+                    tv_adminTwoDosePerc.setText("" + calcIntPercent(twoDose, pop) + " %");
                     tv_admin_stats.setText("\n" + totalDoses);
 
                 }
@@ -150,17 +138,12 @@ public class StatisticsVacc extends AppCompatActivity {
 
     }
 
-    private int calcIntPerc(int a, int b) {
-        double c = a;
-        double d = b;
-        double e = (c/d)*100;
-        int f = (int) e;
-
-        return f;
+    private int calcIntPercent(int a, int b) {
+        double e = ((double) a / (double) b)*100;
+        return (int) e;
     }
 
     /*Source: https://www.youtube.com/watch?v=i-TqNzUryn8&ab_channel=BrianFraser*/
-    private List<VaccineSample> vaccineSamples = new ArrayList<>();
     private void readVaccineData() throws IOException {
         //VaccineSample sample;
         InputStream is = getResources().openRawResource(R.raw.data_vaccine_fhm_210914);
@@ -371,7 +354,7 @@ public class StatisticsVacc extends AppCompatActivity {
             int swe_pop = 8544184;
 
             tv_adminOneDose.setText("" + integer);
-            tv_adminOneDosePerc.setText("" + calcIntPerc(integer, swe_pop) + " %");
+            tv_adminOneDosePerc.setText("" + calcIntPercent(integer, swe_pop) + " %");
         }
 
 
@@ -412,7 +395,7 @@ public class StatisticsVacc extends AppCompatActivity {
             int swe_pop = 8544184;
 
             tv_adminTwoDose.setText("" + integer);
-            tv_adminTwoDosePerc.setText("" + calcIntPerc(integer, swe_pop) + " %");
+            tv_adminTwoDosePerc.setText("" + calcIntPercent(integer, swe_pop) + " %");
         }
 
 
