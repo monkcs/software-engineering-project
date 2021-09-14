@@ -1,14 +1,13 @@
 package com.example.covid_tracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Dashboard extends AppCompatActivity implements OnClickListener {
 
@@ -23,7 +22,9 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
         logindashbord.setOnClickListener(this);
 
         RelativeLayout bokavaccin1 = (RelativeLayout) findViewById(R.id.bokavaccin1);
+        RelativeLayout digitalhelth = (RelativeLayout) findViewById(R.id.DigitalHealth);
         bokavaccin1.setOnClickListener(this);
+        digitalhelth.setOnClickListener(this);
     }
 
 
@@ -36,6 +37,11 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
     public void openBokavaccin()
     {
         Intent intent = new Intent(this, Boka_vaccin.class);
+        startActivity(intent);
+    }
+
+    public void openDigitalHelth(){
+        Intent intent = new Intent(this, DigitalHealth.class);
         startActivity(intent);
     }
 
@@ -54,7 +60,8 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
 
                 Login();
                 break;
-
+            case  R.id.DigitalHealth:
+                openDigitalHelth();
         }
     }
 }

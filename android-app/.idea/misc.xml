@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_boka_vaccin.xml" value="0.4" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_boka_vaccin2.xml" value="0.40842105263157896" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_boka_vaccin_2.xml" value="0.2513586956521739" />
@@ -13,7 +12,6 @@
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/mail_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/test_login.xml" value="0.25416666666666665" />
-
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.2" />
@@ -27,18 +25,17 @@
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/test_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/app/src/main/res/layout/activity_main.xml" value="0.1" />
-
-
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/activity_administartorlogin.xml" value="0.375" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/activity_boka_vaccin.xml" value="0.25" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/activity_boka_vaccin2.xml" value="0.146875" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/activity_dashboard.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/activity_digital_health.xml" value="0.2658514492753623" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/activity_main.xml" value="0.146875" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/activity_regristering.xml" value="0.165" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/login.xml" value="0.335" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/mail_menu.xml" value="0.146875" />
-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/test_login.xml" value="0.25" />
-
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/test.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/test_login.xml" value="0.29375" />
       </map>
     </option>
   </component>
