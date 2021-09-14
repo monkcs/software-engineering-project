@@ -13,4 +13,30 @@
        android:textColor="@color/white"
        android:textSize="26dp"/>
 
+   <Button
+       android:id="@+id/button11"
+       android:textColor="@color/black"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Boka" />
+   <Button
+       android:id="@+id/button22"
+       android:textColor="@color/black"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Omboka" />
+   <Button
+       android:id="@+id/button33"
+       android:textColor="@color/black"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Avboka" />
+   <Button
+       android:id="@+id/button44"
+       android:textColor="@color/black"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Tillbaka till Dashboard" />
+
+
 </LinearLayout>

@@ -22,7 +22,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@android:drawable/ic_menu_revert" />
+            app:navigationIcon="@android:drawable/ic_menu_revert">
+
+            <Button
+                android:id="@+id/LoginDashbord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/Login"
+                android:background="@color/redish"
+                tools:layout_editor_absoluteX="303dp"
+                tools:layout_editor_absoluteY="4dp" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
 
         <TextView
             android:id="@+id/textView"
@@ -114,6 +128,7 @@
                 android:layout_weight="1">
 
                 <RelativeLayout
+                    android:id="@+id/DigitalHealth"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/holo_red_light">
@@ -125,6 +140,7 @@
                         android:layout_below="@id/digitalhealthicon"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
+                        android:focusable="true"
                         android:text="@string/digital_health"
                         android:textSize="24sp"
                         app:fontFamily="sans-serif" />
@@ -135,8 +151,8 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/icons8_pass_48"
-                        android:contentDescription="@string/todo" />
+                        android:contentDescription="@string/todo"
+                        app:srcCompat="@drawable/icons8_pass_48" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
@@ -250,7 +266,7 @@
                         android:layout_below="@id/cycle"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="@string/bus"
+                        android:text="temp"
                         android:textSize="24sp"
                         app:fontFamily="sans-serif" />
 
@@ -284,7 +300,7 @@
                         android:layout_below="@id/airplane"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="@string/train"
+                        android:text="temp"
                         android:textSize="24sp"
                         app:fontFamily="sans-serif" />
 

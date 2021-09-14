@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Login">
     <View
         android:id="@+id/header_view"
         android:layout_width="match_parent"
@@ -19,19 +19,33 @@
         android:orientation="vertical">
         <include layout="@layout/login"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/isadmin"/>
+
+        <Button
+            android:id="@+id/adminLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/admin_login" />
+
     </LinearLayout>
 
+
     <LinearLayout
-        android:gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="bottom">
 
 
         <View
 
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@drawable/background_bottom"/>
+            android:background="@drawable/background_bottom" />
     </LinearLayout>
 
 

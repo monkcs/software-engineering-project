@@ -20,6 +20,8 @@
     <string name="digital_health">Digital Health</string>
     <string name="statistik">Statistik</string>
     <string name="todo">TODO</string>
+
+
     <string name="email2">Skriv om Email</string>
     <string name="firstname">Förnamn</string>
     <string name="lastname">Efternamn</string>
@@ -36,5 +38,15 @@
     <string name="doses_administered">\nDoses administered:</string>
     <string name="source_folkh_lsomyndigheten">\n\n\n\nSource: Folkhälsomyndigheten</string>
     <string name="total">\nTotal:</string>
+
+    <string name="amanda">Hej Amanda</string>
+    <string name="welecome_booking">Bokning</string>string/>
+
+    <string name="wronguser">Not an administror?</string>
+    <string name="goback">Go back</string>
+    <string name="isadmin">Is an Administrator?</string>
+    <string name="admin_login">Admin login here</string>
+    <string name="wrong_creeentials">The username and/or password is incorrect</string>
+
 
 </resources>
