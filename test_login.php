@@ -14,7 +14,7 @@ if (!empty($_POST))
         die(json_encode($response)); 
     }
     $sql =  "SELECT * FROM login WHERE login.email = '$user_name' and login.passwrd = '$user_password'";
-            
+           
     $result = mysqli_query($con, $sql);
      
     if (mysqli_fetch_row($result) > 0) 
