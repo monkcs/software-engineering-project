@@ -39,6 +39,7 @@
     <string name="goback">Go back</string>
     <string name="isadmin">Is an Administrator?</string>
     <string name="admin_login">Admin login here</string>
+    <string name="wrong_creeentials">The username and/or password is incorrect</string>
 
 
 </resources>
