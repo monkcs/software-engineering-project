@@ -1,6 +1,7 @@
 package com.example.covid_tracker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.Person;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
 
         logindashbord = (Button) findViewById(R.id.LoginDashbord);
         logindashbord.setOnClickListener(this);
