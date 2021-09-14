@@ -17,7 +17,7 @@ import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button button1, button2, button3, button4;
+    private Button button1, button2, button3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +27,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     button1 = (Button) findViewById(R.id.button1);
     button2 = (Button) findViewById(R.id.button2);
     button3 = (Button) findViewById(R.id.button3);
-    button4 = (Button) findViewById(R.id.button4);
 
     button1.setOnClickListener(this);
     button2.setOnClickListener(this);
     button3.setOnClickListener(this);
-    button4.setOnClickListener(this);
+
 
 
     }
@@ -49,11 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
     }
 
-    public void openStat()
-    {
-        Intent intent = new Intent(this, StatisticsMenu.class);
-        startActivity(intent);
-    }
 
 
     @Override
@@ -75,12 +69,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 System.out.println("button3");
                 openDashboard();
                 break;
-
-            case R.id.button4:
-                System.out.println("button4");
-                openStat();
-                break;
-
         }
     }
 }
