@@ -7,6 +7,7 @@ public class Person
     public String forename;
     public String lastname;
     public LocalDate birthdate;
+    public boolean appis;
 
     public Address address;
 
@@ -28,4 +29,11 @@ public class Person
             throw new IllegalArgumentException("Person need to be an adult");
         }
     };
+
+    public boolean testis() {
+
+    return true;
+
+    }
+
 }

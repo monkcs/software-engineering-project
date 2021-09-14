@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_boka_vaccin.xml" value="0.4" />
-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_boka_vaccin2.xml" value="0.40842105263157896" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_boka_vaccin2.xml" value="0.264" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_boka_vaccin_2.xml" value="0.2513586956521739" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard.xml" value="0.20108695652173914" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_steg2.xml" value="0.2513586956521739" />
@@ -34,8 +34,11 @@
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/activity_regristering.xml" value="0.165" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/login.xml" value="0.335" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/mail_menu.xml" value="0.146875" />
-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/test.xml" value="0.146875" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/test_login.xml" value="0.29375" />
+
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/test_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_regristering.xml" value="0.13802083333333334" />
+        <entry key="app/src/main/res/layout/login.xml" value="0.13802083333333334" />
       </map>
     </option>
   </component>

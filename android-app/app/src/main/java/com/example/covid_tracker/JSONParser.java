@@ -26,7 +26,8 @@ public class JSONParser {
     static JSONObject jsonObj;
     static String json = " ";
 
-    public JSONParser(){
+    public JSONParser()
+    {
 
     }
 

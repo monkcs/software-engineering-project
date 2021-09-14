@@ -12,6 +12,7 @@ public class Boka_vaccin extends AppCompatActivity implements View.OnClickListen
 
     private Button button1boka, button2omboka, button3avboka, button4tillbaka;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,8 @@ public class Boka_vaccin extends AppCompatActivity implements View.OnClickListen
         button3avboka.setOnClickListener(this);
         button4tillbaka.setOnClickListener(this);
 
+
+
     }
 
     private void GreedPerson() {
@@ -41,7 +44,7 @@ public class Boka_vaccin extends AppCompatActivity implements View.OnClickListen
     //
     //Hämta person från databas!!!
     //
-    private String getPerson(){
+    private String getPerson() {
 
         return "Person string blalblalbalb";
 

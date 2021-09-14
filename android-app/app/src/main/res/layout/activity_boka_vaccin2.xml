@@ -54,6 +54,26 @@
 
             />
 
+        <Button
+            android:id="@+id/vaccinet1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/grey"
+            android:text="vaccinet1"
+
+            />
+
+        <Button
+            android:id="@+id/vaccinet2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/grey"
+            android:text="vaccinet2"
+
+            />
+
+
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -73,5 +93,23 @@
         android:textColor="@color/white"
         android:textSize="20dp"
         android:text="---" />
+
+    <TextView
+        android:id="@+id/output_vaccin3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:text="---" />
+
+    <Button
+        android:id="@+id/bookAppoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:text="Boka"
+
+        />
 
 </LinearLayout>
