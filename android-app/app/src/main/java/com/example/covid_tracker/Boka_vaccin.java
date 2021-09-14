@@ -41,7 +41,7 @@ public class Boka_vaccin extends AppCompatActivity implements View.OnClickListen
     //
     //Hämta person från databas!!!
     //
-    private String getPerson(){
+    private String getPerson() {
 
         return "Person string blalblalbalb";
 
