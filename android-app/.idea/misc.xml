@@ -20,11 +20,16 @@
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/drawable/background_bottom.xml" value="0.2703125" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_boka_vaccin.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_boka_vaccin2.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard.xml" value="0.2" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/new_design.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/stat_vaccinations.xml" value="0.264" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/statistics.xml" value="0.264" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/statistics_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/test.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/activity_main.xml" value="0.22010869565217392" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/Labb/android-app/app/src/main/res/layout/activity_regristering.xml" value="0.25" />
