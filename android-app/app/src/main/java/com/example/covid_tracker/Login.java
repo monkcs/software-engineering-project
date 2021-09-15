@@ -1,6 +1,5 @@
 package com.example.covid_tracker;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-//import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 
@@ -38,7 +37,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Login extends Activity implements OnClickListener {
+public class Login extends AppCompatActivity implements OnClickListener {
     private EditText user_email, user_password;
     private Button BtnLogin, BtnReg, adminloginButton;
 
