@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity implements OnClickListener {
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
     private ProgressDialog pDialog;
-    JSONParser jsonParser = new JSONParser();
+    //JSONParser jsonParser = new JSONParser();
     private static final String LOGIN_URL = "https://hex.cse.kau.se/~charhabo100/vaccine-tracker/information.php";
 
     @Override
