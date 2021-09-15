@@ -2,9 +2,7 @@ package com.example.covid_tracker;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,20 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.locks.ReadWriteLock;
 
 public class Regristering extends AppCompatActivity implements OnClickListener{
     private static final String TAG_MSG = "message";
@@ -37,9 +26,6 @@ public class Regristering extends AppCompatActivity implements OnClickListener{
     private ProgressDialog pDialog;
 
     private RequestQueue queue;
-
-    JSONParser jsonParser = new JSONParser();
-    private static final String SIGNUP_URL = "https://hex.cse.kau.se/~charhabo100/vaccine-tracker/signup.php";
 
     private EditText email, email_check, forename, lastname, password, number, birthdate, street, city, zipcode;
     private Button BtnReg;

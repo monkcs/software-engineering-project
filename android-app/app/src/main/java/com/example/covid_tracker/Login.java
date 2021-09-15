@@ -2,10 +2,7 @@ package com.example.covid_tracker;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,27 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -42,12 +22,6 @@ public class Login extends AppCompatActivity implements OnClickListener {
     private Button BtnLogin, BtnReg, adminloginButton;
 
     private RequestQueue queue;
-
-    private static final String TAG_MSG = "message";
-    private static final String TAG_SUC = "success";
-    private ProgressDialog pDialog;
-    JSONParser jsonParser = new JSONParser();
-    private static final String LOGIN_URL = "https://hex.cse.kau.se/~charhabo100/vaccine-tracker/information.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +36,6 @@ public class Login extends AppCompatActivity implements OnClickListener {
         BtnReg = (Button) findViewById(R.id.btnReg);
 
         adminloginButton = (Button) findViewById(R.id.adminLogin);
-
 
         BtnReg.setOnClickListener(this);
         adminloginButton.setOnClickListener(this);
