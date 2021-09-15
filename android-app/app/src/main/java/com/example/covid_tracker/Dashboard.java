@@ -21,27 +21,15 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-
-        logindashbord = (Button) findViewById(R.id.LoginDashbord);
-        logindashbord.setOnClickListener(this);
-
         RelativeLayout bokavaccin1 = (RelativeLayout) findViewById(R.id.bokavaccin1);
         RelativeLayout digitalhelth = (RelativeLayout) findViewById(R.id.digitalHealth);
         bokavaccin1.setOnClickListener(this);
-
-
-        
 
         
         RelativeLayout statistics = (RelativeLayout) findViewById(R.id.btn_statistics);
         statistics.setOnClickListener(this);
       
         digitalhelth.setOnClickListener(this);
-    }
-    public void Login(){
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
-
     }
 
     public void openBokavaccin()
@@ -70,17 +58,14 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
                 System.out.println("button has been pressed");
                 openBokavaccin();
                 break;
+
             case R.id.btn_statistics:
                 openStat();
                 break;
 
-            case R.id.LoginDashbord:
-                System.out.println("login button has been pressed");
-
-                Login();
-                break;
             case  R.id.digitalHealth:
                 openDigitalHelth();
+                break;
         }
     }
 }
