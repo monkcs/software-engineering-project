@@ -46,8 +46,8 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
 
     public void openBokavaccin()
     {
-        //Intent intent = new Intent(this, Boka_vaccin.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, Boka_vaccin.class);
+        startActivity(intent);
     }
 
     public void openStat()
