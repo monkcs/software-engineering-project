@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="@string/button_login"
 
-        android:textColor="@color/redish"
+        android:textColor="@color/black"
         android:id="@+id/btnLogIn"/>
 
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:text="@string/button_signUp"
-            android:textColor="@color/redish" />
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

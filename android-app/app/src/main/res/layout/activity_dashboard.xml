@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/redish">
+        android:background="@color/light_green">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/info_about_corona"
-            android:textColor="#FFE0B2"
+            android:textColor="#0E0901"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -85,7 +85,7 @@
                     android:id="@+id/bokavaccin1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/holo_red_light">
+                    android:background="@android:color/white">
 
                     <TextView
                         android:id="@+id/Bokavaccintext"
@@ -121,7 +121,7 @@
                     android:id="@+id/digitalHealth"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/holo_red_light">
+                    android:background="@android:color/white">
 
                     <TextView
                         android:id="@+id/digitalhealth"
@@ -168,7 +168,7 @@
                     android:id="@+id/btn_statistics"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/holo_red_light">
+                    android:background="@android:color/white">
 
                     <TextView
                         android:id="@+id/statistikicon"
@@ -202,7 +202,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/holo_red_light">
+                    android:background="@android:color/white">
 
                     <TextView
                         android:id="@+id/faq"
@@ -247,7 +247,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/holo_red_light">
+                    android:background="@android:color/white">
 
                     <TextView
                         android:id="@+id/textView8"
@@ -281,7 +281,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/holo_red_light">
+                    android:background="@android:color/white">
 
                     <TextView
                         android:id="@+id/textView9"

@@ -119,7 +119,7 @@
         android:layout_height="wrap_content"
 
         android:text="@string/button_signUp"
-        android:textColor="@color/redish"/>
+        android:textColor="@color/black"/>
 
     <View
 
