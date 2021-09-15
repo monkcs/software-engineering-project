@@ -77,7 +77,7 @@ public class Login extends Activity implements OnClickListener {
                     WebRequest.username = user_email.getText().toString();
                     WebRequest.password = user_password.getText().toString();
 
-                    Intent intent = new Intent(Login.this, LoginDashboard.class);
+                    Intent intent = new Intent(Login.this, Dashboard.class);
                     finish();
                     startActivity(intent);
 
