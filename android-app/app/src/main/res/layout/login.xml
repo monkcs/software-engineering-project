@@ -61,12 +61,11 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:text="@string/button_signUp"
-            android:textColor="@color/black" />
+            android:textColor="@color/redish" />
 
     </LinearLayout>
 
 
 
 
-</LinearLayout>
 </LinearLayout>
