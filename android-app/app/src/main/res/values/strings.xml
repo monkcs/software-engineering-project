@@ -31,6 +31,13 @@
     <string name="stad">Stad</string>
     <string name="zipcode">Post kod</string>
     <string name="city">stad</string>
+    <string name="administrerade_doser">Administrerade doser</string>
+    <string name="distribuerade_doser">Distribuerade doser</string>
+    <string name="vaccinering">Vaccinering</string>
+    <string name="doses_delivered">Doses delivered:</string>
+    <string name="doses_administered">\nDoses administered:</string>
+    <string name="source_folkh_lsomyndigheten">\n\n\n\nSource: Folkhälsomyndigheten</string>
+    <string name="total">\nTotal:</string>
 
     <string name="amanda">Hej Amanda</string>
 
@@ -38,6 +45,9 @@
     <string name="goback">Go back</string>
     <string name="isadmin">Is an Administrator?</string>
     <string name="admin_login">Admin login here</string>
+    <string name="wrong_creeentials">The username and/or password is incorrect</string>
+    <string name="signup_failed">The creation of a user account failed</string>
+    <string name="signup_success">The creation of a user account succeeded</string>
 
 
 </resources>
