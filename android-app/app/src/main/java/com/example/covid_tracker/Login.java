@@ -2,10 +2,7 @@ package com.example.covid_tracker;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -18,22 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -76,7 +60,7 @@ public class Login extends AppCompatActivity implements OnClickListener {
                     WebRequest.username = user_email.getText().toString();
                     WebRequest.password = user_password.getText().toString();
 
-                    Intent intent = new Intent(Login.this, Dashboard.class);
+                    Intent intent = new Intent(Login.this, Dashboard_old.class);
                     finish();
                     startActivity(intent);
 

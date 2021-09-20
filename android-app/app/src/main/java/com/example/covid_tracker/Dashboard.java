@@ -1,25 +1,73 @@
 package com.example.covid_tracker;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.Person;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-public class Dashboard extends AppCompatActivity implements OnClickListener {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+public class Dashboard extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dashboard_fragments);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        //I added this if statement to keep the selected fragment when rotating the device
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new DigitalHealth()).commit();
+        }
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> {
+                Fragment selectedFragment = null;
+
+                switch (item.getItemId()) {
+                    case R.id.statistic:
+                        selectedFragment = new StatisticsMenu();
+                        break;
+                    case R.id.boka_vaccinicon:
+                        selectedFragment = new Boka_vaccin();
+                        break;
+                    case R.id.digitalHealth:
+                        selectedFragment = new DigitalHealth();
+                        break;
+
+                    case R.id.faq:
+                        //selectedFragment = new DigitalHealth();
+                        break;
+                }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment).commit();
+
+                return true;
+            };
+
+
+
+
+    /*
     private Button logindashbord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dashboard_fragments);
 
         RelativeLayout bokavaccin1 = (RelativeLayout) findViewById(R.id.bokavaccin1);
         RelativeLayout digitalhelth = (RelativeLayout) findViewById(R.id.digitalHealth);
@@ -68,5 +116,6 @@ public class Dashboard extends AppCompatActivity implements OnClickListener {
                 break;
         }
     }
+     */
 }
   
