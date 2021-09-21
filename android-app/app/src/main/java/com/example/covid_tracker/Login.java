@@ -60,7 +60,7 @@ public class Login extends AppCompatActivity implements OnClickListener {
                     WebRequest.username = user_email.getText().toString();
                     WebRequest.password = user_password.getText().toString();
 
-                    Intent intent = new Intent(Login.this, Dashboard_old.class);
+                    Intent intent = new Intent(Login.this, Dashboard.class);
                     finish();
                     startActivity(intent);
 

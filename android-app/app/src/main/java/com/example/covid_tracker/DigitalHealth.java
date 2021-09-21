@@ -10,13 +10,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+
 
 public class DigitalHealth extends Fragment {
 
@@ -39,7 +39,7 @@ public class DigitalHealth extends Fragment {
     }
 
     public void goBack(){
-        Intent intent = new Intent(getActivity(), Dashboard_old.class);
+        Intent intent = new Intent(getActivity(), Dashboard.class);
         startActivity(intent);
     }
 

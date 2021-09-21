@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
-    private Button button1boka, button2omboka, button3avboka, button4tillbaka;
+    private Button button1boka, button2omboka, button3avboka;
     private View view;
 
     @Override
@@ -25,12 +25,11 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
         button1boka = (Button) view.findViewById(R.id.button11);
         button2omboka = (Button) view.findViewById(R.id.button22);
         button3avboka = (Button) view.findViewById(R.id.button33);
-        button4tillbaka = (Button) view.findViewById(R.id.button44);
 
         button1boka.setOnClickListener(this);
         button2omboka.setOnClickListener(this);
         button3avboka.setOnClickListener(this);
-        button4tillbaka.setOnClickListener(this);
+
 
         return view;
 
