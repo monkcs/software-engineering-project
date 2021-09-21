@@ -1,72 +1,61 @@
 package com.example.covid_tracker;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.Person;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-public class Dashboard extends AppCompatActivity implements OnClickListener {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-    private Button logindashbord;
+public class Dashboard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
 
-        RelativeLayout bokavaccin1 = (RelativeLayout) findViewById(R.id.bokavaccin1);
-        RelativeLayout digitalhelth = (RelativeLayout) findViewById(R.id.digitalHealth);
-        bokavaccin1.setOnClickListener(this);
+        setContentView(R.layout.activity_dashboard_fragments);
 
-        
-        RelativeLayout statistics = (RelativeLayout) findViewById(R.id.btn_statistics);
-        statistics.setOnClickListener(this);
-      
-        digitalhelth.setOnClickListener(this);
-    }
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-    public void openBokavaccin()
-    {
-        Intent intent = new Intent(this, Boka_vaccin.class);
-        startActivity(intent);
-    }
-
-    public void openStat()
-    {
-        Intent intent = new Intent(this, StatisticsMenu.class);
-        startActivity(intent);
-    }
-
-    public void openDigitalHelth(){
-        Intent intent = new Intent(this, DigitalHealth.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-
-
-            case R.id.bokavaccin1:
-                System.out.println("button has been pressed");
-                openBokavaccin();
-                break;
-
-            case R.id.btn_statistics:
-                openStat();
-                break;
-
-            case  R.id.digitalHealth:
-                openDigitalHelth();
-                break;
+        //I added this if statement to keep the selected fragment when rotating the device
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new DigitalHealth()).commit();
         }
+
     }
+
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> {
+                Fragment selectedFragment = null;
+
+                switch (item.getItemId()) {
+                    case R.id.statistic:
+                        selectedFragment = new StatisticsMenu();
+                        break;
+                    case R.id.boka_vaccinicon:
+                        selectedFragment = new Boka_vaccin();
+                        break;
+                    case R.id.digitalHealth:
+                        selectedFragment = new DigitalHealth();
+                        break;
+
+                    case R.id.faq:
+                        selectedFragment = new Faq();
+                        break;
+                }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment).commit();
+
+                return true;
+            };
+
+
+
+
 }
   

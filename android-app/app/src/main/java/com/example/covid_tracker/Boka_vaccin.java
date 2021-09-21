@@ -1,41 +1,43 @@
 package com.example.covid_tracker;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Boka_vaccin extends AppCompatActivity implements View.OnClickListener {
+public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
-    private Button button1boka, button2omboka, button3avboka, button4tillbaka;
-
+    private Button button1boka, button2omboka, button3avboka;
+    private View view;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_boka_vaccin);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view  = inflater.inflate(R.layout.fragment_boka_vaccin, container, false);
         GreedPerson();
 
-        button1boka = (Button) findViewById(R.id.button11);
-        button2omboka = (Button) findViewById(R.id.button22);
-        button3avboka = (Button) findViewById(R.id.button33);
-        button4tillbaka = (Button) findViewById(R.id.button44);
+        button1boka = (Button) view.findViewById(R.id.button11);
+        button2omboka = (Button) view.findViewById(R.id.button22);
+        button3avboka = (Button) view.findViewById(R.id.button33);
 
         button1boka.setOnClickListener(this);
         button2omboka.setOnClickListener(this);
         button3avboka.setOnClickListener(this);
-        button4tillbaka.setOnClickListener(this);
 
 
+        return view;
 
     }
 
     private void GreedPerson() {
 
-        TextView textView = findViewById(R.id.greeding);
+        TextView textView = view.findViewById(R.id.greeding);
         textView.setText("Hello " + getPerson());
 
 
@@ -50,15 +52,10 @@ public class Boka_vaccin extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    public void openDashboard()
-    {
-        Intent intent = new Intent(this, Dashboard.class);
-        startActivity(intent);
-    }
 
     public void openBooking()
     {
-        Intent intent = new Intent(this, Boka_vaccin2.class);
+        Intent intent = new Intent(getActivity(), Boka_vaccin2.class);
         startActivity(intent);
     }
 
@@ -96,10 +93,6 @@ public class Boka_vaccin extends AppCompatActivity implements View.OnClickListen
                 removeAppointment();
                 break;
 
-            case R.id.button44:
-                System.out.println("button tillbaka");
-                openDashboard();
-                break;
         }
     }
 }
