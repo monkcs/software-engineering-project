@@ -20,11 +20,10 @@ public class Dashboard extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        //I added this if statement to keep the selected fragment when rotating the device
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new DigitalHealth()).commit();
-        }
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new StatisticsMenu()).commit();
+
 
     }
 
