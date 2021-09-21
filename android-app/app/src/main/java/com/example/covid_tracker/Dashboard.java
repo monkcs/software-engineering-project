@@ -1,87 +1,60 @@
 package com.example.covid_tracker;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.Person;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-public class Dashboard extends AppCompatActivity implements OnClickListener {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-    private Button logindashbord;
+public class Dashboard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+
+        setContentView(R.layout.activity_dashboard_fragments);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
 
-        logindashbord = (Button) findViewById(R.id.LoginDashbord);
-        logindashbord.setOnClickListener(this);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new StatisticsMenu()).commit();
 
-        RelativeLayout bokavaccin1 = (RelativeLayout) findViewById(R.id.bokavaccin1);
-        RelativeLayout digitalhelth = (RelativeLayout) findViewById(R.id.digitalHealth);
-        bokavaccin1.setOnClickListener(this);
-
-
-        
-
-        
-        RelativeLayout statistics = (RelativeLayout) findViewById(R.id.btn_statistics);
-        statistics.setOnClickListener(this);
-      
-        digitalhelth.setOnClickListener(this);
-    }
-    public void Login(){
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
 
     }
 
-    public void openBokavaccin()
-    {
-        Intent intent = new Intent(this, Boka_vaccin.class);
-        startActivity(intent);
-    }
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> {
+                Fragment selectedFragment = null;
 
-    public void openStat()
-    {
-        Intent intent = new Intent(this, StatisticsMenu.class);
-        startActivity(intent);
-    }
+                switch (item.getItemId()) {
+                    case R.id.statistic:
+                        selectedFragment = new StatisticsMenu();
+                        break;
+                    case R.id.boka_vaccinicon:
+                        selectedFragment = new Boka_vaccin();
+                        break;
+                    case R.id.digitalHealth:
+                        selectedFragment = new DigitalHealth();
+                        break;
 
-    public void openDigitalHelth(){
-        Intent intent = new Intent(this, DigitalHealth.class);
-        startActivity(intent);
-    }
+                    case R.id.faq:
+                        selectedFragment = new Faq();
+                        break;
+                }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment).commit();
+
+                return true;
+            };
 
 
-            case R.id.bokavaccin1:
-                System.out.println("button has been pressed");
-                openBokavaccin();
-                break;
-            case R.id.btn_statistics:
-                openStat();
-                break;
 
-            case R.id.LoginDashbord:
-                System.out.println("login button has been pressed");
 
-                Login();
-                break;
-            case  R.id.digitalHealth:
-                openDigitalHelth();
-        }
-    }
 }
   
