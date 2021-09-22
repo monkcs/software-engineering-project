@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StatisticsMenu extends AppCompatActivity {
 
-    private Button btn_vacc;
+    private Button btn_vacc, btn_cov;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,7 @@ public class StatisticsMenu extends AppCompatActivity {
         setContentView(R.layout.statistics_menu);
 
         btn_vacc = (Button) findViewById(R.id.btn_vacc);
+        btn_cov = (Button) findViewById(R.id.btn_cov);
 
         btn_vacc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,10 +26,22 @@ public class StatisticsMenu extends AppCompatActivity {
             }
         });
 
+        btn_cov.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openStatCov();
+            }
+        });
+
     }
 
     public void openStatVacc(){
         Intent intent = new Intent(this, StatisticsVacc.class);
+        startActivity(intent);
+    }
+
+    public void openStatCov(){
+        Intent intent = new Intent(this, StatisticsCovid.class);
         startActivity(intent);
     }
 
