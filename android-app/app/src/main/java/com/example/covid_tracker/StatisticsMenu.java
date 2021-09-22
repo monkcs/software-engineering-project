@@ -47,7 +47,7 @@ public class StatisticsMenu extends Fragment {
     }
 
     public void openStatCov(){
-        Intent intent = new Intent(this, StatisticsCovid.class);
+        Intent intent = new Intent(getActivity(), StatisticsCovid.class);
         startActivity(intent);
     }
 
