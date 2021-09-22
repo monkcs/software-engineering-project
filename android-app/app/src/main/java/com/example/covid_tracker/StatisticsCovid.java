@@ -5,6 +5,7 @@ import static java.lang.String.valueOf;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -123,6 +124,19 @@ public class StatisticsCovid extends AppCompatActivity {
                 lc_deathsperweek.invalidate();
             }
         });
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void onClickDeathsCases(String region, String age) {
