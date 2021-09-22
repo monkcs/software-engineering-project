@@ -16,12 +16,12 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 
 public class DigitalHealth extends Fragment {
 
     private ImageView qrView;
-    private Button goback;
     private View view;
 
 
@@ -32,10 +32,9 @@ public class DigitalHealth extends Fragment {
 
         qrView = view.findViewById(R.id.imageviewqr);
 
-        qrGenerator("LUKAS IS BEST!");
+        qrGenerator("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 
         return view;
-
     }
 
     public void goBack(){
@@ -52,17 +51,20 @@ public class DigitalHealth extends Fragment {
         try{
 
             BitMatrix matrix = writer.encode(code, BarcodeFormat.QR_CODE, 350, 350);
-/*
+
             BarcodeEncoder encoder = new BarcodeEncoder();
 
             Bitmap bitmap = encoder.createBitmap(matrix);
 
             qrView.setImageBitmap(bitmap);
-*/
+
 
         }catch (WriterException e){
             e.printStackTrace();
         }
+
+
     }
+
 
 }

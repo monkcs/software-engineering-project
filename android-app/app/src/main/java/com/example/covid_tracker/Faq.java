@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 public class Faq extends Fragment {
 
     private View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view  = inflater.inflate(R.layout.fragment_faq, container, false);
