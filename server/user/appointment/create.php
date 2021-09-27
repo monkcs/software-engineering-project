@@ -19,7 +19,7 @@ function pending($connection, $identity)
 
 function dosage($connection, $identity)
 {
-    $second = $connection->prepare("SELECT * FROM dose_one WHERE dose_one.person = ?");
+    $second = $connection->prepare("SELECT * FROM dose_two WHERE dose_two.person = ?");
     $second->bind_param("i", $identity);
     $second->execute();
     $result_second = $second->get_result();
@@ -27,7 +27,7 @@ function dosage($connection, $identity)
 
     if ($result_second->num_rows == 0) {
 
-        $first = $connection->prepare("SELECT * FROM second_one WHERE second_one.person = ?");
+        $first = $connection->prepare("SELECT * FROM dose_one WHERE dose_one.person = ?");
         $first->bind_param("i", $identity);
         $first->execute();
         $result_first = $first->get_result();
@@ -45,13 +45,25 @@ function dosage($connection, $identity)
 
 function insert($connection, $appointment, $identity, $dose)
 {
-
-    $statement = $connection->prepare("INSERT INTO booking VALUES(?, ?, ?)");
-    $statement->bind_param("i", $appointment);
-    $statement->bind_param("i", $identity);
-    $statement->bind_param("i", $dose);
+    $statement = $connection->prepare("INSERT INTO appointment VALUES (?, ?, ?)");
+    $statement->bind_param("iii", $appointment, $identity, $dose);
     $statement->execute();
     $statement->close();
+}
+
+function occupied($connection, $appointment)
+{
+    $statement = $connection->prepare("SELECT * FROM appointment WHERE appointment.account = ?");
+    $statement->bind_param("i", $identity);
+    $statement->execute();
+    $result = $statement->get_result();
+    $statement->close();
+
+    if ($result->num_rows == 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -66,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($appointment == "") {
             http_response_code(400);
             echo "No appointment id specified\n";
+            exit;
         }
 
         if ($current_dosage == 0) {
