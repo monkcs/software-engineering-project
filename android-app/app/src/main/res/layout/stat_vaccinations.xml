@@ -96,6 +96,29 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lay_clear_filters_vacc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lay_filters_vacc_2">
+
+
+            <TextView
+                android:id="@+id/tv_clearfilters_vacc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Clear Filters"
+                android:textColor="#3F51B5" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/search_region"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -104,7 +127,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lay_filters_vacc_2">
+            app:layout_constraintTop_toBottomOf="@+id/lay_clear_filters_vacc">
 
             <Button
                 android:id="@+id/btn_searchRegion"
@@ -198,7 +221,7 @@
         <LinearLayout
             android:id="@+id/region_stats_dist2"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -222,107 +245,35 @@
                         android:textSize="20sp"
                         android:text="@string/doses_administered" />
 
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:id="@+id/tv_admin_total"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="@string/total" />
-
                     <TextView
                         android:id="@+id/tv_admin_stats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="1 dose:" />
-
-                    <TextView
-                        android:id="@+id/tv_admin_oneDose"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="1 dose (%):" />
-
-                    <TextView
-                        android:id="@+id/tv_admin_oneDosePerc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="2 doses:" />
-
-                    <TextView
-                        android:id="@+id/tv_admin_twoDose"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="2 doses (%):" />
-
-                    <TextView
-                        android:id="@+id/tv_admin_twoDosePerc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:text="@string/source_folkh_lsomyndigheten" />
 
                 </TableRow>
 
             </TableLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/region_stats_graph2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/region_stats_dist2">
+
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lc_adminperweek"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.github.mikephil.charting.charts.LineChart>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

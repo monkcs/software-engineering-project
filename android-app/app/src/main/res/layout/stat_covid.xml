@@ -65,6 +65,29 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lay_clear_filters_cov"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_region">
+
+
+            <TextView
+                android:id="@+id/tv_clearfilters_cov"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Clear Filters"
+                android:textColor="#3F51B5" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/search_button_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -72,7 +95,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_region">
+            app:layout_constraintTop_toBottomOf="@+id/lay_clear_filters_cov">
 
             <Button
                 android:id="@+id/btn_cov_searchRegion"
