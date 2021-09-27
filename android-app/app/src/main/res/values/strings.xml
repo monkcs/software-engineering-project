@@ -42,7 +42,8 @@
     <string name="amanda">Hej Amanda</string>
 
     <string name="wronguser">Not an administror?</string>
-    <string name="goback">Go back</string>
+    <string name="goback">Go Back</string>
+    <string name="exit">Exit</string>
     <string name="isadmin">Is an Administrator?</string>
     <string name="admin_login">Admin login here</string>
     <string name="wrong_creeentials">The username and/or password is incorrect</string>
@@ -52,6 +53,11 @@
     <string name="total_cases">Total cases:</string>
     <string name="total_deaths">Total deaths:</string>
     <string name="note_data_on_different_age_groups_is_only_available_for_sweden">NOTE: data on different age groups\nis only available for Sweden</string>
+
+    <string name="Delete">Delete</string>
+    <string name="cancel_appointment">Are you sure you want to delete your appointment?</string>
+    <string name="time_canceled">Booked time is canceled</string>
+    <string name="TimeNotCanceled">Cancelation of booked time failed</string>
 
 
 </resources>

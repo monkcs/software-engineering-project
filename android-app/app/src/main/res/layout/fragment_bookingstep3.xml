@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".Fragments.BookingStep3Fragment">
+
+    <TextView
+        android:id="@+id/text_"
+        android:gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Page 3"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        tools:ignore="MissingConstraints" />
+
+    <devs.mulham.horizontalcalendar.HorizontalCalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_"
+        android:layout_marginTop="0dp"
+        android:background="@color/green"
+        app:selectedDateBackground="#00ffffff"
+        app:selectorColor="@color/black"
+        app:textColorNormal="@color/white"
+        app:textColorSelected="@color/black"
+        app:textSizeDayName="20sp"
+        app:textSizeDayNumber="20sp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_timeSlot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/calendarView"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
