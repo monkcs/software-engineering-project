@@ -42,12 +42,18 @@
     <string name="amanda">Hej Amanda</string>
 
     <string name="wronguser">Not an administror?</string>
-    <string name="goback">Go back</string>
+    <string name="goback">Go Back</string>
+    <string name="exit">Exit</string>
     <string name="isadmin">Is an Administrator?</string>
     <string name="admin_login">Admin login here</string>
     <string name="wrong_creeentials">The username and/or password is incorrect</string>
     <string name="signup_failed">The creation of a user account failed</string>
     <string name="signup_success">The creation of a user account succeeded</string>
+
+    <string name="Delete">Delete</string>
+    <string name="cancel_appointment">Are you sure you want to delete your appointment?</string>
+    <string name="time_canceled">Booked time is canceled</string>
+    <string name="TimeNotCanceled">Cancelation of booked time failed</string>
 
 
 </resources>
