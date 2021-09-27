@@ -13,21 +13,21 @@
        android:textSize="26dp" />
 
    <Button
-       android:id="@+id/button11"
+       android:id="@+id/BtnBook"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="Boka"
        android:textColor="@color/black" />
 
    <Button
-       android:id="@+id/button22"
+       android:id="@+id/BtnRebook"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="Omboka"
        android:textColor="@color/black" />
 
    <Button
-       android:id="@+id/button33"
+       android:id="@+id/BtnCancel"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="Avboka"

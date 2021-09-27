@@ -52,7 +52,7 @@ public class StatisticsVacc extends AppCompatActivity {
 
     String[] products = {"(Product) All", "Pfizer/BioNTech", "Moderna", "AstraZeneca"};
 
-    String[] doses = {"(Doses) All", "1 (at least)", "2"};
+    String[] doses = {"(Doses) Total", "1 (at least)", "2"};
 
     private final List<VaccineSample> vaccineSamples = new ArrayList<>();
     private final List<VaccineDistSample> vaccineDistSamples = new ArrayList<>();

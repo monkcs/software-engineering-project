@@ -1,6 +1,7 @@
 package com.example.covid_tracker;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -11,24 +12,40 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.Map;
 
 public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
-    private Button button1boka, button2omboka, button3avboka;
+    private Button buttonBook, buttonRebook, buttonCancel;
     private View view;
+    private RequestQueue queue;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private Button BtnDelete, BtnGoBack;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        queue = Volley.newRequestQueue(getActivity());
+
         view  = inflater.inflate(R.layout.fragment_boka_vaccin, container, false);
         GreedPerson();
 
-        button1boka = (Button) view.findViewById(R.id.button11);
-        button2omboka = (Button) view.findViewById(R.id.button22);
-        button3avboka = (Button) view.findViewById(R.id.button33);
+        buttonBook = (Button) view.findViewById(R.id.BtnBook);
+        buttonRebook = (Button) view.findViewById(R.id.BtnRebook);
+        buttonCancel = (Button) view.findViewById(R.id.BtnCancel);
 
-        button1boka.setOnClickListener(this);
-        button2omboka.setOnClickListener(this);
-        button3avboka.setOnClickListener(this);
+        buttonBook.setOnClickListener(this);
+        buttonRebook.setOnClickListener(this);
+        buttonCancel.setOnClickListener(this);
 
 
         return view;
@@ -55,7 +72,7 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
     public void openBooking()
     {
-        Intent intent = new Intent(getActivity(), Boka_vaccin2.class);
+        Intent intent = new Intent(getActivity(), BookingActivity.class);
         startActivity(intent);
     }
 
@@ -65,12 +82,46 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
     public void removeAppointment() {
 
         //if tid bokad
+        dialogBuilder = new AlertDialog.Builder(getActivity());
+        final View CancelPopupView = getLayoutInflater().inflate(R.layout.deletepopup, null);
+        BtnDelete = (Button) CancelPopupView.findViewById(R.id.DeleteBtn);
+        BtnGoBack = (Button) CancelPopupView.findViewById(R.id.GobackBtn);
 
-        System.out.println("Tog bort bokade tid");
+        dialogBuilder.setView(CancelPopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
 
-        // else
-        // print "finns ingen aktuell tid
+        BtnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DeleteAppointment();
+                dialog.dismiss();
 
+            }
+        });
+        BtnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+    public void DeleteAppointment() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "cancel_time.php", null,
+                response -> {
+                    System.out.println("Tog bort bokade tid");
+                    Toast.makeText(getActivity(), R.string.time_canceled, Toast.LENGTH_LONG).show();
+                    getActivity().finish();
+
+                }, error -> {
+            Toast.makeText(getActivity(), R.string.TimeNotCanceled, Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+            }
+        };
+        queue.add(request);
     }
 
     @Override
@@ -78,17 +129,17 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
 
 
-            case R.id.button11:
+            case R.id.BtnBook:
                 //System.out.println("button boka");
                 openBooking();
                 break;
 
 
-            case R.id.button22:
+            case R.id.BtnRebook:
                 System.out.println("button omboka");
                 break;
 
-            case R.id.button33:
+            case R.id.BtnCancel:
                 System.out.println("button avboka");
                 removeAppointment();
                 break;
