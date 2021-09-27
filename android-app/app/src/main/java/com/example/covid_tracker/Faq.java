@@ -24,7 +24,6 @@ public class Faq extends Fragment {
         //toppen
         // tex    button = (Button) view.findViewById(R.id.button); viktigt att det står view. för att komma åt element i fragmented
 
-        view = inflater.inflate(R.layout.fragment_faq, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_faqis);
 
 
