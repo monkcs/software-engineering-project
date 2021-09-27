@@ -50,6 +50,8 @@ public class Faq extends Fragment {
 
         list.add(new FAQ_block("Calle", "balle"));
         list.add(new FAQ_block("Har du ätit idag?", "ja det har jag"));
+        list.add(new FAQ_block("Är calle bög?", "ja"));
+
 
     }
 }
