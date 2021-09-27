@@ -47,7 +47,7 @@ import java.util.List;
 public class StatisticsCovid extends AppCompatActivity {
     Button btn_cov_searchRegion;
 
-    TextView tv_region_name_cov, tv_case_stats_cov, tv_deaths_stats_cov;
+    TextView tv_region_name_cov, tv_case_stats_cov, tv_deaths_stats_cov, tv_clearfilters;
 
     Spinner spinner_cov_searchRegion, spinner_cov_age;
 
@@ -72,6 +72,7 @@ public class StatisticsCovid extends AppCompatActivity {
         tv_region_name_cov = findViewById(R.id.tv_region_name_cov);
         tv_case_stats_cov = findViewById(R.id.tv_case_stats_cov);
         tv_deaths_stats_cov = findViewById(R.id.tv_deaths_stats_cov);
+        tv_clearfilters = findViewById(R.id.tv_clearfilters_cov);
 
         spinner_cov_searchRegion = findViewById(R.id.spinner_cov_searchRegion);
         spinner_cov_age = findViewById(R.id.spinner_cov_age);
@@ -122,6 +123,14 @@ public class StatisticsCovid extends AppCompatActivity {
                 lc_casesperweek.invalidate();
                 lc_deathsperweek.notifyDataSetChanged();
                 lc_deathsperweek.invalidate();
+            }
+        });
+
+        tv_clearfilters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                spinner_cov_age.setSelection(0);
+                spinner_cov_searchRegion.setSelection(0);
             }
         });
 
