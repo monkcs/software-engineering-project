@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ASUS/Documents/software-enginnering/android-app/app/src/main/res/layout/activity_boka_vaccin.xml" value="0.1796875" />
+        <entry key="..\:/Users/ASUS/Documents/software-enginnering/android-app/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/ASUS/Documents/software-enginnering/android-app/app/src/main/res/layout/activity_regristering.xml" value="0.22" />
+        <entry key="..\:/Users/ASUS/Documents/software-enginnering/android-app/app/src/main/res/layout/login.xml" value="0.1796875" />
+        <entry key="..\:/Users/ASUS/Documents/software-enginnering/android-app/app/src/main/res/layout/test.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/ASUS/Documents/software-enginnering/android-app/app/src/main/res/layout/test_login.xml" value="0.6" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_fragments.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_boka_vaccin.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_faq.xml" value="0.2962962962962963" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/row.xml" value="0.536" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.2" />
