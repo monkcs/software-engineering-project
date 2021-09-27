@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 public class StatisticsMenu extends Fragment {
 
-    private Button btn_vacc;
+    private Button btn_vacc, btn_cov;
     private View view;
 
 
@@ -22,6 +22,7 @@ public class StatisticsMenu extends Fragment {
         view = inflater.inflate(R.layout.fragment_statistics_menu, container, false);
 
         btn_vacc = (Button) view.findViewById(R.id.btn_vacc);
+        btn_cov = (Button) view.findViewById(R.id.btn_cov);
 
         btn_vacc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,11 +31,23 @@ public class StatisticsMenu extends Fragment {
             }
         });
 
+        btn_cov.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openStatCov();
+            }
+        });
+        
         return view;
     }
 
     public void openStatVacc(){
         Intent intent = new Intent(getActivity(), StatisticsVacc.class);
+        startActivity(intent);
+    }
+
+    public void openStatCov(){
+        Intent intent = new Intent(getActivity(), StatisticsCovid.class);
         startActivity(intent);
     }
 

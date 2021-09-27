@@ -37,24 +37,97 @@
             tools:layout_editor_absoluteY="56dp" />
 
         <LinearLayout
-            android:id="@+id/search_region"
+            android:id="@+id/lay_filters_vacc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-            <AutoCompleteTextView
-                android:id="@+id/actv_searchRegion"
+            <Spinner
+                android:id="@+id/spinner_searchRegion"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_dropdown"
+                android:ems="10"
+                android:spinnerMode="dropdown"/>
+
+            <Spinner
+                android:id="@+id/spinner_age_vac"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_dropdown"
+                android:ems="10"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_filters_vacc_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lay_filters_vacc">
+
+            <Spinner
+                android:id="@+id/spinner_noDoses"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_dropdown"
+                android:ems="10"
+                android:spinnerMode="dropdown"/>
+
+            <Spinner
+                android:id="@+id/spinner_product"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_dropdown"
+                android:ems="10"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_clear_filters_vacc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lay_filters_vacc_2">
+
+
+            <TextView
+                android:id="@+id/tv_clearfilters_vacc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:ems="10"
-                android:hint="Region (blank for Sweden)"
-                android:inputType="textPersonName" />
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Clear Filters"
+                android:textColor="#3F51B5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/search_region"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lay_clear_filters_vacc">
 
             <Button
                 android:id="@+id/btn_searchRegion"
@@ -90,7 +163,7 @@
         <LinearLayout
             android:id="@+id/region_stats_dist"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -120,6 +193,46 @@
                         android:layout_height="wrap_content"
                         android:textSize="20sp" />
                 </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_bar_chart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/region_stats_dist">
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lc_distperweek"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.github.mikephil.charting.charts.LineChart>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/region_stats_dist2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_bar_chart">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -132,107 +245,52 @@
                         android:textSize="20sp"
                         android:text="@string/doses_administered" />
 
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:id="@+id/tv_admin_total"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="@string/total" />
-
                     <TextView
                         android:id="@+id/tv_admin_stats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="1 dose:" />
-
-                    <TextView
-                        android:id="@+id/tv_admin_oneDose"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="1 dose (%):" />
-
-                    <TextView
-                        android:id="@+id/tv_admin_oneDosePerc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="2 doses:" />
-
-                    <TextView
-                        android:id="@+id/tv_admin_twoDose"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="2 doses (%):" />
-
-                    <TextView
-                        android:id="@+id/tv_admin_twoDosePerc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:text="@string/source_folkh_lsomyndigheten" />
 
                 </TableRow>
 
             </TableLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/region_stats_graph2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/region_stats_dist2">
+
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lc_adminperweek"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.github.mikephil.charting.charts.LineChart>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/region_stats_graph2">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/source_folkh_lsomyndigheten" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

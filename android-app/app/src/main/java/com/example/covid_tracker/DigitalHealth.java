@@ -22,6 +22,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 public class DigitalHealth extends Fragment {
 
     private ImageView qrView;
+
     private View view;
 
 
@@ -32,17 +33,12 @@ public class DigitalHealth extends Fragment {
 
         qrView = view.findViewById(R.id.imageviewqr);
 
-        qrGenerator("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+
+        qrGenerator("https://youtu.be/iik25wqIuFo");
+
 
         return view;
     }
-
-    public void goBack(){
-        Intent intent = new Intent(getActivity(), Dashboard.class);
-        startActivity(intent);
-    }
-
-
 
     private void qrGenerator(String code){
 

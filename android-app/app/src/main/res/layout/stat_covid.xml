@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Dashboard">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/covid_19"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            app:fontFamily="sans-serif"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="80dp"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:srcCompat="@drawable/medical_icon_1_300x300"
+            tools:layout_editor_absoluteY="56dp" />
+
+        <LinearLayout
+            android:id="@+id/search_region"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+            <Spinner
+                android:id="@+id/spinner_cov_searchRegion"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_dropdown"
+                android:ems="10"
+                android:spinnerMode="dropdown" />
+            <Spinner
+                android:id="@+id/spinner_cov_age"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_dropdown"
+                android:ems="10"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_clear_filters_cov"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_region">
+
+
+            <TextView
+                android:id="@+id/tv_clearfilters_cov"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Clear Filters"
+                android:textColor="#3F51B5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/search_button_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lay_clear_filters_cov">
+
+            <Button
+                android:id="@+id/btn_cov_searchRegion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:backgroundTint="@color/green"
+                android:layout_weight="1"
+                android:text="Search" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/region_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_button_layout">
+
+            <TextView
+                android:id="@+id/tv_region_name_cov"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="4dp"
+                android:textSize="24dp"
+                android:text="Sweden"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/region_stats_dist_cov1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/region_info">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:text="@string/total_cases"/>
+
+                    <TextView
+                        android:id="@+id/tv_case_stats_cov"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:text="@string/total_deaths" />
+
+                    <TextView
+                        android:id="@+id/tv_deaths_stats_cov"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp" />
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_lc_covid1"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/region_stats_dist_cov1">
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lc_casesperweek"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.github.mikephil.charting.charts.LineChart>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_lc_covid2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_lc_covid1">
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lc_deathsperweek"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.github.mikephil.charting.charts.LineChart>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/region_stats_dist_cov2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_lc_covid2">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="@string/source_folkh_lsomyndigheten" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="@string/note_data_on_different_age_groups_is_only_available_for_sweden" />
+
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,19 +1,27 @@
 package com.example.covid_tracker;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -31,13 +39,24 @@ import java.util.List;
 
 public class StatisticsVacc extends AppCompatActivity {
     Button btn_searchRegion;
-    TextView tv_region_name, tv_dist_stats, tv_admin_stats, tv_adminOneDose, tv_adminOneDosePerc, tv_adminTwoDose, tv_adminTwoDosePerc;
+    TextView tv_region_name, tv_dist_stats, tv_admin_stats, tv_clearfilters;
+    LineChart lc_distperweek, lc_adminperweek;
 
-    String [] regions = {"Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland", "Jämtland/Härjedalen", "Jönköping", "Kalmar", "Kronoberg",
-                        "Norrbotten", "Skåne", "Stockholm", "Södermanland", "Uppsala", "Värmland", "Västerbotten", "Västernorrland", "Västmanland",
-                        "Västra Götaland", "Örebro", "Östergötland"};
+    Spinner spinner_searchRegion, spinner_age_vac, spinner_noDoses, spinner_product;
+
+    String[] regions = {"(Region) Sweden", "Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland", "Jämtland", "Jönköping", "Kalmar", "Kronoberg",
+            "Norrbotten", "Skåne", "Stockholm", "Södermanland", "Uppsala", "Värmland", "Västerbotten", "Västernorrland", "Västmanland",
+            "Västra Götaland", "Örebro", "Östergötland"};
+
+    String[] ages = {"(Age Group) All", "16-17", "18-29", "30-39", "40-49", "50-59", "60-69", "70-79", "80-89", "90+"};
+
+    String[] products = {"(Product) All", "Pfizer/BioNTech", "Moderna", "AstraZeneca"};
+
+    String[] doses = {"(Doses) Total", "1 (at least)", "2"};
 
     private final List<VaccineSample> vaccineSamples = new ArrayList<>();
+    private final List<VaccineWeeklySample> vaccineWeeklySamples = new ArrayList<>();
+    private final List<VaccineDistSample> vaccineDistSamples = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,97 +67,83 @@ public class StatisticsVacc extends AppCompatActivity {
         tv_region_name = findViewById(R.id.tv_region_name);
         tv_dist_stats = findViewById(R.id.tv_dist_stats);
         tv_admin_stats = findViewById(R.id.tv_admin_stats);
-        tv_adminOneDose = findViewById(R.id.tv_admin_oneDose);
+        tv_clearfilters = findViewById(R.id.tv_clearfilters_vacc);
+       /* tv_adminOneDose = findViewById(R.id.tv_admin_oneDose);
         tv_adminOneDosePerc = findViewById(R.id.tv_admin_oneDosePerc);
         tv_adminTwoDose = findViewById(R.id.tv_admin_twoDose);
-        tv_adminTwoDosePerc = findViewById(R.id.tv_admin_twoDosePerc);
+        tv_adminTwoDosePerc = findViewById(R.id.tv_admin_twoDosePerc);*/
 
-        String admin_url = "https://www.folkhalsomyndigheten.se/folkhalsorapportering-statistik/statistikdatabaser-och-visualisering/vaccinationsstatistik/statistik-for-vaccination-mot-covid-19/";
-        String dist_url = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/statistik-och-analyser/leveranser-av-vaccin/";
+        spinner_searchRegion = findViewById(R.id.spinner_searchRegion);
+        spinner_age_vac = findViewById(R.id.spinner_age_vac);
+        spinner_noDoses = findViewById(R.id.spinner_noDoses);
+        spinner_product = findViewById(R.id.spinner_product);
+
+        lc_distperweek = findViewById(R.id.lc_distperweek);
+        lc_adminperweek = findViewById(R.id.lc_adminperweek);
+
+        ArrayAdapter<String> region_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, regions);
+        spinner_searchRegion.setAdapter(region_adapter);
+
+        ArrayAdapter<String> age_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, ages);
+        spinner_age_vac.setAdapter(age_adapter);
+
+        ArrayAdapter<String> product_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, products);
+        spinner_product.setAdapter(product_adapter);
+
+        ArrayAdapter<String> dose_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, doses);
+        spinner_noDoses.setAdapter(dose_adapter);
 
         try {
-            readVaccineData();
+            readVaccineAdminData();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        GetTotalDistDoses taskGetDistDoses_beforeClick = new GetTotalDistDoses();
-        taskGetDistDoses_beforeClick.execute(dist_url, "county", "Totalt i Sverige");
+        try {
+            readWeeklyVaccineData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        GetTotalAdminDoses taskGetAdminDoses_beforeClick = new GetTotalAdminDoses();
-        taskGetAdminDoses_beforeClick.execute(admin_url);
+        try {
+            readVaccineDistData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        GetAdminOneDoses taskGetAdminOneDoses = new GetAdminOneDoses();
-        taskGetAdminOneDoses.execute(admin_url);
-
-        GetAdminTwoDoses taskGetAdminTwoDoses = new GetAdminTwoDoses();
-        taskGetAdminTwoDoses.execute(admin_url);
-
-        /* source: https://stackoverflow.com/questions/31052436/android-edittext-with-drop-down-list */
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, regions);
-        //Find TextView control
-        AutoCompleteTextView actv_searchRegion = (AutoCompleteTextView) findViewById(R.id.actv_searchRegion);
-        //Set the number of characters the user must type before the drop down list is shown
-        actv_searchRegion.setThreshold(1);
-        //Set the adapter
-        actv_searchRegion.setAdapter(adapter);
+        beforeClick();
+        onClickDistDoses("(Region) Sweden", "(Product) All");
+        setGraphAdminDoses("(Region) Sweden");
 
         btn_searchRegion.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
 
-                /*get input string from user*/
-                int oneDose = 0, twoDose = 0, totalDoses = 0, pop = 0;
+                String region_input, age_input, doses_input, product_input;
+                region_input = spinner_searchRegion.getSelectedItem().toString();
+                product_input = spinner_product.getSelectedItem().toString();
+                age_input = spinner_age_vac.getSelectedItem().toString();
+                doses_input = spinner_noDoses.getSelectedItem().toString();
 
-                String region_input;
-                region_input = actv_searchRegion.getText().toString();
+                onClickDistDoses(region_input, product_input);
+                //notify graph about new data
+                lc_distperweek.notifyDataSetChanged();
+                lc_distperweek.invalidate();
 
-                GetTotalDistDoses taskGetDoses_onClick = new GetTotalDistDoses();
-                GetAdminOneDoses taskGetAdminOneDoses_onClick = new GetAdminOneDoses();
-                GetAdminTwoDoses taskGetAdminTwoDoses_onClick = new GetAdminTwoDoses();
-                GetTotalAdminDoses taskGetAdminDoses_onClick = new GetTotalAdminDoses();
+                onClickAdminDoses(region_input, age_input, doses_input);
+                setGraphAdminDoses(region_input);
+                lc_adminperweek.notifyDataSetChanged();
+                lc_adminperweek.invalidate();
+            }
+        });
 
-                hideKeybaord(view);
-
-
-                if(region_input.length() == 0)
-                {
-                    tv_region_name.setText("Sweden");
-                    taskGetDoses_onClick.execute(dist_url, "county", "Totalt i Sverige");
-                    taskGetAdminOneDoses_onClick.execute(admin_url);
-                    taskGetAdminTwoDoses_onClick.execute(admin_url);
-                    taskGetAdminDoses_onClick.execute(admin_url);
-                }
-                else{
-                    tv_region_name.setText(region_input);
-                    taskGetDoses_onClick.execute(dist_url, "county", region_input);
-                    //get admin doses per region by going through "vaccineSamples"
-                    for(int i = 0; i < vaccineSamples.size(); i++)
-                    {
-
-                        //Log.d("StatisticsVacc", "Curr: " + vaccineSamples.get(i));
-                        String currRegion = vaccineSamples.get(i).getRegion_name();
-                        if(currRegion.equals(region_input))
-                        {
-                            oneDose = oneDose + vaccineSamples.get(i).getOne_dose();
-                            twoDose = twoDose + vaccineSamples.get(i).getTwo_dose();
-                            pop = pop + vaccineSamples.get(i).getPopulation();
-                        }
-                    }
-
-
-                    int tempCalc = oneDose - twoDose;
-                    int tempCalc2 = twoDose * 2;
-                    totalDoses = tempCalc + tempCalc2;
-
-                    tv_adminOneDose.setText("" + oneDose);
-                    tv_adminOneDosePerc.setText("" + calcIntPercent(oneDose, pop) + " %");
-                    tv_adminTwoDose.setText("" + twoDose);
-                    tv_adminTwoDosePerc.setText("" + calcIntPercent(twoDose, pop) + " %");
-                    tv_admin_stats.setText("\n" + totalDoses);
-
-                }
+        tv_clearfilters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                spinner_searchRegion.setSelection(0);
+                spinner_product.setSelection(0);
+                spinner_age_vac.setSelection(0);
+                spinner_noDoses.setSelection(0);
             }
         });
 
@@ -156,21 +161,14 @@ public class StatisticsVacc extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*source: https://www.tutorialspoint.com/how-to-close-or-hide-the-virtual-keyboard-on-android*/
-    private void hideKeybaord(View v) {
-        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
-    }
-
     private int calcIntPercent(int a, int b) {
-        double e = ((double) a / (double) b)*100;
+        double e = ((double) a / (double) b) * 100;
         return (int) e;
     }
 
     /*Source: https://www.youtube.com/watch?v=i-TqNzUryn8&ab_channel=BrianFraser*/
-    private void readVaccineData() throws IOException {
-        //VaccineSample sample;
-        InputStream is = getResources().openRawResource(R.raw.data_vaccine_fhm_210914);
+    private void readVaccineAdminData() throws IOException {
+        InputStream is = getResources().openRawResource(R.raw.data_vaccine_uptake_fhm_210914);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
@@ -179,42 +177,42 @@ public class StatisticsVacc extends AppCompatActivity {
 
         reader.readLine();
 
-        while((line = reader.readLine()) != null){
+        while ((line = reader.readLine()) != null) {
             //split by ',' (.csv file)
-            String [] tokens = line.split(",");
+            String[] tokens = line.split(",");
 
             //read data
             VaccineSample sample = new VaccineSample();
 
-            if(validElement(tokens[0])) sample.setRegion_id(Integer.parseInt(tokens[0]));
-            else{
+            if (validElement_vacc(tokens[0])) sample.setRegion_id(Integer.parseInt(tokens[0]));
+            else {
                 sample.setRegion_id(0);
             }
             sample.setRegion_name(tokens[1]);
-            if(validElement(tokens[2])) sample.setCounty_id(Integer.parseInt(tokens[2]));
-            else{
+            if (validElement_vacc(tokens[2])) sample.setCounty_id(Integer.parseInt(tokens[2]));
+            else {
                 sample.setCounty_id(0);
             }
             sample.setCounty_name(tokens[3]);
             sample.setAge(tokens[4]);
-            if(validElement(tokens[5])) sample.setPopulation(Integer.parseInt(tokens[5]));
-            else{
+            if (validElement_vacc(tokens[5])) sample.setPopulation(Integer.parseInt(tokens[5]));
+            else {
                 sample.setPopulation(0);
             }
-            if(validElement(tokens[6])) sample.setOne_dose(Integer.parseInt(tokens[6]));
-            else{
+            if (validElement_vacc(tokens[6])) sample.setOne_dose(Integer.parseInt(tokens[6]));
+            else {
                 sample.setOne_dose(0);
             }
-            if(validElement(tokens[7])) sample.setTwo_dose(Integer.parseInt(tokens[7]));
-            else{
+            if (validElement_vacc(tokens[7])) sample.setTwo_dose(Integer.parseInt(tokens[7]));
+            else {
                 sample.setTwo_dose(0);
             }
-            if(validElement(tokens[8])) sample.setShare_oneDose(Double.parseDouble(tokens[8]));
-            else{
+            if (validElement_vacc(tokens[8])) sample.setShare_oneDose(Double.parseDouble(tokens[8]));
+            else {
                 sample.setShare_oneDose(0);
             }
-            if(validElement(tokens[9])) sample.setShare_twoDose(Double.parseDouble(tokens[9]));
-            else{
+            if (validElement_vacc(tokens[9])) sample.setShare_twoDose(Double.parseDouble(tokens[9]));
+            else {
                 sample.setShare_twoDose(0);
             }
 
@@ -222,212 +220,341 @@ public class StatisticsVacc extends AppCompatActivity {
         }
     }
 
-    private boolean validElement(String string) {
-        if(string.equals(".") || string.length() < 1) return false;
+    private void readWeeklyVaccineData() throws IOException{
+        InputStream is = getResources().openRawResource(R.raw.data_vaccine_weekly_fhm_210927);
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(is, StandardCharsets.UTF_8)
+        );
+
+        String line = "";
+
+        reader.readLine();
+
+        while ((line = reader.readLine()) != null) {
+            //split by ',' (.csv file)
+            String[] tokens = line.split(",");
+
+            //read data
+            VaccineWeeklySample sample = new VaccineWeeklySample();
+
+            if (validElement_vacc(tokens[0])) sample.setWeek(Integer.parseInt(tokens[0]));
+            else {
+                sample.setWeek(0);
+            }
+            if (validElement_vacc(tokens[1])) sample.setYear(Integer.parseInt(tokens[1]));
+            else {
+                sample.setYear(0);
+            }
+            if(tokens[2].equals("| Sverige |"))
+                sample.setRegion("Sweden");
+            else {
+                sample.setRegion(tokens[2]);
+            }
+            if (validElement_vacc(tokens[3])) sample.setVaccinated(Integer.parseInt(tokens[3]));
+            else {
+                sample.setVaccinated(0);
+            }
+            if (validElement_vacc(tokens[4])) sample.setShare(Double.parseDouble(tokens[4]));
+            else {
+                sample.setShare(0);
+            }
+            if(tokens[5].equals("Minst 1 dos"))
+                sample.setStatus(1);
+            else if(tokens[5].equals("Färdigvaccinerade"))
+                sample.setStatus(2);
+            else{
+                sample.setStatus(0);
+            }
+
+            vaccineWeeklySamples.add(sample);
+        }
+
+    }
+
+    private void readVaccineDistData() throws IOException {
+
+        InputStream is = getResources().openRawResource(R.raw.data_vaccine_dist_fhm_210921);
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(is, StandardCharsets.UTF_8)
+        );
+
+        String line = "";
+
+        reader.readLine();
+
+        line = reader.readLine();
+        String[] tokens_year = line.split(",");
+
+        line = reader.readLine();
+        String[] tokens_week = line.split(",");
+
+        line = reader.readLine();
+        String[] tokens_product = line.split(",");
+
+        while((line = reader.readLine()) != null)
+        {
+            //split by "," but ignore values inside quotation
+            String tokens[] = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+            String regionName = "";
+
+            if(tokens[0].equals(" Fohm lager* "))
+                break;
+
+            //read region_name
+            if(removeSpaces(tokens[0]).equals("AntaldosertillSverige"))
+                regionName = "Sweden";
+            else {
+                regionName = removeSpaces(tokens[0]);
+            }
+
+            //iterate through every token in the line
+            //every column will be a sample, therefore find the corresponding value
+            //for year, week and product
+            for(int i = 1; i < tokens.length - 4; i++)
+            {
+                VaccineDistSample sample = new VaccineDistSample();
+                sample.setRegion_name(regionName);
+
+                sample.setYear(Integer.parseInt(removeSpaces(tokens_year[i])));
+                sample.setWeek(Integer.parseInt(removeSpaces(tokens_week[i])));
+                sample.setProduct(removeSpaces(tokens_product[i]));
+
+                if(validElement_vacc(removeSpaces(tokens[i])))
+                    sample.setDelivered(Integer.parseInt(removeSpacesQuotesCommas(tokens[i])));
+                else
+                {
+                    sample.setDelivered(0);
+                }
+
+                vaccineDistSamples.add(sample);
+            }
+        }
+    }
+
+    private boolean validElement_vacc(String string) {
+        if (string.equals(".") || string.length() < 1 || string.equals("-")) return false;
         return true;
     }
 
-    class GetTotalDistDoses extends AsyncTask<String, String, Integer> {
+    private String removeSpaces(String s){
+        return s.replaceAll("\\s", "");
+    }
 
-        @Override
-        protected Integer doInBackground(String... strings) {
+    private String removeSpacesQuotesCommas(String s){
+        return s.replaceAll("[ ,\"]", "");
+    }
 
-            int totalDoses = 0;
+    private void beforeClick(){
+        int oneDose = 0, twoDose = 0, pop = 0;
 
-            try {
-                /*connect to the url*/
-                final Document doc = Jsoup.connect(strings[0]).get();
+        for (int i = 0; i < vaccineSamples.size(); i++) {
+            oneDose = oneDose + vaccineSamples.get(i).getOne_dose();
+            twoDose = twoDose + vaccineSamples.get(i).getTwo_dose();
+            pop = pop + vaccineSamples.get(i).getPopulation();
+        }
 
-                /*select elements*/
+        int tempCalc = oneDose - twoDose;
+        int tempCalc2 = twoDose * 2;
+        int totalDoses = tempCalc + tempCalc2;
 
-                Element table = null;
-                /*find correct div*/
-                Element contentDiv = doc.select("div.article.cf").first(); //get(0)
-                if(strings[1] == "total") {
-                    /*in that div, find the correct table*/
-                    /*possible to use get() instead, but first() works when item is the first on page (= get(0))*/
-                    table = contentDiv.select("table").first();
+       /* tv_adminOneDose.setText("" + oneDose);
+        tv_adminOneDosePerc.setText("" + calcIntPercent(oneDose, pop) + " %");
+        tv_adminTwoDose.setText("" + twoDose);
+        tv_adminTwoDosePerc.setText("" + calcIntPercent(twoDose, pop) + " %");*/
+        tv_admin_stats.setText("\n" + totalDoses);
 
+        int delivDoses = 0;
+        for(int i = 0; i < vaccineDistSamples.size(); i++)
+        {
+            String currRegion = vaccineDistSamples.get(i).getRegion_name();
+
+            if(currRegion.equals("Sweden"))
+                delivDoses = delivDoses + vaccineDistSamples.get(i).getDelivered();
+        }
+
+        tv_dist_stats.setText(" " + delivDoses);
+    }
+
+    private void onClickAdminDoses(String region, String age, String doses) {
+        int oneDose = 0, twoDose = 0, totalDoses = 0, pop = 0;
+
+        if (age.equals("90+"))
+            age = "90 eller äldre";
+
+
+        if (region.equals("(Region) Sweden")) {
+            tv_region_name.setText("Sweden");
+
+            for (int i = 0; i < vaccineSamples.size(); i++) {
+                String currAge = vaccineSamples.get(i).getAge();
+
+                if (!age.equals("(Age Group) All")) {
+                    if (currAge.equals(age)) {
+                        oneDose = oneDose + vaccineSamples.get(i).getOne_dose();
+                        twoDose = twoDose + vaccineSamples.get(i).getTwo_dose();
+                        pop = pop + vaccineSamples.get(i).getPopulation();
+                    }
+                } else {
+                    oneDose = oneDose + vaccineSamples.get(i).getOne_dose();
+                    twoDose = twoDose + vaccineSamples.get(i).getTwo_dose();
+                    pop = pop + vaccineSamples.get(i).getPopulation();
                 }
-                else if(strings[1] == "county")
+            }
+        } else {
+            tv_region_name.setText(region);
+            String into_async = "";
+            if (region.equals("Jämtland"))
+                into_async = "Jämtland/ Härjedalen";
+            //get admin doses per region by going through "vaccineSamples"
+            for (int i = 0; i < vaccineSamples.size(); i++) {
+
+                String currRegion = vaccineSamples.get(i).getRegion_name();
+                String currAge = vaccineSamples.get(i).getAge();
+                if (age.equals("(Age Group) All")) {
+                    if (currRegion.equals(region)) {
+                        oneDose = oneDose + vaccineSamples.get(i).getOne_dose();
+                        twoDose = twoDose + vaccineSamples.get(i).getTwo_dose();
+                        pop = pop + vaccineSamples.get(i).getPopulation();
+                    }
+                } else {
+                    if (currRegion.equals(region) && currAge.equals(age)) {
+                        oneDose = oneDose + vaccineSamples.get(i).getOne_dose();
+                        twoDose = twoDose + vaccineSamples.get(i).getTwo_dose();
+                        pop = pop + vaccineSamples.get(i).getPopulation();
+                    }
+                }
+            }
+        }
+
+
+        int tempCalc = oneDose - twoDose;
+        int tempCalc2 = twoDose * 2;
+        totalDoses = tempCalc + tempCalc2;
+
+        if(doses.equals("(Doses) Total"))
+            tv_admin_stats.setText("\n" + totalDoses);
+        else if(doses.equals("1 (at least)"))
+            tv_admin_stats.setText("\n" + oneDose);
+        else if(doses.equals("2"))
+            tv_admin_stats.setText("\n" + twoDose);
+
+        /*
+        tv_adminOneDose.setText("" + oneDose);
+        tv_adminOneDosePerc.setText("" + calcIntPercent(oneDose, pop) + " %");
+        tv_adminTwoDose.setText("" + twoDose);
+        tv_adminTwoDosePerc.setText("" + calcIntPercent(twoDose, pop) + " %");*/
+
+    }
+
+    private void onClickDistDoses(String region, String product){
+        int delivDoses = 0, week = 0;
+        String currRegion = "", currProduct = "";
+        ArrayList<Entry> yValues_lcDist = new ArrayList<>();
+
+        if(region.equals("(Region) Sweden"))
+            region = "Sweden";
+        else if(region.equals("Jämtland"))
+            region = "Jämtland/Härjedalen";
+
+        for(int i = 0; i < vaccineDistSamples.size(); i++)
+        {
+            currRegion = vaccineDistSamples.get(i).getRegion_name();
+            currProduct = vaccineDistSamples.get(i).getProduct();
+            if(product.equals("(Product) All")){
+                //product is not a factor
+                if(currRegion.equals(region)) {
+                    delivDoses = delivDoses + vaccineDistSamples.get(i).getDelivered();
+                    week = vaccineDistSamples.get(i).getWeek();
+                    if(vaccineDistSamples.get(i).getYear() == 2021)
+                        yValues_lcDist.add(new Entry(week, delivDoses));
+                }
+
+            }
+            else{
+                //product is also a factor
+                if(currRegion.equals(region) && currProduct.equals(product)) {
+                    delivDoses = delivDoses + vaccineDistSamples.get(i).getDelivered();
+                    week = vaccineDistSamples.get(i).getWeek();
+                    if(vaccineDistSamples.get(i).getYear() == 2021)
+                        yValues_lcDist.add(new Entry(week, delivDoses));
+                }
+            }
+        }
+
+        lc_distperweek.setData(getLineChart(yValues_lcDist, "Doses delivered"));
+        lc_distperweek.getDescription().setText("Doses delivered per week");
+        tv_dist_stats.setText("  " + delivDoses);
+    }
+
+    private LineData getLineChart(ArrayList<Entry> values1, String s1){
+
+        LineDataSet set1 = new LineDataSet(values1, s1);
+
+        set1.setDrawValues(false);
+        set1.setDrawCircles(false);
+        set1.setLineWidth(4);
+        set1.setFillAlpha(255);
+
+        ArrayList<ILineDataSet> dataSets_lcDist = new ArrayList<>();
+        dataSets_lcDist.add(set1);
+
+        LineData data = new LineData(dataSets_lcDist);
+        return data;
+    }
+
+    private void setGraphAdminDoses(String region){
+        int select_doses = 0, week = 0;
+        ArrayList<Entry> values1 = new ArrayList<>();
+        ArrayList<Entry> values2 = new ArrayList<>();
+
+        if(region.equals("(Region) Sweden"))
+            region = "Sweden";
+        if(doses.equals("1 (at least)"))
+            select_doses = 1;
+        else if(doses.equals("2"))
+            select_doses = 2;
+
+        for(int i = 0; i < vaccineWeeklySamples.size(); i++) {
+            if(region.equals(vaccineWeeklySamples.get(i).getRegion()))
+            {
+                if(vaccineWeeklySamples.get(i).getStatus() == 1)
                 {
-                    table = contentDiv.select("table").get(2);
-                }
-
-                /*in table, select all rows, identified (in this case) by "tr"*/
-                Elements rows = table.select("tr");
-
-
-                /*only one desired value in this case, located at the bottom of row index 0 (titles excluded)*/
-                /*only used for total*/
-                int searchedIndex = rows.size() - 1;
-
-                for (int i = 1; i < rows.size(); i++) {
-                    /*current row is the i:th row, so we get it*/
-                    Element row = rows.get(i);
-                    Elements tds, ths = null;
-                    if(strings[1] == "total") {
-                        /*select the columns found in i:th row*/
-                        tds = row.select("td");
-                        if(i == searchedIndex)
-                        {
-                            /*remove spaces from string using replaceAll function*/
-                            /*this makes it possible to then parse string to integer*/
-                            String tempNoSpace = tds.get(0).text().replaceAll("\\s", "");
-                            totalDoses = Integer.parseInt(tempNoSpace);
-                        }
-                    }
-                    else if(strings[1] == "county"){
-                        ths = row.select("th");
-                        tds = row.select("td");
-
-                        String temp = ths.get(0).text();
-                        if(temp.equals(strings[2]))
-                        {
-                            /*remove spaces from string using replaceAll function*/
-                            /*this makes it possible to then parse string to integer*/
-                            String tempDosesNoSpace = tds.get(0).text().replaceAll("\\s", "");
-                            totalDoses = Integer.parseInt(tempDosesNoSpace);
-                        }
-
-                    }
+                    week = vaccineWeeklySamples.get(i).getWeek();
+                    if(vaccineWeeklySamples.get(i).getYear() == 2021)
+                        values1.add(new Entry(week, (float) vaccineWeeklySamples.get(i).getShare() * 100));
 
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+                else if(vaccineWeeklySamples.get(i).getStatus() == 2)
+                {
+                    week = vaccineWeeklySamples.get(i).getWeek();
+                    if(vaccineWeeklySamples.get(i).getYear() == 2021)
+                        values2.add(new Entry(week, (float) vaccineWeeklySamples.get(i).getShare() * 100));
+                }
             }
-            return totalDoses;
         }
 
-        @Override
-        protected void onPostExecute(Integer integer) {
-            super.onPostExecute(integer);
+        LineDataSet set1 = new LineDataSet(values1, "1 dose (at least)");
+        LineDataSet set2 = new LineDataSet(values2, "Fully vaccinated");
 
-            tv_dist_stats.setText(" " + integer);
-        }
+        set1.setDrawValues(false);
+        set1.setDrawCircles(false);
+        set1.setLineWidth(4);
+        set1.setFillAlpha(255);
 
+        set2.setDrawValues(false);
+        set2.setDrawCircles(false);
+        set2.setLineWidth(4);
+        set2.setFillAlpha(255);
+        set2.setColor(R.color.red);
 
+        ArrayList<ILineDataSet> dataSets_lcDist = new ArrayList<>();
+        dataSets_lcDist.add(set1);
+        dataSets_lcDist.add(set2);
+
+        LineData data = new LineData(dataSets_lcDist);
+
+        lc_adminperweek.setData(data);
+        lc_adminperweek.getDescription().setText("Vaccinations per week (%)");
     }
-
-    class GetTotalAdminDoses extends AsyncTask<String, String, Integer> {
-
-        @Override
-        protected Integer doInBackground(String... strings) {
-
-            int totalDoses = 0;
-
-            try {
-                /*connect to the url*/
-                final Document doc = Jsoup.connect(strings[0]).get();
-
-                Element contentDiv = doc.select("div.article.cf").first();
-
-                Element table = contentDiv.select("table").first();
-                Elements rows = table.select("tr");
-
-                Element row = rows.get(1);
-                Elements tds = row.select("td");;
-
-                String tempDosesNoSpace = tds.get(0).text().replaceAll("\\s", "");
-                totalDoses = Integer.parseInt(tempDosesNoSpace);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return totalDoses;
-        }
-
-        @Override
-        protected void onPostExecute(Integer integer) {
-            super.onPostExecute(integer);
-
-            tv_admin_stats.setText("\n" + integer);
-        }
-
-
-    }
-
-    class GetAdminOneDoses extends AsyncTask<String, String, Integer> {
-
-        @Override
-        protected Integer doInBackground(String... strings) {
-
-            int totalDoses = 0;
-
-            try {
-                /*connect to the url*/
-                final Document doc = Jsoup.connect(strings[0]).get();
-
-                Element contentDiv = doc.select("div.article.cf").first();
-
-                Element table = contentDiv.select("table").get(1);
-                Elements rows = table.select("tr");
-
-                Element row = rows.get(1);
-                Elements tds = row.select("td");;
-
-                String tempOneDosesNoSpace = tds.get(0).text().replaceAll("\\s", "");
-                totalDoses = Integer.parseInt(tempOneDosesNoSpace);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return totalDoses;
-        }
-
-        @Override
-        protected void onPostExecute(Integer integer) {
-            super.onPostExecute(integer);
-
-            int swe_pop = 8544184;
-
-            tv_adminOneDose.setText("" + integer);
-            tv_adminOneDosePerc.setText("" + calcIntPercent(integer, swe_pop) + " %");
-        }
-
-
-    }
-
-    class GetAdminTwoDoses extends AsyncTask<String, String, Integer> {
-
-        @Override
-        protected Integer doInBackground(String... strings) {
-
-            int totalDoses = 0;
-
-            try {
-                /*connect to the url*/
-                final Document doc = Jsoup.connect(strings[0]).get();
-
-                Element contentDiv = doc.select("div.article.cf").first();
-
-                Element table = contentDiv.select("table").get(1);
-                Elements rows = table.select("tr");
-
-                Element row = rows.get(1);
-                Elements tds = row.select("td");;
-
-                String tempOneDosesNoSpace = tds.get(2).text().replaceAll("\\s", "");
-                totalDoses = Integer.parseInt(tempOneDosesNoSpace);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return totalDoses;
-        }
-
-        @Override
-        protected void onPostExecute(Integer integer) {
-            super.onPostExecute(integer);
-
-            int swe_pop = 8544184;
-
-            tv_adminTwoDose.setText("" + integer);
-            tv_adminTwoDosePerc.setText("" + calcIntPercent(integer, swe_pop) + " %");
-        }
-
-
-    }
-
 
 }

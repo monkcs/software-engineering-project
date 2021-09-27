@@ -1,5 +1,6 @@
 package com.example.covid_tracker;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.Map;
 
 
-public class Login extends AppCompatActivity implements OnClickListener {
+public class Login extends Activity implements OnClickListener {
     private EditText user_email, user_password;
     private Button BtnLogin, BtnReg, adminloginButton;
 
@@ -95,8 +96,6 @@ public class Login extends AppCompatActivity implements OnClickListener {
                 break;
 
             case R.id.btnReg:
-                System.out.println("login button has been pressed");
-                //TODO signup
                 signup();
                 break;
 

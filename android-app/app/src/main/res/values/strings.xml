@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">Covid Tracker</string>
+
     <string name="button_login" translatable="false">Log In</string>
     <string name="button_signUp" translatable="false">Sign Up!</string>
     <string name="vaccin_info" translatable="false">Vaccin-Info</string>
@@ -56,6 +57,19 @@
     <string name="Fråga4">calle</string>
     <string name="Fråga5">john</string>
     <string name="Fråga6">samuelsson</string>
+
+    
+
+    <string name="covid_19">Covid-19</string>
+    <string name="total_cases">Total cases:</string>
+    <string name="total_deaths">Total deaths:</string>
+    <string name="note_data_on_different_age_groups_is_only_available_for_sweden">NOTE: data on different age groups\nis only available for Sweden</string>
+
+    <string name="Delete">Delete</string>
+    <string name="cancel_appointment">Are you sure you want to delete your appointment?</string>
+    <string name="time_canceled">Booked time is canceled</string>
+    <string name="TimeNotCanceled">Cancelation of booked time failed</string>
+
 
 
 </resources>

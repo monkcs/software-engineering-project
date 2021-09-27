@@ -16,13 +16,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="80dp"
             android:text="@string/dashboard"
             android:textColor="#000000"
             android:textSize="30sp"
             app:fontFamily="sans-serif"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="80dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
@@ -39,12 +40,13 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="160dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/todo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:srcCompat="@drawable/medical_icon_1_300x300"
-            tools:layout_editor_absoluteY="56dp" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/medical_icon_1_300x300" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -70,7 +72,7 @@
                 android:text="Vaccination" />
 
             <Button
-                android:id="@+id/btn_administered"
+                android:id="@+id/btn_cov"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
