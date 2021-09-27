@@ -34,9 +34,9 @@
     <string name="administrerade_doser">Administrerade doser</string>
     <string name="distribuerade_doser">Distribuerade doser</string>
     <string name="vaccinering">Vaccinering</string>
-    <string name="doses_delivered">Doses delivered:</string>
+    <string name="doses_delivered">Doses delivered:  </string>
     <string name="doses_administered">\nDoses administered:</string>
-    <string name="source_folkh_lsomyndigheten">\n\n\n\nSource: Folkhälsomyndigheten</string>
+    <string name="source_folkh_lsomyndigheten">Source: Folkhälsomyndigheten</string>
     <string name="total">\nTotal:</string>
 
     <string name="amanda">Hej Amanda</string>
@@ -49,6 +49,10 @@
     <string name="wrong_creeentials">The username and/or password is incorrect</string>
     <string name="signup_failed">The creation of a user account failed</string>
     <string name="signup_success">The creation of a user account succeeded</string>
+    <string name="covid_19">Covid-19</string>
+    <string name="total_cases">Total cases:</string>
+    <string name="total_deaths">Total deaths:</string>
+    <string name="note_data_on_different_age_groups_is_only_available_for_sweden">NOTE: data on different age groups\nis only available for Sweden</string>
 
     <string name="Delete">Delete</string>
     <string name="cancel_appointment">Are you sure you want to delete your appointment?</string>
