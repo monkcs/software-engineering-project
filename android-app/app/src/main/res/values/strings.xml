@@ -34,8 +34,8 @@
     <string name="administrerade_doser">Administrerade doser</string>
     <string name="distribuerade_doser">Distribuerade doser</string>
     <string name="vaccinering">Vaccinering</string>
-    <string name="doses_delivered">Doses delivered:  </string>
-    <string name="doses_administered">\nDoses administered:</string>
+    <string name="doses_delivered">Doses delivered:\t</string>
+    <string name="doses_administered">\nDoses administered:\t</string>
     <string name="source_folkh_lsomyndigheten">Source: Folkhälsomyndigheten</string>
     <string name="total">\nTotal:</string>
 
