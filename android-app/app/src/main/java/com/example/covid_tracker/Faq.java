@@ -112,31 +112,18 @@ public class Faq extends Fragment {
 
         list = new ArrayList<>();
 
-        if(language) {
-            list.add(new FAQ_block(getString(R.string.Fråga1), "In Karlstad"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "SVENSKA"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "In Karlstad"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "SVENSKA"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "In Karlstad"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "SVENSKA"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "In Karlstad"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "SVENSKA"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "In Karlstad"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "SVENSKA"));
-        }
-        else{
 
-            list.add(new FAQ_block(getString(R.string.Fråga1), "In Karlstad"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "SVENSKA"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "In Karlstad"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "SVENSKA"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "In Karlstad"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "SVENSKA"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "In Karlstad"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "SVENSKA"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "In Karlstad"));
-            list.add(new FAQ_block(getString(R.string.Fråga1), "SVENSKA"));
-        }
+            list.add(new FAQ_block(getString(R.string.Fråga1), getString(R.string.Svar1),getString(R.string.Source_Calle)));
+            list.add(new FAQ_block(getString(R.string.Fråga2), getString(R.string.Svar2),getString(R.string.Source_Calle)));
+            list.add(new FAQ_block(getString(R.string.Fråga3), getString(R.string.Svar3),getString(R.string.Source_Calle)));
+            list.add(new FAQ_block(getString(R.string.Fråga4), getString(R.string.Svar4),getString(R.string.Source_Calle)));
+            list.add(new FAQ_block(getString(R.string.Fråga5), getString(R.string.Svar5),getString(R.string.Source_Calle)));
+            list.add(new FAQ_block(getString(R.string.Fråga6), getString(R.string.Svar6),getString(R.string.Source_Calle)));
+            list.add(new FAQ_block(getString(R.string.Fråga7), getString(R.string.Svar7),getString(R.string.Source_Calle)));
+            list.add(new FAQ_block(getString(R.string.Fråga8), getString(R.string.Svar8),getString(R.string.Source_Calle)));
+            list.add(new FAQ_block(getString(R.string.Fråga9), getString(R.string.Svar9),getString(R.string.Source_Calle)));
+
+
 
 
     }

@@ -39,7 +39,7 @@ import java.util.List;
 
 public class StatisticsVacc extends AppCompatActivity {
     Button btn_searchRegion;
-    TextView tv_region_name, tv_dist_stats, tv_admin_stats, tv_clearfilters;
+    TextView tv_region_name, tv_dist_stats, tv_admin_stats, tv_admin_perc, tv_admin_perc_title, tv_clearfilters;
     LineChart lc_distperweek, lc_adminperweek;
 
     Spinner spinner_searchRegion, spinner_age_vac, spinner_noDoses, spinner_product;
@@ -68,8 +68,9 @@ public class StatisticsVacc extends AppCompatActivity {
         tv_dist_stats = findViewById(R.id.tv_dist_stats);
         tv_admin_stats = findViewById(R.id.tv_admin_stats);
         tv_clearfilters = findViewById(R.id.tv_clearfilters_vacc);
-       /* tv_adminOneDose = findViewById(R.id.tv_admin_oneDose);
-        tv_adminOneDosePerc = findViewById(R.id.tv_admin_oneDosePerc);
+        tv_admin_perc = findViewById(R.id.tv_admin_perc);
+        tv_admin_perc_title = findViewById(R.id.tv_admin_perc_title);
+        /*tv_adminOneDosePerc = findViewById(R.id.tv_admin_oneDosePerc);
         tv_adminTwoDose = findViewById(R.id.tv_admin_twoDose);
         tv_adminTwoDosePerc = findViewById(R.id.tv_admin_twoDosePerc);*/
 
@@ -361,7 +362,9 @@ public class StatisticsVacc extends AppCompatActivity {
         tv_adminOneDosePerc.setText("" + calcIntPercent(oneDose, pop) + " %");
         tv_adminTwoDose.setText("" + twoDose);
         tv_adminTwoDosePerc.setText("" + calcIntPercent(twoDose, pop) + " %");*/
-        tv_admin_stats.setText("\n" + totalDoses);
+        tv_admin_stats.setText("\n " + totalDoses);
+        tv_admin_perc_title.setText("Fully vaccinated(%): ");
+        tv_admin_perc.setText(" " + calcIntPercent(twoDose, pop) + " %");
 
         int delivDoses = 0;
         for(int i = 0; i < vaccineDistSamples.size(); i++)
