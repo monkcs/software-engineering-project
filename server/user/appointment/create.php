@@ -51,18 +51,18 @@ function insert($connection, $appointment, $identity, $dose)
     $statement->close();
 }
 
-function occupied($connection, $appointment)
+function valid($connection, $appointment)
 {
-    $statement = $connection->prepare("SELECT * FROM appointment WHERE appointment.account = ?");
-    $statement->bind_param("i", $identity);
+    $statement = $connection->prepare("SELECT available.id FROM appointment LEFT JOIN available ON appointment.available != available.id WHERE available.id = ?");
+    $statement->bind_param("i", $appointment);
     $statement->execute();
     $result = $statement->get_result();
     $statement->close();
 
     if ($result->num_rows == 0) {
-        return true;
-    } else {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $appointment_pending = pending($connection, $identity);
 
     if (!$appointment_pending) {
+
 
         $current_dosage = dosage($connection, $identity);
 
@@ -81,13 +82,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             exit;
         }
 
-        if ($current_dosage == 0) {
-            insert($connection, $appointment, $identity, 1);
-        } else if ($current_dosage == 1) {
-            insert($connection, $appointment, $identity, 2);
+        if (valid($connection, $appointment)) {
+
+            if ($current_dosage == 0) {
+                insert($connection, $appointment, $identity, 1);
+            } else if ($current_dosage == 1) {
+                insert($connection, $appointment, $identity, 2);
+            } else {
+                http_response_code(409);
+                echo "All dosages already administered\n";
+            }
         } else {
-            http_response_code(409);
-            echo "All dosages already administered\n";
+            http_response_code(400);
+            echo "Meeting id is not valid\n";
         }
     } else {
         http_response_code(409);
