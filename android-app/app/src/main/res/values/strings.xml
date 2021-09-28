@@ -58,7 +58,6 @@
     <string name="Fråga5">john</string>
     <string name="Fråga6">samuelsson</string>
 
-    
 
     <string name="covid_19">Covid-19</string>
     <string name="total_cases">Total cases:</string>
@@ -69,7 +68,6 @@
     <string name="cancel_appointment">Are you sure you want to delete your appointment?</string>
     <string name="time_canceled">Booked time is canceled</string>
     <string name="TimeNotCanceled">Cancelation of booked time failed</string>
-
 
 
 </resources>
