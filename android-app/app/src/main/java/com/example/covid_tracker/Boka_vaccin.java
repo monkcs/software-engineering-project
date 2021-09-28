@@ -78,8 +78,9 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
 
                 }, error -> {
-                initAppointment("No Appointment", "-", "-");
-                    setRecyclerView();
+
+            initAppointment("No Appointment", "-", "-");
+            setRecyclerView();
         }) {
             @Override
             public Map<String, String> getHeaders() {
