@@ -51,26 +51,43 @@
     <string name="signup_failed" translatable="false">The creation of a user account failed</string>
     <string name="signup_success" translatable="false">The creation of a user account succeeded</string>
 
-    <string name="Fråga1">hi</string>
-    <string name="Fråga2">my</string>
-    <string name="Fråga3">name is</string>
-    <string name="Fråga4">calle</string>
-    <string name="Fråga5">john</string>
-    <string name="Fråga6">samuelsson</string>
+    <string name="Fråga1">Do we have a Covid-vaccine?</string>
+    <string name="Fråga2">What are the benefits of the vaccine?</string>
+    <string name="Fråga3">Will the vaccine protect me 100%?</string>
+    <string name="Fråga4">What can I do if I got Covid?</string>
+    <string name="Fråga5">When should I test myself for Covid?</string>
+    <string name="Fråga6">How does testing work for Covid?</string>
+    <string name="Fråga7">What do I do if i do not have Covid?</string>
+    <string name="Fråga8">Can I order a test to my home?</string>
+    <string name="Fråga9">Where can I call if i need info?</string>
 
-    
+    <string name="Svar1">Yes, we have different sorts of vaccine for Covid, we have Pfizer, Moderna and Janssen</string>
+    <string name="Svar2">Benefits of the vaccine is that you can worry less about getting sick and get a Covid-vaccine pass, that will help you travel, FYI, you should still take precaution and keep a good hygiene</string>
+    <string name="Svar3">No the test does not give you full immunity, it gives you a better chance of not getting sick any helps to reduce the spreading of the virus.</string>
+    <string name="Svar4">If you got Covid, you should stay at home and do not socialize person to person, you should stay incubinated for 2 weeks and after that take a test to make sure you do not have Covid anymore.</string>
+    <string name="Svar5">When you have an cough, feel sore in the throat or you have a high body temprature, higher than normal</string>
+    <string name="Svar6">You can test through a test stick in the nose, or you can take sample of a mucous membrane</string>
+    <string name="Svar7">Even if you do not have covid, you should still take precautions and keep a good hygiene, to reduce the risk of spreading the virus</string>
+    <string name="Svar8">Yes, you can book an home-test at 1177.se</string>
+    <string name="Svar9">Call 112 if you have serious problems, else call 1177</string>
 
-    <string name="covid_19">Covid-19</string>
-    <string name="total_cases">Total cases:</string>
-    <string name="total_deaths">Total deaths:</string>
-    <string name="note_data_on_different_age_groups_is_only_available_for_sweden">NOTE: data on different age groups\nis only available for Sweden</string>
+    <string name="Source_Calle" translatable="false">Calle Samuelsson</string>
 
-    <string name="Delete">Delete</string>
-    <string name="cancel_appointment">Are you sure you want to delete your appointment?</string>
-    <string name="time_canceled">Booked time is canceled</string>
-    <string name="TimeNotCanceled">Cancelation of booked time failed</string>
+    <string name="covid_19" translatable="false">Covid-19</string>
+    <string name="total_cases" translatable="false">Total cases:</string>
+    <string name="total_deaths" translatable="false">Total deaths:</string>
     <string name="vaccination_statistics">Vaccination Statistics</string>
     <string name="covid_statistics">Covid Statistics</string>
+    <string name="note_data_on_different_age_groups_is_only_available_for_sweden" translatable="false">NOTE: data on different age groups\nis only available for Sweden</string>
+
+    <string name="Delete" translatable="false">Delete</string>
+    <string name="cancel_appointment" translatable="false">Are you sure you want to delete your appointment?</string>
+    <string name="time_canceled" translatable="false">Booked time is canceled</string>
+    <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
+
+    <string name="rebook">boka om</string>
+
+
 
 
 </resources>
