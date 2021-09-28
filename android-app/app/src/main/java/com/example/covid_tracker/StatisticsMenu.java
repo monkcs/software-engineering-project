@@ -16,7 +16,6 @@ public class StatisticsMenu extends Fragment {
     private Button btn_vacc, btn_cov;
     private View view;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_statistics_menu, container, false);

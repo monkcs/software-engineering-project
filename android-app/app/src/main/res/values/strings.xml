@@ -69,7 +69,8 @@
     <string name="cancel_appointment">Are you sure you want to delete your appointment?</string>
     <string name="time_canceled">Booked time is canceled</string>
     <string name="TimeNotCanceled">Cancelation of booked time failed</string>
-
+    <string name="vaccination_statistics">Vaccination Statistics</string>
+    <string name="covid_statistics">Covid Statistics</string>
 
 
 </resources>
