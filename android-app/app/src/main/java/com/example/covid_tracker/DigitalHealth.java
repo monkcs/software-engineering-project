@@ -33,10 +33,11 @@ public class DigitalHealth extends Fragment {
 
         qrView = view.findViewById(R.id.imageviewqr);
 
+
         qrGenerator("https://youtu.be/iik25wqIuFo");
 
-        return view;
 
+        return view;
     }
 
     private void qrGenerator(String code){
@@ -57,6 +58,9 @@ public class DigitalHealth extends Fragment {
         }catch (WriterException e){
             e.printStackTrace();
         }
+
+
     }
+
 
 }

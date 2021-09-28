@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Covid Tracker</string>
+    <string name="Fråga1">hej</string>
+    <string name="Fråga2">jag</string>
+    <string name="Fråga3">namnet mitt</string>
+    <string name="Fråga4">charles</string>
+    <string name="Fråga5">johneeees</string>
+    <string name="Fråga6">samuelsen</string>
+</resources>
