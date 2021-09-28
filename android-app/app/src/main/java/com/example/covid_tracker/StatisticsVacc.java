@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,7 +30,7 @@ import java.util.Objects;
 
 public class StatisticsVacc extends AppCompatActivity {
     Button btn_searchRegion;
-    TextView tv_region_name, tv_dist_stats, tv_admin_stats, tv_admin_perc, tv_admin_perc_title, tv_clearfilters;
+    TextView tv_region_name, tv_dist_stats, tv_admin_stats, tv_admin_perc, tv_admin_perc_title, tv_clearfilters, tv_admin_cum_one, tv_admin_cum_two;
     LineChart lc_distperweek, lc_adminperweek;
 
     Spinner spinner_searchRegion, spinner_age_vac, spinner_noDoses, spinner_product, spinner_weekmonth;
@@ -65,6 +66,8 @@ public class StatisticsVacc extends AppCompatActivity {
         tv_clearfilters = findViewById(R.id.tv_clearfilters_vacc);
         tv_admin_perc = findViewById(R.id.tv_admin_perc);
         tv_admin_perc_title = findViewById(R.id.tv_admin_perc_title);
+        tv_admin_cum_one = findViewById(R.id.tv_admin_cum_one);
+        tv_admin_cum_two = findViewById(R.id.tv_admin_cum_two);
 
         spinner_searchRegion = findViewById(R.id.spinner_searchRegion);
         spinner_age_vac = findViewById(R.id.spinner_age_vac);
@@ -495,6 +498,7 @@ public class StatisticsVacc extends AppCompatActivity {
 
     private void setGraphAdminDoses(String region, String weekmonth){
         int week, selected_week = 0;
+        int oneDose = 0, twoDose = 0, pop = 0;
         boolean should_break = false;
 
         ArrayList<Entry> values1 = new ArrayList<>();
@@ -505,8 +509,20 @@ public class StatisticsVacc extends AppCompatActivity {
             should_break = true;
         }
 
-        if(region.equals("(Region) Sweden"))
+        //get population for selected region
+        if(region.equals("(Region) Sweden")) {
             region = "Sweden";
+            for(int i = 0; i < vaccineSamples.size(); i++)
+                pop += vaccineSamples.get(i).getPopulation();
+        }
+        else{
+            for(int i = 0; i < vaccineSamples.size(); i++)
+            {
+                if(region.equals(vaccineSamples.get(i).getRegion_name())) {
+                    pop += vaccineSamples.get(i).getPopulation();
+                }
+            }
+        }
 
         for(int i = 0; i < vaccineWeeklySamples.size(); i++) {
             if(region.equals(vaccineWeeklySamples.get(i).getRegion()))
@@ -515,13 +531,18 @@ public class StatisticsVacc extends AppCompatActivity {
                 {
                     week = vaccineWeeklySamples.get(i).getWeek();
                     if(vaccineWeeklySamples.get(i).getYear() == 2021)
+                    {
                         values1.add(new Entry(week, (float) vaccineWeeklySamples.get(i).getShare() * 100));
+                        oneDose = vaccineWeeklySamples.get(i).getVaccinated();
+                    }
                 }
                 else if(vaccineWeeklySamples.get(i).getStatus() == 2)
                 {
                     week = vaccineWeeklySamples.get(i).getWeek();
-                    if(vaccineWeeklySamples.get(i).getYear() == 2021)
+                    if(vaccineWeeklySamples.get(i).getYear() == 2021) {
                         values2.add(new Entry(week, (float) vaccineWeeklySamples.get(i).getShare() * 100));
+                        twoDose = vaccineWeeklySamples.get(i).getVaccinated();
+                    }
                     if(should_break && week == selected_week)
                         break;
                 }
@@ -550,6 +571,8 @@ public class StatisticsVacc extends AppCompatActivity {
 
         lc_adminperweek.setData(data);
         lc_adminperweek.getDescription().setText("Vaccinations per week (%)");
+        tv_admin_cum_one.setText(" " + calcIntPercent(oneDose, pop) + " %");
+        tv_admin_cum_two.setText(" " + calcIntPercent(twoDose, pop) + " %");
     }
 
     private int getWeek(String weekmonth) {

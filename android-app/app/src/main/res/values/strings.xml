@@ -38,7 +38,7 @@
     <string name="vaccinering" translatable="false">Vaccinering</string>
     <string name="doses_delivered" translatable="false">Doses delivered:</string>
     <string name="doses_administered" translatable="false">\nDoses administered:</string>
-    <string name="source_folkh_lsomyndigheten" translatable="false">\n\n\n\nSource: Folkhälsomyndigheten</string>
+    <string name="source_folkh_lsomyndigheten" translatable="false">Source: Folkhälsomyndigheten</string>
     <string name="total" translatable="false">\nTotal:</string>
 
     <string name="amanda" translatable="false">Hej Amanda</string>
@@ -86,8 +86,7 @@
     <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
 
     <string name="rebook">boka om</string>
-
-
+    <string name="nnotes_on_data_ndata_on_different_age_groups_is_currently_not_available_in_weekly_data">\nNotes on data:\nData on different age groups is currently not available in weekly data.\nLast section shows cumilative uptake of one and two doses up to and including selected week in 2021.</string>
 
 
 </resources>
