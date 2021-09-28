@@ -1,40 +1,23 @@
 package com.example.covid_tracker;
 
-import static java.lang.String.valueOf;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,7 +30,7 @@ import java.util.List;
 public class StatisticsCovid extends AppCompatActivity {
     Button btn_cov_searchRegion;
 
-    TextView tv_region_name_cov, tv_case_stats_cov, tv_deaths_stats_cov;
+    TextView tv_region_name_cov, tv_case_stats_cov, tv_deaths_stats_cov, tv_clearfilters;
 
     Spinner spinner_cov_searchRegion, spinner_cov_age;
 
@@ -72,6 +55,7 @@ public class StatisticsCovid extends AppCompatActivity {
         tv_region_name_cov = findViewById(R.id.tv_region_name_cov);
         tv_case_stats_cov = findViewById(R.id.tv_case_stats_cov);
         tv_deaths_stats_cov = findViewById(R.id.tv_deaths_stats_cov);
+        tv_clearfilters = findViewById(R.id.tv_clearfilters_cov);
 
         spinner_cov_searchRegion = findViewById(R.id.spinner_cov_searchRegion);
         spinner_cov_age = findViewById(R.id.spinner_cov_age);
@@ -84,7 +68,6 @@ public class StatisticsCovid extends AppCompatActivity {
 
         ArrayAdapter<String> age_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, ages);
         spinner_cov_age.setAdapter(age_adapter);
-
 
         //read data from csv files into samples
         try {
@@ -122,6 +105,16 @@ public class StatisticsCovid extends AppCompatActivity {
                 lc_casesperweek.invalidate();
                 lc_deathsperweek.notifyDataSetChanged();
                 lc_deathsperweek.invalidate();
+            }
+        });
+
+        tv_clearfilters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                spinner_cov_age.setSelection(0);
+                spinner_cov_searchRegion.setSelection(0);
+
+                btn_cov_searchRegion.performClick();
             }
         });
 
@@ -393,13 +386,10 @@ public class StatisticsCovid extends AppCompatActivity {
             }
         }
 
-
         lc_casesperweek.setData(getLineChart(yValues_lcCases, "Cases"));
         lc_casesperweek.getDescription().setText("Cases per week");
         lc_deathsperweek.setData(getLineChart(yValues_lcDeaths, "Deaths"));
         lc_deathsperweek.getDescription().setText("Deaths per week");
-
-
     }
 
     private LineData getLineChart(ArrayList<Entry> values1, String s1){
