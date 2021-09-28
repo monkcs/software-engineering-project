@@ -90,13 +90,43 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
         dialogBuilder.setView(CancelPopupView);
         dialog = dialogBuilder.create();
         dialog.show();
-
         BtnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DeleteAppointment();
                 dialog.dismiss();
 
+            }
+        });
+        BtnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public void reBooking() {
+
+        //if tid bokad
+        dialogBuilder = new AlertDialog.Builder(getActivity());
+        final View CancelPopupView = getLayoutInflater().inflate(R.layout.deletepopup, null);
+        Button BtnRebook = (Button) CancelPopupView.findViewById(R.id.DeleteBtn);
+        BtnGoBack = (Button) CancelPopupView.findViewById(R.id.GobackBtn);
+
+        String string = getString(R.string.rebook);
+        BtnRebook.setText(string);
+
+        dialogBuilder.setView(CancelPopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        BtnRebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DeleteAppointment();
+                dialog.dismiss();
+                openBooking();
             }
         });
         BtnGoBack.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +166,7 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
 
             case R.id.BtnRebook:
-                System.out.println("button omboka");
+                reBooking();
                 break;
 
             case R.id.BtnCancel:

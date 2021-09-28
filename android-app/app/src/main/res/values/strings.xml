@@ -70,6 +70,8 @@
     <string name="time_canceled">Booked time is canceled</string>
     <string name="TimeNotCanceled">Cancelation of booked time failed</string>
 
+    <string name="rebook">boka om</string>
+
 
 
 </resources>
