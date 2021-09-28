@@ -109,6 +109,8 @@ public class BookingStep3Fragment extends Fragment {
                             Times temporary= new Times(jsonObject.getInt("id"), jsonObject.getString("datetime"));
                             timesArrayList.add(temporary);
                             // int - id ; Datetime ; int
+
+
                         }
 
                     } catch (JSONException e) {
@@ -118,6 +120,15 @@ public class BookingStep3Fragment extends Fragment {
                 }, error -> {
 
         });
+        /*
+        timesArrayList.add(new Times(0,"2021-09-29 10:20:00.00000"));
+        timesArrayList.add(new Times(1,"2021-09-29 10:30:00.00000"));
+        timesArrayList.add(new Times(2,"2021-09-29 10:40:00.00000"));
+        timesArrayList.add(new Times(3,"2021-09-29 10:50:00.00000"));
+        timesArrayList.add(new Times(4,"2021-09-29 11:00:00.00000"));
+
+        timesArrayList.add(new Times(5,"2021-09-28 11:10:00.00000"));
+        */
 
         queue.add(request);
     }
@@ -125,19 +136,20 @@ public class BookingStep3Fragment extends Fragment {
     private void showTimes(View itemView, Date date) {
         ListView availabletimes;
 
-        //ava.util.Date date1 = date;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String calendardatetodatabas = formatter.format(date);
         //System.out.println(calendardatetodatabas);
 
 
+
         ArrayList<String> availabletimeslist = new ArrayList<>();
 
         for (Times time : timesArrayList) {
-            if (calendardatetodatabas.equals(getdateortime(time.time, 0))){
-                availabletimeslist.add(getdateortime(time.time, 1));
+            if (calendardatetodatabas.equals(getdateortime(time.time, 1))){
+                availabletimeslist.add(getdateortime(time.time, 2));
             }
         }
+
         availabletimes = itemView.findViewById(R.id.timesaviable);
 
         ArrayAdapter<String> timeslist = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, availabletimeslist);
