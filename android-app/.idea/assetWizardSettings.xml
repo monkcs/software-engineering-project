@@ -306,7 +306,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/question_answer/baseline_question_answer_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/show_chart/baseline_show_chart_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -316,7 +316,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_question_answer_24" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="outputName" value="ic_baseline_show_chart_24" />
                             <entry key="sourceFile" value="C:\Users\lukas\OneDrive\Universitetet\Software Engineering\Labb\android-app" />
                           </map>
                         </option>

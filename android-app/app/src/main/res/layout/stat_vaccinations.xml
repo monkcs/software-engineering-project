@@ -58,14 +58,6 @@
                 android:ems="10"
                 android:spinnerMode="dropdown"/>
 
-            <Spinner
-                android:id="@+id/spinner_age_vac"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="@android:drawable/btn_dropdown"
-                android:ems="10"
-                android:spinnerMode="dropdown"/>
         </LinearLayout>
 
         <LinearLayout
@@ -98,6 +90,35 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lay_filters_vacc_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lay_filters_vacc_2">
+
+            <Spinner
+                android:id="@+id/spinner_weekmonth"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_dropdown"
+                android:ems="10"
+                android:spinnerMode="dropdown"/>
+
+            <Spinner
+                android:id="@+id/spinner_age_vac"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_dropdown"
+                android:ems="10"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/lay_clear_filters_vacc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,7 +126,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lay_filters_vacc_2">
+            app:layout_constraintTop_toBottomOf="@+id/lay_filters_vacc_3">
 
 
             <TextView

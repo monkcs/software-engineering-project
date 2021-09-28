@@ -1,40 +1,23 @@
 package com.example.covid_tracker;
 
-import static java.lang.String.valueOf;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -86,7 +69,6 @@ public class StatisticsCovid extends AppCompatActivity {
         ArrayAdapter<String> age_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, ages);
         spinner_cov_age.setAdapter(age_adapter);
 
-
         //read data from csv files into samples
         try {
             readCovidAgeData();
@@ -131,6 +113,8 @@ public class StatisticsCovid extends AppCompatActivity {
             public void onClick(View view) {
                 spinner_cov_age.setSelection(0);
                 spinner_cov_searchRegion.setSelection(0);
+
+                btn_cov_searchRegion.performClick();
             }
         });
 
@@ -402,13 +386,10 @@ public class StatisticsCovid extends AppCompatActivity {
             }
         }
 
-
         lc_casesperweek.setData(getLineChart(yValues_lcCases, "Cases"));
         lc_casesperweek.getDescription().setText("Cases per week");
         lc_deathsperweek.setData(getLineChart(yValues_lcDeaths, "Deaths"));
         lc_deathsperweek.getDescription().setText("Deaths per week");
-
-
     }
 
     private LineData getLineChart(ArrayList<Entry> values1, String s1){
