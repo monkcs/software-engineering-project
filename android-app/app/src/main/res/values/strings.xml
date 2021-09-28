@@ -83,6 +83,8 @@
     <string name="time_canceled" translatable="false">Booked time is canceled</string>
     <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
 
+    <string name="rebook">boka om</string>
+
 
 
 </resources>
