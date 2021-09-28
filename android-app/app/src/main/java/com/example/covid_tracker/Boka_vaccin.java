@@ -71,13 +71,15 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
                        setRecyclerView();
                    } catch (JSONException e) {
-                       initAppointment("No Appointment", "-", "-");
+
                     }
 
 
 
 
                 }, error -> {
+            initAppointment("No Appointment", "-", "-");
+            setRecyclerView();
         }) {
             @Override
             public Map<String, String> getHeaders() {
