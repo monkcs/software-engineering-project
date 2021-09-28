@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Covid Tracker</string>
-    <string name="Fråga1">hej</string>
-    <string name="Fråga2">jag</string>
-    <string name="Fråga3">namnet mitt</string>
-    <string name="Fråga4">charles</string>
-    <string name="Fråga5">johneeees</string>
-    <string name="Fråga6">samuelsen</string>
+    <string name="Fråga1">Har vi ett Covid-vaccin?</string>
+    <string name="Fråga2">Vad är fördelarna med vaccinet?</string>
+    <string name="Fråga3">Är jag fullt skyddad med vaccinet?</string>
+    <string name="Fråga4">Vad ska jag göra om jag har Covid?</string>
+    <string name="Fråga5">När ska jag testa mig för Covid?</string>
+    <string name="Fråga6">Hur testar man sig för Covid?</string>
+    <string name="Fråga7">Vad gör jag om jag får Covid?</string>
+    <string name="Fråga8">Kan jag beställa hem ett test?</string>
+    <string name="Fråga9">Vart ringer jag för info?</string>
+    <string name="Svar1">Ja, vi har olika slags vaccin mot Covid, vi har Pfizer, Moderna och Janssen</string>
+    <string name="Svar2">"Fördelarna med vaccinet är att du kan oroa dig mindre för att bli sjuk och få ett Covid-vaccinpass, det hjälper dig att resa, FYI, du bör fortfarande ta försiktighet och hålla en god hygien "</string>
+    <string name="Svar3">"Nej testet ger dig inte fullständig immunitet, det ger dig en bättre chans att inte bli sjuk hjälper till att minska spridningen av viruset. "</string>
+    <string name="Svar4">"Om du har covid ska du stanna hemma och inte umgås från person till person, du ska hålla dig inkubinerad i 2 veckor och sedan ta ett test för att se till att du inte har covid längre. "</string>
+    <string name="Svar5">"När du har hosta kan du känna ont i halsen eller om du har hög kroppstemperatur, högre än normalt "</string>
+    <string name="Svar6">"Du kan testa genom en teststick i näsan, eller så kan du ta ett prov av ett slemhinna "</string>
+    <string name="Svar7">"Även om du inte har covid bör du fortfarande vidta försiktighetsåtgärder och hålla en god hygien för att minska risken för att sprida viruset "</string>
+    <string name="Svar8">"Ja, du kan boka hemtest på 1177.se "</string>
+    <string name="Svar9">Allvarliga problem: 112, annars 1177</string>
 </resources>
