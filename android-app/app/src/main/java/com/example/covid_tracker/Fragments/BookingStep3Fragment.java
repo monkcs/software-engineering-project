@@ -106,7 +106,7 @@ public class BookingStep3Fragment extends Fragment {
                         System.out.println("response length: " + response.length());
                         for (int i=0; i<response.length(); i++) {
                             JSONObject jsonObject = response.getJSONObject(i);
-                            Times temporary= new Times(jsonObject.getInt("id"), onlydate(jsonObject.getString("datetime")));
+                            Times temporary= new Times(jsonObject.getInt("id"), jsonObject.getString("datetime"));
                             timesArrayList.add(temporary);
                             // int - id ; Datetime ; int
                         }
@@ -131,16 +131,16 @@ public class BookingStep3Fragment extends Fragment {
         //System.out.println(calendardatetodatabas);
 
 
-        ArrayList<Times> availabletimeslist = new ArrayList<>();
+        ArrayList<String> availabletimeslist = new ArrayList<>();
 
         for (Times time : timesArrayList) {
-            if (calendardatetodatabas.equals(time)){
-                availabletimeslist.add(time);
+            if (calendardatetodatabas.equals(getdateortime(time.time, 0))){
+                availabletimeslist.add(getdateortime(time.time, 1));
             }
         }
         availabletimes = itemView.findViewById(R.id.timesaviable);
 
-        ArrayAdapter<Times> timeslist = new ArrayAdapter<Times>(getActivity(), android.R.layout.simple_list_item_1, availabletimeslist);
+        ArrayAdapter<String> timeslist = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, availabletimeslist);
         availabletimes.setAdapter(timeslist);
         availabletimes.setOnItemClickListener((adapterView, view, i, l) -> {
             //String time = aviabletimeslist.get(i).toString();
@@ -151,8 +151,18 @@ public class BookingStep3Fragment extends Fragment {
 
     }
 
-    private String onlydate(String source){
-        return source.split(" ")[0];
+    private String getdateortime(String source, int part){
+        String leftover = new String("");
+        switch (part){
+            case 1:
+                leftover =  source.split(" ")[0];
+                break;
+            case 2:
+                leftover = source.split(" ")[1].substring(0,5);
+                break;
+        }
+
+        return leftover;
     }
 
 
