@@ -76,6 +76,8 @@
     <string name="covid_19" translatable="false">Covid-19</string>
     <string name="total_cases" translatable="false">Total cases:</string>
     <string name="total_deaths" translatable="false">Total deaths:</string>
+    <string name="vaccination_statistics">Vaccination Statistics</string>
+    <string name="covid_statistics">Covid Statistics</string>
     <string name="note_data_on_different_age_groups_is_only_available_for_sweden" translatable="false">NOTE: data on different age groups\nis only available for Sweden</string>
 
     <string name="Delete" translatable="false">Delete</string>
@@ -84,6 +86,7 @@
     <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
 
     <string name="rebook">boka om</string>
+
 
 
 
