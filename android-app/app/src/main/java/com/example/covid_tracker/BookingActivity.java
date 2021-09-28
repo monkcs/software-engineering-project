@@ -1,4 +1,6 @@
 package com.example.covid_tracker;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.covid_tracker.Adapter.ViewPagerAdapter;
 import com.example.covid_tracker.Fragments.BookingStep1Fragment;
 import com.example.covid_tracker.Fragments.BookingStep2Fragment;
@@ -26,11 +30,12 @@ public class BookingActivity extends AppCompatActivity{
     private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewpager;
     private TabLayout tabLayout;
+    public RequestQueue queue;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
-
+        queue = Volley.newRequestQueue(this);
         viewpager = findViewById(R.id.viewpager);
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -52,6 +57,10 @@ public class BookingActivity extends AppCompatActivity{
 
     }
     public void next_fragment(View view) {
+        SharedPreferences pref= this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
+        int clinic = pref.getInt("clinic_Id", 0);
+        int vaccine = pref.getInt("vaccine_ID", 0);
+
         viewpager.setCurrentItem(viewpager.getCurrentItem()+1);
         if(viewpager.getCurrentItem() + 1 == 4)
             Toast.makeText(this, "Book time", Toast.LENGTH_LONG).show();

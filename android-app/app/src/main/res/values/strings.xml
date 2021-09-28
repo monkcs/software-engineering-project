@@ -20,6 +20,8 @@
     <string name="digital_health">Digital Health</string>
     <string name="statistik">Statistik</string>
     <string name="todo">TODO</string>
+    <string name="Choose_clinic">Choose Clinic:</string>
+    <string name="Choose_vaccine">Choose Vaccine Type:</string>
 
 
     <string name="email2">Skriv om Email</string>

@@ -1,19 +1,45 @@
 package com.example.covid_tracker.Fragments;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.covid_tracker.R;
+import com.example.covid_tracker.WebRequest;
+import com.example.covid_tracker.sharedViewModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class BookingStep1Fragment extends Fragment {
+    private ArrayList<Provider> clinics = new ArrayList<>();
+    private RequestQueue queue;
+    private Spinner spinner;
 
     public BookingStep1Fragment() {
         // required empty public constructor.
@@ -28,11 +54,84 @@ public class BookingStep1Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        queue = Volley.newRequestQueue(getActivity());
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_bookingstep1, container, false);
+        getClinics();
+        View initview = inflater.inflate(R.layout.fragment_bookingstep1, container, false);
+        getClinics();
+        return initview;
+        
     }
+
+    class Provider
+    {
+        public Provider(int id, String name)
+        {
+            this.id = id;
+            this.name = name;
+        };
+        public final int id;
+        public final String name;
+
+        public String toString()
+        {
+            return name;
+        }
+    }
+
+    private void getClinics(){
+        ArrayList<String> name_clinic = new ArrayList<>();
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/", null,
+                response -> {
+
+                    try {
+
+                        for (int i=0;i<response.length();i++) {
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            Provider temporary= new Provider(jsonObject.getInt("id"), jsonObject.getString("name"));
+                            clinics.add(temporary);
+                            name_clinic.add(jsonObject.getString("name"));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    spinner = getActivity().findViewById(R.id.spinner);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, name_clinic);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner.setAdapter(adapter);
+                    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                            System.out.println(position);
+                            int ID = clinics.get(position).id;
+                            SharedPreferences.Editor edit= getActivity().getSharedPreferences("Booking", Context.MODE_PRIVATE).edit();
+                            edit.putInt("clinic_ID", position);
+                            edit.commit();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parentView) {
+                            // your code here
+                        }
+                    });
+
+                }, error -> {
+            Toast.makeText(getActivity(), "No clinics available", Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+            }
+        };
+        queue.add(request);
+    }
+
+
+
 }
