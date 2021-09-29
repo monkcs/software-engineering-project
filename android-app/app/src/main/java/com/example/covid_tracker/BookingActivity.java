@@ -1,5 +1,6 @@
 package com.example.covid_tracker;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,7 +12,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.covid_tracker.Adapter.ViewPagerAdapter;
 import com.example.covid_tracker.Fragments.BookingStep1Fragment;
@@ -24,7 +27,12 @@ import com.github.jhonnyx2012.horizontalpicker.HorizontalPickerListener;
 import com.google.android.material.tabs.TabLayout;
 import com.shuhart.stepview.StepView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class BookingActivity extends AppCompatActivity{
     private ViewPagerAdapter viewPagerAdapter;
@@ -57,18 +65,69 @@ public class BookingActivity extends AppCompatActivity{
 
     }
     public void next_fragment(View view) {
-        SharedPreferences pref= this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
-        int clinic = pref.getInt("clinic_Id", 0);
-        int vaccine = pref.getInt("vaccine_ID", 0);
-
-        viewpager.setCurrentItem(viewpager.getCurrentItem()+1);
+        //SharedPreferences pref= this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
         if(viewpager.getCurrentItem() + 1 == 4)
-            Toast.makeText(this, "Book time", Toast.LENGTH_LONG).show();
+        {
+            boolean isOK = false;
+            SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
+            if(pref.getBoolean("Health_info", true))
+                isOK = true;
+            int tot = pref.getInt("Checked_boxes", 0);
+
+                book_time();
+
+            //Toast.makeText(this, "Please contact your doctor", Toast.LENGTH_LONG).show();
+            /*if(tot != 5)
+                Toast.makeText(this, "Please answer all the questions", Toast.LENGTH_LONG).show();*/
+
+        }
+        viewpager.setCurrentItem(viewpager.getCurrentItem()+1);
+        /*if(viewpager.getCurrentItem()+1 == 0) {
+            SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
+            int clinic = pref.getInt("clinic_ID", 0);
+            if(clinic != 0)
+            {
+                System.out.println("Clinic:");
+                System.out.println(clinic);
+                viewpager.setCurrentItem(viewpager.getCurrentItem()+1);
+            }
+            else
+                Toast.makeText(this, "Choose Clinic", Toast.LENGTH_LONG).show();
+
+        }*/
     }
 
     public void previous_fragment(View view) {
         viewpager.setCurrentItem(viewpager.getCurrentItem()-1);
     }
 
+    public void book_time(){
+        Fragment selectedFragment;
+        selectedFragment = new Boka_vaccin();
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/create.php",
+                response -> {
+                    Toast.makeText(BookingActivity.this, "Booking time successfull", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(BookingActivity.this, Dashboard.class);
+                    finish();
+                    startActivity(intent);
+
+                }, error -> {
+            Toast.makeText(BookingActivity.this, "Booking time failed", Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("appointment", "8");
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+            }
+        };
+
+        queue.add(request);
+    }
 
 }

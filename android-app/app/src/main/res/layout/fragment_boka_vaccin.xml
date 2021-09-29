@@ -1,7 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/fragment_container_book"
+    tools:context=".Boka_vaccin">
 
    <TextView
        android:id="@+id/greeding"
@@ -17,21 +20,22 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="Boka"
-       android:textColor="@color/black" />
+
+       android:textColor="@color/white" />
 
    <Button
        android:id="@+id/BtnRebook"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="Omboka"
-       android:textColor="@color/black" />
+       android:textColor="@color/white" />
 
    <Button
        android:id="@+id/BtnCancel"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="Avboka"
-       android:textColor="@color/black" />
+       android:textColor="@color/white" />
 
 
 </LinearLayout>

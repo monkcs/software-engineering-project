@@ -103,7 +103,8 @@ public class BookingStep2Fragment extends Fragment {
                         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                             System.out.println(position);
                             SharedPreferences.Editor edit= getActivity().getSharedPreferences("Booking", Context.MODE_PRIVATE).edit();
-                            edit.putInt("vaccine_ID", position);
+                            int ID = vaccin.get(position).id;
+                            edit.putInt("vaccine_ID", ID);
                             edit.commit();
                         }
 
