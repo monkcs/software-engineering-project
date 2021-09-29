@@ -101,8 +101,8 @@ public class BookingActivity extends AppCompatActivity{
     }
 
     public void book_time(){
-        Fragment selectedFragment;
-        selectedFragment = new Boka_vaccin();
+        SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
+        Integer id_time =  pref.getInt("Time", 0);;
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/create.php",
                 response -> {
                     Toast.makeText(BookingActivity.this, "Booking time successfull", Toast.LENGTH_LONG).show();
@@ -116,7 +116,7 @@ public class BookingActivity extends AppCompatActivity{
             @Override
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("appointment", "8");
+                params.put("appointment", id_time.toString());
 
                 return params;
             }
