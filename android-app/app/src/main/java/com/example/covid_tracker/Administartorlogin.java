@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Administartorlogin extends AppCompatActivity {
+public class Administartorlogin extends AppCompatActivity implements View.OnClickListener {
     /*
         public Administartorlogin(){
             Spinner dropdown = findViewById(R.id.spinner1);
@@ -30,6 +32,7 @@ public class Administartorlogin extends AppCompatActivity {
 
     */
     private RequestQueue queue;
+    private Button loginbutton, gobackbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,12 @@ public class Administartorlogin extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
 
         getProviders();
+
+        loginbutton= findViewById(R.id.adminloginbutton);
+        gobackbutton= findViewById(R.id.gobackbutton);
+
+        loginbutton.setOnClickListener(this);
+        gobackbutton.setOnClickListener(this);
     }
 
     void getProviders() {
@@ -66,5 +75,27 @@ public class Administartorlogin extends AppCompatActivity {
         });
 
         queue.add(request);
+    }
+    public void login() {
+        Intent intent = new Intent(this,AdminDashboard.class);
+        startActivity(intent);
+    }
+
+    public void goback() {
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.adminloginbutton:
+                login();
+                break;
+
+            case R.id.gobackbutton:
+                goback();
+                break;
+        }
+
     }
 }
