@@ -1,67 +1,98 @@
 <resources>
-    <string name="app_name">Covid Tracker</string>
-    <string name="button_login">Log In</string>
-    <string name="button_signUp">Sign Up!</string>
-    <string name="vaccin_info">Vaccin-Info</string>
-    <string name="vaccin_dashboard">Vaccin-Dashboard</string>
-    <string name="Login">Login</string>
-    <string name="New_user">New user?</string>
-    <string name="Password">Password</string>
-    <string name="email">Enter e-mail</string>
-    <string name="AppName">Covid-Tracker</string>
-    <string name="Button">testtest</string>
 
-    <string name="faq">FAQ</string>
-    <string name="info_about_corona">Info about Corona</string>
-    <string name="dashboard">Dashboard</string>
-    <string name="train">Train</string>
-    <string name="bus">Bus</string>
-    <string name="bokavaccin">Bokavaccin</string>
-    <string name="digital_health">Digital Health</string>
-    <string name="statistik">Statistik</string>
-    <string name="todo">TODO</string>
+    <string name="app_name">Covid Tracker</string>
+
+    <string name="button_login" translatable="false">Log In</string>
+    <string name="button_signUp" translatable="false">Sign Up!</string>
+    <string name="vaccin_info" translatable="false">Vaccin-Info</string>
+    <string name="vaccin_dashboard" translatable="false">Vaccin-Dashboard</string>
+    <string name="Login" translatable="false">Login</string>
+    <string name="New_user" translatable="false">New user?</string>
+    <string name="Password" translatable="false">Password</string>
+    <string name="email" translatable="false">Enter e-mail</string>
+    <string name="AppName" translatable="false">Covid-Tracker</string>
+    <string name="Button" translatable="false">testtest</string>
+
+    <string name="faq" translatable="false">FAQ</string>
+    <string name="info_about_corona" translatable="false">Info about Corona</string>
+    <string name="dashboard" translatable="false">Dashboard</string>
+    <string name="train" translatable="false">Train</string>
+    <string name="bus" translatable="false">Bus</string>
+    <string name="bokavaccin" translatable="false">Bokavaccin</string>
+    <string name="digital_health" translatable="false">Digital Health</string>
+    <string name="statistik" translatable="false">Statistik</string>
+    <string name="todo" translatable="false">TODO</string>
+
+
+
+    <string name="email2" translatable="false">Skriv om Email</string>
+    <string name="firstname" translatable="false">Förnamn</string>
+    <string name="lastname" translatable="false">Efternamn</string>
+    <string name="phone_nr" translatable="false">Mobil nummer</string>
+    <string name="yyyy_mm_dd" translatable="false">YYYY-MM-DD</string>
+    <string name="address" translatable="false">Address</string>
+    <string name="stad" translatable="false">Stad</string>
+    <string name="zipcode" translatable="false">Post kod</string>
+    <string name="city" translatable="false">stad</string>
+    <string name="administrerade_doser" translatable="false">Administrerade doser</string>
+    <string name="distribuerade_doser" translatable="false">Distribuerade doser</string>
+    <string name="vaccinering" translatable="false">Vaccinering</string>
+    <string name="doses_delivered" translatable="false">Doses delivered:</string>
+    <string name="doses_administered" translatable="false">\nDoses administered:</string>
+    <string name="source_folkh_lsomyndigheten" translatable="false">Source: Folkhälsomyndigheten</string>
+    <string name="total" translatable="false">\nTotal:</string>
+
+    <string name="amanda" translatable="false">Hej Amanda</string>
+
+    <string name="wronguser" translatable="false">Not an administror?</string>
+    <string name="goback" translatable="false">Go back</string>
+    <string name="isadmin" translatable="false">Is an Administrator?</string>
+    <string name="admin_login" translatable="false">Admin login here</string>
+    <string name="wrong_creeentials" translatable="false">The username and/or password is incorrect</string>
+    <string name="signup_failed" translatable="false">The creation of a user account failed</string>
+    <string name="signup_success" translatable="false">The creation of a user account succeeded</string>
+
+    <string name="Fråga1">Do we have a Covid-vaccine?</string>
+    <string name="Fråga2">What are the benefits of the vaccine?</string>
+    <string name="Fråga3">Will the vaccine protect me 100%?</string>
+    <string name="Fråga4">What can I do if I got Covid?</string>
+    <string name="Fråga5">When should I test myself for Covid?</string>
+    <string name="Fråga6">How does testing work for Covid?</string>
+    <string name="Fråga7">What do I do if i do not have Covid?</string>
+    <string name="Fråga8">Can I order a test to my home?</string>
+    <string name="Fråga9">Where can I call if i need info?</string>
+
+    <string name="Svar1">Yes, we have different sorts of vaccine for Covid, we have Pfizer, Moderna and Janssen</string>
+    <string name="Svar2">Benefits of the vaccine is that you can worry less about getting sick and get a Covid-vaccine pass, that will help you travel, FYI, you should still take precaution and keep a good hygiene</string>
+    <string name="Svar3">No the test does not give you full immunity, it gives you a better chance of not getting sick any helps to reduce the spreading of the virus.</string>
+    <string name="Svar4">If you got Covid, you should stay at home and do not socialize person to person, you should stay incubinated for 2 weeks and after that take a test to make sure you do not have Covid anymore.</string>
+    <string name="Svar5">When you have an cough, feel sore in the throat or you have a high body temprature, higher than normal</string>
+    <string name="Svar6">You can test through a test stick in the nose, or you can take sample of a mucous membrane</string>
+    <string name="Svar7">Even if you do not have covid, you should still take precautions and keep a good hygiene, to reduce the risk of spreading the virus</string>
+    <string name="Svar8">Yes, you can book an home-test at 1177.se</string>
+    <string name="Svar9">Call 112 if you have serious problems, else call 1177</string>
+
+    <string name="Source_Calle" translatable="false">Calle Samuelsson</string>
+
+    <string name="covid_19" translatable="false">Covid-19</string>
+    <string name="total_cases" translatable="false">Total cases:</string>
+    <string name="total_deaths" translatable="false">Total deaths:</string>
+    <string name="vaccination_statistics">Vaccination Statistics</string>
+    <string name="covid_statistics">Covid Statistics</string>
+    <string name="note_data_on_different_age_groups_is_only_available_for_sweden" translatable="false">NOTE: data on different age groups\nis only available for Sweden</string>
+
+    <string name="Delete" translatable="false">Delete</string>
+    <string name="cancel_appointment" translatable="false">Are you sure you want to delete your appointment?</string>
+    <string name="time_canceled" translatable="false">Booked time is canceled</string>
+    <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
     <string name="Choose_clinic">Choose Clinic:</string>
     <string name="Choose_vaccine">Choose Vaccine Type:</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <string name="rebook">boka om</string>
+    <string name="nnotes_on_data_ndata_on_different_age_groups_is_currently_not_available_in_weekly_data">\nNotes on data:\nData on different age groups is currently not available in weekly data.\nLast section shows cumilative uptake of one and two doses up to and including selected week in 2021.</string>
 
-    <string name="email2">Skriv om Email</string>
-    <string name="firstname">Förnamn</string>
-    <string name="lastname">Efternamn</string>
-    <string name="phone_nr">Mobil nummer</string>
-    <string name="yyyy_mm_dd">YYYY-MM-DD</string>
-    <string name="address">Address</string>
-    <string name="stad">Stad</string>
-    <string name="zipcode">Post kod</string>
-    <string name="city">stad</string>
-    <string name="administrerade_doser">Administrerade doser</string>
-    <string name="distribuerade_doser">Distribuerade doser</string>
-    <string name="vaccinering">Vaccinering</string>
-    <string name="doses_delivered">Doses delivered:  </string>
-    <string name="doses_administered">\nDoses administered:</string>
-    <string name="source_folkh_lsomyndigheten">Source: Folkhälsomyndigheten</string>
-    <string name="total">\nTotal:</string>
-
-    <string name="amanda">Hej Amanda</string>
-
-    <string name="wronguser">Not an administror?</string>
-    <string name="goback">Go Back</string>
-    <string name="exit">Exit</string>
-    <string name="isadmin">Is an Administrator?</string>
-    <string name="admin_login">Admin login here</string>
-    <string name="wrong_creeentials">The username and/or password is incorrect</string>
-    <string name="signup_failed">The creation of a user account failed</string>
-    <string name="signup_success">The creation of a user account succeeded</string>
-    <string name="covid_19">Covid-19</string>
-    <string name="total_cases">Total cases:</string>
-    <string name="total_deaths">Total deaths:</string>
-    <string name="note_data_on_different_age_groups_is_only_available_for_sweden">NOTE: data on different age groups\nis only available for Sweden</string>
-
-    <string name="Delete">Delete</string>
-    <string name="cancel_appointment">Are you sure you want to delete your appointment?</string>
-    <string name="time_canceled">Booked time is canceled</string>
-    <string name="TimeNotCanceled">Cancelation of booked time failed</string>
 
 
 </resources>

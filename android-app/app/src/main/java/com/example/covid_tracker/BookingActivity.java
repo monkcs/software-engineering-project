@@ -57,7 +57,6 @@ public class BookingActivity extends AppCompatActivity{
         tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewpager);
         viewpager.setOnTouchListener(new View.OnTouchListener() {
-
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 return true;
             }
