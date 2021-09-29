@@ -85,7 +85,7 @@ public class Login extends Activity implements OnClickListener {
     }
 
     public void loginAdmin() {
-        Intent intent = new Intent(this, Administartorlogin.class);
+        Intent intent = new Intent(this, AdminDashboard.class);
         startActivity(intent);
     }
 
