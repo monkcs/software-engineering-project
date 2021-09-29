@@ -24,6 +24,7 @@
     <string name="todo" translatable="false">TODO</string>
 
 
+
     <string name="email2" translatable="false">Skriv om Email</string>
     <string name="firstname" translatable="false">Förnamn</string>
     <string name="lastname" translatable="false">Efternamn</string>
@@ -84,9 +85,14 @@
     <string name="cancel_appointment" translatable="false">Are you sure you want to delete your appointment?</string>
     <string name="time_canceled" translatable="false">Booked time is canceled</string>
     <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
+    <string name="Choose_clinic">Choose Clinic:</string>
+    <string name="Choose_vaccine">Choose Vaccine Type:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <string name="rebook" translatable="false">boka om</string>
     <string name="nnotes_on_data_ndata_on_different_age_groups_is_currently_not_available_in_weekly_data" translatable="false">\nNotes on data:\nData on different age groups is currently not available in weekly data.\nLast section shows cumilative uptake of one and two doses up to and including selected week in 2021.</string>
+
 
 
 </resources>

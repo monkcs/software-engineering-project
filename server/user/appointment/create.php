@@ -53,16 +53,16 @@ function insert($connection, $appointment, $identity, $dose)
 
 function valid($connection, $appointment)
 {
-    $statement = $connection->prepare("SELECT available.id FROM appointment LEFT JOIN available ON appointment.available != available.id WHERE available.id = ?");
+    $statement = $connection->prepare("SELECT available.id FROM appointment LEFT JOIN available ON appointment.available != available.id or appointment.available is null WHERE available.id = ?");
     $statement->bind_param("i", $appointment);
     $statement->execute();
     $result = $statement->get_result();
     $statement->close();
 
     if ($result->num_rows == 0) {
-        return false;
-    } else {
         return true;
+    } else {
+        return false;
     }
 }
 

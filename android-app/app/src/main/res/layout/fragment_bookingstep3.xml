@@ -36,10 +36,15 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_timeSlot"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@id/calendarView"
         tools:layout_editor_absoluteX="0dp" />
 
+    <ListView
+        android:id="@+id/timesaviable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_timeSlot" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
