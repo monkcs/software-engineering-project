@@ -40,12 +40,13 @@
         android:inputType="textPassword"
         android:textSize="22sp" />
 
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/adminloginbutton"
+        android:layout_width="wrap_content"
 
-    android:text="@string/button_login"
-    android:textColor="@color/black"/>
+        android:layout_height="wrap_content"
+        android:text="@string/button_login"
+        android:textColor="@color/black" />
 
     <TextView
         android:layout_width="match_parent"
@@ -64,13 +65,14 @@
         android:text="@string/wronguser"
         />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/gobackbutton"
+            android:layout_width="wrap_content"
 
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:text="@string/goback"/>
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="@string/goback"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
