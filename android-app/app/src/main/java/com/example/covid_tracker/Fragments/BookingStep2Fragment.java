@@ -24,7 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.covid_tracker.R;
 import com.example.covid_tracker.WebRequest;
-import com.example.covid_tracker.sharedViewModel;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
