@@ -75,6 +75,7 @@ public class Login extends Activity implements OnClickListener {
         };
 
         queue.add(request);
+        queue.start();
     }
 
 

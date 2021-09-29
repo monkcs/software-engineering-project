@@ -161,11 +161,10 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
     }
 
     public void DeleteAppointment() {
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "cancel_time.php", null,
+        StringRequest request = new StringRequest(Request.Method.GET, WebRequest.urlbase + "user/appointment/cancel.php",
                 response -> {
                     System.out.println("Tog bort bokade tid");
                     Toast.makeText(getActivity(), R.string.time_canceled, Toast.LENGTH_LONG).show();
-                    getActivity().finish();
 
                 }, error -> {
             Toast.makeText(getActivity(), R.string.TimeNotCanceled, Toast.LENGTH_LONG).show();
