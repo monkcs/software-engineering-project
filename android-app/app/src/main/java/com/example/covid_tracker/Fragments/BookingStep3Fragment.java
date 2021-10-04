@@ -219,7 +219,7 @@ public class BookingStep3Fragment extends Fragment {
 
         public String toString()
         {
-            return id +" " +time;
+            return  getHourMinits();
         }
     }
 
