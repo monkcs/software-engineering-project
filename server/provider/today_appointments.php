@@ -1,6 +1,6 @@
 <?
 
-require 'authenticate.php'
+require 'authenticate.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
     
@@ -26,5 +26,3 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     http_response_code(405);
     echo "Send request using HTTP get\n";
 }
-
-?>
