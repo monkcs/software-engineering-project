@@ -8,9 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                     on person.account = appointment.account
                                     inner join available
                                     on appointment.available = available.id
-                                    and available.provider = $identity
+                                    and available.provider = ?
                                     and cast(datetime AS Date) = cast(getdate() as Date)");
-
+    $statement->bind_param("i", $identity);
     $statement->execute();
     $result = $statement->get_result();
     $statement->close();
