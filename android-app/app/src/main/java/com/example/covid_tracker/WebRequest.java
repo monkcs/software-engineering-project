@@ -7,8 +7,15 @@ import java.util.Map;
 
 public class WebRequest {
 
-    public static String username = "";
-    public static String password = "";
+    static class User {
+        public static String username = "";
+        public static String password = "";
+    };
+
+    static class Provider {
+        public static String username = "";
+        public static String password = "";
+    };
 
     public static final String urlbase = "https://hex.cse.kau.se/~charhabo100/vaccine-tracker/";
 

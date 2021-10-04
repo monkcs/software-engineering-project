@@ -51,6 +51,7 @@
     <string name="wrong_creeentials" translatable="false">The username and/or password is incorrect</string>
     <string name="signup_failed" translatable="false">The creation of a user account failed</string>
     <string name="signup_success" translatable="false">The creation of a user account succeeded</string>
+    <string name="network_down" translatable="false">Connection to server not available</string>
 
     <string name="Fråga1">Do we have a Covid-vaccine?</string>
     <string name="Fråga2">What are the benefits of the vaccine?</string>
