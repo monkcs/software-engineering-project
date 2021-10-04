@@ -14,8 +14,8 @@ function authenticate($connection)
         $username = $_SERVER['PHP_AUTH_USER'];
         $password = $_SERVER['PHP_AUTH_PW'];
 
-        $statement = $connection->prepare("SELECT * FROM provider WHERE provider.email = ? AND provider.password = ?");
-        $statement->bind_param("ss", $username, $password);
+        $statement = $connection->prepare("SELECT * FROM provider WHERE provider.id = ? AND provider.password = ?");
+        $statement->bind_param("is", $username, $password);
         $statement->execute();
         $result = $statement->get_result();
 
