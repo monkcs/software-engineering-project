@@ -1,16 +1,15 @@
 package com.example.covid_tracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminDashboard extends AppCompatActivity{
 
-    private RelativeLayout rl1,rl2;
+    private RelativeLayout rl1, rl2, rl3;
     //private TextView userCount = findViewById(R.id.adminUserCount);
 
 
@@ -37,6 +36,18 @@ public class AdminDashboard extends AppCompatActivity{
             }
         });
 
+        rl3 = (RelativeLayout) findViewById(R.id.Rellay3);
+        rl3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inboxAdmin();
+            }
+        });
+    }
+
+    public void inboxAdmin(){
+        Intent intent = new Intent(this, inboxAdmin.class);
+        startActivity(intent);
     }
 
     public void uppcApoint(){

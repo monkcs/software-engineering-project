@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/linear_layout_booking_row"
+        android:id="@+id/linear_layout_admin_row"
         android:orientation="vertical">
 
         <TextView
@@ -30,7 +30,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/expandable_layout_booking_row"
+            android:id="@+id/expandable_layout_admin_row"
 
             >
 
@@ -56,6 +56,23 @@
                 android:textColor="@color/light_grey"
                 android:layout_below="@+id/Dos"
 
+                />
+
+            <Button
+                android:id="@+id/CardViewAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Plats"
+                android:text="Boka"
+                android:layout_marginLeft="8dp"/>
+            <Button
+                android:id="@+id/CardViewAdmin2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/CardViewAdmin"
+                android:layout_below="@id/Plats"
+                android:text="Avboka"
+                android:layout_marginLeft="8dp"
                 />
 
 
