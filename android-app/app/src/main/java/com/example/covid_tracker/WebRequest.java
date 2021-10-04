@@ -5,7 +5,7 @@ import android.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-class WebRequest {
+public class WebRequest {
 
     public static String username = "";
     public static String password = "";

@@ -24,6 +24,7 @@
     <string name="todo" translatable="false">TODO</string>
 
 
+
     <string name="email2" translatable="false">Skriv om Email</string>
     <string name="firstname" translatable="false">Förnamn</string>
     <string name="lastname" translatable="false">Efternamn</string>
@@ -71,22 +72,27 @@
     <string name="Svar8">Yes, you can book an home-test at 1177.se</string>
     <string name="Svar9">Call 112 if you have serious problems, else call 1177</string>
 
-    <string name="Source_Calle" translatable="false">Calle Samuelsson</string>
+    <string name="Source_Calle" translatable="false">1177</string>
 
     <string name="covid_19" translatable="false">Covid-19</string>
     <string name="total_cases" translatable="false">Total cases:</string>
     <string name="total_deaths" translatable="false">Total deaths:</string>
-    <string name="vaccination_statistics">Vaccination Statistics</string>
-    <string name="covid_statistics">Covid Statistics</string>
+    <string name="vaccination_statistics" translatable="false">Vaccination Statistics</string>
+    <string name="covid_statistics" translatable="false">Covid Statistics</string>
     <string name="note_data_on_different_age_groups_is_only_available_for_sweden" translatable="false">NOTE: data on different age groups\nis only available for Sweden</string>
 
     <string name="Delete" translatable="false">Delete</string>
     <string name="cancel_appointment" translatable="false">Are you sure you want to delete your appointment?</string>
     <string name="time_canceled" translatable="false">Booked time is canceled</string>
     <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
+    <string name="Choose_clinic">Choose Clinic:</string>
+    <string name="Choose_vaccine">Choose Vaccine Type:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
-    <string name="rebook">boka om</string>
-    <string name="nnotes_on_data_ndata_on_different_age_groups_is_currently_not_available_in_weekly_data">\nNotes on data:\nData on different age groups is currently not available in weekly data.\nLast section shows cumilative uptake of one and two doses up to and including selected week in 2021.</string>
+    <string name="rebook" translatable="false">boka om</string>
+    <string name="nnotes_on_data_ndata_on_different_age_groups_is_currently_not_available_in_weekly_data" translatable="false">\nNotes on data:\nData on different age groups is currently not available in weekly data.\nLast section shows cumilative uptake of one and two doses up to and including selected week in 2021.</string>
+
 
 
 </resources>

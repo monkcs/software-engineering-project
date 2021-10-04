@@ -4,13 +4,208 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.BookingStep4Fragment">
 
     <TextView
-        android:gravity="center"
+        android:id="@+id/text_F4"
+        android:gravity="top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Page 4"
-        android:textSize="60sp"/>
+        android:layout_height="wrap_content"
+        android:text="Page 3"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        tools:ignore="MissingConstraints"
+        />
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/text_F4"
+        android:id="@+id/text_info"
+        android:gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please fill out following:"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
+        />
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/text_info"
+        android:id="@+id/question_1"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1. Have you ever had a strong reaction
+after vaccination, and needed hospital care?"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        tools:ignore="MissingConstraints"
+        />
+
+    <RadioGroup
+        android:id="@+id/radiogroup_1"
+        app:layout_constraintTop_toBottomOf="@id/question_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+
+            android:id="@+id/button1_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes"/>
+
+        <RadioButton
+            android:id="@+id/button1_no"
+            android:layout_width= "wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no"/>
+
+    </RadioGroup>
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/radiogroup_1"
+        android:id="@+id/question_2"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2. Do you have allergies that have ever given you severe
+reactions for which you have needed hospitalization?"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        tools:ignore="MissingConstraints"
+        />
+
+    <RadioGroup
+        android:id="@+id/radiogroup_2"
+        app:layout_constraintTop_toBottomOf="@id/question_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+
+            android:id="@+id/button2_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes"/>
+
+        <RadioButton
+            android:id="@+id/button2_no"
+            android:layout_width= "wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no"/>
+
+    </RadioGroup>
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/radiogroup_2"
+        android:id="@+id/question_3"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3. Do you have an increased tendency to bleed due to disease
+or medicine?"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        tools:ignore="MissingConstraints"
+        />
+
+    <RadioGroup
+        android:id="@+id/radiogroup_3"
+        app:layout_constraintTop_toBottomOf="@id/question_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+
+            android:id="@+id/button3_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes" />
+
+        <RadioButton
+            android:id="@+id/button3_no"
+            android:layout_width= "wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no"/>
+
+    </RadioGroup>
+
+<TextView
+app:layout_constraintTop_toBottomOf="@id/radiogroup_3"
+android:id="@+id/question_4"
+android:layout_marginTop="10dp"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="4. Are you pregnant?"
+android:textColor="@color/black"
+android:textSize="16sp"
+tools:ignore="MissingConstraints"
+    />
+
+<RadioGroup
+android:id="@+id/radiogroup_4"
+app:layout_constraintTop_toBottomOf="@id/question_4"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+tools:ignore="MissingConstraints">
+
+<RadioButton
+
+    android:id="@+id/button4_yes"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/yes"/>
+
+<RadioButton
+    android:id="@+id/button4_no"
+    android:layout_width= "wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/no"/>
+
+</RadioGroup>
+
+<TextView
+app:layout_constraintTop_toBottomOf="@id/radiogroup_4"
+android:id="@+id/question_5"
+android:layout_marginTop="10dp"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="5. Have you been vaccinated
+in the last 7 days?"
+android:textColor="@color/black"
+android:textSize="16sp"
+tools:ignore="MissingConstraints"
+    />
+
+<RadioGroup
+android:id="@+id/radiogroup_5"
+app:layout_constraintTop_toBottomOf="@id/question_5"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+tools:ignore="MissingConstraints">
+
+<RadioButton
+
+    android:id="@+id/button5_yes"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/yes"/>
+
+<RadioButton
+    android:id="@+id/button5_no"
+    android:layout_width= "wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/no"/>
+
+</RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
