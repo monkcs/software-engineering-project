@@ -124,7 +124,6 @@ public class StatisticsCovid extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // TODO Auto-generated method stub
         int id = item.getItemId();
         if (id == android.R.id.home) {
             finish();
