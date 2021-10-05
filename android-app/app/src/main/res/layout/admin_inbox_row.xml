@@ -18,8 +18,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tid"
-            android:id="@+id/Tid"
+            android:text="Personen"
+            android:id="@+id/Personen"
             android:textSize="20sp"
             android:padding="14dp"
             android:textColor="@color/black"
@@ -38,8 +38,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/Dos"
-                android:text="Dos"
+                android:id="@+id/Svaren"
+                android:text="Svaren"
                 android:padding="14dp"
                 android:textSize="18sp"
                 android:textColor="@color/grey"
@@ -50,7 +50,7 @@
                 android:id="@+id/medelande"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/Dos"
+                android:layout_below="@id/Svaren"
                 android:padding="8dp"
                 android:lines="1"
                 android:imeOptions="actionDone"
@@ -61,8 +61,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/Plats"
-                android:text="Plats"
+                android:id="@+id/telefonNummer"
+                android:text="telefonNummer"
                 android:padding="8dp"
                 android:textSize="16sp"
                 android:textColor="@color/light_grey"
@@ -70,11 +70,23 @@
 
                 />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/datumTid"
+                android:text="datumTid"
+                android:padding="8dp"
+                android:textSize="16sp"
+                android:textColor="@color/light_grey"
+                android:layout_below="@+id/telefonNummer"
+
+                />
+
             <Button
                 android:id="@+id/CardViewAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/Plats"
+                android:layout_below="@id/datumTid"
                 android:text="Boka"
                 android:layout_marginLeft="8dp"/>
             <Button
@@ -82,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/CardViewAdmin"
-                android:layout_below="@id/Plats"
+                android:layout_below="@id/datumTid"
                 android:text="Avboka"
                 android:layout_marginLeft="8dp"
                 />

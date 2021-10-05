@@ -48,10 +48,12 @@ public class inboxAdmin extends AppCompatActivity {
             //Här hämtar du hela listan med pending bookings
 
 
-            list.add(new Admin_block("hej", "hej", "hej"));
-            list.add(new Admin_block("kayn", "rakan", "main"));
-        list.add(new Admin_block("kayn", "rakan", "main"));
-        list.add(new Admin_block("kayn", "rakan", "main"));
+        list.add(new Admin_block("Amanda", "svarade ja på utomlands", "123456789", "20 oktober 2021"));
+        list.add(new Admin_block("Axel", "svarade ja på utomlands", "123456789", "20 oktober 2021"));
+        list.add(new Admin_block("Diego", "svarade ja på utomlands", "123456789", "20 oktober 2021"));
+        list.add(new Admin_block("Carl", "vaccinerat sig inom kort tidspan innan", "123456789", "20 oktober 2021"));
+        list.add(new Admin_block("Lukas", "vaccinerat sig inom kort tidspan innan", "123456789", "20 oktober 2021"));
+        list.add(new Admin_block("Charlie", "vaccinerat sig inom kort tidspan innan", "123456789", "20 oktober 2021"));
 
 
 

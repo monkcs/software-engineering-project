@@ -38,9 +38,10 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
        Admin_block bookingblockis = Admin_block_List.get(position);
 
-        holder.tidText.setText(bookingblockis.getTid());
-        holder.dosText.setText(bookingblockis.getDos());
-        holder.platsText.setText(bookingblockis.getPlats());
+        holder.PersonText.setText(bookingblockis.getPersonen());
+        holder.SvarText.setText(bookingblockis.getSvaret());
+        holder.telefonText.setText(bookingblockis.getTelenmr());
+        holder.datumTidText.setText(bookingblockis.getDatumTid());
 
 
         holder.button.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +141,7 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
     public class VersionVH extends RecyclerView.ViewHolder {
 
 
-        TextView tidText, dosText, platsText;
+        TextView PersonText, SvarText, telefonText, datumTidText;
         EditText medelande;
         RelativeLayout expandable;
         LinearLayout linear;
@@ -149,9 +150,10 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
         public VersionVH(@NonNull View itemView) {
             super(itemView);
 
-            tidText = itemView.findViewById(R.id.Tid);
-            dosText = itemView.findViewById(R.id.Dos);
-            platsText = itemView.findViewById(R.id.Plats);
+            PersonText = itemView.findViewById(R.id.Personen);
+            SvarText = itemView.findViewById(R.id.Svaren);
+            telefonText = itemView.findViewById(R.id.telefonNummer);
+            datumTidText = itemView.findViewById(R.id.datumTid);
             medelande = itemView.findViewById(R.id.medelande);
 
 
