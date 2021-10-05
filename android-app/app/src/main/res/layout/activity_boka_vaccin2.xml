@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/red"
-        android:orientation="vertical"
-        tools:context=".Boka_vaccin2">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/mydate"

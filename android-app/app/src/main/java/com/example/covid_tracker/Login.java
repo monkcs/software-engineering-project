@@ -58,8 +58,8 @@ public class Login extends Activity implements OnClickListener {
     void login() {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "user/information.php", null,
                 response -> {
-                    WebRequest.username = user_email.getText().toString();
-                    WebRequest.password = user_password.getText().toString();
+                    WebRequest.User.username = user_email.getText().toString();
+                    WebRequest.User.password = user_password.getText().toString();
 
                     Intent intent = new Intent(Login.this, Dashboard.class);
                     finish();
@@ -85,7 +85,7 @@ public class Login extends Activity implements OnClickListener {
     }
 
     public void loginAdmin() {
-        Intent intent = new Intent(this, AdminDashboard.class);
+        Intent intent = new Intent(this, Administartorlogin.class);
         startActivity(intent);
     }
 

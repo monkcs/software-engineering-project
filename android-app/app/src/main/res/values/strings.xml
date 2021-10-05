@@ -2,47 +2,36 @@
 
     <string name="app_name">Covid Tracker</string>
 
+    <!-- user login -->
+
     <string name="button_login" translatable="false">Log In</string>
     <string name="button_signUp" translatable="false">Sign Up!</string>
-    <string name="vaccin_info" translatable="false">Vaccin-Info</string>
-    <string name="vaccin_dashboard" translatable="false">Vaccin-Dashboard</string>
     <string name="Login" translatable="false">Login</string>
     <string name="New_user" translatable="false">New user?</string>
     <string name="Password" translatable="false">Password</string>
     <string name="email" translatable="false">Enter e-mail</string>
-    <string name="AppName" translatable="false">Covid-Tracker</string>
-    <string name="Button" translatable="false">testtest</string>
 
-    <string name="faq" translatable="false">FAQ</string>
+
     <string name="info_about_corona" translatable="false">Info about Corona</string>
     <string name="dashboard" translatable="false">Dashboard</string>
-    <string name="train" translatable="false">Train</string>
-    <string name="bus" translatable="false">Bus</string>
-    <string name="bokavaccin" translatable="false">Bokavaccin</string>
     <string name="digital_health" translatable="false">Digital Health</string>
-    <string name="statistik" translatable="false">Statistik</string>
     <string name="todo" translatable="false">TODO</string>
 
 
-
+    <!-- user registration  -->
     <string name="email2" translatable="false">Skriv om Email</string>
     <string name="firstname" translatable="false">Förnamn</string>
     <string name="lastname" translatable="false">Efternamn</string>
     <string name="phone_nr" translatable="false">Mobil nummer</string>
     <string name="yyyy_mm_dd" translatable="false">YYYY-MM-DD</string>
     <string name="address" translatable="false">Address</string>
-    <string name="stad" translatable="false">Stad</string>
     <string name="zipcode" translatable="false">Post kod</string>
     <string name="city" translatable="false">stad</string>
-    <string name="administrerade_doser" translatable="false">Administrerade doser</string>
-    <string name="distribuerade_doser" translatable="false">Distribuerade doser</string>
     <string name="vaccinering" translatable="false">Vaccinering</string>
     <string name="doses_delivered" translatable="false">Doses delivered:</string>
     <string name="doses_administered" translatable="false">\nDoses administered:</string>
     <string name="source_folkh_lsomyndigheten" translatable="false">Source: Folkhälsomyndigheten</string>
     <string name="total" translatable="false">\nTotal:</string>
-
-    <string name="amanda" translatable="false">Hej Amanda</string>
 
     <string name="wronguser" translatable="false">Not an administror?</string>
     <string name="goback" translatable="false">Go back</string>
@@ -51,7 +40,10 @@
     <string name="wrong_creeentials" translatable="false">The username and/or password is incorrect</string>
     <string name="signup_failed" translatable="false">The creation of a user account failed</string>
     <string name="signup_success" translatable="false">The creation of a user account succeeded</string>
+    <string name="network_down" translatable="false">Connection to server not available</string>
 
+
+    <!-- FAQ frågor -->
     <string name="Fråga1">Do we have a Covid-vaccine?</string>
     <string name="Fråga2">What are the benefits of the vaccine?</string>
     <string name="Fråga3">Will the vaccine protect me 100%?</string>
@@ -62,6 +54,7 @@
     <string name="Fråga8">Can I order a test to my home?</string>
     <string name="Fråga9">Where can I call if i need info?</string>
 
+    <!-- user svar  -->
     <string name="Svar1">Yes, we have different sorts of vaccine for Covid, we have Pfizer, Moderna and Janssen</string>
     <string name="Svar2">Benefits of the vaccine is that you can worry less about getting sick and get a Covid-vaccine pass, that will help you travel, FYI, you should still take precaution and keep a good hygiene</string>
     <string name="Svar3">No the test does not give you full immunity, it gives you a better chance of not getting sick any helps to reduce the spreading of the virus.</string>
@@ -71,8 +64,7 @@
     <string name="Svar7">Even if you do not have covid, you should still take precautions and keep a good hygiene, to reduce the risk of spreading the virus</string>
     <string name="Svar8">Yes, you can book an home-test at 1177.se</string>
     <string name="Svar9">Call 112 if you have serious problems, else call 1177</string>
-
-    <string name="Source_Calle" translatable="false">1177</string>
+    <string name="Source" translatable="false">1177</string>
 
     <string name="covid_19" translatable="false">Covid-19</string>
     <string name="total_cases" translatable="false">Total cases:</string>
@@ -85,14 +77,18 @@
     <string name="cancel_appointment" translatable="false">Are you sure you want to delete your appointment?</string>
     <string name="time_canceled" translatable="false">Booked time is canceled</string>
     <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
-    <string name="Choose_clinic">Choose Clinic:</string>
-    <string name="Choose_vaccine">Choose Vaccine Type:</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="Choose_clinic" translatable="false">Choose Clinic:</string>
+    <string name="Choose_vaccine" translatable="false">Choose Vaccine Type:</string>
+    <string name="yes" translatable="false">Yes</string>
+    <string name="no" translatable="false">No</string>
 
     <string name="rebook" translatable="false">boka om</string>
     <string name="nnotes_on_data_ndata_on_different_age_groups_is_currently_not_available_in_weekly_data" translatable="false">\nNotes on data:\nData on different age groups is currently not available in weekly data.\nLast section shows cumilative uptake of one and two doses up to and including selected week in 2021.</string>
-
+    <string name="channel_name_1" translatable="false">Notis dose 2</string>
+    <string name="channel_description_1" translatable="false">Datum för dose 2</string>
+    <string name="noticeseconddose" translatable="false">Nu har du fått tid för ditt andra dos</string>
+    <string name="channel_name_2" translatable="false">Get notice for exepted booktime</string>
+    <string name="channel_description_2" translatable="false">Get response that booking time is accepted</string>
 
 
 </resources>

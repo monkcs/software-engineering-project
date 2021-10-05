@@ -85,7 +85,7 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+                return WebRequest.credentials(WebRequest.User.username, WebRequest.User.password);
             }
         };
 
@@ -203,7 +203,7 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+                return WebRequest.credentials(WebRequest.User.username, WebRequest.User.password);
             }
         };
         queue.add(request);
