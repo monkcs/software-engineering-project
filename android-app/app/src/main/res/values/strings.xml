@@ -82,7 +82,7 @@
     <string name="note_data_on_different_age_groups_is_only_available_for_sweden" translatable="false">NOTE: data on different age groups\nis only available for Sweden</string>
 
     <string name="Delete" translatable="false">Delete</string>
-    <string name="cancel_appointment" translatable="false">Are you sure you want to delete your appointment?</string>
+    <string name="cancel_appointment" translatable="false">Are you sure you want to delete this appointment?</string>
     <string name="time_canceled" translatable="false">Booked time is canceled</string>
     <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
     <string name="Choose_clinic">Choose Clinic:</string>
