@@ -20,6 +20,11 @@
             android:name=".UppcommingApointments"
             android:exported="true" />
         <activity
+            android:name=".inboxAdmin"
+            android:exported="true"
+            android:parentActivityName=".AdminDashboard"/>
+
+        <activity
             android:name=".AdminDashboard"
             android:exported="true" />
         <activity
