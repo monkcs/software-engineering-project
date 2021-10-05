@@ -4,6 +4,8 @@ require 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
+    header('Content-type: application/json');
+
     $provider = $_POST["provider"];
     if ($provider == "") {
         http_response_code(400);
@@ -11,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         exit;
     }
 
-    $statement = $connection->prepare("SELECT available.* FROM appointment LEFT JOIN available ON appointment.available != available.id WHERE available.provider = ?");
+    $statement = $connection->prepare("SELECT * FROM available where NOT EXISTS (SELECT * FROM appointment WHERE appointment.available = available.id) AND available.provider = ?");
     $statement->bind_param("i", $provider);
     $statement->execute();
     $result = $statement->get_result();
@@ -21,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         http_response_code(200);
         echo json_encode(($result->fetch_all(MYSQLI_ASSOC)));
     } else {
-        http_response_code(400);
+        http_response_code(409);
         echo "No appointments available\n";
     }
 } else {

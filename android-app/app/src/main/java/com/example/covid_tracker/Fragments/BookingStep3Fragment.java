@@ -1,5 +1,6 @@
 package com.example.covid_tracker.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -108,12 +109,14 @@ public class BookingStep3Fragment extends Fragment {
 
     }
     public void getListOfavailableappointment() {
+        SharedPreferences pref = getActivity().getSharedPreferences("Booking", Context.MODE_PRIVATE);
+        Integer id_clinic =  pref.getInt("clinic_ID", -1);;
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/available.php",
                 response -> {
                    // try {
-                        System.out.println("response length: " + response.toString());
+                        System.out.println("response length: " + response);
                     try {
-                        JSONArray array = new JSONArray(response.toString());
+                        JSONArray array = new JSONArray(response);
 
                         for (int i=0; i<array.length(); i++) {
                         JSONObject jsonObject = array.getJSONObject(i);
@@ -127,22 +130,18 @@ public class BookingStep3Fragment extends Fragment {
                         e.printStackTrace();
                     }
 
-
-                   // } catch (JSONException e) {
-
-                 //       e.printStackTrace();
-                 //   }
                 }, error -> {
                 int mess;
         }
         ) {
             @Override
             public Map<String, String> getParams()  {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("provider", "1");
 
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("provider", id_clinic.toString());
+              
                 return params;
-            };
+            }
         };
 
         queue.add(request);
@@ -151,7 +150,8 @@ public class BookingStep3Fragment extends Fragment {
     private void showTimes(View itemView, Date date) {
         ListView availabletimes;
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        @SuppressLint
+        ("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String calendardatetodatabas = formatter.format(date);
         //System.out.println(calendardatetodatabas);
 
@@ -167,7 +167,7 @@ public class BookingStep3Fragment extends Fragment {
 
         availabletimes = itemView.findViewById(R.id.timesaviable);
 
-        ArrayAdapter<Times> timeslist = new ArrayAdapter<Times>(getActivity(), android.R.layout.simple_list_item_1, availabletimeslist);
+        ArrayAdapter<Times> timeslist = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, availabletimeslist);
 
         availabletimes.setAdapter(timeslist);
 
@@ -176,17 +176,22 @@ public class BookingStep3Fragment extends Fragment {
             Times temp  = timeslist.getItem(i);
             Toast.makeText(getActivity(), temp.id + " Är vald!", Toast.LENGTH_SHORT).show();
             //to save or not to save that is the question
-
             SharedPreferences.Editor edit = getActivity().getSharedPreferences("Booking", Context.MODE_PRIVATE).edit();
-            edit.putInt("Time", temp.getId());
-            edit.commit();
+            edit.putInt("time", -1);
+            if(temp.getId() != -1) {
+                edit.putInt("time", temp.getId());
+            }
+            else{
+                edit.putInt("time", -1);
+            }
+            edit.apply();
 
         });
 
     }
 
     private String getdateortime(String source, int part){
-        String leftover = new String("");
+        String leftover = "";
         switch (part){
             case 1:
                 leftover =  source.split(" ")[0];
@@ -206,7 +211,7 @@ public class BookingStep3Fragment extends Fragment {
         {
             this.id = id;
             this.time = time;
-        };
+        }
         public final int id;
         public final String time;
 
@@ -217,6 +222,7 @@ public class BookingStep3Fragment extends Fragment {
             return id;
         }
 
+        @NonNull
         public String toString()
         {
             return  getHourMinits();
