@@ -83,9 +83,11 @@
 
     <string name="rebook" translatable="false">boka om</string>
     <string name="nnotes_on_data_ndata_on_different_age_groups_is_currently_not_available_in_weekly_data" translatable="false">\nNotes on data:\nData on different age groups is currently not available in weekly data.\nLast section shows cumilative uptake of one and two doses up to and including selected week in 2021.</string>
-    <string name="channel_name" translatable="false">Notis dose 2</string>
-    <string name="channel_description" translatable="false">Time to schedual dose 2</string>
-    <string name="noticeseconddose" translatable="false">Now you can schedule your appointment</string>
+    <string name="channel_name_1" translatable="false">Notis dose 2</string>
+    <string name="channel_description_1" translatable="false">Datum för dose 2</string>
+    <string name="noticeseconddose" translatable="false">Nu har du fått tid för ditt andra dos</string>
+    <string name="channel_name_2" translatable="false">Get notice for exepted booktime</string>
+    <string name="channel_description_2" translatable="false">Get response that booking time is accepted</string>
 
 
 </resources>
