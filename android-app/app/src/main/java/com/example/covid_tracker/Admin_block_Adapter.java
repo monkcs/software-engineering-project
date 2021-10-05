@@ -3,6 +3,7 @@ package com.example.covid_tracker;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -61,7 +62,7 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
            //     System.out.println("Storlek: " + Admin_block_List.size());
 
-
+                holder.medelande.onEditorAction(EditorInfo.IME_ACTION_DONE);    //stänger tagentbord
                 bokaPendingDatabas(message, Appointment);
 
             }
@@ -86,6 +87,7 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
              //   System.out.println("Storlek: " + Admin_block_List.size());
 
+                holder.medelande.onEditorAction(EditorInfo.IME_ACTION_DONE);    //stänger tagentbord
 
                 avbokaPendingDatabas(message, Appointment);
             }
@@ -128,6 +130,7 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
         System.out.println("---");
     }
+
 
     @Override
     public int getItemCount() {

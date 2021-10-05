@@ -18,6 +18,7 @@ public class inboxAdmin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inboxadmin);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         System.out.println("insidde box");
 

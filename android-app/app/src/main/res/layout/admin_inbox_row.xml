@@ -52,6 +52,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Dos"
                 android:padding="8dp"
+                android:lines="1"
+                android:imeOptions="actionDone"
+                android:inputType="text"
                 android:textColor="@color/grey"/>
 
 
