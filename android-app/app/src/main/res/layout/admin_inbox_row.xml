@@ -46,6 +46,15 @@
 
                 />
 
+            <EditText
+                android:id="@+id/medelande"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Dos"
+                android:padding="8dp"
+                android:textColor="@color/grey"/>
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,7 +63,7 @@
                 android:padding="8dp"
                 android:textSize="16sp"
                 android:textColor="@color/light_grey"
-                android:layout_below="@+id/Dos"
+                android:layout_below="@+id/medelande"
 
                 />
 

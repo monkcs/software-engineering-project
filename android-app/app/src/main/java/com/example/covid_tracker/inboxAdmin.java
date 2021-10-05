@@ -1,8 +1,6 @@
 package com.example.covid_tracker;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,15 +26,6 @@ public class inboxAdmin extends AppCompatActivity {
         getPendingBookings();
         setRecyclerView();
 
-        Button button = findViewById(R.id.CardViewAdmin);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("HEUGDS");
-
-            }
-        });
 
 
     }
@@ -57,16 +46,12 @@ public class inboxAdmin extends AppCompatActivity {
 
             //Här hämtar du hela listan med pending bookings
 
-            list.add(new Admin_block("hej", "hej", "hej"));
-            list.add(new Admin_block("hej", "hej", "hej"));
-            list.add(new Admin_block("hej", "hej", "hej"));
-            list.add(new Admin_block("hej", "hej", "hej"));
-            list.add(new Admin_block("hej", "hej", "hej"));
-            list.add(new Admin_block("hej", "hej", "hej"));
-            list.add(new Admin_block("hej", "hej", "hej"));
+
             list.add(new Admin_block("hej", "hej", "hej"));
             list.add(new Admin_block("kayn", "rakan", "main"));
-            list.add(new Admin_block("hej", "hej", "hej"));
+        list.add(new Admin_block("kayn", "rakan", "main"));
+        list.add(new Admin_block("kayn", "rakan", "main"));
+
 
 
 
