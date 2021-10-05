@@ -121,7 +121,7 @@ public class Dashboard extends AppCompatActivity {
                     }}, error -> message = "null") {
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+                return WebRequest.credentials(WebRequest.User.username, WebRequest.User.password);
             }
         };
 
