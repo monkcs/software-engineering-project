@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class AdminDashboard extends AppCompatActivity{
 
@@ -40,7 +39,7 @@ public class AdminDashboard extends AppCompatActivity{
     }
 
     public void uppcApoint(){
-        Intent intent = new Intent(this, UppcommingApointments.class);
+        Intent intent = new Intent(this, UpcomingAppointments.class);
         startActivity(intent);
     }
 
