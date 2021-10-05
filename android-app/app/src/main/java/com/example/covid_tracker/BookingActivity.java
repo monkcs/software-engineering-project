@@ -148,7 +148,7 @@ public class BookingActivity extends AppCompatActivity{
             }
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+                return WebRequest.credentials(WebRequest.User.username, WebRequest.User.password);
             }
         };
 

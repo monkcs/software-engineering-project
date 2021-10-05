@@ -306,7 +306,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/show_chart/baseline_show_chart_24.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/book_online/baseline_book_online_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -317,7 +317,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_baseline_show_chart_24" />
+                            <entry key="outputName" value="ic_schedual_second_dose" />
                             <entry key="sourceFile" value="C:\Users\lukas\OneDrive\Universitetet\Software Engineering\Labb\android-app" />
                           </map>
                         </option>

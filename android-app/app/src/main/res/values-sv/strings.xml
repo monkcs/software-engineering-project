@@ -19,4 +19,6 @@
     <string name="Svar7">"Även om du inte har covid bör du fortfarande vidta försiktighetsåtgärder och hålla en god hygien för att minska risken för att sprida viruset "</string>
     <string name="Svar8">"Ja, du kan boka hemtest på 1177.se "</string>
     <string name="Svar9">Allvarliga problem: 112, annars 1177</string>
+
+    <string name="network_down" translatable="false">Ingen anslutning till servern är tillgänglig</string>
 </resources>
