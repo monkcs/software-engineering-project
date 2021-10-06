@@ -7,12 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+
+import java.util.Map;
 
 public class AdminDashboard extends AppCompatActivity{
 
     private RelativeLayout rl1,rl2,rl3;
     //private TextView userCount = findViewById(R.id.adminUserCount);
-    private TextView tx3 = findViewById(R.id.AdminInboxText);
+    private TextView tx3, userCount;
+    public RequestQueue queue;
+
 
 
 
@@ -46,6 +59,13 @@ public class AdminDashboard extends AppCompatActivity{
 
         });
 
+        tx3 = findViewById(R.id.AdminInboxText);
+        userCount= findViewById(R.id.adminUserCount);
+        queue = Volley.newRequestQueue(this);
+        userCountRequest();
+
+
+
     }
 
     public void uppcApoint(){
@@ -60,6 +80,28 @@ public class AdminDashboard extends AppCompatActivity{
     public void adminInbox(){
         //Intent intent = new Intent(this,CalleCharlieInboxKlassen());
         tx3.setText("Calle and Charle, link your code here//dg");
+    }
+
+    void userCountRequest(){
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "provider/quantity.php", null,
+                response -> {
+                    try {
+                        userCount.append(response.getString("quantity"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }, error -> {
+            Toast.makeText(this, R.string.wrong_creeentials, Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
+        queue.add(request);
+        queue.start();
     }
 
 
