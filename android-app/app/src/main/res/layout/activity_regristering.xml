@@ -1,130 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:layout_width="match_parent"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:layout_width="match_parent">
 
-    <View
-        android:id="@+id/header_view"
-        android:layout_width="match_parent"
-        android:layout_height="105dp"
-        android:background="@drawable/background">
-    </View>
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/app_name"
-        android:textSize="32sp" />
-    <EditText
-        android:id="@+id/email_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/email"
-        android:autofillHints="emailAddress"
-        android:textSize="22sp"
-        android:inputType="textEmailAddress" />
-    <EditText
-        android:id="@+id/email_check"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/email2"
-        android:textSize="22sp"
-        android:inputType="textEmailAddress"/>
-    <EditText
-        android:id="@+id/firstname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/firstname"
-        android:autofillHints="name"
-        android:textSize="22sp"
-        android:inputType="textPersonName"/>
-    <EditText
-        android:id="@+id/lastname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/lastname"
-        android:autofillHints="name"
-        android:textSize="22sp"
-        android:inputType="textPersonName"/>
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <EditText
-        android:id="@+id/passw"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:autofillHints="password"
-        android:hint="@string/Password"
-        android:textSize="22sp"
-        android:inputType="textPassword"/>
+        <View
+            android:id="@+id/header_view"
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:background="@drawable/background"/>
 
-    <EditText
-        android:id="@+id/phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/phone_nr"
-        android:autofillHints="phone"
-        android:textSize="22sp"
-        android:inputType="phone"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:gravity="center"
+            android:paddingTop="30dp"
+            android:textSize="32sp"/>
 
-    <EditText
-        android:id="@+id/DOB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/yyyy_mm_dd"
-        android:textSize="22sp"
-        android:inputType="date"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"/>
 
-    <EditText
-        android:id="@+id/street"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="gata"
-        android:textSize="22sp"
-        android:inputType="text"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
-    <EditText
-        android:id="@+id/city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/city"
-        android:textSize="22sp"
-        android:inputType="text"/>
+            <EditText
+                android:id="@+id/firstname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/firstname"
+                android:ems="5"
+                android:paddingTop="20dp"
+                android:autofillHints="name"
+                android:textSize="22sp"
+                android:inputType="textPersonName"/>
 
-    <EditText
-        android:id="@+id/zipCode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/zipcode"
-        android:autofillHints="postalCode"
-        android:textSize="22sp"
-        android:inputType="textPostalAddress"/>
+            <EditText
+                android:id="@+id/lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="name"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="@string/lastname"
+                android:inputType="textPersonName"
+                android:paddingTop="20dp"
+                android:textSize="22sp" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/signUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/email_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/email"
+            android:ems="10"
+            android:paddingTop="20dp"
+            android:autofillHints="emailAddress"
+            android:textSize="22sp"
+            android:inputType="textEmailAddress" />
 
-        android:text="@string/button_signUp"
-        android:textColor="@color/black"/>
+        <EditText
+            android:id="@+id/email_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/email2"
+            android:paddingTop="20dp"
+            android:ems="10"
+            android:textSize="22sp"
+            android:inputType="textEmailAddress"
+            android:autofillHints="emailAddress" />
 
-    <View
 
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/background_bottom"/>
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/passw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:autofillHints="password"
+            android:hint="@string/Password"
+            android:ems="10"
+            android:paddingTop="20dp"
+            android:textSize="22sp"
+            android:inputType="textPassword"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_green"
+            android:paddingTop="30dp"/>
+
+
+        <EditText
+            android:id="@+id/DOB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="phone"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/yyyy_mm_dd"
+            android:inputType="date"
+            android:paddingTop="20dp"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/phone_nr"
+            android:ems="10"
+            android:paddingTop="20dp"
+            android:autofillHints="phone"
+            android:textSize="22sp"
+            android:inputType="phone"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_green"
+            android:paddingTop="30dp"/>
+
+
+        <EditText
+            android:id="@+id/street"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="name"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/Gata"
+            android:inputType="text"
+            android:paddingTop="20dp"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/city"
+            android:ems="10"
+            android:paddingTop="20dp"
+            android:textSize="22sp"
+            android:inputType="text"
+            android:autofillHints="name" />
+
+        <EditText
+            android:id="@+id/zipCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="postalCode"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/zipcode"
+            android:inputType="textPostalAddress"
+            android:paddingTop="20dp"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"/>
+
+        <Button
+            android:id="@+id/signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_signUp"
+            android:backgroundTint="@color/light_green"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_bottom"/>
+
+    </LinearLayout>
+</ScrollView>

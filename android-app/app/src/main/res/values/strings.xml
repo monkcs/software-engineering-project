@@ -3,7 +3,6 @@
     <string name="app_name">Covid Tracker</string>
 
     <!-- user login -->
-
     <string name="button_login" translatable="false">Log In</string>
     <string name="button_signUp" translatable="false">Sign Up!</string>
     <string name="Login" translatable="false">Login</string>
@@ -26,7 +25,8 @@
     <string name="yyyy_mm_dd" translatable="false">YYYY-MM-DD</string>
     <string name="address" translatable="false">Address</string>
     <string name="zipcode" translatable="false">Post kod</string>
-    <string name="city" translatable="false">stad</string>
+    <string name="Gata" translatable="false">Gata</string>
+    <string name="city" translatable="false">Stad</string>
     <string name="vaccinering" translatable="false">Vaccinering</string>
     <string name="doses_delivered" translatable="false">Doses delivered:</string>
     <string name="doses_administered" translatable="false">\nDoses administered:</string>
