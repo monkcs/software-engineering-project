@@ -3,6 +3,8 @@ package com.example.covid_tracker;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -12,16 +14,20 @@ import androidx.fragment.app.Fragment;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Map;
 
 
 public class Dashboard extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
     private RequestQueue queue;
-    String message = "null";
 
 
     @Override
@@ -31,11 +37,12 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_fragments);
 
         notificationManager = NotificationManagerCompat.from(this);
+        queue = Volley.newRequestQueue(this);
 
 
-        //kör noticen
-        //getDateForAppointmentNotice()
-        //sendOnChannel1()
+        //kör notice
+        getDateForAppointmentNotice();
+
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -81,7 +88,7 @@ public class Dashboard extends AppCompatActivity {
     public void sendOnChannel1() {
 
         String title = getString(R.string.app_name);
-
+        String message = "Time to get your second dose!";
         // Create an explicit intent for an Activity in your app
         Intent intent = new Intent(this, Dashboard.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -102,18 +109,18 @@ public class Dashboard extends AppCompatActivity {
 
 
     public void getDateForAppointmentNotice(){
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "user/appointment/", null,
+        StringRequest request = new StringRequest(Request.Method.GET, WebRequest.urlbase + "user/appointment/new_check.php",
                 response -> {
-                    try {
-                        if(!response.getString("dose").equals(" 2 ")){
-                            message = response.getString("datetime") + " Dos: " + response.getString("dose") + " " + response.getString("name") +"\n";
-                        }else{
-                            message = "null";
-                        }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }}, error -> message = "null") {
+                    Log.i("gDFA", "response: " + response);
+
+                    if (response.equals("true")){
+                        sendOnChannel1();
+                    }
+
+
+                }, error -> Log.i("gDFA", "Något blev fel"))
+        {
             @Override
             public Map<String, String> getHeaders() {
                 return WebRequest.credentials(WebRequest.User.username, WebRequest.User.password);
@@ -122,10 +129,6 @@ public class Dashboard extends AppCompatActivity {
 
         queue.add(request);
     }
-
-
-
-
 
 }
   
