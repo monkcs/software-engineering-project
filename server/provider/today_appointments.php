@@ -3,7 +3,7 @@
 require 'authenticate.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    $statement = $connection->prepare("SELECT firstname, surname, telephone, available.datetime, dose from person inner join appointment
+    $statement = $connection->prepare("SELECT account, firstname, surname, telephone, available.datetime, dose from person inner join appointment
                                     on person.account = appointment.account
                                     inner join available
                                     on appointment.available = available.id
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         http_response_code(400);
         echo "No appointments booked today\n";
     } else {
-        echo json_encode(($result->fetch_array(MYSQLI_ASSOC)));
+        echo json_encode($result->fetch_all(MYSQLI_ASSOC));
         echo "\n";
     }
 }else {
