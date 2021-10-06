@@ -2,6 +2,7 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
@@ -10,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
+
         <View
             android:id="@+id/header_view"
             android:layout_width="match_parent"
@@ -28,6 +30,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/firstname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/firstname"
+                android:ems="5"
+                android:paddingTop="20dp"
+                android:autofillHints="name"
+                android:textSize="22sp"
+                android:inputType="textPersonName"/>
+
+            <EditText
+                android:id="@+id/lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="name"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="@string/lastname"
+                android:hintTextColor="#78909C"
+                android:inputType="textPersonName"
+                android:paddingTop="20dp"
+                android:textSize="22sp" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/email_1"
@@ -53,29 +86,7 @@
             android:inputType="textEmailAddress"
             android:autofillHints="emailAddress" />
 
-        <EditText
-            android:id="@+id/firstname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:hint="@string/firstname"
-            android:ems="10"
-            android:paddingTop="20dp"
-            android:autofillHints="name"
-            android:textSize="22sp"
-            android:inputType="textPersonName"/>
 
-        <EditText
-            android:id="@+id/lastname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:hint="@string/lastname"
-            android:ems="10"
-            android:paddingTop="20dp"
-            android:autofillHints="name"
-            android:textSize="22sp"
-            android:inputType="textPersonName"/>
 
         <EditText
             android:id="@+id/passw"
@@ -96,21 +107,18 @@
             android:paddingTop="30dp"/>
 
 
-
-
         <EditText
             android:id="@+id/DOB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autofillHints="phone"
+            android:ems="10"
             android:gravity="center"
             android:hint="@string/yyyy_mm_dd"
-            android:ems="10"
-            android:paddingTop="20dp"
-            android:textSize="22sp"
+            android:hintTextColor="#78909C"
             android:inputType="date"
-            android:autofillHints="phone" />
-
-
+            android:paddingTop="20dp"
+            android:textSize="22sp" />
 
         <EditText
             android:id="@+id/phone_number"
@@ -135,13 +143,14 @@
             android:id="@+id/street"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autofillHints="name"
+            android:ems="10"
             android:gravity="center"
             android:hint="@string/Gata"
-            android:ems="10"
-            android:paddingTop="20dp"
-            android:textSize="22sp"
+            android:hintTextColor="#78909C"
             android:inputType="text"
-            android:autofillHints="name" />
+            android:paddingTop="20dp"
+            android:textSize="22sp" />
 
         <EditText
             android:id="@+id/city"
@@ -159,13 +168,14 @@
             android:id="@+id/zipCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autofillHints="postalCode"
+            android:ems="10"
             android:gravity="center"
             android:hint="@string/zipcode"
-            android:ems="10"
+            android:hintTextColor="#78909C"
+            android:inputType="textPostalAddress"
             android:paddingTop="20dp"
-            android:autofillHints="postalCode"
-            android:textSize="22sp"
-            android:inputType="textPostalAddress"/>
+            android:textSize="22sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -177,11 +187,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_signUp"
-            android:textColor="@color/black"/>
+            android:background="@color/light_green"
+            android:textColor="@color/black" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/background_bottom"/>
 
     </LinearLayout>
