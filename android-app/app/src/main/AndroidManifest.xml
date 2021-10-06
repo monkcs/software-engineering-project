@@ -17,7 +17,7 @@
             android:name=".PlanAndShedVaccs"
             android:exported="true" />
         <activity
-            android:name=".UppcommingApointments"
+            android:name=".UpcomingAppointments"
             android:exported="true" />
         <activity
             android:name=".inboxAdmin"
@@ -63,6 +63,7 @@
         <activity
             android:name=".StatisticsCovid"
             android:exported="true" />
+        <activity android:name=".HandlePerson" />
     </application>
 
 </manifest>

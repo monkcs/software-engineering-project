@@ -109,17 +109,20 @@ public class BookingStep1Fragment extends Fragment {
                     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                            SharedPreferences.Editor edit = getActivity().getSharedPreferences("Booking", Context.MODE_PRIVATE).edit();
                             if(position>0)
                             {
                                 System.out.println(position);
                                 pos = position;
                                 pos = pos - 1;
                                 int ID = clinics.get(pos).id;
-                                SharedPreferences.Editor edit = getActivity().getSharedPreferences("Booking", Context.MODE_PRIVATE).edit();
                                 edit.putInt("clinic_ID", ID);
-                                edit.commit();
                             }
+                            else{
+                                edit.putInt("clinic_ID", 0);
 
+                            }
+                            edit.apply();
                         }
 
                         @Override

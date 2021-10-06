@@ -35,7 +35,8 @@ import java.util.Map;
 public class BookingStep2Fragment extends Fragment {
     private Spinner spinner;
     private RequestQueue queue;
-    private ArrayList<Vaccines> vaccin = new ArrayList<>();
+    private ArrayList<Vaccines> vaccine = new ArrayList<>();
+    private int pos;
 
     public BookingStep2Fragment() {
         // required empty public constructor.
@@ -79,7 +80,7 @@ public class BookingStep2Fragment extends Fragment {
     }
     private void getVaccine() {
         ArrayList<String> name_vaccine = new ArrayList<>();
-
+        name_vaccine.add("Choose vaccine:");
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/vaccines.php", null,
                 response -> {
 
@@ -88,7 +89,7 @@ public class BookingStep2Fragment extends Fragment {
                         for (int i=0;i<response.length();i++) {
                             JSONObject jsonObject = response.getJSONObject(i);
                             Vaccines temporary= new Vaccines(jsonObject.getInt("id"), jsonObject.getString("name"));
-                            vaccin.add(temporary);
+                            vaccine.add(temporary);
                             name_vaccine.add(jsonObject.getString("name"));
                         }
                     } catch (JSONException e) {
@@ -101,11 +102,20 @@ public class BookingStep2Fragment extends Fragment {
                     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                            System.out.println(position);
-                            SharedPreferences.Editor edit= getActivity().getSharedPreferences("Booking", Context.MODE_PRIVATE).edit();
-                            int ID = vaccin.get(position).id;
-                            edit.putInt("vaccine_ID", ID);
-                            edit.commit();
+                            SharedPreferences.Editor edit = getActivity().getSharedPreferences("Booking", Context.MODE_PRIVATE).edit();
+
+                            if(position>0) {
+                                System.out.println(position);
+                                pos = position;
+                                pos = pos - 1;
+                                int ID = vaccine.get(pos).id;
+                                edit.putInt("vaccine_ID", ID);
+
+                            }
+                            else{
+                                edit.putInt("vaccine_ID", -1);
+                            }
+                            edit.apply();
                         }
 
                         @Override

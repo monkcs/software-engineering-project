@@ -3,7 +3,6 @@
     <string name="app_name">Covid Tracker</string>
 
     <!-- user login -->
-
     <string name="button_login" translatable="false">Log In</string>
     <string name="button_signUp" translatable="false">Sign Up!</string>
     <string name="Login" translatable="false">Login</string>
@@ -26,7 +25,8 @@
     <string name="yyyy_mm_dd" translatable="false">YYYY-MM-DD</string>
     <string name="address" translatable="false">Address</string>
     <string name="zipcode" translatable="false">Post kod</string>
-    <string name="city" translatable="false">stad</string>
+    <string name="Gata" translatable="false">Gata</string>
+    <string name="city" translatable="false">Stad</string>
     <string name="vaccinering" translatable="false">Vaccinering</string>
     <string name="doses_delivered" translatable="false">Doses delivered:</string>
     <string name="doses_administered" translatable="false">\nDoses administered:</string>
@@ -74,7 +74,7 @@
     <string name="note_data_on_different_age_groups_is_only_available_for_sweden" translatable="false">NOTE: data on different age groups\nis only available for Sweden</string>
 
     <string name="Delete" translatable="false">Delete</string>
-    <string name="cancel_appointment" translatable="false">Are you sure you want to delete your appointment?</string>
+    <string name="cancel_appointment" translatable="false">Are you sure you want to delete this appointment?</string>
     <string name="time_canceled" translatable="false">Booked time is canceled</string>
     <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
     <string name="Choose_clinic" translatable="false">Choose Clinic:</string>
