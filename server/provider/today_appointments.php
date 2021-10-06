@@ -3,7 +3,7 @@
 require 'authenticate.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    $statement = $connection->prepare("SELECT account, firstname, surname, telephone, available.datetime, dose from person inner join appointment
+    $statement = $connection->prepare("SELECT person.account, firstname, surname, telephone, available.datetime, dose from person inner join appointment
                                     on person.account = appointment.account
                                     inner join available
                                     on appointment.available = available.id
