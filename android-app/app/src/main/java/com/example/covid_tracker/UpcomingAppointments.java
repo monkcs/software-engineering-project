@@ -18,10 +18,12 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.covid_tracker.Fragments.BookingStep1Fragment;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -86,15 +88,18 @@ public class UpcomingAppointments extends AppCompatActivity {
     private void getBookedTimes(){
         StringRequest request = new StringRequest(Request.Method.GET, WebRequest.urlbase + "provider/today_appointments.php",
                 response -> {
-                    Log.i("UCA", "Json request: " + response.toString());
-                    Toast.makeText(this, "Got response", Toast.LENGTH_LONG).show();
+                    for(int i = 0; i < response.length(); i++) {
+                        Log.i("UCA", "Json request: " + response);
+                    }
+
+                    Toast.makeText(this, "Got response, length: " + response.length(), Toast.LENGTH_LONG).show();
 
                 }, error -> {
             Toast.makeText(this, "Error, no response here", Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
             }
         };
         queue.add(request);
@@ -104,20 +109,21 @@ public class UpcomingAppointments extends AppCompatActivity {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/today_appointments.php", null,
                 response -> {
                     try {
-                        Log.i("UCA", response.toString());
+                        Log.i("UCA", "Length: " + response.length() + response.toString());
                         for (int i=0;i<response.length();i++) {
                             JSONObject jsonObject = response.getJSONObject(i);
-                            Log.i("UCA", jsonObject.toString());
+                            Log.i("UCA", response.getJSONObject(i).toString());
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }, error -> {
-            Toast.makeText(this, "Error, no response 2", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Error, no response 2", Toast.LENGTH_LONG).show();
+                    Log.i("UCA", "No response");
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
             }
         };
 
