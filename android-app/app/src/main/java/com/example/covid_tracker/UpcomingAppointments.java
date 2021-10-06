@@ -62,22 +62,18 @@ public class UpcomingAppointments extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
                 String day = String.valueOf(dayOfMonth);
+
+                /*Masterpiece down below*/
                 if(day.length() < 2) {
                     String temp = day;
                     day = "0" + day;
                 }
+
                 currDate = String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + day;
                 Log.i("UCA", "Current date: " + currDate);
                 getBookedTimes(currDate);
             }
         });
-
-        /*Idea:
-        * 1. admin selects a date from calendar (todays appointments shown as default)
-        * 2. recyclerView updates with every timestamp (hour:min) that has at least 1 booked time
-        * 3. time clicked, recyclerView brings up all the names (& pers nr??) of the persons booked that time
-        * 4. persons name clicked, brings user to new activity personilized for that person (person_admin)
-        * 5. in person_admin, ability to check 1st dose or 2nd dose as complete and/or book a new appointment */
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
     }
@@ -90,19 +86,12 @@ public class UpcomingAppointments extends AppCompatActivity {
                         Log.i("UCA", "In request: current date is: " + currDate);
                         for (int i=0;i<response.length();i++) {
                             String datetime, date;
-                            String time, surname, firstname, phone;
-                            int dose;
                             JSONObject jsonObject = response.getJSONObject(i);
                             datetime = jsonObject.getString("datetime");
                             date = getDateAndTime(datetime, 0);
-                            if(date.equals(currDate)){
-                                time = getDateAndTime(datetime, 1);
-                                surname = jsonObject.getString("surname");
-                                firstname = jsonObject.getString("firstname");
-                                phone = jsonObject.getString("telephone");
-                                dose = Integer.parseInt(jsonObject.getString("dose"));
-                                booked_list.add(new UpcommingAppointmentsBlock(date, time, surname, firstname, phone, dose));
-                            }
+                            if(date.equals(currDate))
+                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), jsonObject.getString("surname"),
+                                        jsonObject.getString("firstname"), jsonObject.getString("telephone"), Integer.parseInt(jsonObject.getString("dose"))));
                         }
                         setRecyclerView(booked_list);
                     } catch (JSONException e) {
@@ -110,8 +99,7 @@ public class UpcomingAppointments extends AppCompatActivity {
                     }
                 }, error -> {
                     /*if no array can be found, look for jsonObject*/
-            Toast.makeText(this, "No response from server, could not retrieve booked times", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(this, "No response from server, could not retrieve booked times", Toast.LENGTH_SHORT).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -120,27 +108,6 @@ public class UpcomingAppointments extends AppCompatActivity {
         };
         queue.add(request);
     }
-
-    private String getDateAndTime(String datetime, int b){
-        String array[];
-        array = datetime.split("\\s");
-        if(b==0)
-            return array[0];
-        else {
-            array[1] = array[1].substring(0, array[1].length() - 3);
-            return array[1];
-        }
-    }
-
-    /*private void initTimeslots() {
-
-
-
-        list = new ArrayList<>();
-
-        list.add(new UpcommingAppointmentsBlock("2021-10-5","10:11", "Alvin", "Axel", "0708888888", 1));
-        list.add(new UpcommingAppointmentsBlock("2021-10-7","10:15", "Olsson", "Gunnar", "0708888899", 2));
-    }*/
 
     private void setRecyclerView(ArrayList<UpcommingAppointmentsBlock> list) {
         /*set the recycler view with the UpcommingAppointmentsBlockAdapter*/
@@ -159,6 +126,17 @@ public class UpcomingAppointments extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private String getDateAndTime(String datetime, int b){
+        String array[];
+        array = datetime.split("\\s");
+        if(b==0)
+            return array[0];
+        else {
+            array[1] = array[1].substring(0, array[1].length() - 3);
+            return array[1];
+        }
     }
 
     private String getDate() {

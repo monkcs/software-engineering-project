@@ -56,14 +56,7 @@
                         android:textStyle="bold" />
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                    <TextView android:text="Date of birth: " />
-
-                    <TextView android:text="World" />
-                </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
@@ -71,16 +64,17 @@
 
                     <TextView android:text="Phone: " />
 
-                    <TextView android:text="World" />
+                    <TextView android:id="@+id/tv_phone" />
                 </TableRow>
+
 
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <TextView android:text="Email: " />
+                    <TextView android:text="Date booked: " />
 
-                    <TextView android:text="World" />
+                    <TextView android:id="@+id/tv_bookedDate" />
                 </TableRow>
 
                 <TableRow
@@ -89,18 +83,8 @@
 
                     <TextView android:text="Booked dose: " />
 
-                    <TextView android:text="World" />
+                    <TextView android:id="@+id/tv_bookedDose" />
                 </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView android:text="Product: " />
-
-                    <TextView android:text="World" />
-                </TableRow>
-
             </TableLayout>
         </LinearLayout>
 
@@ -115,12 +99,14 @@
             app:layout_constraintTop_toBottomOf="@id/handlePerson_personInfo">
 
             <Button
+                android:id="@+id/btn_confirmVaccine"
                 android:layout_width="150dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="8dp"
                 android:text="Confirm vaccintation" />
 
             <Button
+                android:id="@+id/btn_cancelAppoint"
                 android:layout_width="150dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="8dp"
