@@ -10,14 +10,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Theme.Covid_tracker"
+        android:name=".NotificationChannelsEnabler">
 
-
-        android:theme="@style/Theme.Covid_tracker">
         <activity
             android:name=".PlanAndShedVaccs"
             android:exported="true" />
         <activity
-            android:name=".UppcommingApointments"
+            android:name=".UpcomingAppointments"
             android:exported="true" />
         <activity
             android:name=".AdminDashboard"
@@ -47,9 +47,6 @@
             android:name=".BookingActivity"
             android:exported="true" />
         <activity
-            android:name=".Boka_vaccin2"
-            android:exported="true" />
-        <activity
             android:name=".Administartorlogin"
             android:exported="true" />
         <activity
@@ -61,6 +58,7 @@
         <activity
             android:name=".StatisticsCovid"
             android:exported="true" />
+        <activity android:name=".HandlePerson" />
     </application>
 
 </manifest>
