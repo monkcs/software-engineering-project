@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         http_response_code(400);
         echo "No appointments booked today\n";
     } else {
-        echo json_encode(($result->fetch_array(MYSQLI_ASSOC)));
+        echo json_encode($result->fetch_all(MYSQLI_ASSOC));
         echo "\n";
     }
 }else {
