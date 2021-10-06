@@ -112,15 +112,14 @@ public class Dashboard extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.GET, WebRequest.urlbase + "user/appointment/new_check.php",
                 response -> {
 
-                    //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
-                    //System.out.println("\n\n\n" + response + "\n\n\n");
+                    Log.i("gDFA", "response: " + response);
 
                     if (response.equals("true")){
                         sendOnChannel1();
                     }
 
 
-                }, error -> Log.d("", "Något blev fel"))
+                }, error -> Log.i("gDFA", "Något blev fel"))
         {
             @Override
             public Map<String, String> getHeaders() {
