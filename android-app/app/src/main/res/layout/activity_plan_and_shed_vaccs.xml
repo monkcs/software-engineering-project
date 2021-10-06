@@ -2,16 +2,27 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    tools:context=".PlanAndShedVaccs">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlanAndShedVaccs"
+    tools:ignore="ExtraText">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/age_spinner"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Planning and scheduele Vaccionations"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="365dp" />
+        android:layout_marginTop="200dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/date_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintTop_toBottomOf="@+id/age_spinner"
+        tools:layout_editor_absoluteX="38dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
