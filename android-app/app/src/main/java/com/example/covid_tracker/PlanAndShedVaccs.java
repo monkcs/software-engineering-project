@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.Date;
 public class PlanAndShedVaccs extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Spinner ageSpinner, timeSpinner;
-    private Calendar calendar, start,end;
+    private Calendar now, start,end;
     private Date today;
     private SimpleDateFormat sdf;
     //private String strDate;
@@ -45,9 +46,9 @@ public class PlanAndShedVaccs extends AppCompatActivity implements AdapterView.O
         //---------------------------------------------------------
 
         timeSpinner = (Spinner) findViewById(R.id.start_date_spinner);
-        calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE,1);
-        today = calendar.getTime();
+        now = Calendar.getInstance();
+        now.add(Calendar.DATE,1);
+        today = now.getTime();
 
         //---------------------------
         /*
@@ -102,17 +103,35 @@ public class PlanAndShedVaccs extends AppCompatActivity implements AdapterView.O
         timeList.add(startDate);
     }
 
-    private void setStrTimeList(Date startDate) {
-        String strDate;
-        sdf = new SimpleDateFormat("E, dd MMM yyyy HH:mm");
-        strDate = sdf.format(startDate);
-        strTimeList.add(strDate);
+    private void setStrTimeList(Date startTime) {
+        String strTime;
+        Date nextTime, endTime;
+        Calendar tempCal, endCal;
+        tempCal = (Calendar) now.clone();
+        endCal = (Calendar) now.clone();
+        endCal.add(Calendar.MONTH, 2);
+        endTime = endCal.getTime();
+
+        strTimeList.add("Start Date");
+        sdf = new SimpleDateFormat("E, dd MMM yyyy");
+
+        for (nextTime= startTime; nextTime.before(endTime) || nextTime.equals(endTime);
+             nextTime = tempCal.getTime()){
+            //define a method who fix the time to 15min tim sloth between a timeinteral
+            //then define a method who upload the timesloth to the data base.
+            strTime = sdf.format(nextTime);
+            strTimeList.add(strTime);
+            tempCal.add(Calendar.DAY_OF_MONTH,1);
+        }
+
 
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-    //what should go here?
+        //what should go here?
+
+
     }
 
     @Override
