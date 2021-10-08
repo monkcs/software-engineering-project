@@ -20,8 +20,8 @@ public class PlanAndShedVaccs extends AppCompatActivity implements AdapterView.O
     private Calendar calendar, start,end;
     private Date today;
     private SimpleDateFormat sdf;
-    private String strDate;
-    private ArrayList<String> ageList;
+    //private String strDate;
+    private ArrayList<String> ageList, strTimeList;
     private ArrayList<Date> timeList;
 
 
@@ -45,11 +45,15 @@ public class PlanAndShedVaccs extends AppCompatActivity implements AdapterView.O
         //---------------------------------------------------------
 
         timeSpinner = (Spinner) findViewById(R.id.start_date_spinner);
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE,1);
+        today = calendar.getTime();
+
+        //---------------------------
+        /*
         timeList = new ArrayList<>();
 
-        today = Calendar.getInstance().getTime();
-
-        timeList.add(today);
+        setTimeList(today);
         ArrayAdapter<Date> timeAdapter = new ArrayAdapter<Date>
                 (this, android.R.layout.simple_spinner_item, timeList);
         //selected item will look like a spinner set from XML
@@ -59,28 +63,27 @@ public class PlanAndShedVaccs extends AppCompatActivity implements AdapterView.O
         timeSpinner.setAdapter(timeAdapter);
         timeSpinner.setOnItemSelectedListener(this);
 
+         */
 
-        /*
-        dateList = new ArrayList<>();
-        dateList.add("Datum: yyuy-mm-dd");
+        //------------------------
+        strTimeList = new ArrayList<>();
+        setStrTimeList(today);
+        ArrayAdapter<String> strTimeAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, strTimeList);
+        //selected item will look like a spinner set from XML
 
-        //skapar ett kalender object som formateras till en string
-        calendar = Calendar.getInstance();
-        Log.i("testa log 1", "Current time:" + calendar);
-        sdf = new SimpleDateFormat("yyyy-MM-dd");
-        strDate = sdf.format(calendar);
+        strTimeAdapter.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
+        timeSpinner.setAdapter(strTimeAdapter);
+        timeSpinner.setOnItemSelectedListener(this);
 
-        Log.i("testa log 2", "Current date as a string :" + strDate);
-        */
-
-
-
+        
         /*Hur skall datumet laggas ut?
         * fran  start datum till all framtid
         * sedan skall 15 min tidsintervall laggas till frn sag kl 06:00 till 20:00*/
 
-
     }
+
 
     public  void setAgeList(){
         ageList.add("Age");
@@ -97,6 +100,14 @@ public class PlanAndShedVaccs extends AppCompatActivity implements AdapterView.O
         // skall ocksa timmar laggas in? -> lar dig Calender Classen forst..
         //aList.add("Date");
         timeList.add(startDate);
+    }
+
+    private void setStrTimeList(Date startDate) {
+        String strDate;
+        sdf = new SimpleDateFormat("E, dd MMM yyyy HH:mm");
+        strDate = sdf.format(startDate);
+        strTimeList.add(strDate);
+
     }
 
     @Override
