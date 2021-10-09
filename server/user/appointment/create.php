@@ -45,7 +45,7 @@ function dosage($connection, $identity)
 
 function insert($connection, $appointment, $identity, $dose)
 {
-    $statement = $connection->prepare("INSERT INTO appointment VALUES (?, ?, ?)");
+    $statement = $connection->prepare("INSERT INTO appointment VALUES (?, ?, ?, 0)");
     $statement->bind_param("iii", $appointment, $identity, $dose);
     $statement->execute();
     $statement->close();
@@ -53,16 +53,16 @@ function insert($connection, $appointment, $identity, $dose)
 
 function valid($connection, $appointment)
 {
-    $statement = $connection->prepare("SELECT available.id FROM appointment LEFT JOIN available ON appointment.available != available.id or appointment.available is null WHERE available.id = ?");
+    $statement = $connection->prepare("SELECT available.id FROM available WHERE available.id NOT IN (SELECT appointment.available FROM appointment) AND available.id = ?");
     $statement->bind_param("i", $appointment);
     $statement->execute();
     $result = $statement->get_result();
     $statement->close();
 
     if ($result->num_rows == 0) {
-        return true;
-    } else {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $current_dosage = dosage($connection, $identity);
 
-        $appointment = $_POST["appointment"];
+        $appointment = (int)$_POST["appointment"];
         if ($appointment == "") {
             http_response_code(400);
             echo "No appointment id specified\n";
