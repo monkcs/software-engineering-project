@@ -94,7 +94,7 @@ public class UpcomingAppointments extends AppCompatActivity {
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
             }
         };
         queue.add(request);
@@ -117,7 +117,7 @@ public class UpcomingAppointments extends AppCompatActivity {
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
             }
         };
 
