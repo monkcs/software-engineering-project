@@ -43,10 +43,10 @@ function dosage($connection, $identity)
     }
 }
 
-function insert($connection, $appointment, $identity, $dose)
+function insert($connection, $appointment, $identity, $dose, $pending)
 {
-    $statement = $connection->prepare("INSERT INTO appointment VALUES (?, ?, ?, 0)");
-    $statement->bind_param("iii", $appointment, $identity, $dose);
+    $statement = $connection->prepare("INSERT INTO appointment VALUES (?, ?, ?, ?)");
+    $statement->bind_param("iii", $appointment, $identity, $dose, $pending);
     $statement->execute();
     $statement->close();
 }
@@ -75,7 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $current_dosage = dosage($connection, $identity);
 
+<<<<<<< HEAD
         $appointment = (int)$_POST["appointment"];
+=======
+        $appointment = $_POST["appointment"];
+        $pending = $_POST["pending"];
+>>>>>>> f25c5d8286d7ec122af09924d9882c55b83921cf
         if ($appointment == "") {
             http_response_code(400);
             echo "No appointment id specified\n";
@@ -85,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (valid($connection, $appointment)) {
 
             if ($current_dosage == 0) {
-                insert($connection, $appointment, $identity, 1);
+                insert($connection, $appointment, $identity, 1, $pending);
             } else if ($current_dosage == 1) {
                 insert($connection, $appointment, $identity, 2);
             } else {

@@ -2,23 +2,23 @@ package com.example.covid_tracker;
 
 public class UpcommingAppointmentsBlock {
 
-    private String date, time, lastname, firstname, phone, product;
+    private String date, time, lastname, firstname, phone;
     private int dose;
     private Boolean expandable;
 
     /*Time is string bc format is hh:mm*/
 
-    public UpcommingAppointmentsBlock(String date, String time, String lastname, String firstname, String phone, Integer dose, String product){
+    public UpcommingAppointmentsBlock(String date, String time, String lastname, String firstname, String phone, Integer dose){
         this.date = date;
         this.time = time;
         this.lastname = lastname;
         this.firstname = firstname;
         this.phone = phone;
         this.dose = dose;
-        this.product = product;
 
         this.expandable = false;
     }
+
 
     public String getDate() {
         return date;
@@ -68,14 +68,6 @@ public class UpcommingAppointmentsBlock {
         this.phone = phone;
     }
 
-    public String getProduct() {
-        return product;
-    }
-
-    public void setProduct(String product) {
-        this.product = product;
-    }
-
     public int getDose() {
         return dose;
     }
@@ -92,7 +84,6 @@ public class UpcommingAppointmentsBlock {
                 ", lastname='" + lastname + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", phone='" + phone + '\'' +
-                ", product='" + product + '\'' +
                 ", dose=" + dose +
                 ", expandable=" + expandable +
                 '}';

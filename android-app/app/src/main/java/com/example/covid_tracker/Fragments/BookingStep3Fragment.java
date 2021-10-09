@@ -72,7 +72,6 @@ public class BookingStep3Fragment extends Fragment {
         getListOfavailableappointment();
         init(itemView);
 
-
         return itemView;
     }
 
@@ -110,7 +109,7 @@ public class BookingStep3Fragment extends Fragment {
     }
     public void getListOfavailableappointment() {
         SharedPreferences pref = getActivity().getSharedPreferences("Booking", Context.MODE_PRIVATE);
-        Integer id_clinic =  pref.getInt("clinic_ID", -1);;
+        Integer id_clinic =  pref.getInt("clinic_ID", -1);
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/available.php",
                 response -> {
                    // try {
@@ -137,7 +136,7 @@ public class BookingStep3Fragment extends Fragment {
             @Override
             public Map<String, String> getParams()  {
 
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("provider", id_clinic.toString());
               
                 return params;

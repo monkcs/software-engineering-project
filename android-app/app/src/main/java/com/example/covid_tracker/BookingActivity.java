@@ -128,7 +128,7 @@ public class BookingActivity extends AppCompatActivity{
 
     public void book_time(){
         SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
-        Integer id_time =  pref.getInt("Time", 0);;
+        Integer id_time =  pref.getInt("time", 0);;
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/create.php",
                 response -> {
                     Toast.makeText(BookingActivity.this, "Booking time successfull", Toast.LENGTH_LONG).show();
