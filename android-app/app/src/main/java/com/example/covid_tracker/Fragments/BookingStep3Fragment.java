@@ -141,6 +141,11 @@ public class BookingStep3Fragment extends Fragment {
               
                 return params;
             }
+
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.User.username, WebRequest.User.password);
+            }
         };
 
         queue.add(request);

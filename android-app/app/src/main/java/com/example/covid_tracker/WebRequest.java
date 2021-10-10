@@ -7,12 +7,12 @@ import java.util.Map;
 
 public class WebRequest {
 
-    static class User {
+    public static class User {
         public static String username = "";
         public static String password = "";
     };
 
-    static class Provider {
+    public static class Provider {
         public static String username = "";
         public static String password = "";
     };
