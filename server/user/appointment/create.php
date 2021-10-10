@@ -46,7 +46,7 @@ function dosage($connection, $identity)
 function insert($connection, $appointment, $identity, $dose, $pending)
 {
     $statement = $connection->prepare("INSERT INTO appointment VALUES (?, ?, ?, ?)");
-    $statement->bind_param("iii", $appointment, $identity, $dose, $pending);
+    $statement->bind_param("iiii", $appointment, $identity, $dose, $pending);
     $statement->execute();
     $statement->close();
 }
