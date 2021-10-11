@@ -11,28 +11,43 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.covid_tracker.Fragments.BookingStep3Fragment;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PlanAndShedVaccs extends AppCompatActivity  {
     private Spinner ageSpinner, timeSpinner;
     private Button uploadBtn;
     private Calendar nowCal, startCal,endCal;
-    private int startHour, endHour, FUTURE_DAY = 1, FUTUTRE_MONTH= 1;
+    private int startHour, endHour, FUTURE_DAY = 1, FUTUTRE_MONTH= 1, ageLimit=-1;
     private ArrayList<Integer> timeSlothList;
-    private Date todayDate, startDate, endDate;
+    private Date tomorrowDate, startDate, endDate;
     private SimpleDateFormat sdf;
     //private String strDate;
     private ArrayList<String> ageList, strTimeList;
     private ArrayList<Date> timeList;
+    private RequestQueue queue;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_and_shed_vaccs);
+        queue = Volley.newRequestQueue(this);
 
         setTimeSlothList();// min 10,15,20,30
         uploadBtn = (Button) findViewById(R.id.upload_time_button);
@@ -55,6 +70,9 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
         ageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedAge = (String) adapterView.getItemAtPosition(i);
+                int age = Integer.parseInt(selectedAge);
+                setAgeLimit(age);
 
             }
 
@@ -68,29 +86,13 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
 
         timeSpinner = (Spinner) findViewById(R.id.start_date_spinner);
         nowCal = Calendar.getInstance();
-        setStartCal();
+        //setStartCal(startCal);
         nowCal.add(Calendar.DATE,1);
-        todayDate = nowCal.getTime();
+        tomorrowDate = nowCal.getTime();
 
-        //---------------------------
-        /*
-        timeList = new ArrayList<>();
-
-        setTimeList(todayDate);
-        ArrayAdapter<Date> timeAdapter = new ArrayAdapter<Date>
-                (this, android.R.layout.simple_spinner_item, timeList);
-        //selected item will look like a spinner set from XML
-
-        timeAdapter.setDropDownViewResource(android.R.layout
-                .simple_spinner_dropdown_item);
-        timeSpinner.setAdapter(timeAdapter);
-        timeSpinner.setOnItemSelectedListener(this);
-
-         */
-
-        //------------------------
+        //-----------------------------------
         strTimeList = new ArrayList<>();
-        setStrTimeList(todayDate);
+        setStrTimeList(tomorrowDate);
         ArrayAdapter<String> strTimeAdapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_spinner_item, strTimeList);
         //selected item will look like a spinner set from XML
@@ -102,7 +104,20 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
         timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            String selectedAge = (String) adapterView.getItemAtPosition(i);
+                String dateStr = (String) adapterView.getItemAtPosition(i);
+                Calendar tempCal= Calendar.getInstance();
+                Date date;
+
+                try {
+                    date = sdf.parse(dateStr);
+                    tempCal.setTime(date);
+                    setStartCal(tempCal);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
             }
 
             @Override
@@ -121,11 +136,11 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
 
     public  void setAgeList(){
         ageList.add("Age");
-        ageList.add("65+");
-        ageList.add("55+");
-        ageList.add("45+");
-        ageList.add("18+");
-        ageList.add("0+");
+        ageList.add("65");
+        ageList.add("55");
+        ageList.add("45");
+        ageList.add("18");
+        ageList.add("12");
     }
 
     public void setTimeList(Date startDate){
@@ -165,9 +180,11 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
     private int getStartHour(){return startHour;}
     private void setEndHour( int inHour){ endHour = inHour;}
     private int getEndHour(){return endHour;}
+    private void setAgeLimit(int age){ ageLimit = age;}
+    private int getAgeLimit(){return ageLimit;}
 
-    private void setStartCal(){
-        startCal = Calendar.getInstance();
+    private void setStartCal(Calendar begin){
+        startCal = (Calendar) begin.clone();
         setStartHour(7);setEndHour(19);
         startCal.add(Calendar.DATE, FUTURE_DAY);
         startCal.set(Calendar.HOUR, getStartHour());
@@ -175,6 +192,9 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
         startCal.set(Calendar.SECOND, 0);
         startCal.set(Calendar.MILLISECOND,0);
     }
+
+    private Calendar getStartCal(){return startCal;}
+
     private void setEndCal(){
         endCal = Calendar.getInstance();
         setStartHour(7);setEndHour(19);
@@ -185,6 +205,8 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
         endCal.set(Calendar.MILLISECOND,0);
 
     }
+
+    private Calendar getEndCal(){ return endCal;}
 
     private void setTimeSlothList(){
         timeSlothList.add(10);
@@ -204,6 +226,43 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
     private  void uploadBookingTime(){
         //code for uploading timesloths to database
         //should it return something?
+        int mins = getTimeSloth(1);//15min
+        Date uploadDate;
+        Calendar tempCal = (Calendar) getStartCal().clone();
+        setEndCal();
+        Date endDate = getEndCal().getTime();
+
+        for (uploadDate = getStartCal().getTime();uploadDate.before(endDate); uploadDate = tempCal.getTime()){
+            serverUpload(uploadDate, getAgeLimit());
+            tempCal.add(Calendar.MINUTE, mins);
+        }
+
+    }
+
+    private void serverUpload(Date time, int age){
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/create.php",
+                response -> {
+
+                }, error -> {
+
+        }
+        ) {
+            @Override
+            public Map<String, String> getParams()  {
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("datetime", time.toString());
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
+        queue.add(request);
     }
 
 
