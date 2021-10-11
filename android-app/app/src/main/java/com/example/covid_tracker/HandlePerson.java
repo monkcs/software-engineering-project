@@ -61,7 +61,7 @@ public class HandlePerson extends AppCompatActivity {
         /*functionality to send data between activities*/
         if (extras != null) {
             /*The key argument here must match that used in the other activity*/
-            String fullName = extras.getString("key");
+            String fullName = extras.getString("personName");
             nameArray = fullName.split(",");
             lastName = nameArray[0];
             firstName = nameArray[1];

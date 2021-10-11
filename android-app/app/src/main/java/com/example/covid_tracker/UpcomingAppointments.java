@@ -83,7 +83,6 @@ public class UpcomingAppointments extends AppCompatActivity {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/today_appointments.php", null,
                 response -> {
                     try {
-                        Log.i("UCA", "In request: current date is: " + currDate);
                         for (int i=0;i<response.length();i++) {
                             String datetime, date;
                             JSONObject jsonObject = response.getJSONObject(i);
