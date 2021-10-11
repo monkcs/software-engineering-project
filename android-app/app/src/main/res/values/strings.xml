@@ -90,5 +90,7 @@
     <string name="channel_name_2" translatable="false">Get notice for exepted booktime</string>
     <string name="channel_description_2" translatable="false">Get response that booking time is accepted</string>
 
+    <!--PlanAndShedVaccs-->
+    <string name="select_age_and_date" translatable="false">Please select both Age and Date before uploading available booking time</string>
 
 </resources>
