@@ -43,26 +43,26 @@ function dosage($connection, $identity)
     }
 }
 
-function insert($connection, $appointment, $identity, $dose)
+function insert($connection, $appointment, $identity, $dose, $pending)
 {
-    $statement = $connection->prepare("INSERT INTO appointment VALUES (?, ?, ?)");
-    $statement->bind_param("iii", $appointment, $identity, $dose);
+    $statement = $connection->prepare("INSERT INTO appointment VALUES (?, ?, ?, ?)");
+    $statement->bind_param("iiii", $appointment, $identity, $dose, $pending);
     $statement->execute();
     $statement->close();
 }
 
 function valid($connection, $appointment)
 {
-    $statement = $connection->prepare("SELECT available.id FROM appointment LEFT JOIN available ON appointment.available != available.id or appointment.available is null WHERE available.id = ?");
+    $statement = $connection->prepare("SELECT available.id FROM available WHERE available.id NOT IN (SELECT appointment.available FROM appointment) AND available.id = ?");
     $statement->bind_param("i", $appointment);
     $statement->execute();
     $result = $statement->get_result();
     $statement->close();
 
     if ($result->num_rows == 0) {
-        return true;
-    } else {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -75,7 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $current_dosage = dosage($connection, $identity);
 
+
         $appointment = $_POST["appointment"];
+        $pending = $_POST["pending"];
         if ($appointment == "") {
             http_response_code(400);
             echo "No appointment id specified\n";
@@ -85,9 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (valid($connection, $appointment)) {
 
             if ($current_dosage == 0) {
-                insert($connection, $appointment, $identity, 1);
+                insert($connection, $appointment, $identity, 1, $pending);
             } else if ($current_dosage == 1) {
-                insert($connection, $appointment, $identity, 2);
+                insert($connection, $appointment, $identity, 2, $pending);
             } else {
                 http_response_code(409);
                 echo "All dosages already administered\n";

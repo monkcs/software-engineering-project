@@ -86,8 +86,7 @@ public class UpcommingAppointmentsBlockAdapter extends RecyclerView.Adapter<Upco
             btnInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String fullName = LastName.getText().toString() + ", " + FirstName.getText().toString();
-                    Log.i("UCA", "Booking dose 2 time for " + LastName.getText().toString() + ", " + FirstName.getText().toString());
+                    String fullName = LastName.getText().toString() + "," + FirstName.getText().toString();
                     Intent i1 = new Intent(context, HandlePerson.class);
                     i1.putExtra("key",fullName);
                     context.startActivity(i1);

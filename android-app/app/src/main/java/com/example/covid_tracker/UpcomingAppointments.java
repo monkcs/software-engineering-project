@@ -4,23 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.covid_tracker.Fragments.BookingStep1Fragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class UpcomingAppointments extends AppCompatActivity {
 
@@ -43,7 +39,7 @@ public class UpcomingAppointments extends AppCompatActivity {
 
     String currDate;
 
-    List<UpcommingAppointmentsBlock> list;
+    ArrayList<UpcommingAppointmentsBlock> booked_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,85 +54,64 @@ public class UpcomingAppointments extends AppCompatActivity {
 
         currDate = getDate();
 
-        getBookedTimes2();
-
-        initTimeslots();
-        setRecyclerView(currDate);
+        getBookedTimes(currDate);
 
         calView_uppcAppoint.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-                currDate = String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth);
+                String day = String.valueOf(dayOfMonth);
+
+                /*Masterpiece down below*/
+                if(day.length() < 2) {
+                    String temp = day;
+                    day = "0" + day;
+                }
+
+                currDate = String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + day;
                 Log.i("UCA", "Current date: " + currDate);
+                getBookedTimes(currDate);
             }
         });
-
-        /*Idea:
-        * 1. admin selects a date from calendar (todays appointments shown as default)
-        * 2. recyclerView updates with every timestamp (hour:min) that has at least 1 booked time
-        * 3. time clicked, recyclerView brings up all the names (& pers nr??) of the persons booked that time
-        * 4. persons name clicked, brings user to new activity personilized for that person (person_admin)
-        * 5. in person_admin, ability to check 1st dose or 2nd dose as complete and/or book a new appointment */
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
     }
 
-    private void getBookedTimes(){
-        StringRequest request = new StringRequest(Request.Method.GET, WebRequest.urlbase + "provider/today_appointments.php",
-                response -> {
-                    Log.i("UCA", "Json request: " + response.toString());
-                    Toast.makeText(this, "Got response", Toast.LENGTH_LONG).show();
-
-                }, error -> {
-            Toast.makeText(this, "Error, no response here", Toast.LENGTH_LONG).show();
-        }) {
-            @Override
-            public Map<String, String> getHeaders() {
-                return WebRequest.credentials(WebRequest.username, WebRequest.password);
-            }
-        };
-        queue.add(request);
-    }
-
-    private void getBookedTimes2(){
+    private void getBookedTimes(String currDate){
+        booked_list = new ArrayList<>();
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/today_appointments.php", null,
                 response -> {
                     try {
-                        Log.i("UCA", response.toString());
+                        Log.i("UCA", "In request: current date is: " + currDate);
                         for (int i=0;i<response.length();i++) {
+                            String datetime, date;
                             JSONObject jsonObject = response.getJSONObject(i);
-                            Log.i("UCA", jsonObject.toString());
+                            datetime = jsonObject.getString("datetime");
+                            date = getDateAndTime(datetime, 0);
+                            if(date.equals(currDate))
+                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), jsonObject.getString("surname"),
+                                        jsonObject.getString("firstname"), jsonObject.getString("telephone"), Integer.parseInt(jsonObject.getString("dose"))));
                         }
+                        setRecyclerView(booked_list);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }, error -> {
-            Toast.makeText(this, "Error, no response 2", Toast.LENGTH_LONG).show();
+                    /*if no array can be found, look for jsonObject*/
+                    Toast.makeText(this, "No response from server, could not retrieve booked times", Toast.LENGTH_SHORT).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(WebRequest.username, WebRequest.password);
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
             }
         };
-
         queue.add(request);
     }
 
-    private void initTimeslots() {
-
-        /*Here we are going to create a list of booked timeslots
-        * containing every person full name that has a booked time*/
-
-        list = new ArrayList<>();
-
-        list.add(new UpcommingAppointmentsBlock("2021-10-5","10:11", "Alvin", "Axel", "0708888888", 1, "AstraZeneca"));
-        list.add(new UpcommingAppointmentsBlock("2021-10-7","10:15", "Olsson", "Gunnar", "0708888899", 2, "Moderna"));
-    }
-
-    private void setRecyclerView(String date) {
+    private void setRecyclerView(ArrayList<UpcommingAppointmentsBlock> list) {
         /*set the recycler view with the UpcommingAppointmentsBlockAdapter*/
+
         UpcommingAppointmentsBlockAdapter ua_block_adapter = new UpcommingAppointmentsBlockAdapter(list, context);
         recyclerView_uppc_appoint.setAdapter(ua_block_adapter);
         recyclerView_uppc_appoint.setHasFixedSize(true);
@@ -151,6 +126,17 @@ public class UpcomingAppointments extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private String getDateAndTime(String datetime, int b){
+        String array[];
+        array = datetime.split("\\s");
+        if(b==0)
+            return array[0];
+        else {
+            array[1] = array[1].substring(0, array[1].length() - 3);
+            return array[1];
+        }
     }
 
     private String getDate() {
