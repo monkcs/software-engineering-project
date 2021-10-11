@@ -33,6 +33,7 @@ public class HandlePerson extends AppCompatActivity {
     String [] nameArray;
     String firstName, lastName;
     int person_id;
+    private Integer dose;
 
     private AlertDialog dialog;
 
@@ -93,11 +94,15 @@ public class HandlePerson extends AppCompatActivity {
     }
 
     private void firstDoseTaken(Integer id) {
+        dose = 1;
+        update_tables(id, dose);
         Toast.makeText(HandlePerson.this, "First dose for " + id + ", book second dose time", Toast.LENGTH_SHORT).show();
-
+        bookSecondDose(id);
     }
 
     private void secondDoseTaken(Integer id) {
+        dose = 2;
+        update_tables(id, dose);
         Toast.makeText(HandlePerson.this, "Second dose for " + id + ", set timer for passport", Toast.LENGTH_SHORT).show();
 
     }
@@ -188,6 +193,58 @@ public class HandlePerson extends AppCompatActivity {
                 return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
             }
         };
+        queue.add(request);
+    }
+    public void update_tables(Integer id, Integer dose){
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/dose_taken.php",
+                response -> {
+                    System.out.println(response);
+
+                }, error -> {
+            Toast.makeText(HandlePerson.this, "Failed", Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("ID", id.toString());
+                params.put("dose", dose.toString());
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
+        queue.add(request);
+    }
+    public void bookSecondDose(Integer id){
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/auto_book.php",
+                response -> {
+                    System.out.println("IN BOOKING DOSE 2:");
+                    System.out.println(response);
+                    Toast.makeText(HandlePerson.this, "Second dose booked for person with ID: " + id, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(HandlePerson.this, UpcomingAppointments.class);
+                    finish();
+                    startActivity(intent);
+
+                }, error -> {
+            Toast.makeText(HandlePerson.this, "Not able to book second time", Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("ID", id.toString());
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
         queue.add(request);
     }
 
