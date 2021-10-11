@@ -2,7 +2,6 @@ package com.example.covid_tracker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -75,7 +74,7 @@ public class HandlePerson extends AppCompatActivity {
         btn_confirmVaccine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(getDose())
+                if(firstDose())
                     Toast.makeText(HandlePerson.this, "First dose, book second dose time", Toast.LENGTH_SHORT).show();
                 else{
                     Toast.makeText(HandlePerson.this, "Second dose, set timer for passport", Toast.LENGTH_SHORT).show();
@@ -86,7 +85,7 @@ public class HandlePerson extends AppCompatActivity {
         btn_cancelAppoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getDose();
+                firstDose();
                 person_id = Integer.parseInt((String) tv_person_id.getText());
                 RemoveAppointment(person_id);
             }
@@ -149,7 +148,7 @@ public class HandlePerson extends AppCompatActivity {
         queue.add(request);
     }
 
-    private boolean getDose() {
+    private boolean firstDose() {
         if(tv_bookedDose.getText().equals("1")) return true;
         else{
             return false;
