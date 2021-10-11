@@ -1,5 +1,6 @@
 package com.example.covid_tracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,11 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -25,10 +28,11 @@ public class HandlePerson extends AppCompatActivity {
 
     private RequestQueue queue;
 
-    TextView tv_personFullName, tv_phone, tv_bookedDate, tv_bookedDose;
+    TextView tv_person_id, tv_personFullName, tv_phone, tv_bookedDate, tv_bookedDose;
     Button btn_confirmVaccine, btn_cancelAppoint;
     String [] nameArray;
     String firstName, lastName;
+    int person_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,7 @@ public class HandlePerson extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         tv_personFullName = findViewById(R.id.tv_personFullName);
+        tv_person_id = findViewById(R.id.tv_person_id);
         tv_phone = findViewById(R.id.tv_phone);
         tv_bookedDate = findViewById(R.id.tv_bookedDate);
         tv_bookedDose = findViewById(R.id.tv_bookedDose);
@@ -64,12 +69,10 @@ public class HandlePerson extends AppCompatActivity {
         btn_confirmVaccine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getDose();
                 if(getDose())
                     Toast.makeText(HandlePerson.this, "First dose, book second dose time", Toast.LENGTH_SHORT).show();
                 else{
                     Toast.makeText(HandlePerson.this, "Second dose, set timer for passport", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
@@ -78,10 +81,39 @@ public class HandlePerson extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getDose();
+                person_id = Integer.parseInt((String) tv_person_id.getText());
+                CancelAppointment(person_id);
             }
         });
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
+    }
+
+    private void CancelAppointment(Integer id) {
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/cancel_time.php",
+                response -> {
+                    Toast.makeText(HandlePerson.this, "Canceled time for person with ID: " + id, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(HandlePerson.this, UpcomingAppointments.class);
+                    finish();
+                    startActivity(intent);
+
+                }, error -> {
+            Toast.makeText(HandlePerson.this, "Not able to cancel time", Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("ID", id.toString());
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
+        queue.add(request);
     }
 
     private boolean getDose() {
@@ -99,6 +131,7 @@ public class HandlePerson extends AppCompatActivity {
                         for (int i=0;i<response.length();i++) {
                             JSONObject jsonObject = response.getJSONObject(i);
                             if(jsonObject.getString("firstname").equals(firstName) && jsonObject.getString("surname").equals(lastName)){
+                                tv_person_id.setText(jsonObject.getString("account"));
                                 tv_phone.setText(jsonObject.getString("telephone"));
                                 tv_bookedDate.setText(jsonObject.getString("datetime"));
                                 tv_bookedDose.setText(jsonObject.getString("dose"));
