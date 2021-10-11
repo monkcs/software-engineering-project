@@ -75,9 +75,6 @@ public class BookingStep3Fragment extends Fragment {
         return itemView;
     }
 
-
-
-
     private void init(View itemView){
         HorizontalCalendar horizontalCalendar;
 
