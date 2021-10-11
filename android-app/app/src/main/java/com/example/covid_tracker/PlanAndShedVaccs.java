@@ -34,7 +34,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
     private Button uploadBtn;
     private Calendar nowCal, startCal,endCal;
     private int startHour, endHour, FUTURE_DAY = 1, FUTUTRE_MONTH= 1, ageLimit=-1;
-    private ArrayList<Integer> timeSlothList;
+    private ArrayList<Integer> timeslotList;
     private Date tomorrowDate, startDate, endDate;
     private SimpleDateFormat sdf;
     //private String strDate;
@@ -48,8 +48,10 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_and_shed_vaccs);
         queue = Volley.newRequestQueue(this);
-        timeSlothList = new ArrayList<Integer>();
-        setTimeSlothList();// min 10,15,20,30
+
+        timeslotList = new ArrayList<>();
+        setTimeslotList();// min 10,15,20,30
+
         uploadBtn = (Button) findViewById(R.id.upload_time_button);
         uploadBtn.setOnClickListener((new View.OnClickListener() {
                     @Override
@@ -71,8 +73,13 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedAge = (String) adapterView.getItemAtPosition(i);
-                int age = Integer.parseInt(selectedAge);
-                setAgeLimit(age);
+                try {
+                    int age = Integer.parseInt(selectedAge);
+                    Log.i("Chosen age", "Age limit: " + age);
+                    setAgeLimit(age);
+                }catch(NumberFormatException e){
+                    e.printStackTrace();
+                }
 
             }
 
@@ -86,7 +93,8 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
 
         timeSpinner = (Spinner) findViewById(R.id.start_date_spinner);
         nowCal = Calendar.getInstance();
-        //setStartCal(startCal);
+
+        setStartCal(nowCal);
         nowCal.add(Calendar.DATE,1);
         tomorrowDate = nowCal.getTime();
 
@@ -158,15 +166,16 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
         Date nextTime, endTime;
         Calendar tempCal;
         tempCal = (Calendar) startCal.clone();
-        endTime = endCal.getTime();
+        setEndCal();
+        endTime = getEndCal().getTime();
 
         strTimeList.add("Start Date");
         sdf = new SimpleDateFormat("E, dd MMM yyyy");
 
         for (nextTime= startTime; nextTime.before(endTime) || nextTime.equals(endTime);
              nextTime = tempCal.getTime()){
-            //define a method who fix the time to 15min tim sloth between a timeinteral
-            //then define a method who upload the timesloth to the data base.
+            //define a method who fix the time to 15min tim slot between a timeinteral
+            //then define a method who upload the timeslot to the data base.
             //This is called after an the items are selected and button pressed.
 
 
@@ -210,25 +219,25 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
 
     private Calendar getEndCal(){ return endCal;}
 
-    private void setTimeSlothList(){
-        timeSlothList.add(10);
-        timeSlothList.add(15);
-        timeSlothList.add(20);
-        timeSlothList.add(30);
+    private void setTimeslotList(){
+        timeslotList.add(10);
+        timeslotList.add(15);
+        timeslotList.add(20);
+        timeslotList.add(30);
     }
-    private int getTimeSloth(int pos){
-        int timesloth;
+    private int getTimeslot(int pos){
+        int timeslot;
 
-        if(pos <=0 || pos < timeSlothList.size()){ timesloth = timeSlothList.get(pos);}
-        else { Log.i("timesloth lenght", "wrong position value"); timesloth=0;}
+        if(pos <=0 || pos < timeslotList.size()){ timeslot = timeslotList.get(pos);}
+        else { Log.i("timeslot lenght", "wrong position value"); timeslot=0;}
 
-        return timesloth;
+        return timeslot;
     }
 
     private  void uploadBookingTime(){
-        //code for uploading timesloths to database
+        //code for uploading timeslots to database
         //should it return something?
-        int mins = getTimeSloth(1);//15min
+        int mins = getTimeslot(1);//15min
         Date uploadDate;
         Calendar tempCal = (Calendar) getStartCal().clone();
         setEndCal();
