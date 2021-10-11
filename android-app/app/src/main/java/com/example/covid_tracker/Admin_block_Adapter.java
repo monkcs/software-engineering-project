@@ -64,6 +64,9 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
                 int Appointment;
                 int ID;
 
+
+                //hello
+
                 Appointment = holder.getAdapterPosition();
 
                 message = holder.medelande.getText().toString();
