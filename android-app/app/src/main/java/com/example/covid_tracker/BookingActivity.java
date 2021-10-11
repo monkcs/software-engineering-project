@@ -103,6 +103,7 @@ public class BookingActivity extends AppCompatActivity{
         }
         if(viewpager.getCurrentItem() + 1 == 4)
         {
+            Boolean health = false;
             int tot = 0;
             if(pref.getBoolean("Q1", false)) {
                 tot = tot + 1;
@@ -121,20 +122,25 @@ public class BookingActivity extends AppCompatActivity{
             }
             if(pref.getBoolean("Question1", false)) {
                 Q1 = 1;
+                health = true;
             }
             if(pref.getBoolean("Question2", false)) {
                 Q2 = 2;
+                health = true;
             }
             if(pref.getBoolean("Question3", false)) {
                 Q3 = 3;
+                health = true;
             }
             if(pref.getBoolean("Question4", false)) {
                 Q4 = 4;
+                health = true;
             }
             if(pref.getBoolean("Question5", false)) {
                 Q5 = 5;
+                health = true;
             }
-            Boolean health = pref.getBoolean("Health_info", true);
+            //Boolean health = pref.getBoolean("Health_info", true);
             if (health && tot == 5) {
                 Toast.makeText(this, "Please contact your doctor", Toast.LENGTH_LONG).show();
                 pending = 1;
@@ -187,10 +193,12 @@ public class BookingActivity extends AppCompatActivity{
 
     public void add_questions(){
         SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
+        Integer id_clinic =  pref.getInt("clinic_ID", -1);
         Integer id_time =  pref.getInt("time", 0);;
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/health_questions.php",
                 response -> {
-                    Toast.makeText(BookingActivity.this, "Questions added", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(BookingActivity.this, "Questions added", Toast.LENGTH_LONG).show();
+                    System.out.println(response.toString());
 
                 }, error -> {
             Toast.makeText(BookingActivity.this, "Questions added failed", Toast.LENGTH_LONG).show();
@@ -199,6 +207,7 @@ public class BookingActivity extends AppCompatActivity{
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("appointment", id_time.toString());
+                params.put("provider", id_clinic.toString());
                 params.put("question1", Q1.toString());
                 params.put("question2", Q2.toString());
                 params.put("question3", Q3.toString());
