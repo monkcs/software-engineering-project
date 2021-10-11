@@ -166,7 +166,7 @@ public class StatisticsVacc extends AppCompatActivity {
 
     /*Source: https://www.youtube.com/watch?v=i-TqNzUryn8&ab_channel=BrianFraser*/
     private void readVaccineAdminData() throws IOException {
-        InputStream is = getResources().openRawResource(R.raw.data_vaccine_uptake_fhm_210914);
+        InputStream is = getResources().openRawResource(R.raw.data_vaccine_uptake_fhm);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
@@ -219,7 +219,7 @@ public class StatisticsVacc extends AppCompatActivity {
     }
 
     private void readWeeklyVaccineData() throws IOException{
-        InputStream is = getResources().openRawResource(R.raw.data_vaccine_weekly_fhm_210927);
+        InputStream is = getResources().openRawResource(R.raw.data_vaccine_weekly_fhm);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
@@ -271,7 +271,7 @@ public class StatisticsVacc extends AppCompatActivity {
 
     private void readVaccineDistData() throws IOException {
 
-        InputStream is = getResources().openRawResource(R.raw.data_vaccine_dist_fhm_210921);
+        InputStream is = getResources().openRawResource(R.raw.data_vaccine_dist_fhm);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
