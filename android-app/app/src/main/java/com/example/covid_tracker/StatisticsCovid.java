@@ -194,7 +194,7 @@ public class StatisticsCovid extends AppCompatActivity {
     /*Source: https://www.youtube.com/watch?v=i-TqNzUryn8&ab_channel=BrianFraser*/
     private void readCovidAgeData() throws IOException {
 
-        InputStream is = getResources().openRawResource(R.raw.data_covid_age_fhm_210920);
+        InputStream is = getResources().openRawResource(R.raw.data_covid_age_fhm);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
@@ -230,7 +230,7 @@ public class StatisticsCovid extends AppCompatActivity {
 
     private void readCovidWeeklyData() throws IOException {
 
-        InputStream is = getResources().openRawResource(R.raw.data_covid_weekly_fhm_210922);
+        InputStream is = getResources().openRawResource(R.raw.data_covid_weekly_fhm);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
@@ -274,7 +274,7 @@ public class StatisticsCovid extends AppCompatActivity {
 
     private void readCovidWeeklyCountryData() throws IOException {
 
-        InputStream is = getResources().openRawResource(R.raw.data_covid_weekly_country_fhm_210922);
+        InputStream is = getResources().openRawResource(R.raw.data_covid_weekly_country_fhm);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
