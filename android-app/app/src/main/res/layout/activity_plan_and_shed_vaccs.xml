@@ -24,16 +24,36 @@
         app:layout_constraintTop_toBottomOf="@+id/age_spinner"
         tools:layout_editor_absoluteX="38dp" />
 
+    <Spinner
+        android:id="@+id/end_date_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintTop_toBottomOf="@+id/start_date_spinner"
+        tools:layout_editor_absoluteX="38dp" />
+
+    <Spinner
+        android:id="@+id/time_slot_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintTop_toBottomOf="@+id/end_date_spinner"
+        tools:layout_editor_absoluteX="38dp" />
+
     <TextView
         android:id="@+id/pasv_infotext1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:gravity="center_horizontal"
-        android:text="state minium age for booking start date"
+        android:text="state minium age, start date, end date and time slot"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/age_spinner"
         tools:layout_editor_absoluteX="28dp" />
+
+
 
     <Button
         android:id="@+id/upload_time_button"
@@ -43,7 +63,7 @@
         android:layout_marginTop="60dp"
         android:text="make time avaliable for age group"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_date_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/time_slot_spinner" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
