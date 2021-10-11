@@ -83,7 +83,6 @@ public class UpcomingAppointments extends AppCompatActivity {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/today_appointments.php", null,
                 response -> {
                     try {
-                        Log.i("UCA", "In request: current date is: " + currDate);
                         for (int i=0;i<response.length();i++) {
                             String datetime, date;
                             JSONObject jsonObject = response.getJSONObject(i);
@@ -98,8 +97,7 @@ public class UpcomingAppointments extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }, error -> {
-                    /*if no array can be found, look for jsonObject*/
-                    Toast.makeText(this, "No response from server, could not retrieve booked times", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Currently no booked times", Toast.LENGTH_SHORT).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
