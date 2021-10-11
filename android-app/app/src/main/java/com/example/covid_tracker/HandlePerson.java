@@ -34,10 +34,7 @@ public class HandlePerson extends AppCompatActivity {
     String firstName, lastName;
     int person_id;
 
-    //for alert dialog
-    private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
-    private Button BtnDelete, BtnGoBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,18 +92,17 @@ public class HandlePerson extends AppCompatActivity {
     }
 
     public void RemoveAppointment(Integer id) {
-
         //if tid bokad
-        dialogBuilder = new AlertDialog.Builder(this);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         final View CancelPopupView = getLayoutInflater().inflate(R.layout.deletepopup, null);
-        BtnDelete = (Button) CancelPopupView.findViewById(R.id.DeleteBtn);
-        BtnGoBack = (Button) CancelPopupView.findViewById(R.id.GobackBtn);
+        Button btnDelete = (Button) CancelPopupView.findViewById(R.id.DeleteBtn);
+        Button btnGoBack = (Button) CancelPopupView.findViewById(R.id.GobackBtn);
 
         dialogBuilder.setView(CancelPopupView);
         dialog = dialogBuilder.create();
         dialog.show();
 
-        BtnDelete.setOnClickListener(new View.OnClickListener() {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CancelAppointment(id);
@@ -114,7 +110,7 @@ public class HandlePerson extends AppCompatActivity {
 
             }
         });
-        BtnGoBack.setOnClickListener(new View.OnClickListener() {
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
