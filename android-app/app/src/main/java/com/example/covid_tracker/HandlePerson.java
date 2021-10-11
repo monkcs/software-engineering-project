@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -33,6 +34,11 @@ public class HandlePerson extends AppCompatActivity {
     String [] nameArray;
     String firstName, lastName;
     int person_id;
+
+    //for alert dialog
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private Button BtnDelete, BtnGoBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +88,40 @@ public class HandlePerson extends AppCompatActivity {
             public void onClick(View view) {
                 getDose();
                 person_id = Integer.parseInt((String) tv_person_id.getText());
-                CancelAppointment(person_id);
+                RemoveAppointment(person_id);
             }
         });
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
     }
 
+    public void RemoveAppointment(Integer id) {
+
+        //if tid bokad
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View CancelPopupView = getLayoutInflater().inflate(R.layout.deletepopup, null);
+        BtnDelete = (Button) CancelPopupView.findViewById(R.id.DeleteBtn);
+        BtnGoBack = (Button) CancelPopupView.findViewById(R.id.GobackBtn);
+
+        dialogBuilder.setView(CancelPopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        BtnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CancelAppointment(id);
+                dialog.dismiss();
+
+            }
+        });
+        BtnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
     private void CancelAppointment(Integer id) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/cancel_time.php",
                 response -> {
@@ -151,7 +184,6 @@ public class HandlePerson extends AppCompatActivity {
         };
         queue.add(request);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
