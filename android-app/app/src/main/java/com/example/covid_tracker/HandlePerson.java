@@ -222,8 +222,6 @@ public class HandlePerson extends AppCompatActivity {
     public void bookSecondDose(Integer id){
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/auto_book.php",
                 response -> {
-                    System.out.println("IN BOOKING DOSE 2:");
-                    System.out.println(response);
                     Toast.makeText(HandlePerson.this, "Second dose booked for person with ID: " + id, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(HandlePerson.this, UpcomingAppointments.class);
                     finish();

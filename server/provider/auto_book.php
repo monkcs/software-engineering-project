@@ -5,6 +5,7 @@ require 'authenticate.php';
 function insert($connection, $appointment)
 {
     $user = $_POST["ID"];
+    
     $statement = $connection->prepare("INSERT INTO appointment VALUES (?, ?, 2, 0)");
     $statement->bind_param("ii", $appointment, $user);
     $statement->execute();
