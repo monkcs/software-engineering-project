@@ -51,7 +51,7 @@ public class AdminDashboard extends AppCompatActivity{
     }
 
     public void uppcApoint(){
-        Intent intent = new Intent(this, UppcommingApointments.class);
+        Intent intent = new Intent(this, UpcomingAppointments.class);
         startActivity(intent);
     }
 

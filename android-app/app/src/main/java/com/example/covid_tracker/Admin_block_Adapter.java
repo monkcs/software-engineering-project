@@ -13,14 +13,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapter.VersionVH> {
 
+    private RequestQueue queue;
     List<Admin_block> Admin_block_List;
+
+
 
     public Admin_block_Adapter(List<Admin_block> Admin_block_List) {
         this.Admin_block_List = Admin_block_List;
+
     }
 
     @NonNull
@@ -28,6 +39,7 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
     public Admin_block_Adapter.VersionVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_inbox_row, parent, false);
 
+        queue = Volley.newRequestQueue(view.getContext());
 
         return new Admin_block_Adapter.VersionVH(view);
     }
@@ -35,8 +47,8 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
     @Override
     public void onBindViewHolder(@NonNull Admin_block_Adapter.VersionVH holder, int position) {
 
-
        Admin_block bookingblockis = Admin_block_List.get(position);
+
 
         holder.PersonText.setText(bookingblockis.getPersonen());
         holder.SvarText.setText(bookingblockis.getSvaret());
@@ -50,11 +62,17 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
                 String message;
                 int Appointment;
+                int ID;
 
                 Appointment = holder.getAdapterPosition();
 
                 message = holder.medelande.getText().toString();
                 holder.medelande.setText("");
+
+          //      System.out.println("Hej detta är account: " + Admin_block_List.get(holder.getAdapterPosition()).getID());
+
+                ID = Admin_block_List.get(holder.getAdapterPosition()).getID();
+
 
           //      System.out.println("Storlek: " + Admin_block_List.size());
 
@@ -64,7 +82,10 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
            //     System.out.println("Storlek: " + Admin_block_List.size());
 
                 holder.medelande.onEditorAction(EditorInfo.IME_ACTION_DONE);    //stänger tagentbord
-                bokaPendingDatabas(message, Appointment);
+
+
+
+                bokaPendingDatabas(message, Appointment, ID);
 
             }
         });
@@ -104,16 +125,47 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
     //Calle o Charlie implementera
     //
 
-    private void bokaPendingDatabas(String message, int appointment) {
-
+    private void bokaPendingDatabas(String message, int appointment, Integer ID) {
+        
         System.out.println("\n");
         System.out.println("--- Boka ---");
 
         System.out.println(message);
 
         System.out.println("Listnumber: " + appointment);
+        System.out.println("ID: " + ID);
 
         System.out.println("---");
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, WebRequest.urlbase + "provider/pending/approve.php",null,
+                response -> {
+
+            System.out.println("Hellpoasdfasdffddsvss");
+
+                }, error -> {
+
+            System.out.println("Error, den når inte fram");
+            System.out.println(error.toString());
+
+        }
+        ) {
+            @Override
+            public Map<String, String> getParams()  {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("account", "71");
+                params.put("message", message);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
+        queue.add(request);
     }
 
     //

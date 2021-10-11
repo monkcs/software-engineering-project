@@ -1,28 +1,43 @@
 package com.example.covid_tracker;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class inboxAdmin extends AppCompatActivity {
-
+    private RequestQueue queue;
 
     private RecyclerView rV;
+    private Button boka;
     List<Admin_block> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        queue = Volley.newRequestQueue(this);
+
         setContentView(R.layout.inboxadmin);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         System.out.println("insidde box");
 
         rV = (RecyclerView) findViewById(R.id.recyclerView_inboxAdmin);
+
+
 
         getPendingBookings();
         setRecyclerView();
@@ -48,16 +63,40 @@ public class inboxAdmin extends AppCompatActivity {
             //Här hämtar du hela listan med pending bookings
 
 
-        list.add(new Admin_block("Amanda", "svarade ja på utomlands", "123456789", "20 oktober 2021"));
-        list.add(new Admin_block("Axel", "svarade ja på utomlands", "123456789", "20 oktober 2021"));
-        list.add(new Admin_block("Diego", "svarade ja på utomlands", "123456789", "20 oktober 2021"));
-        list.add(new Admin_block("Carl", "vaccinerat sig inom kort tidspan innan", "123456789", "20 oktober 2021"));
-        list.add(new Admin_block("Lukas", "vaccinerat sig inom kort tidspan innan", "123456789", "20 oktober 2021"));
-        list.add(new Admin_block("Charlie", "vaccinerat sig inom kort tidspan innan", "123456789", "20 oktober 2021"));
+            JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/pending/",null,
+                    response -> {
 
+                        for (int i =0; i < response.length(); i++) {
 
+                            try {
 
+                                System.out.println("response namn: " + response.getJSONObject(i).getString("firstname"));
 
+                                list.add(new Admin_block(response.getJSONObject(i).getString("firstname"),"123","123","123", response.getJSONObject(i).getInt("account")) );
+                                System.out.println("Try fungerade");
 
-    }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                System.out.println("Catch fungerade");
+
+                            }
+
+                        }
+                        setRecyclerView();
+
+                    }, error -> {
+
+                    System.out.println("Error, den når inte fram");
+
+            }
+            ) {
+
+                @Override
+                public Map<String, String> getHeaders() {
+                    return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+                }
+            };
+
+            queue.add(request);
+        }
 }

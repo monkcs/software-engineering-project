@@ -1,18 +1,31 @@
 package com.example.covid_tracker;
 
+
 public class Admin_block {
 
+    private int ID;
     private String personen, svaret, telenmr, datumTid;
     private Boolean expandable;
 
 
-    public Admin_block(String personen, String svaret, String telenmr, String datumTid) {
+    public Admin_block(String personen, String svaret, String telenmr, String datumTid, int ID) {
         this.personen = personen;
         this.svaret = svaret;
         this.telenmr = telenmr;
         this.datumTid = datumTid;
+        this.ID = ID;
 
         this.expandable = false;
+    }
+
+    public int getID() {
+
+        return this.ID;
+
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDatumTid() {
@@ -58,7 +71,8 @@ public class Admin_block {
     @Override
     public String toString() {
         return "Admin_block{" +
-                "personen='" + personen + '\'' +
+                "ID=" + ID +
+                ", personen='" + personen + '\'' +
                 ", svaret='" + svaret + '\'' +
                 ", telenmr='" + telenmr + '\'' +
                 ", datumTid='" + datumTid + '\'' +
