@@ -88,6 +88,7 @@ public class UpcommingAppointmentsBlockAdapter extends RecyclerView.Adapter<Upco
                 public void onClick(View view) {
                     String fullName = LastName.getText().toString() + "," + FirstName.getText().toString();
                     Intent i1 = new Intent(context, HandlePerson.class);
+                    /*functionality to send data between activities*/
                     i1.putExtra("key",fullName);
                     context.startActivity(i1);
                 }

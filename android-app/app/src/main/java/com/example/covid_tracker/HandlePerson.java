@@ -25,8 +25,6 @@ public class HandlePerson extends AppCompatActivity {
 
     private RequestQueue queue;
 
-    boolean firstDose;
-
     TextView tv_personFullName, tv_phone, tv_bookedDate, tv_bookedDose;
     Button btn_confirmVaccine, btn_cancelAppoint;
     String [] nameArray;
@@ -49,15 +47,15 @@ public class HandlePerson extends AppCompatActivity {
         btn_confirmVaccine = findViewById(R.id.btn_confirmVaccine);
         btn_cancelAppoint = findViewById(R.id.btn_cancelAppoint);
 
+        /*functionality to send data between activities*/
         if (extras != null) {
+            /*The key argument here must match that used in the other activity*/
             String fullName = extras.getString("key");
             nameArray = fullName.split(",");
             lastName = nameArray[0];
             firstName = nameArray[1];
 
             tv_personFullName.setText(lastName + ", " + firstName);
-
-            //The key argument here must match that used in the other activity
         }
 
         getBookingInfo(lastName, firstName);
@@ -67,7 +65,7 @@ public class HandlePerson extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getDose();
-                if(firstDose)
+                if(getDose())
                     Toast.makeText(HandlePerson.this, "First dose, book second dose time", Toast.LENGTH_SHORT).show();
                 else{
                     Toast.makeText(HandlePerson.this, "Second dose, set timer for passport", Toast.LENGTH_SHORT).show();
@@ -86,10 +84,10 @@ public class HandlePerson extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
     }
 
-    private void getDose() {
-        if(tv_bookedDose.getText().equals("1")) firstDose = true;
+    private boolean getDose() {
+        if(tv_bookedDose.getText().equals("1")) return true;
         else{
-            firstDose = false;
+            return false;
         }
     }
 
@@ -111,7 +109,7 @@ public class HandlePerson extends AppCompatActivity {
                     }
                 }, error -> {
             /*if no array can be found, look for jsonObject*/
-            Toast.makeText(this, "No response from server, could not retrieve booked times", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No response from server, could not retrieve personal info", Toast.LENGTH_SHORT).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
