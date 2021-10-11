@@ -75,16 +75,13 @@ public class BookingStep3Fragment extends Fragment {
         return itemView;
     }
 
-
-
-
     private void init(View itemView){
         HorizontalCalendar horizontalCalendar;
 
         Calendar endDate = Calendar.getInstance();
         endDate.add(Calendar.MONTH, 1);
         Calendar startDate = Calendar.getInstance();
-        startDate.add(Calendar.MONTH, -1);
+        startDate.add(Calendar.MONTH, 0);
 
         horizontalCalendar = new HorizontalCalendar.Builder(itemView, R.id.calendarView)
                 .startDate(startDate.getTime())

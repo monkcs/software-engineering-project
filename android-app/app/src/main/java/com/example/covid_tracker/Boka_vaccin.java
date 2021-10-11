@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
-    private Button buttonBook, buttonRebook, buttonCancel;
+    private Button buttonBook, buttonRebook, buttonCancel, buttonDisable;
     private View view;
     private RequestQueue queue;
     private AlertDialog.Builder dialogBuilder;
@@ -79,8 +79,9 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
 
                 }, error -> {
-                initAppointment("No Appointment", "-", "-");
-                    setRecyclerView();
+
+            initAppointment("No Appointment", "-", "-");
+            setRecyclerView();
         }) {
             @Override
             public Map<String, String> getHeaders() {

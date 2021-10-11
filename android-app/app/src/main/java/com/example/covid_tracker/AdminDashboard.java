@@ -1,52 +1,77 @@
 package com.example.covid_tracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.RelativeLayout;
+import android.util.Log;
+import android.widget.Toast;
 
-public class AdminDashboard extends AppCompatActivity{
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.fragment.app.Fragment;
 
-    private RelativeLayout rl1,rl2;
-    //private TextView userCount = findViewById(R.id.adminUserCount);
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Map;
 
 
-
-
+public class AdminDashboard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_dashboard);
-        rl1= (RelativeLayout) findViewById(R.id.Rellay1);
-        rl1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                uppcApoint();
-            }
-        });
 
-        rl2 = (RelativeLayout) findViewById(R.id.Rellay2);
-        rl2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                planAndShedVacc();
-            }
-        });
+        setContentView(R.layout.activity_dashboard_admin_fragments);
+
+
+        BottomNavigationView bottomNav = findViewById(R.id.admin_bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new AdminLandingFragment()).commit();
 
     }
 
-    public void uppcApoint(){
-        Intent intent = new Intent(this, UpcomingAppointments.class);
-        startActivity(intent);
-    }
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> {
+                Fragment selectedFragment;
+                switch (item.getItemId()) {
+                    case R.id.admin_statistic:
+                        selectedFragment = new AdminLandingFragment();
+                        break;
 
-    public void planAndShedVacc(){
-        Intent intent = new Intent(this, PlanAndShedVaccs.class);
-        startActivity(intent);
-    }
+                    case R.id.admin_upcommingAppoint:
+                        selectedFragment = new UpcomingAppointments();
+                        break;
+
+                    case R.id.admin_inbox:
+                        selectedFragment = new inboxAdmin();
+                        break;
+
+                    case R.id.admin_settings:
+                        selectedFragment = new StatisticsMenu();
+                        break;
+
+                    default:
+                        selectedFragment = new AdminLandingFragment();
+                        break;
+                }
 
 
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment).commit();
+
+                return true;
+            };
 }
