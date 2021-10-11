@@ -1,9 +1,14 @@
 package com.example.covid_tracker;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -17,7 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class inboxAdmin extends AppCompatActivity {
+public class inboxAdmin extends Fragment {
+
+    private View view;
     private RequestQueue queue;
 
     private RecyclerView rV;
@@ -25,17 +32,15 @@ public class inboxAdmin extends AppCompatActivity {
     List<Admin_block> list;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_inboxadmin, container, false);
 
-        queue = Volley.newRequestQueue(this);
+        queue = Volley.newRequestQueue(getActivity());
 
-        setContentView(R.layout.inboxadmin);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         System.out.println("insidde box");
 
-        rV = (RecyclerView) findViewById(R.id.recyclerView_inboxAdmin);
+        rV = (RecyclerView) view.findViewById(R.id.recyclerView_inboxAdmin);
 
 
 
@@ -43,7 +48,7 @@ public class inboxAdmin extends AppCompatActivity {
         setRecyclerView();
 
 
-
+        return view;
     }
     private void setRecyclerView() {
 
@@ -57,8 +62,6 @@ public class inboxAdmin extends AppCompatActivity {
     private void getPendingBookings() {
 
         list = new ArrayList<>();
-
-
 
             //Här hämtar du hela listan med pending bookings
 
