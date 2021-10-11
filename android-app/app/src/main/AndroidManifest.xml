@@ -14,16 +14,16 @@
         android:name=".NotificationChannelsEnabler">
 
         <activity
-            android:name=".PlanAndShedVaccs"
+            android:name=".Administrator.Activity.PlanAndShedVaccs"
             android:exported="true" />
         <activity
-            android:name=".UpcomingAppointments"
+            android:name=".Administrator.Activity.UpcomingAppointments"
             android:exported="true" />
         <activity
-            android:name=".AdminDashboard"
+            android:name=".Administrator.Activity.AdminDashboard"
             android:exported="true" />
         <activity
-            android:name=".Dashboard"
+            android:name=".User.Activity.Dashboard"
             android:exported="true">
 
             <intent-filter>
@@ -32,7 +32,7 @@
         </activity>
         <activity
 
-            android:name=".Login"
+            android:name=".User.Activity.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,21 +44,21 @@
         </activity>
 
         <activity
-            android:name=".BookingActivity"
+            android:name=".User.Activity.BookingActivity"
             android:exported="true" />
         <activity
-            android:name=".Administartorlogin"
+            android:name=".Administrator.Activity.Administartorlogin"
             android:exported="true" />
         <activity
-            android:name=".Regristering"
+            android:name=".User.Activity.Regristering"
             android:exported="true" />
         <activity
-            android:name=".StatisticsVacc"
+            android:name=".User.Activity.StatisticsVacc"
             android:exported="true" />
         <activity
-            android:name=".StatisticsCovid"
+            android:name=".User.Activity.StatisticsCovid"
             android:exported="true" />
-        <activity android:name=".HandlePerson" />
+        <activity android:name=".Administrator.Activity.HandlePerson" />
     </application>
 
 </manifest>

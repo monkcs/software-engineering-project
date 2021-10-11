@@ -5,7 +5,7 @@
     android:id="@+id/ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dashboard">
+    tools:context=".User.Activity.Dashboard">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -131,7 +131,7 @@
 
             <TextView
                 android:id="@+id/tv_clearfilters_vacc"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
@@ -154,13 +154,13 @@
 
             <Button
                 android:id="@+id/btn_searchRegion"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:backgroundTint="@color/green"
                 android:layout_weight="1"
-                android:text="Search" />
+                android:text="@string/search" />
         </LinearLayout>
 
         <LinearLayout
@@ -176,12 +176,12 @@
 
             <TextView
                 android:id="@+id/tv_region_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginLeft="4dp"
-                android:textSize="24dp"
-                android:text="Sweden"/>
+                android:textSize="24sp"
+                android:text="@string/sweden"/>
         </LinearLayout>
 
         <LinearLayout

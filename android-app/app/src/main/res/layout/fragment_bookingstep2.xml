@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.BookingStep2Fragment">
+    tools:context=".User.Fragment.BookingStep.BookingStep2Fragment">
 
     <TextView
         android:id="@+id/text_F2"

@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:id="@+id/fragment_container_book"
-    tools:context=".Boka_vaccin">
+    tools:context=".User.Fragment.Dashboard.Boka_vaccin">
 
    <TextView
        android:id="@+id/greeding"

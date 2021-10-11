@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="6dp"
-            tools:context=".Faq">
+            tools:context=".User.Fragment.Dashboard.Faq">
 
 
             <androidx.recyclerview.widget.RecyclerView
