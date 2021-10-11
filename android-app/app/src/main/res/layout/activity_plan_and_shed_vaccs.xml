@@ -60,10 +60,19 @@
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:text="make time avaliable for age group"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time_slot_spinner" />
+    <Button
+        android:id="@+id/change_booking_time_button"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="40dp"
+        android:text="Change characterstics of avaliable time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upload_time_button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

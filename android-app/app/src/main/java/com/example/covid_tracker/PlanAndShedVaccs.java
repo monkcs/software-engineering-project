@@ -29,9 +29,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlanAndShedVaccs extends AppCompatActivity  {
-    private Spinner ageSpinner, timeSpinner;
-    private Button uploadBtn;
+public class PlanAndShedVaccs extends AppCompatActivity  implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+    private Spinner ageSpinner, startDateSpinner, endDateSpinner, timeSlotSpinner;
+    private Button uploadBtn, changeBookingBtn;
     private Calendar nowCal, startCal,endCal;
     private int startHour, endHour, FUTURE_DAY = 1, FUTUTRE_MONTH= 1, ageLimit=-1;
     private ArrayList<Integer> timeslotList;
@@ -91,7 +91,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
 
         //---------------------------------------------------------
 
-        timeSpinner = (Spinner) findViewById(R.id.start_date_spinner);
+        startDateSpinner = (Spinner) findViewById(R.id.start_date_spinner);
         nowCal = Calendar.getInstance();
 
         setStartCal(nowCal);
@@ -107,9 +107,9 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
 
         strTimeAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
-        timeSpinner.setAdapter(strTimeAdapter);
+        startDateSpinner.setAdapter(strTimeAdapter);
 
-        timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        startDateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String dateStr = (String) adapterView.getItemAtPosition(i);
@@ -244,6 +244,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
         Date endDate = getEndCal().getTime();
 
         for (uploadDate = getStartCal().getTime();uploadDate.before(endDate); uploadDate = tempCal.getTime()){
+
             serverUpload(uploadDate, getAgeLimit());
             tempCal.add(Calendar.MINUTE, mins);
         }
@@ -277,5 +278,18 @@ error.toString();
     }
 
 
+    @Override
+    public void onClick(View view) {
 
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }
