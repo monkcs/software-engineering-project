@@ -126,10 +126,12 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
             }
         });
 
-        
-        /*Hur skall datumet laggas ut?
-        * fran  start datum till all framtid
-        * sedan skall 15 min tidsintervall laggas till frn sag kl 06:00 till 20:00*/
+        uploadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uploadBookingTime();
+            }
+        });
 
     }
 
@@ -242,9 +244,9 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
     private void serverUpload(Date time, int age){
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/create.php",
                 response -> {
-
+                        response.toString();
                 }, error -> {
-
+error.toString();
         }
         ) {
             @Override
