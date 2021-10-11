@@ -71,10 +71,11 @@ public class HandlePerson extends AppCompatActivity {
         btn_confirmVaccine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                person_id = Integer.parseInt((String) tv_person_id.getText());
                 if(firstDose())
-                    Toast.makeText(HandlePerson.this, "First dose, book second dose time", Toast.LENGTH_SHORT).show();
+                    firstDoseTaken(person_id);
                 else{
-                    Toast.makeText(HandlePerson.this, "Second dose, set timer for passport", Toast.LENGTH_SHORT).show();
+                    secondDoseTaken(person_id);
                 }
             }
         });
@@ -89,6 +90,16 @@ public class HandlePerson extends AppCompatActivity {
         });
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
+    }
+
+    private void firstDoseTaken(Integer id) {
+        Toast.makeText(HandlePerson.this, "First dose for " + id + ", book second dose time", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void secondDoseTaken(Integer id) {
+        Toast.makeText(HandlePerson.this, "Second dose for " + id + ", set timer for passport", Toast.LENGTH_SHORT).show();
+
     }
 
     public void RemoveAppointment(Integer id) {
