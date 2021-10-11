@@ -40,6 +40,8 @@ public class BookingActivity extends AppCompatActivity{
     private ViewPager viewpager;
     private TabLayout tabLayout;
     public RequestQueue queue;
+    private Integer pending = 0;
+    private Integer Q1 = 0, Q2 = 0, Q3 = 0, Q4 = 0, Q5 = 0;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -100,25 +102,58 @@ public class BookingActivity extends AppCompatActivity{
                 Toast.makeText(this, "Please choose a time", Toast.LENGTH_LONG).show();
         }
         if(viewpager.getCurrentItem() + 1 == 4)
-        {   int tot = 0;
-            if(pref.getBoolean("Q1", true))
-                tot = tot +1;
-            if(pref.getBoolean("Q2", true))
-                tot = tot +1;
-            if(pref.getBoolean("Q3", true))
-                tot = tot +1;
-            if(pref.getBoolean("Q4", true))
-                tot = tot +1;
-            if(pref.getBoolean("Q5", true))
-                tot = tot +1;
-
-            if(pref.getBoolean("Health_info", true) && tot == 5)
+        {
+            Boolean health = false;
+            int tot = 0;
+            if(pref.getBoolean("Q1", false)) {
+                tot = tot + 1;
+            }
+            if(pref.getBoolean("Q2", false)) {
+                tot = tot + 1;
+            }
+            if(pref.getBoolean("Q3", false)) {
+                tot = tot + 1;
+            }
+            if(pref.getBoolean("Q4", false)) {
+                tot = tot + 1;
+            }
+            if(pref.getBoolean("Q5", false)) {
+                tot = tot + 1;
+            }
+            if(pref.getBoolean("Question1", false)) {
+                Q1 = 1;
+                health = true;
+            }
+            if(pref.getBoolean("Question2", false)) {
+                Q2 = 2;
+                health = true;
+            }
+            if(pref.getBoolean("Question3", false)) {
+                Q3 = 3;
+                health = true;
+            }
+            if(pref.getBoolean("Question4", false)) {
+                Q4 = 4;
+                health = true;
+            }
+            if(pref.getBoolean("Question5", false)) {
+                Q5 = 5;
+                health = true;
+            }
+            //Boolean health = pref.getBoolean("Health_info", true);
+            if (health && tot == 5) {
                 Toast.makeText(this, "Please contact your doctor", Toast.LENGTH_LONG).show();
+                pending = 1;
+                add_questions();
+                book_time();
+            }
             else if(tot != 5)
                 Toast.makeText(this, "Please answer all the questions", Toast.LENGTH_LONG).show();
 
-            else
+            else{
+                pending = 0;
                 book_time();
+            }
         }
     }
 
@@ -128,7 +163,7 @@ public class BookingActivity extends AppCompatActivity{
 
     public void book_time(){
         SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
-        Integer id_time =  pref.getInt("time", 0);;
+        Integer id_time =  pref.getInt("time", 0);
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/create.php",
                 response -> {
                     Toast.makeText(BookingActivity.this, "Booking time successfull", Toast.LENGTH_LONG).show();
@@ -143,6 +178,41 @@ public class BookingActivity extends AppCompatActivity{
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("appointment", id_time.toString());
+                params.put("pending", pending.toString());
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.User.username, WebRequest.User.password);
+            }
+        };
+
+        queue.add(request);
+    }
+
+    public void add_questions(){
+        SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
+        Integer id_clinic =  pref.getInt("clinic_ID", -1);
+        Integer id_time =  pref.getInt("time", 0);;
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/health_questions.php",
+                response -> {
+                    //Toast.makeText(BookingActivity.this, "Questions added", Toast.LENGTH_LONG).show();
+                    System.out.println(response.toString());
+
+                }, error -> {
+            Toast.makeText(BookingActivity.this, "Questions added failed", Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("appointment", id_time.toString());
+                params.put("provider", id_clinic.toString());
+                params.put("question1", Q1.toString());
+                params.put("question2", Q2.toString());
+                params.put("question3", Q3.toString());
+                params.put("question4", Q4.toString());
+                params.put("question5", Q5.toString());
 
                 return params;
             }

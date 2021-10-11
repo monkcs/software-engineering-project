@@ -48,6 +48,12 @@ public class BookingStep4Fragment extends Fragment {
         edit.putBoolean("Q3", false);
         edit.putBoolean("Q4", false);
         edit.putBoolean("Q5", false);
+        edit.putBoolean("Question1", false);
+        edit.putBoolean("Question2", false);
+        edit.putBoolean("Question3", false);
+        edit.putBoolean("Question4", false);
+        edit.putBoolean("Question5", false);
+
         edit.apply();
         RadioGroup radio1 = (RadioGroup) view.findViewById(R.id.radiogroup_1);
         radio1.clearCheck();
@@ -58,10 +64,11 @@ public class BookingStep4Fragment extends Fragment {
                 if (rb != null) {
                     if (i == R.id.button1_yes) {
                         edit.putBoolean("Health_info", true);
-                        Toast.makeText(getActivity(), "Yes", Toast.LENGTH_LONG).show();
+                        edit.putBoolean("Question1", true);
+
                     } else if (i == R.id.button1_no) {
+                        edit.putBoolean("Question1", false);
                         edit.putBoolean("Health_info", false);
-                        Toast.makeText(getActivity(), "No", Toast.LENGTH_LONG).show();
                     }
                     edit.putBoolean("Q1", true);
                     edit.apply();
@@ -77,10 +84,11 @@ public class BookingStep4Fragment extends Fragment {
                 if (rb != null) {
                     if (i == R.id.button2_yes) {
                         edit.putBoolean("Health_info", true);
-                        Toast.makeText(getActivity(), "Yes", Toast.LENGTH_LONG).show();
+                        edit.putBoolean("Question2", true);
+
                     } else if (i == R.id.button2_no) {
+                        edit.putBoolean("Question2", false);
                         edit.putBoolean("Health_info", false);
-                        Toast.makeText(getActivity(), "No", Toast.LENGTH_LONG).show();
                     }
                     edit.putBoolean("Q2", true);
                     edit.apply();
@@ -96,10 +104,10 @@ public class BookingStep4Fragment extends Fragment {
                 if (rb != null) {
                     if (i == R.id.button3_yes) {
                         edit.putBoolean("Health_info", true);
-                        Toast.makeText(getActivity(), "Yes", Toast.LENGTH_LONG).show();
+                        edit.putBoolean("Question3", true);
                     } else if (i == R.id.button3_no) {
+                        edit.putBoolean("Question3", false);
                         edit.putBoolean("Health_info", false);
-                        Toast.makeText(getActivity(), "No", Toast.LENGTH_LONG).show();
                     }
                     edit.putBoolean("Q3", true);
                     edit.apply();
@@ -114,12 +122,11 @@ public class BookingStep4Fragment extends Fragment {
                 RadioButton rb = (RadioButton) radioGroup.findViewById(i);
                 if (rb != null) {
                     if (i == R.id.button4_yes) {
-                        edit.putBoolean("Q4", true);
+                        edit.putBoolean("Question4", true);
                         edit.putBoolean("Health_info", true);
-                        Toast.makeText(getActivity(), "Yes", Toast.LENGTH_LONG).show();
                     } else if (i == R.id.button4_no) {
+                        edit.putBoolean("Question4", false);
                         edit.putBoolean("Health_info", false);
-                        Toast.makeText(getActivity(), "No", Toast.LENGTH_LONG).show();
                     }
                     edit.putBoolean("Q4", true);
                     edit.apply();
@@ -135,10 +142,11 @@ public class BookingStep4Fragment extends Fragment {
                 if (rb != null) {
                     if (i == R.id.button5_yes) {
                         edit.putBoolean("Health_info", true);
-                        Toast.makeText(getActivity(), "Yes", Toast.LENGTH_LONG).show();
+                        edit.putBoolean("Question5", true);
+
                     } else if (i == R.id.button5_no) {
+                        edit.putBoolean("Question5", false);
                         edit.putBoolean("Health_info", false);
-                        Toast.makeText(getActivity(), "No", Toast.LENGTH_LONG).show();
                     }
                     edit.putBoolean("Q5", true);
                     edit.apply();
