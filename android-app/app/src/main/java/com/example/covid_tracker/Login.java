@@ -27,7 +27,7 @@ public class Login extends Activity implements OnClickListener {
     private Button BtnLogin, BtnReg, adminloginButton;
 
     private RequestQueue queue;
-
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
     private ProgressDialog pDialog;
@@ -53,6 +53,7 @@ public class Login extends Activity implements OnClickListener {
         adminloginButton.setOnClickListener(this);
 
         BtnLogin.setOnClickListener(this);
+
     }
 
     void login() {
@@ -93,7 +94,12 @@ public class Login extends Activity implements OnClickListener {
         switch (view.getId()) {
 
             case R.id.btnLogIn:
-                login();
+                if (user_email.getText().toString().trim().matches(emailPattern)) {
+                    Toast.makeText(getApplicationContext(), "valid email address", Toast.LENGTH_SHORT).show();
+                    login();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btnReg:
