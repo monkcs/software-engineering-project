@@ -48,7 +48,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_and_shed_vaccs);
         queue = Volley.newRequestQueue(this);
-
+        timeSlothList = new ArrayList<Integer>();
         setTimeSlothList();// min 10,15,20,30
         uploadBtn = (Button) findViewById(R.id.upload_time_button);
         uploadBtn.setOnClickListener((new View.OnClickListener() {
