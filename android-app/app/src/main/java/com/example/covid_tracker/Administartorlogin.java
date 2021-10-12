@@ -17,7 +17,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -112,7 +111,7 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
                     WebRequest.Provider.username = ((Provider) dropdown.getSelectedItem()).id.toString();
                     WebRequest.Provider.password = password.getText().toString();
 
-                    Intent intent = new Intent(this,AdminDashboard.class);
+                    Intent intent = new Intent(this, AdminDashboard.class);
                     startActivity(intent);
 
                 }, error -> {

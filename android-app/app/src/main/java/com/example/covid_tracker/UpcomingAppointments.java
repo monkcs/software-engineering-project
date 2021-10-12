@@ -1,20 +1,24 @@
 package com.example.covid_tracker;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -24,33 +28,35 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class UpcomingAppointments extends AppCompatActivity {
+public class UpcomingAppointments extends Fragment {
 
+    private View view;
     private Context context;
     private RequestQueue queue;
 
     CalendarView calView_uppcAppoint;
     RecyclerView recyclerView_uppc_appoint;
+    TextView tv_none_booked;
 
     String currDate;
 
     ArrayList<UpcommingAppointmentsBlock> booked_list;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        context = this;
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_uppcomming_apointments, container, false);
+        context = getActivity();
 
-        queue = Volley.newRequestQueue(this);
-        setContentView(R.layout.activity_uppcomming_apointments);
+        queue = Volley.newRequestQueue(getActivity());
 
-        calView_uppcAppoint = findViewById(R.id.calView_uppcAppoint);
-        recyclerView_uppc_appoint = findViewById(R.id.recyclerView_uppc_appoint);
+        calView_uppcAppoint = view.findViewById(R.id.calView_uppcAppoint);
+        recyclerView_uppc_appoint = view.findViewById(R.id.recyclerView_uppc_appoint);
+        tv_none_booked = view.findViewById(R.id.tv_none_booked);
+
+
 
         currDate = getDate();
 
@@ -68,14 +74,11 @@ public class UpcomingAppointments extends AppCompatActivity {
                     String temp = day;
                     day = "0" + day;
                 }
-
                 currDate = String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + day;
-                Log.i("UCA", "Current date: " + currDate);
                 getBookedTimes(currDate);
             }
         });
-
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
+        return view;
     }
 
     private void getBookedTimes(String currDate){
@@ -89,15 +92,24 @@ public class UpcomingAppointments extends AppCompatActivity {
                             datetime = jsonObject.getString("datetime");
                             date = getDateAndTime(datetime, 0);
                             if(date.equals(currDate))
-                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), jsonObject.getString("surname"),
+                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), Integer.parseInt(jsonObject.getString("account")), jsonObject.getString("surname"),
                                         jsonObject.getString("firstname"), jsonObject.getString("telephone"), Integer.parseInt(jsonObject.getString("dose"))));
                         }
-                        setRecyclerView(booked_list);
+                        if(booked_list.size() > 0) {
+                            tv_none_booked.setText("");
+                            setRecyclerView(booked_list);
+                        }
+                        else{
+                            tv_none_booked.setText("No appointments today");
+                            setRecyclerView(booked_list);
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }, error -> {
-                    Toast.makeText(this, "Currently no booked times", Toast.LENGTH_SHORT).show();
+                    tv_none_booked.setText("No appointments today");
+                    setRecyclerView(booked_list);
+                    Toast.makeText(getActivity(), "Currently no booked times", Toast.LENGTH_SHORT).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -114,16 +126,6 @@ public class UpcomingAppointments extends AppCompatActivity {
         recyclerView_uppc_appoint.setAdapter(ua_block_adapter);
         recyclerView_uppc_appoint.setHasFixedSize(true);
 
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // TODO Auto-generated method stub
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private String getDateAndTime(String datetime, int b){

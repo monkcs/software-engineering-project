@@ -1,5 +1,6 @@
 package com.example.covid_tracker;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,6 +35,7 @@ public class HandlePerson extends AppCompatActivity {
     String [] nameArray;
     String firstName, lastName;
     int person_id;
+    private Integer dose;
 
     private AlertDialog dialog;
 
@@ -58,6 +61,7 @@ public class HandlePerson extends AppCompatActivity {
         if (extras != null) {
             /*The key argument here must match that used in the other activity*/
             String fullName = extras.getString("personName");
+            person_id = Integer.parseInt(extras.getString("personID"));
             nameArray = fullName.split(",");
             lastName = nameArray[0];
             firstName = nameArray[1];
@@ -65,16 +69,21 @@ public class HandlePerson extends AppCompatActivity {
             tv_personFullName.setText(lastName + ", " + firstName);
         }
 
-        getBookingInfo(lastName, firstName);
+        getBookingInfo(person_id);
+
+        /*IDEA:
+        * get ID from upcomming appoint instead of names (two people could have the same name)
+        * use ID to call getBookingInfo when tables are updated */
 
 
         btn_confirmVaccine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //person_id = Integer.parseInt((String) tv_person_id.getText());
                 if(firstDose())
-                    Toast.makeText(HandlePerson.this, "First dose, book second dose time", Toast.LENGTH_SHORT).show();
+                    firstDoseTaken(person_id);
                 else{
-                    Toast.makeText(HandlePerson.this, "Second dose, set timer for passport", Toast.LENGTH_SHORT).show();
+                    secondDoseTaken(person_id);
                 }
             }
         });
@@ -83,12 +92,36 @@ public class HandlePerson extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 firstDose();
-                person_id = Integer.parseInt((String) tv_person_id.getText());
-                RemoveAppointment(person_id);
+                if(tv_person_id.getText().length() > 0) {
+                    person_id = Integer.parseInt((String) tv_person_id.getText());
+                    RemoveAppointment(person_id);
+                }
+                else{
+                    Toast.makeText(HandlePerson.this, "Error", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
+    }
+
+    private void firstDoseTaken(Integer id) {
+        dose = 1;
+        update_tables(id, dose);
+        Toast.makeText(HandlePerson.this, "First dose for " + id + ", book second dose time", Toast.LENGTH_SHORT).show();
+        bookSecondDose(id);
+    }
+
+    private void secondDoseTaken(Integer id) {
+        dose = 2;
+        update_tables(id, dose);
+        Toast.makeText(HandlePerson.this, "Second dose for " + id + ", set timer for passport", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(HandlePerson.this, AdminDashboard.class);
+        intent.putExtra("currFragment","Upc_appoint");
+        finish();
+        startActivity(intent);
+
     }
 
     public void RemoveAppointment(Integer id) {
@@ -117,14 +150,13 @@ public class HandlePerson extends AppCompatActivity {
             }
         });
     }
+
     private void CancelAppointment(Integer id) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/cancel_time.php",
                 response -> {
                     Toast.makeText(HandlePerson.this, "Canceled time for person with ID: " + id, Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(HandlePerson.this, UpcomingAppointments.class);
+                    tv_bookedDate.append(" (CANCELLED)");
                     finish();
-                    startActivity(intent);
-
                 }, error -> {
             Toast.makeText(HandlePerson.this, "Not able to cancel time", Toast.LENGTH_LONG).show();
         }) {
@@ -151,14 +183,14 @@ public class HandlePerson extends AppCompatActivity {
         }
     }
 
-    private void getBookingInfo(String lastName, String firstName){
+    private void getBookingInfo(Integer id){
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/today_appointments.php", null,
                 response -> {
                     try {
                         for (int i=0;i<response.length();i++) {
                             JSONObject jsonObject = response.getJSONObject(i);
-                            if(jsonObject.getString("firstname").equals(firstName) && jsonObject.getString("surname").equals(lastName)){
+                            if(String.valueOf(id).equals(jsonObject.getString("account"))){
                                 tv_person_id.setText(jsonObject.getString("account"));
                                 tv_phone.setText(jsonObject.getString("telephone"));
                                 tv_bookedDate.setText(jsonObject.getString("datetime"));
@@ -172,6 +204,57 @@ public class HandlePerson extends AppCompatActivity {
             /*if no array can be found, look for jsonObject*/
             Toast.makeText(this, "No response from server, could not retrieve personal info", Toast.LENGTH_SHORT).show();
         }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+        queue.add(request);
+    }
+
+    public void update_tables(Integer id, Integer dose){
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/dose_taken.php",
+                response -> {
+                    System.out.println(response);
+
+                }, error -> {
+            Toast.makeText(HandlePerson.this, "Failed", Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("ID", id.toString());
+                params.put("dose", dose.toString());
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
+        queue.add(request);
+    }
+
+    public void bookSecondDose(Integer id){
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/auto_book.php",
+                response -> {
+                    System.out.println("IN BOOKING DOSE 2:");
+                    System.out.println(response);
+                    Toast.makeText(HandlePerson.this, "Second dose booked for person with ID: " + id, Toast.LENGTH_LONG).show();
+                    getBookingInfo(id);
+
+                }, error -> {
+            Toast.makeText(HandlePerson.this, "Not able to book second time", Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("ID", id.toString());
+
+                return params;
+            }
             @Override
             public Map<String, String> getHeaders() {
                 return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);

@@ -1,6 +1,7 @@
 <?php
 
-require 'authenticate.php';
+//require 'authenticate.php';
+require 'connect.php';
 
 function prioritizations($connection, $provider, $age)
 {
@@ -42,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         exit;
     }
 
-    $after = prioritizations($connection, $provider, age($connection, $identity));
+    $after = prioritizations($connection, $provider, age($connection, 71));
 
     $statement = $connection->prepare("SELECT * FROM available WHERE NOT EXISTS (SELECT * FROM appointment WHERE appointment.available = available.id) AND available.provider = ? AND available.datetime > CURRENT_DATE AND available.datetime > ?");
     $statement->bind_param("is", $provider, $after);

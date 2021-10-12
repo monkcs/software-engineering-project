@@ -3,14 +3,15 @@ package com.example.covid_tracker;
 public class UpcommingAppointmentsBlock {
 
     private String date, time, lastname, firstname, phone;
-    private int dose;
+    private int id, dose;
     private Boolean expandable;
 
     /*Time is string bc format is hh:mm*/
 
-    public UpcommingAppointmentsBlock(String date, String time, String lastname, String firstname, String phone, Integer dose){
+    public UpcommingAppointmentsBlock(String date, String time, Integer id, String lastname, String firstname, String phone, Integer dose){
         this.date = date;
         this.time = time;
+        this.id = id;
         this.lastname = lastname;
         this.firstname = firstname;
         this.phone = phone;
@@ -34,6 +35,14 @@ public class UpcommingAppointmentsBlock {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLastname() {
@@ -84,6 +93,7 @@ public class UpcommingAppointmentsBlock {
                 ", lastname='" + lastname + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", phone='" + phone + '\'' +
+                ", id=" + id +
                 ", dose=" + dose +
                 ", expandable=" + expandable +
                 '}';
