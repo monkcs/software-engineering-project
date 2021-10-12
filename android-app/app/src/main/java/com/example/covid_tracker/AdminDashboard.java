@@ -27,20 +27,38 @@ import java.util.Map;
 
 public class AdminDashboard extends AppCompatActivity {
 
+    boolean extra_info = false;
+    String currFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_dashboard_admin_fragments);
+        Bundle extras = getIntent().getExtras();
 
+        /*functionality to send data between activities*/
+        if (extras != null) {
+            extra_info = true;
+            /*The key argument here must match that used in the other activity*/
+            currFragment = extras.getString("currFragment");
+        }
+
+        setContentView(R.layout.activity_dashboard_admin_fragments);
 
         BottomNavigationView bottomNav = findViewById(R.id.admin_bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new AdminLandingFragment()).commit();
-
+        if(!extra_info) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new AdminLandingFragment()).commit();
+        }
+        else {
+            if(currFragment.equals("Upc_appoint")) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new UpcomingAppointments()).commit();
+                bottomNav.setSelectedItemId(R.id.admin_upcommingAppoint);
+            }
+        }
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =

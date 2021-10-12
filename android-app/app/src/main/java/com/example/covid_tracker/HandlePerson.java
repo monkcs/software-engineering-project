@@ -1,5 +1,6 @@
 package com.example.covid_tracker;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -137,7 +138,8 @@ public class HandlePerson extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/cancel_time.php",
                 response -> {
                     Toast.makeText(HandlePerson.this, "Canceled time for person with ID: " + id, Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(HandlePerson.this, UpcomingAppointments.class);
+                    Intent intent = new Intent(HandlePerson.this, AdminDashboard.class);
+                    intent.putExtra("currFragment","Upc_appoint");
                     finish();
                     startActivity(intent);
 
@@ -219,13 +221,14 @@ public class HandlePerson extends AppCompatActivity {
 
         queue.add(request);
     }
+
     public void bookSecondDose(Integer id){
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/auto_book.php",
                 response -> {
                     System.out.println("IN BOOKING DOSE 2:");
                     System.out.println(response);
                     Toast.makeText(HandlePerson.this, "Second dose booked for person with ID: " + id, Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(HandlePerson.this, UpcomingAppointments.class);
+                    Intent intent = new Intent(HandlePerson.this, AdminDashboard.class);
                     finish();
                     startActivity(intent);
 
