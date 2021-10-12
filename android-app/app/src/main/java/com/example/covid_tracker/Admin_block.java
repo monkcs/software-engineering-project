@@ -3,6 +3,7 @@ package com.example.covid_tracker;
 
 public class Admin_block {
 
+    private int Appointment;
     private int ID;
     private String personen, svaret, telenmr, datumTid;
     private Boolean expandable;

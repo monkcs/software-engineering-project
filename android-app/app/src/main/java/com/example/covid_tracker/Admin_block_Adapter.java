@@ -3,9 +3,7 @@ package com.example.covid_tracker;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
@@ -60,17 +58,12 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
             @Override
             public void onClick(View view) {
 
-                String message;
                 int Appointment;
                 int ID;
 
 
-                //hello
-
                 Appointment = holder.getAdapterPosition();
 
-                message = holder.medelande.getText().toString();
-                holder.medelande.setText("");
 
           //      System.out.println("Hej detta är account: " + Admin_block_List.get(holder.getAdapterPosition()).getID());
 
@@ -84,11 +77,10 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
            //     System.out.println("Storlek: " + Admin_block_List.size());
 
-                holder.medelande.onEditorAction(EditorInfo.IME_ACTION_DONE);    //stänger tagentbord
 
 
 
-                bokaPendingDatabas(message, Appointment, ID);
+                bokaPendingDatabas(Appointment, ID);
 
             }
         });
@@ -97,14 +89,14 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
             @Override
             public void onClick(View view) {
 
-                String message;
                 int Appointment;
+                int ID;
 
                 Appointment = holder.getAdapterPosition();
 
-                message = holder.medelande.getText().toString();
 
-                holder.medelande.setText("");
+                ID = Admin_block_List.get(holder.getAdapterPosition()).getID();
+
             //    System.out.println("Storlek: " + Admin_block_List.size());
 
                 Admin_block_List.remove(holder.getAdapterPosition());
@@ -112,9 +104,8 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
              //   System.out.println("Storlek: " + Admin_block_List.size());
 
-                holder.medelande.onEditorAction(EditorInfo.IME_ACTION_DONE);    //stänger tagentbord
 
-                avbokaPendingDatabas(message, Appointment);
+                avbokaPendingDatabas(ID, Appointment);
             }
         });
 
@@ -128,22 +119,21 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
     //Calle o Charlie implementera
     //
 
-    private void bokaPendingDatabas(String message, int appointment, Integer ID) {
+    private void bokaPendingDatabas( int appointment, Integer ID) {
         
         System.out.println("\n");
         System.out.println("--- Boka ---");
 
-        System.out.println(message);
 
         System.out.println("Listnumber: " + appointment);
         System.out.println("ID: " + ID);
 
         System.out.println("---");
 
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, WebRequest.urlbase + "provider/pending/approve.php",null,
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/pending/approve.php",
                 response -> {
 
-            System.out.println("Hellpoasdfasdffddsvss");
+            System.out.println("In response");
 
                 }, error -> {
 
@@ -156,8 +146,8 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
             public Map<String, String> getParams()  {
 
                 Map<String, String> params = new HashMap<>();
-                params.put("account", "71");
-                params.put("message", message);
+                params.put("account", ID.toString());
+                params.put("message", "Pending to booking");
 
                 return params;
             }
@@ -172,19 +162,21 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
     }
 
     //
-    //Calle o Charlie implementera
+    //Implementera kommunication med databasen
     //
 
-    private void avbokaPendingDatabas(String message, int appointment) {
+    private void avbokaPendingDatabas(Integer ID, int appointment) {
 
         System.out.println("\n");
         System.out.println("--- Avboka ---");
 
-        System.out.println(message);
+
 
         System.out.println("Listnumber: " + appointment);
 
         System.out.println("---");
+
+
     }
 
 
@@ -197,7 +189,6 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
 
         TextView PersonText, SvarText, telefonText, datumTidText;
-        EditText medelande;
         RelativeLayout expandable;
         LinearLayout linear;
         Button button, button2;
@@ -209,7 +200,7 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
             SvarText = itemView.findViewById(R.id.Svaren);
             telefonText = itemView.findViewById(R.id.telefonNummer);
             datumTidText = itemView.findViewById(R.id.datumTid);
-            medelande = itemView.findViewById(R.id.medelande);
+
 
 
             linear = itemView.findViewById(R.id.linear_layout_admin_row);

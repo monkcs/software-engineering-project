@@ -46,16 +46,7 @@
 
                 />
 
-            <EditText
-                android:id="@+id/medelande"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/Svaren"
-                android:padding="8dp"
-                android:lines="1"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:textColor="@color/grey"/>
+
 
 
             <TextView
@@ -66,7 +57,7 @@
                 android:padding="8dp"
                 android:textSize="16sp"
                 android:textColor="@color/light_grey"
-                android:layout_below="@+id/medelande"
+                android:layout_below="@+id/Svaren"
 
                 />
 

@@ -24,6 +24,7 @@ public class inboxAdmin extends AppCompatActivity {
     private Button boka;
     List<Admin_block> list;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +39,12 @@ public class inboxAdmin extends AppCompatActivity {
         rV = (RecyclerView) findViewById(R.id.recyclerView_inboxAdmin);
 
 
-
         getPendingBookings();
         setRecyclerView();
 
 
-
     }
+
     private void setRecyclerView() {
 
         Admin_block_Adapter Admin_block_adapter = new Admin_block_Adapter(list);
@@ -54,49 +54,72 @@ public class inboxAdmin extends AppCompatActivity {
 
     }
 
+
+
+
     private void getPendingBookings() {
 
         list = new ArrayList<>();
 
 
 
-            //Här hämtar du hela listan med pending bookings
+        //Här hämtar du hela listan med pending bookings
 
 
-            JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/pending/",null,
-                    response -> {
+        JsonArrayRequest request2 = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/pending/index.php", null,
+                response -> {
 
-                        for (int i =0; i < response.length(); i++) {
+                    for (int i = 0; i < response.length(); i++) {
 
-                            try {
+                        try {
 
-                                System.out.println("response namn: " + response.getJSONObject(i).getString("firstname"));
+                            System.out.println("response namn: " + response.getJSONObject(i).getString("firstname"));
 
-                                list.add(new Admin_block(response.getJSONObject(i).getString("firstname"),"123","123","123", response.getJSONObject(i).getInt("account")) );
-                                System.out.println("Try fungerade");
+                            list.add(new Admin_block(response.getJSONObject(i).getString("firstname"), getQuestions(i), response.getJSONObject(i).getString("telephone"), response.getJSONObject(i).getString("datetime"), response.getJSONObject(i).getInt("account")));
+                            System.out.println("Try fungerade");
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                System.out.println("Catch fungerade");
-
-                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            System.out.println("Catch fungerade");
 
                         }
-                        setRecyclerView();
 
-                    }, error -> {
+                    }
+                    setRecyclerView();
 
-                    System.out.println("Error, den når inte fram");
+                }, error -> {
 
-            }
-            ) {
+            System.out.println("Error, den når inte fram 33214412");
 
-                @Override
-                public Map<String, String> getHeaders() {
-                    return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
-                }
-            };
-
-            queue.add(request);
         }
+        ) {
+
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
+        queue.add(request2);
+
+
+    }
+
+
+
+    //DATABASEN KOMMUNICATION
+    public String getQuestions(int i) {
+
+
+        // här hämtar du alla frågor från databasen gällande användar ID (i), detta innebär att du hämtar alla frågar o en sträng
+
+
+
+        return "You answered yes on question 3";
+
+
+    }
+
+
 }
+
