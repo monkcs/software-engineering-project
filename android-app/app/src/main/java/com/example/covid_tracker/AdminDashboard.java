@@ -36,29 +36,16 @@ public class AdminDashboard extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
 
-        /*functionality to send data between activities*/
-        if (extras != null) {
-            extra_info = true;
-            /*The key argument here must match that used in the other activity*/
-            currFragment = extras.getString("currFragment");
-        }
-
         setContentView(R.layout.activity_dashboard_admin_fragments);
 
         BottomNavigationView bottomNav = findViewById(R.id.admin_bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        if(!extra_info) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new AdminLandingFragment()).commit();
-        }
-        else {
-            if(currFragment.equals("Upc_appoint")) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new UpcomingAppointments()).commit();
-                bottomNav.setSelectedItemId(R.id.admin_upcommingAppoint);
-            }
-        }
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new AdminLandingFragment()).commit();
+
+
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
