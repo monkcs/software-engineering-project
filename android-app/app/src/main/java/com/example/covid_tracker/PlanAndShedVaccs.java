@@ -52,13 +52,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         timeslotList = new ArrayList<>();
         setTimeslotList();// min 10,15,20,30
 
-        uploadBtn = (Button) findViewById(R.id.upload_time_button);
-        uploadBtn.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                uploadBookingTime();
-            }
-        }));
         //-------------------------------------------------
         ageSpinner = (Spinner) findViewById(R.id.age_spinner);
         ageList = new ArrayList<>();
@@ -97,10 +90,13 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         setStartCal(nowCal);
         nowCal.add(Calendar.DATE, 1);
         tomorrowDate = nowCal.getTime();
+        nowCal.add(Calendar.MONTH, FUTUTRE_MONTH);
+        endDate = nowCal.getTime();
 
-        //-----------------------------------
+        //--------------------------------------------------------------
+
         strTimeList = new ArrayList<>();
-        setStrTimeList(tomorrowDate);
+        setStrTimeList(tomorrowDate, endDate);
         ArrayAdapter<String> strTimeAdapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_spinner_item, strTimeList);
         //selected item will look like a spinner set from XML
@@ -108,7 +104,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         strTimeAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         startDateSpinner.setAdapter(strTimeAdapter);
-
         startDateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -134,12 +129,48 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
             }
         });
 
-        uploadBtn.setOnClickListener(new View.OnClickListener() {
+        //--------------------------------------------------------
+        endDateSpinner = (Spinner) findViewById(R.id.end_date_spinner);
+        ArrayAdapter<String> strEndTimeAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, strTimeList);
+        //selected item will look like a spinner set from XML
+
+        strEndTimeAdapter.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
+        startDateSpinner.setAdapter(strEndTimeAdapter);
+        endDateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String dateStr = (String) adapterView.getItemAtPosition(i);
+                Calendar tempCal = Calendar.getInstance();
+                Date date, selectStart;
+
+                try {
+                    date = sdf.parse(dateStr);
+                    tempCal.setTime(date);
+                    setEndCal(tempCal);
+                    selectStart = getStartCal().getTime();
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        //-----------------------------------------------------
+
+        uploadBtn = (Button) findViewById(R.id.upload_time_button);
+        uploadBtn.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 uploadBookingTime();
             }
-        });
+        }));
 
     }
 
@@ -161,14 +192,10 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         timeList.add(startDate);
     }
 
-    private void setStrTimeList(Date startTime) {
+    private void setStrTimeList(Date startTime, Date endTime ) {
         String strTime;
-        Date nextTime, endTime;
-        Calendar tempCal;
-        tempCal = (Calendar) startCal.clone();
-        setEndCal();
-        endTime = getEndCal().getTime();
-
+        Date nextTime;
+        Calendar tempCal = (Calendar) getStartCal().clone();
         strTimeList.add("Start Date");
         sdf = new SimpleDateFormat("E, dd MMM yyyy");
 
@@ -226,8 +253,9 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         startCal.set(Calendar.MILLISECOND, 0);
     }
 
-    private void setEndCal() {
-        endCal = Calendar.getInstance();
+
+    private void setEndCal(Calendar ending) {
+        endCal = (Calendar) ending.clone();
         setStartHour(7);
         setEndHour(19);
         endCal.add(Calendar.MONTH, FUTUTRE_MONTH);
@@ -268,7 +296,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         int mins = getTimeslot(1);//15min
         Date uploadDate;
         Calendar tempCal = (Calendar) getStartCal().clone();
-        setEndCal();
+        //setEndCal have to be initiated before this
         Date endDate = getEndCal().getTime();
 
         for (uploadDate = getStartCal().getTime(); uploadDate.before(endDate); uploadDate = tempCal.getTime()) {

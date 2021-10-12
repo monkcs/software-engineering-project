@@ -7,6 +7,7 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cc08aa4c9d51f51d6ccc36ee1ed8c6e0/transformed/jetified-stepview-1.4.0/annotations.zip!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ddd914db678ae4e06bd5fb276451a35d/transformed/jetified-stepview-1.4.0/annotations.zip!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b60531fb631f0a7c4e958b57f6228b23/transformed/jetified-stepview-1.4.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/838141d717f60b4b998c7046a839a423/transformed/jetified-stepview-1.4.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/fe209f790d657e96947733a1177e2415/transformed/jetified-stepview-1.4.0/jars/classes.jar!/" />
@@ -27,6 +28,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b60531fb631f0a7c4e958b57f6228b23/transformed/jetified-stepview-1.4.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b60531fb631f0a7c4e958b57f6228b23/transformed/jetified-stepview-1.4.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b60531fb631f0a7c4e958b57f6228b23/transformed/jetified-stepview-1.4.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/838141d717f60b4b998c7046a839a423/transformed/jetified-stepview-1.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/838141d717f60b4b998c7046a839a423/transformed/jetified-stepview-1.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/838141d717f60b4b998c7046a839a423/transformed/jetified-stepview-1.4.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
