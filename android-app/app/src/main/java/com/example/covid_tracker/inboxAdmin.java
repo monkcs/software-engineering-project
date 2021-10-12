@@ -1,9 +1,15 @@
 package com.example.covid_tracker;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -17,34 +23,36 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class inboxAdmin extends AppCompatActivity {
-    private RequestQueue queue;
-
-    private RecyclerView rV;
-    private Button boka;
+public class inboxAdmin extends Fragment {
     List<Admin_block> list;
-
+    private RequestQueue queue;
+    private View view;
+    private Context context;
+    //private RecyclerView rV;
+    private Button boka;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        queue = Volley.newRequestQueue(this);
+        queue = Volley.newRequestQueue(getActivity());
 
-        setContentView(R.layout.inboxadmin);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        view = inflater.inflate(R.layout.fragment_inboxadmin, container, false);
+        context = getActivity();
+        //setContentView(R.layout.fragment_inboxadmin);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         System.out.println("insidde box");
 
-        rV = (RecyclerView) findViewById(R.id.recyclerView_inboxAdmin);
+        //rV = (RecyclerView) findViewById(R.id.recyclerView_inboxAdmin);
 
 
         getPendingBookings();
-        setRecyclerView();
+        //setRecyclerView();
 
-
+        return view;
     }
-
+/*
     private void setRecyclerView() {
 
         Admin_block_Adapter Admin_block_adapter = new Admin_block_Adapter(list);
@@ -52,15 +60,12 @@ public class inboxAdmin extends AppCompatActivity {
         rV.setHasFixedSize(true);
 
 
-    }
-
-
+    }*/
 
 
     private void getPendingBookings() {
 
         list = new ArrayList<>();
-
 
 
         //Här hämtar du hela listan med pending bookings
@@ -85,7 +90,7 @@ public class inboxAdmin extends AppCompatActivity {
                         }
 
                     }
-                    setRecyclerView();
+                    //setRecyclerView();
 
                 }, error -> {
 
@@ -106,13 +111,12 @@ public class inboxAdmin extends AppCompatActivity {
     }
 
 
-//fixa denna
+    //fixa denna
     //DATABASEN KOMMUNICATION
     public String getQuestions(int i) {
 
 
         // här hämtar du alla frågor från databasen gällande användar ID (i), detta innebär att du hämtar alla frågar o en sträng
-
 
 
         return "You answered yes on question 3";
