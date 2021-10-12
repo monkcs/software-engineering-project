@@ -3,6 +3,7 @@ package com.example.covid_tracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +49,9 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_and_shed_vaccs);
+
+        changeBookingBtn = (Button) findViewById(R.id.change_booking_time_button);
+
         queue = Volley.newRequestQueue(this);
         sdf = new SimpleDateFormat("E, dd MMM yyyy");
         timeslotList = new ArrayList<>();
@@ -182,6 +186,13 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
             }
         }));
 
+        changeBookingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PlanAndShedVaccs.this, AgePrioritizations.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
