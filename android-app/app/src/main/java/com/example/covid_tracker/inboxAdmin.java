@@ -106,7 +106,7 @@ public class inboxAdmin extends AppCompatActivity {
     }
 
 
-
+//fixa denna
     //DATABASEN KOMMUNICATION
     public String getQuestions(int i) {
 
