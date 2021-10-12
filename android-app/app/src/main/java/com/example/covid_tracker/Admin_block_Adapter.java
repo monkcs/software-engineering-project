@@ -22,9 +22,8 @@ import java.util.Map;
 
 public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapter.VersionVH> {
 
-    private RequestQueue queue;
     List<Admin_block> Admin_block_List;
-
+    private RequestQueue queue;
 
 
     public Admin_block_Adapter(List<Admin_block> Admin_block_List) {
@@ -45,7 +44,7 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
     @Override
     public void onBindViewHolder(@NonNull Admin_block_Adapter.VersionVH holder, int position) {
 
-       Admin_block bookingblockis = Admin_block_List.get(position);
+        Admin_block bookingblockis = Admin_block_List.get(position);
 
 
         holder.PersonText.setText(bookingblockis.getPersonen());
@@ -65,19 +64,17 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
                 Appointment = holder.getAdapterPosition();
 
 
-          //      System.out.println("Hej detta är account: " + Admin_block_List.get(holder.getAdapterPosition()).getID());
+                //      System.out.println("Hej detta är account: " + Admin_block_List.get(holder.getAdapterPosition()).getID());
 
                 ID = Admin_block_List.get(holder.getAdapterPosition()).getID();
 
 
-          //      System.out.println("Storlek: " + Admin_block_List.size());
+                //      System.out.println("Storlek: " + Admin_block_List.size());
 
                 Admin_block_List.remove(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
 
-           //     System.out.println("Storlek: " + Admin_block_List.size());
-
-
+                //     System.out.println("Storlek: " + Admin_block_List.size());
 
 
                 bokaPendingDatabas(Appointment, ID);
@@ -97,12 +94,12 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
                 ID = Admin_block_List.get(holder.getAdapterPosition()).getID();
 
-            //    System.out.println("Storlek: " + Admin_block_List.size());
+                //    System.out.println("Storlek: " + Admin_block_List.size());
 
                 Admin_block_List.remove(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
 
-             //   System.out.println("Storlek: " + Admin_block_List.size());
+                //   System.out.println("Storlek: " + Admin_block_List.size());
 
 
                 avbokaPendingDatabas(ID, Appointment);
@@ -113,37 +110,14 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
         holder.expandable.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
     }
 
-
-
-    //
-    //Calle o Charlie implementera
-    //
-
-    private void bokaPendingDatabas( int appointment, Integer ID) {
-        
-        System.out.println("\n");
-        System.out.println("--- Boka ---");
-
-
-        System.out.println("Listnumber: " + appointment);
-        System.out.println("ID: " + ID);
-
-        System.out.println("---");
-
+    private void bokaPendingDatabas(int appointment, Integer ID) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/pending/approve.php",
                 response -> {
-
-            System.out.println("In response");
-
                 }, error -> {
-
-            System.out.println("Error, den når inte fram");
-            System.out.println(error.toString());
-
         }
         ) {
             @Override
-            public Map<String, String> getParams()  {
+            public Map<String, String> getParams() {
 
                 Map<String, String> params = new HashMap<>();
                 params.put("account", ID.toString());
@@ -161,39 +135,16 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
         queue.add(request);
     }
 
-    //
-    //Implementera kommunication med databasen
-    //
-
     private void avbokaPendingDatabas(Integer ID, int appointment) {
-
-        System.out.println("\n");
-        System.out.println("--- Avboka ---");
-
-
-
-        System.out.println("Listnumber: " + appointment);
-
-        System.out.println("---");
-
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/pending/decline.php",
                 response -> {
-
-                    System.out.println("In response");
-
                 }, error -> {
-
-            System.out.println("Error, den når inte fram");
-            System.out.println(error.toString());
-
         }
         ) {
             @Override
-            public Map<String, String> getParams()  {
-
+            public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("account", ID.toString());
-
 
                 return params;
             }
@@ -230,13 +181,10 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
             datumTidText = itemView.findViewById(R.id.datumTid);
 
 
-
             linear = itemView.findViewById(R.id.linear_layout_admin_row);
             expandable = itemView.findViewById(R.id.expandable_layout_admin_row);
             button = itemView.findViewById(R.id.CardViewAdmin);
             button2 = itemView.findViewById(R.id.CardViewAdmin2);
-
-
 
 
             linear.setOnClickListener(new View.OnClickListener() {

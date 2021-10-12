@@ -1,20 +1,26 @@
 package com.example.covid_tracker;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Admin_block {
 
     private int Appointment;
-    private int ID;
-    private String personen, svaret, telenmr, datumTid;
+    public int ID, available;
+    public String personen, svaret, telenmr, datumTid;
     private Boolean expandable;
 
 
-    public Admin_block(String personen, String svaret, String telenmr, String datumTid, int ID) {
-        this.personen = personen;
-        this.svaret = svaret;
-        this.telenmr = telenmr;
-        this.datumTid = datumTid;
-        this.ID = ID;
+    public Admin_block(JSONObject serialized, String questions) throws JSONException {
+
+        this.personen = serialized.getString("firstname");
+        this.telenmr = serialized.getString("telephone");
+        this.datumTid = serialized.getString("datetime");
+        this.ID = serialized.getInt("account");
+        this.available = serialized.getInt("available");
+
+        this.svaret = questions;
 
         this.expandable = false;
     }
