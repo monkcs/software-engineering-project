@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -37,6 +38,7 @@ public class UpcomingAppointments extends Fragment {
 
     CalendarView calView_uppcAppoint;
     RecyclerView recyclerView_uppc_appoint;
+    TextView tv_none_booked;
 
     String currDate;
 
@@ -51,6 +53,7 @@ public class UpcomingAppointments extends Fragment {
 
         calView_uppcAppoint = view.findViewById(R.id.calView_uppcAppoint);
         recyclerView_uppc_appoint = view.findViewById(R.id.recyclerView_uppc_appoint);
+        tv_none_booked = view.findViewById(R.id.tv_none_booked);
 
         currDate = getDate();
 
@@ -92,11 +95,18 @@ public class UpcomingAppointments extends Fragment {
                                 booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), jsonObject.getString("surname"),
                                         jsonObject.getString("firstname"), jsonObject.getString("telephone"), Integer.parseInt(jsonObject.getString("dose"))));
                         }
-                        setRecyclerView(booked_list);
+                        if(booked_list.size() > 0) {
+                            tv_none_booked.setText("");
+                            setRecyclerView(booked_list);
+                        }
+                        else{
+                            tv_none_booked.setText("No appointments today");
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }, error -> {
+                    tv_none_booked.setText("No appointments today");
                     Toast.makeText(getActivity(), "Currently no booked times", Toast.LENGTH_SHORT).show();
         }) {
             @Override
