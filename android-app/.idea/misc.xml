@@ -46,6 +46,9 @@
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/stat_vaccinations.xml" value="0.2796875" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/temp_regristration.xml" value="0.335" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/test_login.xml" value="0.2796875" />
+        <entry key="app/src/main/res/layout/activity_age_prioritizations.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_plan_and_shed_vaccs.xml" value="0.13854166666666667" />
+        <entry key="app/src/main/res/layout/fragment_admin_landing.xml" value="0.22" />
       </map>
     </option>
   </component>

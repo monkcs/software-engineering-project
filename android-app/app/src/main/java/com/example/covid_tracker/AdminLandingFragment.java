@@ -15,7 +15,7 @@ public class AdminLandingFragment extends Fragment {
     private RelativeLayout rl1, rl2, rl3;
     private View view;
     //private TextView userCount = findViewById(R.id.adminUserCount);
-
+    // how to display this in fragments?
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,6 +62,28 @@ public class AdminLandingFragment extends Fragment {
         Intent intent = new Intent(getActivity(), PlanAndShedVaccs.class);
         startActivity(intent);
     }
+/*
+    void userCountRequest(){
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "provider/quantity.php", null,
+                response -> {
+                    try {
+                        userCount.append(response.getString("quantity"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
+                }, error -> {
+            Toast.makeText(this, R.string.wrong_creeentials, Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
+        queue.add(request);
+        queue.start();
+    }
+*/
 
 }
