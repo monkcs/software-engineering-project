@@ -197,6 +197,7 @@ public class HandlePerson extends AppCompatActivity {
         };
         queue.add(request);
     }
+
     public void update_tables(Integer id, Integer dose){
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/dose_taken.php",
                 response -> {
@@ -229,6 +230,7 @@ public class HandlePerson extends AppCompatActivity {
                     System.out.println(response);
                     Toast.makeText(HandlePerson.this, "Second dose booked for person with ID: " + id, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(HandlePerson.this, AdminDashboard.class);
+                    intent.putExtra("currFragment","Upc_appoint");
                     finish();
                     startActivity(intent);
 
