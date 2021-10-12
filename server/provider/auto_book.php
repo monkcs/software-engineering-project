@@ -32,3 +32,15 @@ else{
     echo $id;
     insert($connection, $id);
 }
+$user = $_POST["ID"];
+    $statement = $connection->prepare("SELECT * from appointment where appointment.account = ?");
+    $statement->bind_param("i", $user);
+    $statement->execute();
+    
+    $result = $statement->get_result();
+    $statement->close();
+    if ($result->num_rows == 0) {
+        http_response_code(402);
+        echo "Failed to book second dose\n";
+        exit;
+    }
