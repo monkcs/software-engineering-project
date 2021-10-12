@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/start_date_spinner"
         tools:layout_editor_absoluteX="38dp" />
 

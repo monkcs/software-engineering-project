@@ -38,9 +38,10 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
     private Date tomorrowDate, startDate, endDate;
     private SimpleDateFormat sdf;
     //private String strDate;
-    private ArrayList<String> ageList, strTimeList;
+    private ArrayList<String> ageList, strTimeList,strEndTimeList;
     private ArrayList<Date> timeList;
     private RequestQueue queue;
+    private Boolean startDateSelected;
 
 
     @Override
@@ -48,9 +49,12 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_and_shed_vaccs);
         queue = Volley.newRequestQueue(this);
-
+        sdf = new SimpleDateFormat("E, dd MMM yyyy");
         timeslotList = new ArrayList<>();
+        strTimeList = new ArrayList<>();
+        strEndTimeList= new ArrayList<>();
         setTimeslotList();// min 10,15,20,30
+        startDateSelected = false;
 
         //-------------------------------------------------
         ageSpinner = (Spinner) findViewById(R.id.age_spinner);
@@ -95,7 +99,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
 
         //--------------------------------------------------------------
 
-        strTimeList = new ArrayList<>();
         setStrTimeList(tomorrowDate, endDate);
         ArrayAdapter<String> strTimeAdapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_spinner_item, strTimeList);
@@ -108,6 +111,8 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String dateStr = (String) adapterView.getItemAtPosition(i);
+                startDateSelected =true;
+
                 Calendar tempCal = Calendar.getInstance();
                 Date date;
 
@@ -131,36 +136,41 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
 
         //--------------------------------------------------------
         endDateSpinner = (Spinner) findViewById(R.id.end_date_spinner);
-        ArrayAdapter<String> strEndTimeAdapter = new ArrayAdapter<String>
-                (this, android.R.layout.simple_spinner_item, strTimeList);
-        //selected item will look like a spinner set from XML
+        startDate = startCal.getTime();
+        setStrEndTimeList(startDate, endDate);
 
-        strEndTimeAdapter.setDropDownViewResource(android.R.layout
-                .simple_spinner_dropdown_item);
-        startDateSpinner.setAdapter(strEndTimeAdapter);
-        endDateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String dateStr = (String) adapterView.getItemAtPosition(i);
-                Calendar tempCal = Calendar.getInstance();
-                Date date, selectStart;
+        if (true/*startDateSelected*/) {
+            ArrayAdapter<String> strEndTimeAdapter = new ArrayAdapter<String>
+                    (this, android.R.layout.simple_spinner_item, strEndTimeList);
+            //selected item will look like a spinner set from XML
 
-                try {
-                    date = sdf.parse(dateStr);
-                    tempCal.setTime(date);
-                    setEndCal(tempCal);
-                    selectStart = getStartCal().getTime();
+            strEndTimeAdapter.setDropDownViewResource(android.R.layout
+                    .simple_spinner_dropdown_item);
+            endDateSpinner.setAdapter(strEndTimeAdapter);
+            endDateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    String dateStr = (String) adapterView.getItemAtPosition(i);
+                    Calendar tempCal = Calendar.getInstance();
+                    Date date, selectStart;
 
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                    try {
+                        date = sdf.parse(dateStr);
+                        tempCal.setTime(date);
+                        setEndCal(tempCal);
+                        selectStart = getStartCal().getTime();
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
 
-            }
-        });
+                }
+            });
+        }
 
         //-----------------------------------------------------
 
@@ -197,7 +207,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         Date nextTime;
         Calendar tempCal = (Calendar) getStartCal().clone();
         strTimeList.add("Start Date");
-        sdf = new SimpleDateFormat("E, dd MMM yyyy");
 
         for (nextTime = startTime; nextTime.before(endTime) || nextTime.equals(endTime);
              nextTime = tempCal.getTime()) {
@@ -212,6 +221,23 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         }
 
 
+    }
+
+    private void setStrEndTimeList(Date start, Date end){
+        String strTime;
+        Date nextTime;
+        Calendar tempCal = (Calendar) getStartCal().clone();
+        strEndTimeList.add("End Date");
+        for (nextTime = start; nextTime.before(end) || nextTime.equals(end);
+             nextTime = tempCal.getTime()) {
+            //define a method who fix the time to 15min tim slot between a timeinteral
+            //then define a method who upload the timeslot to the data base.
+            //This is called after an the items are selected and button pressed.
+
+            strTime = sdf.format(nextTime);
+            strEndTimeList.add(strTime);
+            tempCal.add(Calendar.DATE, 1);
+        }
     }
 
     private int getStartHour() {
