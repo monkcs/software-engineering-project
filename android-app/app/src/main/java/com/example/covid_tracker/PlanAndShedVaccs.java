@@ -29,11 +29,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlanAndShedVaccs extends AppCompatActivity  implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterView.OnItemSelectedListener, View.OnClickListener*/ {
     private Spinner ageSpinner, startDateSpinner, endDateSpinner, timeSlotSpinner;
     private Button uploadBtn, changeBookingBtn;
-    private Calendar nowCal, startCal,endCal;
-    private int startHour, endHour, FUTURE_DAY = 1, FUTUTRE_MONTH= 1, ageLimit=-1;
+    private Calendar nowCal, startCal, endCal;
+    private int startHour, endHour, FUTURE_DAY = 1, FUTUTRE_MONTH = 1, ageLimit = -1;
     private ArrayList<Integer> timeslotList;
     private Date tomorrowDate, startDate, endDate;
     private SimpleDateFormat sdf;
@@ -54,11 +54,11 @@ public class PlanAndShedVaccs extends AppCompatActivity  implements AdapterView.
 
         uploadBtn = (Button) findViewById(R.id.upload_time_button);
         uploadBtn.setOnClickListener((new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        uploadBookingTime();
-                    }
-                }));
+            @Override
+            public void onClick(View view) {
+                uploadBookingTime();
+            }
+        }));
         //-------------------------------------------------
         ageSpinner = (Spinner) findViewById(R.id.age_spinner);
         ageList = new ArrayList<>();
@@ -77,7 +77,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  implements AdapterView.
                     int age = Integer.parseInt(selectedAge);
                     Log.i("Chosen age", "Age limit: " + age);
                     setAgeLimit(age);
-                }catch(NumberFormatException e){
+                } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
 
@@ -95,7 +95,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  implements AdapterView.
         nowCal = Calendar.getInstance();
 
         setStartCal(nowCal);
-        nowCal.add(Calendar.DATE,1);
+        nowCal.add(Calendar.DATE, 1);
         tomorrowDate = nowCal.getTime();
 
         //-----------------------------------
@@ -113,7 +113,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  implements AdapterView.
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String dateStr = (String) adapterView.getItemAtPosition(i);
-                Calendar tempCal= Calendar.getInstance();
+                Calendar tempCal = Calendar.getInstance();
                 Date date;
 
                 try {
@@ -144,7 +144,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  implements AdapterView.
     }
 
 
-    public  void setAgeList(){
+    public void setAgeList() {
         ageList.add("Age");
         ageList.add("65");
         ageList.add("55");
@@ -153,7 +153,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  implements AdapterView.
         ageList.add("12");
     }
 
-    public void setTimeList(Date startDate){
+    public void setTimeList(Date startDate) {
         // int minutes, Calender startDate, Calender endDate
         //Produceras tidsintervaller mellan two datum,
         // skall ocksa timmar laggas in? -> lar dig Calender Classen forst..
@@ -172,8 +172,8 @@ public class PlanAndShedVaccs extends AppCompatActivity  implements AdapterView.
         strTimeList.add("Start Date");
         sdf = new SimpleDateFormat("E, dd MMM yyyy");
 
-        for (nextTime= startTime; nextTime.before(endTime) || nextTime.equals(endTime);
-             nextTime = tempCal.getTime()){
+        for (nextTime = startTime; nextTime.before(endTime) || nextTime.equals(endTime);
+             nextTime = tempCal.getTime()) {
             //define a method who fix the time to 15min tim slot between a timeinteral
             //then define a method who upload the timeslot to the data base.
             //This is called after an the items are selected and button pressed.
@@ -181,60 +181,88 @@ public class PlanAndShedVaccs extends AppCompatActivity  implements AdapterView.
 
             strTime = sdf.format(nextTime);
             strTimeList.add(strTime);
-            tempCal.add(Calendar.DATE,1);
+            tempCal.add(Calendar.DATE, 1);
         }
 
 
     }
 
-    private void setStartHour( int inHour){ startHour = inHour;}
-    private int getStartHour(){return startHour;}
-    private void setEndHour( int inHour){ endHour = inHour;}
-    private int getEndHour(){return endHour;}
-    private void setAgeLimit(int age){ ageLimit = age;}
-    private int getAgeLimit(){return ageLimit;}
+    private int getStartHour() {
+        return startHour;
+    }
 
-    private void setStartCal(Calendar begin){
+    private void setStartHour(int inHour) {
+        startHour = inHour;
+    }
+
+    private int getEndHour() {
+        return endHour;
+    }
+
+    private void setEndHour(int inHour) {
+        endHour = inHour;
+    }
+
+    private int getAgeLimit() {
+        return ageLimit;
+    }
+
+    private void setAgeLimit(int age) {
+        ageLimit = age;
+    }
+
+    private Calendar getStartCal() {
+        return startCal;
+    }
+
+    private void setStartCal(Calendar begin) {
         startCal = (Calendar) begin.clone();
-        setStartHour(7);setEndHour(19);
+        setStartHour(7);
+        setEndHour(19);
         startCal.add(Calendar.DATE, FUTURE_DAY);
         startCal.set(Calendar.HOUR, getStartHour());
-        startCal.set(Calendar.MINUTE,0);
+        startCal.set(Calendar.MINUTE, 0);
         startCal.set(Calendar.SECOND, 0);
-        startCal.set(Calendar.MILLISECOND,0);
+        startCal.set(Calendar.MILLISECOND, 0);
     }
 
-    private Calendar getStartCal(){return startCal;}
-
-    private void setEndCal(){
+    private void setEndCal() {
         endCal = Calendar.getInstance();
-        setStartHour(7);setEndHour(19);
+        setStartHour(7);
+        setEndHour(19);
         endCal.add(Calendar.MONTH, FUTUTRE_MONTH);
         endCal.set(Calendar.HOUR, getStartHour());
-        endCal.set(Calendar.MINUTE,0);
+        endCal.set(Calendar.MINUTE, 0);
         endCal.set(Calendar.SECOND, 0);
-        endCal.set(Calendar.MILLISECOND,0);
+        endCal.set(Calendar.MILLISECOND, 0);
 
     }
 
-    private Calendar getEndCal(){ return endCal;}
+    private Calendar getEndCal() {
+        return endCal;
+    }
 
-    private void setTimeslotList(){
+    private void setTimeslotList() {
         timeslotList.add(10);
         timeslotList.add(15);
         timeslotList.add(20);
         timeslotList.add(30);
     }
-    private int getTimeslot(int pos){
+
+    private int getTimeslot(int pos) {
         int timeslot;
 
-        if(pos <=0 || pos < timeslotList.size()){ timeslot = timeslotList.get(pos);}
-        else { Log.i("timeslot lenght", "wrong position value"); timeslot=0;}
+        if (pos <= 0 || pos < timeslotList.size()) {
+            timeslot = timeslotList.get(pos);
+        } else {
+            Log.i("timeslot lenght", "wrong position value");
+            timeslot = 0;
+        }
 
         return timeslot;
     }
 
-    private  void uploadBookingTime(){
+    private void uploadBookingTime() {
         //code for uploading timeslots to database
         //should it return something?
         int mins = getTimeslot(1);//15min
@@ -243,27 +271,29 @@ public class PlanAndShedVaccs extends AppCompatActivity  implements AdapterView.
         setEndCal();
         Date endDate = getEndCal().getTime();
 
-        for (uploadDate = getStartCal().getTime();uploadDate.before(endDate); uploadDate = tempCal.getTime()){
+        for (uploadDate = getStartCal().getTime(); uploadDate.before(endDate); uploadDate = tempCal.getTime()) {
 
-            serverUpload(uploadDate, getAgeLimit());
+            SimpleDateFormat servrSdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String strDateUpload = servrSdf.format(uploadDate);
+            serverUpload(strDateUpload, getAgeLimit());
             tempCal.add(Calendar.MINUTE, mins);
         }
 
     }
 
-    private void serverUpload(Date time, int age){
+    private void serverUpload(String time, int age) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/create.php",
                 response -> {
-                        response.toString();
+                    response.toString();
                 }, error -> {
-error.toString();
+            error.toString();
         }
         ) {
             @Override
-            public Map<String, String> getParams()  {
+            public Map<String, String> getParams() {
 
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("datetime", time.toString());
+                params.put("datetime", time);
 
                 return params;
             }
@@ -277,19 +307,69 @@ error.toString();
         queue.add(request);
     }
 
-
+    /*
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.upload_time_button:
+                System.out.println("button1");
+                uploadBookingTime();
+                break;
+
+
+           /* case R.id.button2:
+                System.out.println("button2");
+                break;
+
+            case R.id.button3:
+                System.out.println("button3");
+                break;
+
+        }
 
     }
-
+*/
+    /*
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+    int test;
+
+    switch (adapterView.getId())
+    {
+        case R.id.age_spinner:
+        {
+            tring selectedAge = (String) adapterView.getItemAtPosition(i);
+            try {
+                int age = Integer.parseInt(selectedAge);
+                Log.i("Chosen age", "Age limit: " + age);
+                setAgeLimit(age);
+            }catch(NumberFormatException e){
+                e.printStackTrace();
+            }
+        }
+
+        case R.id.start_date_spinner:
+        {
+            String dateStr = (String) adapterView.getItemAtPosition(i);
+            Calendar tempCal= Calendar.getInstance();
+            Date date;
+
+            try {
+                date = sdf.parse(dateStr);
+                tempCal.setTime(date);
+                setStartCal(tempCal);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
+        int test;
     }
+
+     */
 }
