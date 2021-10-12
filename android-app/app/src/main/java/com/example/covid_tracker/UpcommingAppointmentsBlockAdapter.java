@@ -40,6 +40,7 @@ public class UpcommingAppointmentsBlockAdapter extends RecyclerView.Adapter<Upco
         UpcommingAppointmentsBlock ua_block = UA_block_list.get(position);
 
         holder.Time.setText(ua_block.getTime());
+        holder.Id.setText(String.valueOf(ua_block.getId()));
         holder.LastName.setText(ua_block.getLastname());
         holder.FirstName.setText(ua_block.getFirstname());
 
@@ -56,7 +57,7 @@ public class UpcommingAppointmentsBlockAdapter extends RecyclerView.Adapter<Upco
 
     public class VersionVH extends RecyclerView.ViewHolder {
 
-        TextView Time, LastName, FirstName;
+        TextView Time, Id, LastName, FirstName;
         Button btnInfo;
         RelativeLayout expandable;
         LinearLayout linear;
@@ -66,6 +67,7 @@ public class UpcommingAppointmentsBlockAdapter extends RecyclerView.Adapter<Upco
 
 
             Time = itemView.findViewById(R.id.Time);
+            Id = itemView.findViewById(R.id.Id);
             LastName = itemView.findViewById(R.id.LastName);
             FirstName = itemView.findViewById(R.id.FirstName);
 
@@ -87,9 +89,11 @@ public class UpcommingAppointmentsBlockAdapter extends RecyclerView.Adapter<Upco
                 @Override
                 public void onClick(View view) {
                     String fullName = LastName.getText().toString() + "," + FirstName.getText().toString();
+                    String id = Id.getText().toString();
                     Intent i1 = new Intent(context, HandlePerson.class);
                     /*functionality to send data between activities*/
                     i1.putExtra("personName",fullName);
+                    i1.putExtra("personID",id);
                     context.startActivity(i1);
                 }
             });

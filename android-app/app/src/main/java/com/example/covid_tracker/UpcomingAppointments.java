@@ -2,6 +2,7 @@ package com.example.covid_tracker;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -55,6 +56,8 @@ public class UpcomingAppointments extends Fragment {
         recyclerView_uppc_appoint = view.findViewById(R.id.recyclerView_uppc_appoint);
         tv_none_booked = view.findViewById(R.id.tv_none_booked);
 
+
+
         currDate = getDate();
 
         getBookedTimes(currDate);
@@ -71,13 +74,10 @@ public class UpcomingAppointments extends Fragment {
                     String temp = day;
                     day = "0" + day;
                 }
-
                 currDate = String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + day;
-                Log.i("UCA", "Current date: " + currDate);
                 getBookedTimes(currDate);
             }
         });
-
         return view;
     }
 
@@ -92,7 +92,7 @@ public class UpcomingAppointments extends Fragment {
                             datetime = jsonObject.getString("datetime");
                             date = getDateAndTime(datetime, 0);
                             if(date.equals(currDate))
-                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), jsonObject.getString("surname"),
+                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), Integer.parseInt(jsonObject.getString("account")), jsonObject.getString("surname"),
                                         jsonObject.getString("firstname"), jsonObject.getString("telephone"), Integer.parseInt(jsonObject.getString("dose"))));
                         }
                         if(booked_list.size() > 0) {
@@ -108,6 +108,7 @@ public class UpcomingAppointments extends Fragment {
                     }
                 }, error -> {
                     tv_none_booked.setText("No appointments today");
+                    setRecyclerView(booked_list);
                     Toast.makeText(getActivity(), "Currently no booked times", Toast.LENGTH_SHORT).show();
         }) {
             @Override

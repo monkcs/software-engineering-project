@@ -6,6 +6,7 @@
         android:title="Statistics"/>
 
     <item
+        android:tag="admin_upcommingAppoint"
         android:id="@+id/admin_upcommingAppoint"
         android:icon="@drawable/ic_baseline_calendar_today_24"
         android:title="Calendar"/>

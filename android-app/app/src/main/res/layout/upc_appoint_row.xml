@@ -31,6 +31,19 @@
                 />
 
             <TextView
+                android:id="@+id/Id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID"
+                android:paddingTop="14dp"
+                android:paddingLeft="14dp"
+                android:paddingBottom="14dp"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+
+                />
+
+            <TextView
                 android:id="@+id/LastName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
