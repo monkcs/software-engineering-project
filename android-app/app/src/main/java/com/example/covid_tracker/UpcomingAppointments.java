@@ -101,6 +101,7 @@ public class UpcomingAppointments extends Fragment {
                         }
                         else{
                             tv_none_booked.setText("No appointments today");
+                            setRecyclerView(booked_list);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
