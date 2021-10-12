@@ -176,7 +176,35 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
         System.out.println("---");
 
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/pending/decline.php",
+                response -> {
 
+                    System.out.println("In response");
+
+                }, error -> {
+
+            System.out.println("Error, den når inte fram");
+            System.out.println(error.toString());
+
+        }
+        ) {
+            @Override
+            public Map<String, String> getParams()  {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("account", ID.toString());
+
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
+        queue.add(request);
     }
 
 

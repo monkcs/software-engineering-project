@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,7 +27,7 @@ public class inboxAdmin extends Fragment {
     private RequestQueue queue;
     private View view;
     private Context context;
-    //private RecyclerView rV;
+    private RecyclerView rV;
     private Button boka;
 
     @Override
@@ -44,15 +43,15 @@ public class inboxAdmin extends Fragment {
 
         System.out.println("insidde box");
 
-        //rV = (RecyclerView) findViewById(R.id.recyclerView_inboxAdmin);
+        rV = (RecyclerView) view.findViewById(R.id.recyclerView_inboxAdmin);
 
 
         getPendingBookings();
-        //setRecyclerView();
+        setRecyclerView();
 
         return view;
     }
-/*
+
     private void setRecyclerView() {
 
         Admin_block_Adapter Admin_block_adapter = new Admin_block_Adapter(list);
@@ -60,7 +59,7 @@ public class inboxAdmin extends Fragment {
         rV.setHasFixedSize(true);
 
 
-    }*/
+    }
 
 
     private void getPendingBookings() {
@@ -90,7 +89,7 @@ public class inboxAdmin extends Fragment {
                         }
 
                     }
-                    //setRecyclerView();
+                    setRecyclerView();
 
                 }, error -> {
 
