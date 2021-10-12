@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,327 +33,153 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterView.OnItemSelectedListener, View.OnClickListener*/ {
-    private Spinner ageSpinner, startDateSpinner, endDateSpinner, timeSlotSpinner;
-    private Button uploadBtn, changeBookingBtn;
-    private Calendar nowCal, startCal, endCal;
-    private int startHour, endHour, FUTURE_DAY = 1, FUTUTRE_MONTH = 1, ageLimit = -1;
-    private ArrayList<Integer> timeslotList;
-    private Date tomorrowDate, startDate, endDate;
-    private SimpleDateFormat sdf;
-    //private String strDate;
-    private ArrayList<String> ageList, strTimeList,strEndTimeList;
-    private ArrayList<Date> timeList;
-    private RequestQueue queue;
-    private Boolean startDateSelected;
 
+    ArrayList<String> all_days_text;
+    ArrayList<String> sublist_days_text;
+    private RequestQueue queue;
+    private SimpleDateFormat format;
+    private Spinner start_date_spinner, end_date_spinner;
+    private Button add_time_button, change_booking_time_button;
+
+    private ArrayList<Date> all_days;
+    private ArrayList<Date> sublist_days;
+
+    private int index_start = 0;
+    private int index_end = 0;
+
+    private boolean error_code = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_and_shed_vaccs);
 
-        changeBookingBtn = (Button) findViewById(R.id.change_booking_time_button);
-
         queue = Volley.newRequestQueue(this);
-        sdf = new SimpleDateFormat("E, dd MMM yyyy");
-        timeslotList = new ArrayList<>();
-        strTimeList = new ArrayList<>();
-        strEndTimeList= new ArrayList<>();
-        setTimeslotList();// min 10,15,20,30
-        startDateSelected = false;
 
-        //-------------------------------------------------
-        ageSpinner = (Spinner) findViewById(R.id.age_spinner);
-        ageList = new ArrayList<>();
+        format = new SimpleDateFormat("E, dd MMM yyyy");
 
-        setAgeList();
-        ArrayAdapter<String> ageAdapter = new ArrayAdapter<String>
-                (this, android.R.layout.simple_spinner_item,
-                        ageList); //selected item will look like a spinner set from XML
-        ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ageSpinner.setAdapter(ageAdapter);
-        ageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        start_date_spinner = (Spinner) findViewById(R.id.start_date_spinner);
+
+        start_date_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedAge = (String) adapterView.getItemAtPosition(i);
-                try {
-                    int age = Integer.parseInt(selectedAge);
-                    Log.i("Chosen age", "Age limit: " + age);
-                    setAgeLimit(age);
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                }
-
+            public void onItemSelected(AdapterView<?> adapterView, View view, int index, long l) {
+                index_start = index;
+                updateEndTimeSpinner(index);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
-        //---------------------------------------------------------
-
-        startDateSpinner = (Spinner) findViewById(R.id.start_date_spinner);
-        nowCal = Calendar.getInstance();
-
-        setStartCal(nowCal);
-        nowCal.add(Calendar.DATE, 1);
-        tomorrowDate = nowCal.getTime();
-        nowCal.add(Calendar.MONTH, FUTUTRE_MONTH);
-        endDate = nowCal.getTime();
-
-        //--------------------------------------------------------------
-
-        setStrTimeList(tomorrowDate, endDate);
-        ArrayAdapter<String> strTimeAdapter = new ArrayAdapter<String>
-                (this, android.R.layout.simple_spinner_item, strTimeList);
-        //selected item will look like a spinner set from XML
-
-        strTimeAdapter.setDropDownViewResource(android.R.layout
-                .simple_spinner_dropdown_item);
-        startDateSpinner.setAdapter(strTimeAdapter);
-        startDateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        end_date_spinner = (Spinner) findViewById(R.id.end_date_spinner);
+        end_date_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String dateStr = (String) adapterView.getItemAtPosition(i);
-                startDateSelected =true;
-
-                Calendar tempCal = Calendar.getInstance();
-                Date date;
-
-                try {
-                    date = sdf.parse(dateStr);
-                    tempCal.setTime(date);
-                    setStartCal(tempCal);
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-
+            public void onItemSelected(AdapterView<?> adapterView, View view, int index, long l) {
+                index_end = index;
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                //en liten toast?
             }
         });
 
-        //--------------------------------------------------------
-        endDateSpinner = (Spinner) findViewById(R.id.end_date_spinner);
-        startDate = startCal.getTime();
-        setStrEndTimeList(startDate, endDate);
-
-        if (true/*startDateSelected*/) {
-            ArrayAdapter<String> strEndTimeAdapter = new ArrayAdapter<String>
-                    (this, android.R.layout.simple_spinner_item, strEndTimeList);
-            //selected item will look like a spinner set from XML
-
-            strEndTimeAdapter.setDropDownViewResource(android.R.layout
-                    .simple_spinner_dropdown_item);
-            endDateSpinner.setAdapter(strEndTimeAdapter);
-            endDateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    String dateStr = (String) adapterView.getItemAtPosition(i);
-                    Calendar tempCal = Calendar.getInstance();
-                    Date date, selectStart;
-
-                    try {
-                        date = sdf.parse(dateStr);
-                        tempCal.setTime(date);
-                        setEndCal(tempCal);
-                        selectStart = getStartCal().getTime();
-
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-
-                }
-            });
-        }
-
-        //-----------------------------------------------------
-
-        uploadBtn = (Button) findViewById(R.id.upload_time_button);
-        uploadBtn.setOnClickListener((new View.OnClickListener() {
+        add_time_button = (Button) findViewById(R.id.add_time_button);
+        add_time_button.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadBookingTime();
+                uploadAppointments();
             }
         }));
 
-        changeBookingBtn.setOnClickListener(new View.OnClickListener() {
+        change_booking_time_button = (Button) findViewById(R.id.change_booking_time_button);
+        change_booking_time_button.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PlanAndShedVaccs.this, AgePrioritizations.class);
                 startActivity(intent);
             }
-        });
-    }
+        }));
 
+        Calendar start_calendar = Calendar.getInstance();
+        start_calendar.add(Calendar.DATE, 1);
 
-    public void setAgeList() {
-        ageList.add("Age");
-        ageList.add("65");
-        ageList.add("55");
-        ageList.add("45");
-        ageList.add("18");
-        ageList.add("12");
-    }
+        Calendar end_calendar = (Calendar) start_calendar.clone();
+        end_calendar.add(Calendar.MONTH, 1);
+        end_calendar.add(Calendar.DATE, 1);
 
-    public void setTimeList(Date startDate) {
-        // int minutes, Calender startDate, Calender endDate
-        //Produceras tidsintervaller mellan two datum,
-        // skall ocksa timmar laggas in? -> lar dig Calender Classen forst..
-        //aList.add("Date");
-        timeList.add(startDate);
-    }
+        all_days = new ArrayList<>();
+        all_days_text = new ArrayList<>();
+        sublist_days_text = new ArrayList<>();
+        sublist_days = new ArrayList<>();
 
-    private void setStrTimeList(Date startTime, Date endTime ) {
-        String strTime;
-        Date nextTime;
-        Calendar tempCal = (Calendar) getStartCal().clone();
-        strTimeList.add("Start Date");
-
-        for (nextTime = startTime; nextTime.before(endTime) || nextTime.equals(endTime);
-             nextTime = tempCal.getTime()) {
-            //define a method who fix the time to 15min tim slot between a timeinteral
-            //then define a method who upload the timeslot to the data base.
-            //This is called after an the items are selected and button pressed.
-
-
-            strTime = sdf.format(nextTime);
-            strTimeList.add(strTime);
-            tempCal.add(Calendar.DATE, 1);
+        for (Calendar temporary = (Calendar) start_calendar.clone(); temporary.before(end_calendar); temporary.add(Calendar.DATE, 1)) {
+            all_days.add(temporary.getTime());
+            all_days_text.add(format.format(temporary.getTime()));
         }
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, all_days_text);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        start_date_spinner.setAdapter(adapter);
 
+        updateEndTimeSpinner(0);
     }
 
-    private void setStrEndTimeList(Date start, Date end){
-        String strTime;
-        Date nextTime;
-        Calendar tempCal = (Calendar) getStartCal().clone();
-        strEndTimeList.add("End Date");
-        for (nextTime = start; nextTime.before(end) || nextTime.equals(end);
-             nextTime = tempCal.getTime()) {
-            //define a method who fix the time to 15min tim slot between a timeinteral
-            //then define a method who upload the timeslot to the data base.
-            //This is called after an the items are selected and button pressed.
-
-            strTime = sdf.format(nextTime);
-            strEndTimeList.add(strTime);
-            tempCal.add(Calendar.DATE, 1);
-        }
-    }
-
-    private int getStartHour() {
-        return startHour;
-    }
-
-    private void setStartHour(int inHour) {
-        startHour = inHour;
-    }
-
-    private int getEndHour() {
-        return endHour;
-    }
-
-    private void setEndHour(int inHour) {
-        endHour = inHour;
-    }
-
-    private int getAgeLimit() {
-        return ageLimit;
-    }
-
-    private void setAgeLimit(int age) {
-        ageLimit = age;
-    }
-
-    private Calendar getStartCal() {
-        return startCal;
-    }
-
-    private void setStartCal(Calendar begin) {
-        startCal = (Calendar) begin.clone();
-        setStartHour(7);
-        setEndHour(19);
-        startCal.add(Calendar.DATE, FUTURE_DAY);
-        startCal.set(Calendar.HOUR, getStartHour());
-        startCal.set(Calendar.MINUTE, 0);
-        startCal.set(Calendar.SECOND, 0);
-        startCal.set(Calendar.MILLISECOND, 0);
-    }
-
-
-    private void setEndCal(Calendar ending) {
-        endCal = (Calendar) ending.clone();
-        setStartHour(7);
-        setEndHour(19);
-        endCal.add(Calendar.MONTH, FUTUTRE_MONTH);
-        endCal.set(Calendar.HOUR, getStartHour());
-        endCal.set(Calendar.MINUTE, 0);
-        endCal.set(Calendar.SECOND, 0);
-        endCal.set(Calendar.MILLISECOND, 0);
-
-    }
-
-    private Calendar getEndCal() {
-        return endCal;
-    }
-
-    private void setTimeslotList() {
-        timeslotList.add(10);
-        timeslotList.add(15);
-        timeslotList.add(20);
-        timeslotList.add(30);
-    }
-
-    private int getTimeslot(int pos) {
-        int timeslot;
-
-        if (pos <= 0 || pos < timeslotList.size()) {
-            timeslot = timeslotList.get(pos);
-        } else {
-            Log.i("timeslot lenght", "wrong position value");
-            timeslot = 0;
+    private void updateEndTimeSpinner(int index) {
+        sublist_days = new ArrayList<>();
+        for (int i = index; i < all_days.size(); i++) {
+            sublist_days.add(all_days.get(i));
         }
 
-        return timeslot;
-    }
-
-    private void uploadBookingTime() {
-        //code for uploading timeslots to database
-        //should it return something?
-        int mins = getTimeslot(1);//15min
-        Date uploadDate;
-        Calendar tempCal = (Calendar) getStartCal().clone();
-        //setEndCal have to be initiated before this
-        Date endDate = getEndCal().getTime();
-
-        for (uploadDate = getStartCal().getTime(); uploadDate.before(endDate); uploadDate = tempCal.getTime()) {
-
-            SimpleDateFormat servrSdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            String strDateUpload = servrSdf.format(uploadDate);
-            serverUpload(strDateUpload, getAgeLimit());
-            tempCal.add(Calendar.MINUTE, mins);
+        sublist_days_text = new ArrayList<>();
+        for (Date date : sublist_days) {
+            sublist_days_text.add(format.format(date.getTime()));
         }
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sublist_days_text);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        end_date_spinner.setAdapter(adapter);
     }
 
-    private void serverUpload(String time, int age) {
+    private void uploadAppointments() {
+
+        int appointment_lenght = 15;
+        ArrayList<Date> result = new ArrayList<>();
+
+        for (int i = 0; i <= index_end; i++) {
+            result.add(sublist_days.get(i));
+        }
+
+        SimpleDateFormat format_server = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        ArrayList<String> server_time_list = new ArrayList<>();
+
+        for (Date date : result) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.set(Calendar.HOUR, 7);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+
+
+            while (true) {
+                if (calendar.get(Calendar.HOUR) < 10) {
+                    server_time_list.add(format_server.format(calendar.getTime()));
+                    serverUpload(format_server.format(calendar.getTime()));
+                    calendar.add(Calendar.MINUTE, appointment_lenght);
+                } else {
+                    break;
+                }
+            }
+        }
+
+        Toast.makeText(this, "Upload request made", Toast.LENGTH_LONG).show();
+    }
+
+    private void serverUpload(String time) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/create.php",
                 response -> {
-                    response.toString();
                 }, error -> {
-            error.toString();
         }
         ) {
             @Override
@@ -371,70 +199,4 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
 
         queue.add(request);
     }
-
-    /*
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.upload_time_button:
-                System.out.println("button1");
-                uploadBookingTime();
-                break;
-
-
-           /* case R.id.button2:
-                System.out.println("button2");
-                break;
-
-            case R.id.button3:
-                System.out.println("button3");
-                break;
-
-        }
-
-    }
-*/
-    /*
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-    int test;
-
-    switch (adapterView.getId())
-    {
-        case R.id.age_spinner:
-        {
-            tring selectedAge = (String) adapterView.getItemAtPosition(i);
-            try {
-                int age = Integer.parseInt(selectedAge);
-                Log.i("Chosen age", "Age limit: " + age);
-                setAgeLimit(age);
-            }catch(NumberFormatException e){
-                e.printStackTrace();
-            }
-        }
-
-        case R.id.start_date_spinner:
-        {
-            String dateStr = (String) adapterView.getItemAtPosition(i);
-            Calendar tempCal= Calendar.getInstance();
-            Date date;
-
-            try {
-                date = sdf.parse(dateStr);
-                tempCal.setTime(date);
-                setStartCal(tempCal);
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-        int test;
-    }
-
-     */
 }
