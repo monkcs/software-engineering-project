@@ -6,20 +6,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+
+import java.util.Map;
 
 public class AdminLandingFragment extends Fragment {
 
     private RelativeLayout rl1, rl2, rl3;
     private View view;
-    //private TextView userCount = findViewById(R.id.adminUserCount);
+    private TextView userCount;
+    private RequestQueue queue;
     // how to display this in fragments?
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_admin_landing, container, false);
+        queue = Volley.newRequestQueue(getActivity());
+
         //setContentView(R.layout.fragment_admin_dashboard);
         rl1= (RelativeLayout) view.findViewById(R.id.Rellay1);
         /*rl1.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +59,8 @@ public class AdminLandingFragment extends Fragment {
             }
         });*/
 
+        userCount = view.findViewById(R.id.adminUserCount);
+
         return view;
     }
 
@@ -62,8 +78,8 @@ public class AdminLandingFragment extends Fragment {
         Intent intent = new Intent(getActivity(), PlanAndShedVaccs.class);
         startActivity(intent);
     }
-/*
-    void userCountRequest(){
+
+    public void userCountRequest(){
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "provider/quantity.php", null,
                 response -> {
                     try {
@@ -73,7 +89,7 @@ public class AdminLandingFragment extends Fragment {
                     }
 
                 }, error -> {
-            Toast.makeText(this, R.string.wrong_creeentials, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.wrong_creeentials, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -84,6 +100,6 @@ public class AdminLandingFragment extends Fragment {
         queue.add(request);
         queue.start();
     }
-*/
+
 
 }
