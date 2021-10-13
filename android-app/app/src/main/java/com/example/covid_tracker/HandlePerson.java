@@ -117,11 +117,7 @@ public class HandlePerson extends AppCompatActivity {
         dose = 2;
         update_tables(id, dose);
         Toast.makeText(HandlePerson.this, "Second dose for " + id + ", set timer for passport", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(HandlePerson.this, AdminDashboard.class);
-        intent.putExtra("currFragment","Upc_appoint");
-        finish();
-        startActivity(intent);
-
+        /*set passport timer functionality*/
     }
 
     public void RemoveAppointment(Integer id) {
@@ -139,8 +135,8 @@ public class HandlePerson extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CancelAppointment(id);
+                //finish();
                 dialog.dismiss();
-
             }
         });
         btnGoBack.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +152,7 @@ public class HandlePerson extends AppCompatActivity {
                 response -> {
                     Toast.makeText(HandlePerson.this, "Canceled time for person with ID: " + id, Toast.LENGTH_LONG).show();
                     tv_bookedDate.append(" (CANCELLED)");
-                    finish();
+                    //finish();
                 }, error -> {
             Toast.makeText(HandlePerson.this, "Not able to cancel time", Toast.LENGTH_LONG).show();
         }) {

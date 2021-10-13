@@ -46,6 +46,14 @@ public class UpcomingAppointments extends Fragment {
     ArrayList<UpcommingAppointmentsBlock> booked_list;
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("UCA", "Resumed this fragment");
+        currDate = getDate();
+        getBookedTimes(currDate);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_uppcomming_apointments, container, false);
         context = getActivity();
