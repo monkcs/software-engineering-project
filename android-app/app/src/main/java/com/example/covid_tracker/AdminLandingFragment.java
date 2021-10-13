@@ -32,7 +32,7 @@ public class AdminLandingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_admin_landing, container, false);
-        queue = Volley.newRequestQueue(getActivity());
+        //queue = Volley.newRequestQueue(getActivity());
 
         //setContentView(R.layout.fragment_admin_dashboard);
         rl1= (RelativeLayout) view.findViewById(R.id.Rellay1);
@@ -59,7 +59,7 @@ public class AdminLandingFragment extends Fragment {
             }
         });*/
 
-        userCount = view.findViewById(R.id.adminUserCount);
+        //userCount = view.findViewById(R.id.adminUserCount);
 
         return view;
     }
@@ -78,7 +78,7 @@ public class AdminLandingFragment extends Fragment {
         Intent intent = new Intent(getActivity(), PlanAndShedVaccs.class);
         startActivity(intent);
     }
-
+/*
     public void userCountRequest(){
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "provider/quantity.php", null,
                 response -> {
@@ -100,6 +100,6 @@ public class AdminLandingFragment extends Fragment {
         queue.add(request);
         queue.start();
     }
-
+*/
 
 }
