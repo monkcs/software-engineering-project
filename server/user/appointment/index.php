@@ -3,7 +3,7 @@
 require 'authenticate.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    $statement = $connection->prepare("SELECT available.datetime, appointment.dose, provider.name FROM appointment, available, provider WHERE 
+    $statement = $connection->prepare("SELECT available.datetime, appointment.dose, provider.name, appointment.pending FROM appointment, available, provider WHERE 
     appointment.available = available.id AND
     available.provider = provider.id AND
     appointment.account = ?
