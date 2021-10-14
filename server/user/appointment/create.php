@@ -34,9 +34,9 @@ function dosage($connection, $identity)
         $first->close();
 
         if ($result_first->num_rows == 0) {
-            return 1;
-        } else {
             return 0;
+        } else {
+            return 1;
         }
     } else {
         return 2;
