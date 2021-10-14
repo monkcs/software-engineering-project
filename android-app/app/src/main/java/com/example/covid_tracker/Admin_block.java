@@ -17,7 +17,7 @@ public class Admin_block {
         this.personen = serialized.getString("firstname");
         this.telenmr = serialized.getString("telephone");
         this.datumTid = serialized.getString("datetime");
-        //this.ID = serialized.getInt("account");
+        this.ID = serialized.getInt("account");
         this.available = serialized.getInt("available");
 
         this.svaret = questions;
