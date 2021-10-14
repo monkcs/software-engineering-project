@@ -62,12 +62,7 @@ public class UpcomingAppointments extends Fragment {
         recyclerView_uppc_appoint = view.findViewById(R.id.recyclerView_uppc_appoint);
         tv_none_booked = view.findViewById(R.id.tv_none_booked);
 
-
-
-
         currDate = getDate();
-
-        //getBookedTimes(currDate);
 
         calView_uppcAppoint.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
