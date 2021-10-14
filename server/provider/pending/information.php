@@ -26,6 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
 } else {
         http_response_code(405);
-        echo "Send request using HTTP get\n";
+        echo "Send request using HTTP post\n";
         exit;
 }
