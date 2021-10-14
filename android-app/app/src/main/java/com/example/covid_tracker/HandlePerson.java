@@ -109,13 +109,13 @@ public class HandlePerson extends AppCompatActivity {
     private void firstDoseTaken(Integer id) {
         dose = 1;
         update_tables(id, dose);
-        Toast.makeText(HandlePerson.this, "First dose for " + id + ", book second dose time", Toast.LENGTH_SHORT).show();
         bookSecondDose(id);
     }
 
     private void secondDoseTaken(Integer id) {
         dose = 2;
         update_tables(id, dose);
+        tv_bookedDate.append(" (CONFIRMED)");
         Toast.makeText(HandlePerson.this, "Second dose for " + id + ", set timer for passport", Toast.LENGTH_SHORT).show();
         /*set passport timer functionality*/
     }
