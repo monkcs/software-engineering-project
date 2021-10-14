@@ -109,7 +109,6 @@ public class HandlePerson extends AppCompatActivity {
     private void firstDoseTaken(Integer id) {
         dose = 1;
         update_tables(id, dose);
-        Toast.makeText(HandlePerson.this, "First dose for " + id + ", book second dose time", Toast.LENGTH_SHORT).show();
         bookSecondDose(id);
     }
 

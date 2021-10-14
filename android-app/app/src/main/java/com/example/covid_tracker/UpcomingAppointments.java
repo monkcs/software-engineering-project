@@ -48,8 +48,6 @@ public class UpcomingAppointments extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("UCA", "Resumed this fragment");
-        currDate = getDate();
         getBookedTimes(currDate);
     }
 
@@ -66,9 +64,10 @@ public class UpcomingAppointments extends Fragment {
 
 
 
+
         currDate = getDate();
 
-        getBookedTimes(currDate);
+        //getBookedTimes(currDate);
 
         calView_uppcAppoint.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
@@ -86,6 +85,7 @@ public class UpcomingAppointments extends Fragment {
                 getBookedTimes(currDate);
             }
         });
+
         return view;
     }
 
