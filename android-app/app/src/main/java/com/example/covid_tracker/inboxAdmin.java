@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,7 +83,7 @@ public class inboxAdmin extends Fragment {
                         try {
                             String test = appointment_question(response.getJSONObject(i).getInt("available"));
                             list.add(new Admin_block(response.getJSONObject(i), appointment_question(response.getJSONObject(i).getInt("available"))));
-
+                            String test2 = "";
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -111,7 +112,7 @@ public class inboxAdmin extends Fragment {
     }
 
     void getQuestions() {
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/pending/information.php", null,
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, WebRequest.urlbase + "provider/pending/information.php", null,
                 response -> {
 
                     for (int i = 0; i < response.length(); i++) {
@@ -129,6 +130,7 @@ public class inboxAdmin extends Fragment {
                     }
                     getPendingBookings();
                 }, error -> {
+            String t = "";
         }
         ) {
             @Override
