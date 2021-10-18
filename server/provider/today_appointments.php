@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                     on person.account = appointment.account
                                     inner join available
                                     on appointment.available = available.id
+                                    and appointment.pending = 0
                                     and available.provider = ?");
     $statement->bind_param("i", $identity);
     $statement->execute();
