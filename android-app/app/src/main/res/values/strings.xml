@@ -93,5 +93,11 @@
     <string name="confirm">Confirm</string>
     <string name="exit">Exit</string>
 
+    <string name="scan_qr">Scan Covid Passport</string>
+    <string name="Username">Namn</string>
+    <string name="Dateofbirth">Föddelsedatum</string>
+    <string name="Manufacturer">Tillverkare</string>
+    <string name="Dosetwodate">Datumet för dos två</string>
+
 
 </resources>
