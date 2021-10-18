@@ -75,6 +75,8 @@ public class Dashboard extends AppCompatActivity {
 
                     default:
                         selectedFragment = new StatisticsMenu();
+                        Log.i("FEL", "BottomNavigationView -> navListener är fel användaren väljer ett alternativ som inte fungerar");
+                        Log.d("FEL", "BottomNavigationView -> navListener är fel användaren väljer ett alternativ som inte fungerar");
                         break;
                 }
 

@@ -31,6 +31,12 @@
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/menu/admin_bottom_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/menu/bottom_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/activity_administartorlogin.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_digital_health.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_faq.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_statistics_menu.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/login.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/test_login.xml" value="0.25" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_administartorlogin.xml" value="0.2796875" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_boka_vaccin2.xml" value="0.146875" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_booking.xml" value="0.2796875" />
