@@ -175,7 +175,6 @@ public class BookingStep3Fragment extends Fragment {
         availabletimes.setOnItemClickListener((adapterView, view, i, l) -> {
 
             Times temp  = timeslist.getItem(i);
-            Toast.makeText(getActivity(), temp.id + " Är vald!", Toast.LENGTH_SHORT).show();
             //to save or not to save that is the question
             SharedPreferences.Editor edit = getActivity().getSharedPreferences("Booking", Context.MODE_PRIVATE).edit();
             edit.putInt("time", -1);

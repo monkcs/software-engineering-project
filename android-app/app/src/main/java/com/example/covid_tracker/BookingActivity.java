@@ -142,7 +142,6 @@ public class BookingActivity extends AppCompatActivity{
             }
             //Boolean health = pref.getBoolean("Health_info", true);
             if (health && tot == 5) {
-                Toast.makeText(this, "Please contact your doctor", Toast.LENGTH_LONG).show();
                 pending = 1;
                 add_questions();
                 book_time();
