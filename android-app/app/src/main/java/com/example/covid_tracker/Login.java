@@ -95,7 +95,7 @@ public class Login extends Activity implements OnClickListener {
 
             case R.id.btnLogIn:
                 if (user_email.getText().toString().trim().matches(emailPattern)) {
-                    Toast.makeText(getApplicationContext(), "valid email address", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "valid email address", Toast.LENGTH_SHORT).show();
                     login();
                 }
                 else

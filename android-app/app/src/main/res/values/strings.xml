@@ -79,7 +79,7 @@
     <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
     <string name="Choose_clinic" translatable="false">Choose Clinic:</string>
     <string name="Choose_vaccine" translatable="false">Choose Vaccine Type:</string>
-    <string name="yes" translatable="false">Yes</string>
+    <string name="yes">Yes</string>
     <string name="no" translatable="false">No</string>
 
     <string name="rebook" translatable="false">boka om</string>
@@ -89,6 +89,15 @@
     <string name="noticeseconddose" translatable="false">Nu har du fått tid för ditt andra dos</string>
     <string name="channel_name_2" translatable="false">Get notice for exepted booktime</string>
     <string name="channel_description_2" translatable="false">Get response that booking time is accepted</string>
+    <string name="confirm_appointment">Are you sure you wish to confirm appointment?</string>
+    <string name="confirm">Confirm</string>
+    <string name="exit">Exit</string>
+
+    <string name="scan_qr">Scan Covid Passport</string>
+    <string name="Username">Namn</string>
+    <string name="Dateofbirth">Föddelsedatum</string>
+    <string name="Manufacturer">Tillverkare</string>
+    <string name="Dosetwodate">Datumet för dos två</string>
 
 
     <!-- dosage Admin  -->
