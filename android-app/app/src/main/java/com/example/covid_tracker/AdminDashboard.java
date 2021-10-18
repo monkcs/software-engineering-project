@@ -1,34 +1,19 @@
 package com.example.covid_tracker;
 
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Map;
 
 
 public class AdminDashboard extends AppCompatActivity {
 
     boolean extra_info = false;
     String currFragment;
+    RelativeLayout buttonis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +22,7 @@ public class AdminDashboard extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         setContentView(R.layout.activity_dashboard_admin_fragments);
+
 
         BottomNavigationView bottomNav = findViewById(R.id.admin_bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -47,6 +33,7 @@ public class AdminDashboard extends AppCompatActivity {
 
 
     }
+
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {

@@ -91,4 +91,10 @@
     <string name="channel_description_2" translatable="false">Get response that booking time is accepted</string>
 
 
+    <!-- dosage Admin  -->
+    <string name="addlager">Add to Stock</string>
+    <string name="amount_dosage">Amount of doses to add</string>
+    <string name="add_dosage_button">Add</string>
+    <string name="lager">In Stock</string>
+
 </resources>

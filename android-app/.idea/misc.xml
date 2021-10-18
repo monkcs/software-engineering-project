@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_admin_dosage.xml" value="0.2" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_admin_fragments.xml" value="0.13229166666666667" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_fragments.xml" value="0.13229166666666667" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/booking_card_row.xml" value="0.18885869565217392" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/dosage_row.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_admin_landing.xml" value="0.13229166666666667" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_bookingstep2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_faq.xml" value="0.18885869565217392" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/upc_appoint_row.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.2" />
