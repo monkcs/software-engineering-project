@@ -22,9 +22,14 @@
 
     <string name="network_down" translatable="false">Ingen anslutning till servern är tillgänglig</string>
 
+    <string name="confirm_appointment">Vill du verkligen bekräfta bokningen?</string>
+    <string name="yes">Ja</string>
+    <string name="confirm">Bekräfta</string>
+    <string name="exit">Avbryt</string>
     <string name="scan_qr">Scanna Vaccinpass</string>
     <string name="Username">Namn</string>
     <string name="Dateofbirth">Föddelsedatum</string>
     <string name="Manufacturer">Tillverkare</string>
     <string name="Dosetwodate">Datumet för dos två</string>
+
 </resources>
