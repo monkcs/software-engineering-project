@@ -47,7 +47,7 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
         Admin_block bookingblockis = Admin_block_List.get(position);
 
 
-        holder.PersonText.setText(bookingblockis.getPersonen());
+        holder.PersonText.setText(bookingblockis.getPersonen() + " " + bookingblockis.getPersonen2());
         holder.SvarText.setText(bookingblockis.getSvaret());
         holder.telefonText.setText(bookingblockis.getTelenmr());
         holder.datumTidText.setText(bookingblockis.getDatumTid());
@@ -176,6 +176,7 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
             super(itemView);
 
             PersonText = itemView.findViewById(R.id.Personen);
+
             SvarText = itemView.findViewById(R.id.Svaren);
             telefonText = itemView.findViewById(R.id.telefonNummer);
             datumTidText = itemView.findViewById(R.id.datumTid);
