@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Covid_tracker">
         <activity
-            android:name=".Admin_dosage"
+            android:name=".age_change"
             android:exported="true"
             android:parentActivityName=".AdminDashboard"/>
+        <activity
+            android:name=".admin_dosage"
+            android:exported="true"
+            android:parentActivityName=".AdminDashboard" />
         <activity
             android:name=".PlanAndShedVaccs"
             android:exported="true" />

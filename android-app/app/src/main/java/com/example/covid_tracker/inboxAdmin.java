@@ -19,7 +19,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -153,5 +152,4 @@ public class inboxAdmin extends Fragment {
         }
     }
 }
-
 

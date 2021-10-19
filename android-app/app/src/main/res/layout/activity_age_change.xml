@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView_age"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+        <RelativeLayout
+            android:id="@+id/agechange_linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/update_agechange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update" />
+
+            <Button
+                android:id="@+id/update_agechange2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Info"
+                android:layout_alignParentRight="true"
+            />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edittext_changeage"
+                android:hint="ålder"
+                android:inputType="number"
+                android:layout_below="@+id/update_agechange"/>
+
+            <CalendarView
+                android:id="@+id/calender_agechange"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/edittext_changeage"
+                android:layout_height="wrap_content" />
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/calender_agechange"
+            android:id="@+id/recyclerView_age_age_age"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+
+            />
+
+
+        </RelativeLayout>
+
+</RelativeLayout>
