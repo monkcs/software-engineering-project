@@ -20,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 else if($_SERVER['REQUEST_METHOD'] == "POST"){
     /*Here the increment/decrement will take place 
     SQL something like: "UPDATE vaccines SET quantity=quantity + [INPUT_VALUE] where name is [SELECTED_NAME]"*/
-    $selected_name = $_POST["selected_name"];
+    $selected_id = $_POST["selected_id"];
     $input_value = $_POST["input_value"];
 
-    $statement = $connection->prepare("UPDATE vaccines SET vaccines.quantity=vaccines.quantity+? where vaccines.name = ?");
-    $statement->bind_param("is", $input_value, $selected_name);
+    $statement = $connection->prepare("UPDATE vaccines SET vaccines.quantity=vaccines.quantity+? where vaccines.id = ?");
+    $statement->bind_param("is", $input_value, $selected_id);
     $statement->execute();
     $statement->close();
    
