@@ -46,25 +46,27 @@
             android:textSize="30dp" />
 
         <Spinner
-            android:layout_below="@+id/addlager"
-            android:gravity="center"
             android:id="@+id/spinnerVaccine_dosage"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"
-            android:padding="16dp"/>
+            android:layout_below="@+id/addlager"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:minHeight="48dp"
+            android:padding="16dp"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
         <EditText
 
 
+            android:id="@+id/edit_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edit_amount"
-            android:textSize="14dp"
             android:layout_below="@id/spinnerVaccine_dosage"
-            android:inputType="numberDecimal"
-            android:hint="@string/amount_dosage"/>
+            android:hint="@string/amount_dosage"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textSize="14dp" />
 
         <Button
             android:id="@+id/addknapp"
