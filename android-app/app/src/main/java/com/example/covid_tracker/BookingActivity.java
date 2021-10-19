@@ -163,6 +163,7 @@ public class BookingActivity extends AppCompatActivity{
     public void book_time(){
         SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
         Integer id_time =  pref.getInt("time", 0);
+        Integer id_vaccine = pref.getInt("vaccine_ID", -1);
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/create.php",
                 response -> {
                     Toast.makeText(BookingActivity.this, "Booking time successfull", Toast.LENGTH_LONG).show();
@@ -178,6 +179,7 @@ public class BookingActivity extends AppCompatActivity{
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("appointment", id_time.toString());
                 params.put("pending", pending.toString());
+                params.put("vaccine", id_vaccine.toString());
 
                 return params;
             }
