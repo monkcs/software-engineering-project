@@ -21,9 +21,19 @@
     <string name="Svar9">Allvarliga problem: 112, annars 1177</string>
 
     <string name="network_down" translatable="false">Ingen anslutning till servern är tillgänglig</string>
+
     <string name="lager" >I Lager</string>
     <string name="addlager">Lägg till i lager</string>
     <string name="amount_dosage">Antal doser att lägga till</string>
     <string name="add_dosage_button">Lägg till</string>
+    <string name="confirm_appointment">Vill du verkligen bekräfta bokningen?</string>
+    <string name="yes">Ja</string>
+    <string name="confirm">Bekräfta</string>
+    <string name="exit">Avbryt</string>
+    <string name="scan_qr">Scanna Vaccinpass</string>
+    <string name="Username">Namn</string>
+    <string name="Dateofbirth">Föddelsedatum</string>
+    <string name="Manufacturer">Tillverkare</string>
+    <string name="Dosetwodate">Datumet för dos två</string>
 
 </resources>
