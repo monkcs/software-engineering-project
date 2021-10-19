@@ -1,6 +1,8 @@
 package com.example.covid_tracker;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,8 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +43,9 @@ public class DigitalHealth extends Fragment {
     private List<FAQ_block> list;
     private RequestQueue queue;
 
+    private static final int CAMERA_PERMISSION_CODE = 100;
+
+
 
 
     @Override
@@ -57,8 +65,14 @@ public class DigitalHealth extends Fragment {
 
         Button toocamera = view.findViewById(R.id.btn_camera);
         toocamera.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), StatisticsVacc.class);
-            startActivity(intent);
+
+            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+
+            }else{
+                startActivity(new Intent(getActivity(), CameraScannerActivity.class));
+            }
+
         });
 
         return view;
@@ -92,10 +106,10 @@ public class DigitalHealth extends Fragment {
 
     private void initUserInfo() {
 
-        list.add(new FAQ_block(getString(R.string.Username)     , "Lukas Axelborn",""));
-        list.add(new FAQ_block(getString(R.string.Dateofbirth)  , "2000 03 21"  ,""));
+        list.add(new FAQ_block(getString(R.string.Username)         , "Lukas Axelborn",""));
+        list.add(new FAQ_block(getString(R.string.Dateofbirth), "2000 03 21"  ,""));
         list.add(new FAQ_block(getString(R.string.Manufacturer) , "sputnik"     ,""));
-        list.add(new FAQ_block(getString(R.string.Dosetwodate)  , " I sommaras" ,""));
+        list.add(new FAQ_block(getString(R.string.Dosetwodate), " I sommaras" ,""));
 
     }
 
@@ -118,4 +132,6 @@ public class DigitalHealth extends Fragment {
         queue.add(request);
     }
 
+
 }
+
