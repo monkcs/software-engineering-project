@@ -125,7 +125,7 @@ public class Admin_dosage extends AppCompatActivity {
                     for (int i=0;i<response.length();i++) {
                         try {
                             JSONObject jsonObject = response.getJSONObject(i);
-                            list.add(new Dosage_block(jsonObject.getInt("quantity"), jsonObject.getString("name")));
+                            list.add(new Dosage_block(jsonObject.getString("id"), jsonObject.getInt("quantity"), jsonObject.getString("name")));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
