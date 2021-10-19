@@ -22,6 +22,10 @@
 
     <string name="network_down" translatable="false">Ingen anslutning till servern är tillgänglig</string>
 
+    <string name="lager" >I Lager</string>
+    <string name="addlager">Lägg till i lager</string>
+    <string name="amount_dosage">Antal doser att lägga till</string>
+    <string name="add_dosage_button">Lägg till</string>
     <string name="confirm_appointment">Vill du verkligen bekräfta bokningen?</string>
     <string name="yes">Ja</string>
     <string name="confirm">Bekräfta</string>
@@ -31,5 +35,10 @@
     <string name="Dateofbirth">Föddelsedatum</string>
     <string name="Manufacturer">Tillverkare</string>
     <string name="Dosetwodate">Datumet för dos två</string>
+
+    <!-- general -->
+    <string name="success">Lyckades!</string>
+    <string name="error_missing_value">Värde saknas</string>
+
 
 </resources>
