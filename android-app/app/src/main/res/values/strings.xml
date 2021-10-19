@@ -130,6 +130,16 @@
     <string name="Second_dose_percent">Second dose (%)</string>
     <string name="time">Time</string>
     <string name="information">Information</string>
+    <string name="inventory">Inventory</string>
+    <string name="dosage_quantity">Number of dosages</string>
+    <string name="add_dosages">Add dosages</string>
+    <string name="confirm_appointment">Confirm appointment</string>
+    <string name="scan_qr_code">Scan qr code</string>
+    <string name="error_missing_value">No value recieved</string>
+    <string name="success">Success</string>
+    <string name="username">Username</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="manufacturer">Manufacturer</string>
 
 
 </resources>

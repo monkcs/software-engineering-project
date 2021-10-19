@@ -106,10 +106,10 @@ public class DigitalHealth extends Fragment {
 
     private void initUserInfo() {
 
-        list.add(new FAQ_block(getString(R.string.Username)         , "Lukas Axelborn",""));
-        list.add(new FAQ_block(getString(R.string.Dateofbirth), "2000 03 21"  ,""));
-        list.add(new FAQ_block(getString(R.string.Manufacturer) , "sputnik"     ,""));
-        list.add(new FAQ_block(getString(R.string.Dosetwodate), " I sommaras" ,""));
+        list.add(new FAQ_block(getString(R.string.username)         , "Lukas Axelborn",""));
+        list.add(new FAQ_block(getString(R.string.birthdate), "2000 03 21"  ,""));
+        list.add(new FAQ_block(getString(R.string.manufacturer) , "sputnik"     ,""));
+        list.add(new FAQ_block(getString(R.string.date), " I sommaras" ,""));
 
     }
 

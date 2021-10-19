@@ -225,7 +225,7 @@ public class BookingActivity extends AppCompatActivity{
                 response -> {
                     //success
                 }, error -> {
-            Toast.makeText(BookingActivity.this, getString(R.string.error_msg), Toast.LENGTH_LONG).show();
+            Toast.makeText(BookingActivity.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
