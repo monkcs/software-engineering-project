@@ -55,13 +55,24 @@ public class AdminLandingFragment extends Fragment {
         rl3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inboxAdmin();
+                dosage();
             }
         });
 
         userCount = view.findViewById(R.id.adminUserCount);
         userCountRequest();
         return view;
+    }
+
+    public void dosage() {
+
+
+
+            Intent intent = new Intent(getActivity(), admin_dosage.class);
+            startActivity(intent);
+
+
+
     }
 
     public void inboxAdmin(){
