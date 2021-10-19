@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Covid_tracker">
         <activity
-            android:name=".admin_dosage"
+            android:name=".Admin_dosage"
             android:exported="true"
             android:parentActivityName=".AdminDashboard"/>
         <activity

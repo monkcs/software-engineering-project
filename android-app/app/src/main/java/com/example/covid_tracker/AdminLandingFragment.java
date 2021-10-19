@@ -68,7 +68,7 @@ public class AdminLandingFragment extends Fragment {
 
 
 
-            Intent intent = new Intent(getActivity(), admin_dosage.class);
+            Intent intent = new Intent(getActivity(), Admin_dosage.class);
             startActivity(intent);
 
 

@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class admin_dosage extends AppCompatActivity {
+public class Admin_dosage extends AppCompatActivity {
 
     private RecyclerView recyclerview;
     public List<Dosage_block> list;
@@ -86,8 +86,7 @@ public class admin_dosage extends AppCompatActivity {
 
                     addToDatabase(antal_convert, nameis_spinner);
 
-
-                    GetfromDatabase();
+                    //GetfromDatabase();
                 }
                 else{
 
@@ -95,8 +94,6 @@ public class admin_dosage extends AppCompatActivity {
 
                 }
                 //uppdatera listan med getQuestions (update kommando)
-
-
             }
         });
 
@@ -108,13 +105,10 @@ public class admin_dosage extends AppCompatActivity {
 
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/vaccine_catalog.php",
                 response -> {
-                    Toast.makeText(admin_dosage.this, "Canceled time for person with ID: ", Toast.LENGTH_LONG).show();
-
-                    System.out.println(response);
-
-                    //finish();
+                    Toast.makeText(Admin_dosage.this, "Success!", Toast.LENGTH_LONG).show();
+                    GetfromDatabase();
                 }, error -> {
-            Toast.makeText(admin_dosage.this, "Not able to cancel time", Toast.LENGTH_LONG).show();
+            Toast.makeText(Admin_dosage.this, "Error", Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
@@ -128,9 +122,7 @@ public class admin_dosage extends AppCompatActivity {
                 return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
             }
         };
-
         queue.add(request);
-
     }
 
     private void add_spinner() {
@@ -140,7 +132,6 @@ public class admin_dosage extends AppCompatActivity {
         for(int i=0;i<list.size();i++){
 
             lista_spinner.add(list.get(i).getNamn());
-           // System.out.println(list.get(i).getNamn());
         }
 
         spinner = this.findViewById(R.id.spinnerVaccine_dosage);
@@ -163,12 +154,8 @@ public class admin_dosage extends AppCompatActivity {
 
                     for (int i=0;i<response.length();i++) {
                         try {
-
-
                             JSONObject jsonObject = response.getJSONObject(i);
-
                             list.add(new Dosage_block(jsonObject.getInt("quantity"), jsonObject.getString("name")));
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -176,7 +163,6 @@ public class admin_dosage extends AppCompatActivity {
                         setRecyclerView();
                     }
                 }, error -> {
-
 
             System.out.println("Error no response");
             setRecyclerView();

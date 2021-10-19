@@ -23,7 +23,7 @@ else if($_SERVER['REQUEST_METHOD'] == "POST"){
     $selected_name = $_POST["selected_name"];
     $input_value = $_POST["input_value"];
 
-    $statement = $connection->prepare("UPDATE vaccines SET vaccines.quantity=vaccines.quantity+? where vaccines.name is ?");
+    $statement = $connection->prepare("UPDATE vaccines SET vaccines.quantity=vaccines.quantity+? where vaccines.name = ?");
     $statement->bind_param("is", $input_value, $selected_name);
     $statement->execute();
     $statement->close();
