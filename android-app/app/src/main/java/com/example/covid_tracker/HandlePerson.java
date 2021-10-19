@@ -180,7 +180,6 @@ public class HandlePerson extends AppCompatActivity {
         setPassportDate(id);
         update_tables(id, dose);
         tv_bookedDate.append(" (CONFIRMED)");
-        /*set passport timer functionality*/
     }
 
     public void CancelPopUp(Integer id) {

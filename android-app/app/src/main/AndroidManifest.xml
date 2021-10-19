@@ -15,9 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Covid_tracker">
-        <activity
+       <activity
             android:name=".CameraScannerActivity"
             android:exported="true" />
+
+      <activity
+            android:name=".Admin_dosage"
+            android:exported="true"
+            android:parentActivityName=".AdminDashboard"/>
         <activity
             android:name=".PlanAndShedVaccs"
             android:exported="true" />

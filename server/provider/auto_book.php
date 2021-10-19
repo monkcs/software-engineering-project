@@ -1,7 +1,7 @@
 <?php
 
 require 'authenticate.php';
-
+//Lägg till rätt vaccin typ när insertar to appointment
 function insert($connection, $appointment)
 {
     $user = $_POST["ID"];
