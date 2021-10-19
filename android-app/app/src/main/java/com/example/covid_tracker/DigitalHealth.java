@@ -57,7 +57,7 @@ public class DigitalHealth extends Fragment {
 
         Button toocamera = view.findViewById(R.id.btn_camera);
         toocamera.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), StatisticsVacc.class);
+            Intent intent = new Intent(getActivity(), CameraScannerActivity.class);
             startActivity(intent);
         });
 
@@ -92,10 +92,10 @@ public class DigitalHealth extends Fragment {
 
     private void initUserInfo() {
 
-        list.add(new FAQ_block(getString(R.string.Username)     , "Lukas Axelborn",""));
-        list.add(new FAQ_block(getString(R.string.Dateofbirth)  , "2000 03 21"  ,""));
+        list.add(new FAQ_block(getString(R.string.Username)         , "Lukas Axelborn",""));
+        list.add(new FAQ_block(getString(R.string.Dateofbirth), "2000 03 21"  ,""));
         list.add(new FAQ_block(getString(R.string.Manufacturer) , "sputnik"     ,""));
-        list.add(new FAQ_block(getString(R.string.Dosetwodate)  , " I sommaras" ,""));
+        list.add(new FAQ_block(getString(R.string.Dosetwodate), " I sommaras" ,""));
 
     }
 
