@@ -155,9 +155,11 @@ public class BookingActivity extends AppCompatActivity{
     public void book_time(){
         SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
         Integer id_time =  pref.getInt("time", 0);
+        Integer id_vaccine = pref.getInt("vaccine_ID", -1);
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/create.php",
                 response -> {
                     Toast.makeText(BookingActivity.this, R.string.appointment_created, Toast.LENGTH_LONG).show();
+                    removeFromCatalog(id_vaccine.toString());
                     Intent intent = new Intent(BookingActivity.this, Dashboard.class);
                     finish();
                     startActivity(intent);
@@ -170,6 +172,7 @@ public class BookingActivity extends AppCompatActivity{
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("appointment", id_time.toString());
                 params.put("pending", pending.toString());
+                params.put("vaccine", id_vaccine.toString());
 
                 return params;
             }
@@ -216,6 +219,29 @@ public class BookingActivity extends AppCompatActivity{
 
         queue.add(request);
     }
+
+    public void removeFromCatalog(String vaccine_id){
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/vaccine_catalog.php",
+                response -> {
+                    //success
+                }, error -> {
+            Toast.makeText(BookingActivity.this, getString(R.string.error_msg), Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("selected_id", vaccine_id);
+                params.put("input_value", String.valueOf(-1));
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.User.username, WebRequest.User.password);
+            }
+        };
+        queue.add(request);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

@@ -2,10 +2,12 @@ package com.example.covid_tracker;
 
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -75,6 +77,8 @@ public class Dashboard extends AppCompatActivity {
 
                     default:
                         selectedFragment = new StatisticsMenu();
+                        Log.i("FEL", "BottomNavigationView -> navListener är fel användaren väljer ett alternativ som inte fungerar");
+                        Log.d("FEL", "BottomNavigationView -> navListener är fel användaren väljer ett alternativ som inte fungerar");
                         break;
                 }
 
@@ -128,6 +132,29 @@ public class Dashboard extends AppCompatActivity {
         };
 
         queue.add(request);
+    }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode,
+                permissions,
+                grantResults);
+
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, CameraScannerActivity.class));
+
+        }
+        else {
+            Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
+            //startActivity(new Intent(this, Dashboard.class));
+
+        }
     }
 
 }

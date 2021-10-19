@@ -8,10 +8,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.Toolbar;
 
 
 import com.android.volley.Request;
@@ -38,6 +39,13 @@ public class Login extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_login);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
+// Get access to the custom title view
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
 
         queue = Volley.newRequestQueue(this);
 
@@ -54,6 +62,9 @@ public class Login extends Activity implements OnClickListener {
 
         BtnLogin.setOnClickListener(this);
 
+    }
+
+    private void setSupportActionBar(Toolbar toolbar) {
     }
 
     void login() {

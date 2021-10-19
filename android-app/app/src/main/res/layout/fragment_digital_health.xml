@@ -16,14 +16,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/digital_health"
+            android:layout_marginTop="80dp"
+            android:text="@string/dashboard"
             android:textColor="#000000"
             android:textSize="30sp"
             app:fontFamily="sans-serif"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="80dp"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
@@ -40,43 +40,49 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="160dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:srcCompat="@drawable/medical_icon_1_300x300"
-            tools:layout_editor_absoluteY="56dp"
-            tools:ignore="MissingConstraints"
-            android:contentDescription="@string/health_symbol" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/medical_icon_1_300x300" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
-            android:layout_height="175dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
             android:orientation="horizontal"
-            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-            <TextView
-                android:id="@+id/textinfo"
+            <Button
+                android:id="@+id/btn_camera"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:gravity="center"
-                android:text="@string/template"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:backgroundTint="@color/green"
+                android:text="@string/scan_qr"
+                android:textColor="@color/white" />
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:orientation="horizontal"
-            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,12 +91,36 @@
             <ImageView
                 android:id="@+id/imageviewqr"
                 android:layout_width="0dp"
-                android:layout_height="293dp"
-                android:layout_margin="10dp"
+                android:layout_height="300dp"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:contentDescription="@string/health_symbol" />
+                tools:ignore="ContentDescription" />
+
+
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_userinfo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
