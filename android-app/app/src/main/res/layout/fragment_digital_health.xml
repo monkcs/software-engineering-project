@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Your health info"
+            android:text="@string/template"
             android:textColor="#FFE0B2"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,12 +41,12 @@
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_marginEnd="16dp"
-            android:contentDescription="@string/todo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:srcCompat="@drawable/medical_icon_1_300x300"
             tools:layout_editor_absoluteY="56dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:contentDescription="@string/health_symbol" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -67,7 +67,7 @@
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:gravity="center"
-                android:text="Här kan det stå saker TODO"
+                android:text="@string/template"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </LinearLayout>
 
@@ -87,7 +87,8 @@
                 android:layout_width="0dp"
                 android:layout_height="293dp"
                 android:layout_margin="10dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:contentDescription="@string/health_symbol" />
         </LinearLayout>
 
 

@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:autofillHints="password"
         android:gravity="center"
-        android:hint="@string/Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textSize="22sp" />
 
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
-        android:text="@string/button_login"
+        android:text="@string/login"
         android:textColor="@color/black" />
 
     <TextView
@@ -62,7 +62,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/wronguser"
+        android:text="@string/not_provider"
         />
 
         <Button
@@ -71,7 +71,7 @@
 
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:text="@string/goback"
+            android:text="@string/go_back"
             android:textColor="@color/black" />
 
     </LinearLayout>

@@ -1,46 +1,39 @@
 <resources>
 
-    <string name="app_name">Covid Tracker</string>
+    <string name="app_name">Covid-19 Tracker</string>
 
     <!-- user login -->
-    <string name="button_login" translatable="false">Log In</string>
-    <string name="button_signUp" translatable="false">Sign Up!</string>
-    <string name="Login" translatable="false">Login</string>
-    <string name="New_user" translatable="false">New user?</string>
-    <string name="Password" translatable="false">Password</string>
-    <string name="email" translatable="false">Enter e-mail</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="new_user">New user</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
 
-
-    <string name="info_about_corona" translatable="false">Info about Corona</string>
-    <string name="dashboard" translatable="false">Dashboard</string>
-    <string name="digital_health" translatable="false">Digital Health</string>
-    <string name="todo" translatable="false">TODO</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="digital_health">Digital Health</string>
 
 
     <!-- user registration  -->
-    <string name="email2" translatable="false">Skriv om Email</string>
-    <string name="firstname" translatable="false">Förnamn</string>
-    <string name="lastname" translatable="false">Efternamn</string>
-    <string name="phone_nr" translatable="false">Mobil nummer</string>
-    <string name="yyyy_mm_dd" translatable="false">YYYY-MM-DD</string>
-    <string name="address" translatable="false">Address</string>
-    <string name="zipcode" translatable="false">Post kod</string>
-    <string name="Gata" translatable="false">Gata</string>
-    <string name="city" translatable="false">Stad</string>
-    <string name="vaccinering" translatable="false">Vaccinering</string>
-    <string name="doses_delivered" translatable="false">Doses delivered:</string>
-    <string name="doses_administered" translatable="false">\nDoses administered:</string>
-    <string name="source_folkh_lsomyndigheten" translatable="false">Source: Folkhälsomyndigheten</string>
-    <string name="total" translatable="false">\nTotal:</string>
+    <string name="firstname">Firstname</string>
+    <string name="surname">Surname</string>
+    <string name="telephone_number">Telephone number</string>
+    <string name="street">Street name</string>
+    <string name="postalcode">Postal code</string>
+    <string name="city">City</string>
 
-    <string name="wronguser" translatable="false">Not an administror?</string>
-    <string name="goback" translatable="false">Go back</string>
-    <string name="isadmin" translatable="false">Is an Administrator?</string>
-    <string name="admin_login" translatable="false">Admin login here</string>
-    <string name="wrong_creeentials" translatable="false">The username and/or password is incorrect</string>
-    <string name="signup_failed" translatable="false">The creation of a user account failed</string>
-    <string name="signup_success" translatable="false">The creation of a user account succeeded</string>
-    <string name="network_down" translatable="false">Connection to server not available</string>
+
+    <string name="doses_delivered">Doses delivered</string>
+    <string name="doses_administered">Doses administered</string>
+    <string name="source_fohm">Source: Public Health Agency of Sweden</string>
+    <string name="total">Total</string>
+
+    <string name="not_provider">Not a healthcare provider</string>
+    <string name="go_back">Go back</string>
+    <string name="for_provider">For healthcare providers</string>
+    <string name="incorrect_credentials">The username and/or password is incorrect</string>
+    <string name="signup_failed">The creation of the account failed</string>
+    <string name="signup_success">The creation of the account succeeded</string>
+    <string name="network_down">Network connectivity error</string>
 
 
     <!-- FAQ frågor -->
@@ -64,31 +57,79 @@
     <string name="Svar7">Even if you do not have covid, you should still take precautions and keep a good hygiene, to reduce the risk of spreading the virus</string>
     <string name="Svar8">Yes, you can book an home-test at 1177.se</string>
     <string name="Svar9">Call 112 if you have serious problems, else call 1177</string>
-    <string name="Source" translatable="false">1177</string>
+    <string name="healthcare_guide">Healthcare guide 1177</string>
 
     <string name="covid_19" translatable="false">Covid-19</string>
-    <string name="total_cases" translatable="false">Total cases:</string>
-    <string name="total_deaths" translatable="false">Total deaths:</string>
-    <string name="vaccination_statistics" translatable="false">Vaccination Statistics</string>
-    <string name="covid_statistics" translatable="false">Covid Statistics</string>
-    <string name="note_data_on_different_age_groups_is_only_available_for_sweden" translatable="false">NOTE: data on different age groups\nis only available for Sweden</string>
+    <string name="total_cases">Total cases:</string>
+    <string name="total_deaths">Total deaths:</string>
+    <string name="vaccination_statistics">Vaccination statistics</string>
+    <string name="infection_statistics">Covid Statistics</string>
+    <string name="notice_sweden_age_group_exclusive">Notice: data on different age groups is only available for Sweden</string>
 
-    <string name="Delete" translatable="false">Delete</string>
-    <string name="cancel_appointment" translatable="false">Are you sure you want to delete this appointment?</string>
-    <string name="time_canceled" translatable="false">Booked time is canceled</string>
-    <string name="TimeNotCanceled" translatable="false">Cancelation of booked time failed</string>
-    <string name="Choose_clinic" translatable="false">Choose Clinic:</string>
-    <string name="Choose_vaccine" translatable="false">Choose Vaccine Type:</string>
-    <string name="yes" translatable="false">Yes</string>
-    <string name="no" translatable="false">No</string>
+    <string name="delete">Delete</string>
+    <string name="cancel_appointment_warning">Cancel this appointment?</string>
+    <string name="canceled_appointment">Appointment is canceled</string>
+    <string name="canceled_appointment_failed">Cancellation of appointment failed</string>
+    <string name="select_healthcare_provider">Select healthcare provider</string>
+    <string name="select_vaccine_type">Choose vaccine type</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
-    <string name="rebook" translatable="false">boka om</string>
     <string name="nnotes_on_data_ndata_on_different_age_groups_is_currently_not_available_in_weekly_data" translatable="false">\nNotes on data:\nData on different age groups is currently not available in weekly data.\nLast section shows cumilative uptake of one and two doses up to and including selected week in 2021.</string>
     <string name="channel_name_1" translatable="false">Notis dose 2</string>
     <string name="channel_description_1" translatable="false">Datum för dose 2</string>
-    <string name="noticeseconddose" translatable="false">Nu har du fått tid för ditt andra dos</string>
     <string name="channel_name_2" translatable="false">Get notice for exepted booktime</string>
     <string name="channel_description_2" translatable="false">Get response that booking time is accepted</string>
+    <string name="yyyy_mm_dd" translatable="false">yyyy-mm-dd</string>
+    <string name="template">Template data</string>
+    <string name="health_symbol">Health symbol</string>
+    <string name="corona_information">Information about Covid-19</string>
+    <string name="todo" translatable="false">Todo</string>
+    <string name="rebook">Rebook</string>
+    <string name="second_dose_appointment_created">Second dose appointment created</string>
+    <string name="login_admin">Helthcare provider login</string>
+    <string name="no_healthcare_provider">No healthcare providers available</string>
+    <string name="no_vaccine_available">No vaccines available</string>
+    <string name="select_time">Select a time</string>
+    <string name="contact_your_doctor">Contact your doctor</string>
+    <string name="answer_all_questions">Answer all questions</string>
+    <string name="appointment_created">Appointment is created</string>
+    <string name="appointment_failed">Appointment creation failed</string>
+    <string name="questions_failed">Adding questions failed</string>
+    <string name="time_for_second_dose">It\'s time time for your second dose</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="upload_request">Upload request sent</string>
+    <string name="cases">Cases</string>
+    <string name="cases_per_week">Cases per week</string>
+    <string name="death">Deaths</string>
+    <string name="death_per_week">Death per week</string>
+    <string name="no_appointments_today">No appointments today</string>
+    <string name="add">Add</string>
+    <string name="age">Age</string>
+    <string name="forthcoming">Forthcoming</string>
+    <string name="next">Next</string>
+    <string name="date">Date</string>
+    <string name="dosage_number">Dosage to take</string>
+    <string name="confirm_vaccination">Confirm vaccination</string>
+    <string name="personal_information">Personal information</string>
+    <string name="internal_id_number">Internal id number</string>
+    <string name="cancel">Cancel</string>
+    <string name="number_of_users">Number of users</string>
+    <string name="upcoming_appointments">Upcoming appointments</string>
+    <string name="make_appointment">Make appointment</string>
+    <string name="reschedule_appointment">Reschedule appointment</string>
+    <string name="current_appointment">Current appointment</string>
+    <string name="fill_out_form">Fill out the form</string>
+    <string name="questions">Questions</string>
+    <string name="answer">Answer</string>
+    <string name="clear_filter">Clear filter</string>
+    <string name="search">Search</string>
+    <string name="sweden">Sweden</string>
+    <string name="doses_administered_percent">Doses administered (%)</string>
+    <string name="first_dose_percent">First dose(%)</string>
+    <string name="Second_dose_percent">Second dose (%)</string>
+    <string name="time">Time</string>
+    <string name="information">Information</string>
 
 
 </resources>

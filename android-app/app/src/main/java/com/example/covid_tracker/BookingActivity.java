@@ -2,13 +2,10 @@ package com.example.covid_tracker;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,14 +19,8 @@ import com.example.covid_tracker.Fragments.BookingStep1Fragment;
 import com.example.covid_tracker.Fragments.BookingStep2Fragment;
 import com.example.covid_tracker.Fragments.BookingStep3Fragment;
 import com.example.covid_tracker.Fragments.BookingStep4Fragment;
-import com.github.jhonnyx2012.horizontalpicker.DatePickerListener;
-import com.github.jhonnyx2012.horizontalpicker.HorizontalPicker;
-import com.github.jhonnyx2012.horizontalpicker.HorizontalPickerListener;
 import com.google.android.material.tabs.TabLayout;
-import com.shuhart.stepview.StepView;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.HashMap;
@@ -81,7 +72,7 @@ public class BookingActivity extends AppCompatActivity{
             if(clinic_chosen != 0)
                 viewpager.setCurrentItem(viewpager.getCurrentItem()+1);
             else
-                Toast.makeText(this, "Please choose a clinic", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.select_healthcare_provider, Toast.LENGTH_LONG).show();
         }
         if(viewpager.getCurrentItem() + 1 == 2){
             Integer clinic_chosen = pref.getInt("vaccine_ID", -1);
@@ -92,14 +83,14 @@ public class BookingActivity extends AppCompatActivity{
                 viewpager.setCurrentItem(viewpager.getCurrentItem() + 1);
             }
             else
-                Toast.makeText(this, "Please choose a vaccine", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.select_vaccine_type, Toast.LENGTH_LONG).show();
         }
         if(viewpager.getCurrentItem() + 1 == 3){
             Integer time_chosen = pref.getInt("time", -1);
             if(time_chosen != -1)
                 viewpager.setCurrentItem(viewpager.getCurrentItem()+1);
             else
-                Toast.makeText(this, "Please choose a time", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.select_time, Toast.LENGTH_LONG).show();
         }
         if(viewpager.getCurrentItem() + 1 == 4)
         {
@@ -142,13 +133,13 @@ public class BookingActivity extends AppCompatActivity{
             }
             //Boolean health = pref.getBoolean("Health_info", true);
             if (health && tot == 5) {
-                Toast.makeText(this, "Please contact your doctor", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.contact_your_doctor, Toast.LENGTH_LONG).show();
                 pending = 1;
                 add_questions();
                 book_time();
             }
             else if(tot != 5)
-                Toast.makeText(this, "Please answer all the questions", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.answer_all_questions, Toast.LENGTH_LONG).show();
 
             else{
                 pending = 0;
@@ -166,13 +157,13 @@ public class BookingActivity extends AppCompatActivity{
         Integer id_time =  pref.getInt("time", 0);
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/create.php",
                 response -> {
-                    Toast.makeText(BookingActivity.this, "Booking time successfull", Toast.LENGTH_LONG).show();
+                    Toast.makeText(BookingActivity.this, R.string.appointment_created, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(BookingActivity.this, Dashboard.class);
                     finish();
                     startActivity(intent);
 
                 }, error -> {
-            Toast.makeText(BookingActivity.this, "Booking time failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(BookingActivity.this, R.string.appointment_failed, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
@@ -195,13 +186,14 @@ public class BookingActivity extends AppCompatActivity{
         SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
         Integer id_clinic =  pref.getInt("clinic_ID", -1);
         Integer id_time =  pref.getInt("time", 0);;
+
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/health_questions.php",
                 response -> {
                     //Toast.makeText(BookingActivity.this, "Questions added", Toast.LENGTH_LONG).show();
                     System.out.println(response.toString());
 
                 }, error -> {
-            Toast.makeText(BookingActivity.this, "Questions added failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(BookingActivity.this, R.string.questions_failed, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {

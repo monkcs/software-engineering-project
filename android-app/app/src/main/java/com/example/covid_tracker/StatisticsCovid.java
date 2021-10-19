@@ -385,10 +385,10 @@ public class StatisticsCovid extends AppCompatActivity {
             }
         }
 
-        lc_casesperweek.setData(getLineChart(yValues_lcCases, "Cases"));
-        lc_casesperweek.getDescription().setText("Cases per week");
-        lc_deathsperweek.setData(getLineChart(yValues_lcDeaths, "Deaths"));
-        lc_deathsperweek.getDescription().setText("Deaths per week");
+        lc_casesperweek.setData(getLineChart(yValues_lcCases, getString(R.string.cases)));
+        lc_casesperweek.getDescription().setText(getString(R.string.cases_per_week));
+        lc_deathsperweek.setData(getLineChart(yValues_lcDeaths, getString(R.string.death)));
+        lc_deathsperweek.getDescription().setText(getString(R.string.death_per_week));
     }
 
     private LineData getLineChart(ArrayList<Entry> values1, String s1){
@@ -399,7 +399,7 @@ public class StatisticsCovid extends AppCompatActivity {
         set1.setDrawCircles(false);
         set1.setLineWidth(4);
         set1.setFillAlpha(255);
-        if(s1.equals("Deaths"))
+        if(s1.equals(getString(R.string.death)))
             set1.setColor(R.color.red);
 
         ArrayList<ILineDataSet> dataSets_lcDist = new ArrayList<>();

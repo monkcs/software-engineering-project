@@ -115,7 +115,7 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
                     startActivity(intent);
 
                 }, error -> {
-            Toast.makeText(Administartorlogin.this, R.string.wrong_creeentials, Toast.LENGTH_LONG).show();
+            Toast.makeText(Administartorlogin.this, R.string.incorrect_credentials, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {

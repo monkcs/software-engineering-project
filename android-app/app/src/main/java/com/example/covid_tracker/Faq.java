@@ -113,15 +113,15 @@ public class Faq extends Fragment {
         list = new ArrayList<>();
 
 
-            list.add(new FAQ_block(getString(R.string.Fråga1), getString(R.string.Svar1),getString(R.string.Source)));
-            list.add(new FAQ_block(getString(R.string.Fråga2), getString(R.string.Svar2),getString(R.string.Source)));
-            list.add(new FAQ_block(getString(R.string.Fråga3), getString(R.string.Svar3),getString(R.string.Source)));
-            list.add(new FAQ_block(getString(R.string.Fråga4), getString(R.string.Svar4),getString(R.string.Source)));
-            list.add(new FAQ_block(getString(R.string.Fråga5), getString(R.string.Svar5),getString(R.string.Source)));
-            list.add(new FAQ_block(getString(R.string.Fråga6), getString(R.string.Svar6),getString(R.string.Source)));
-            list.add(new FAQ_block(getString(R.string.Fråga7), getString(R.string.Svar7),getString(R.string.Source)));
-            list.add(new FAQ_block(getString(R.string.Fråga8), getString(R.string.Svar8),getString(R.string.Source)));
-            list.add(new FAQ_block(getString(R.string.Fråga9), getString(R.string.Svar9),getString(R.string.Source)));
+            list.add(new FAQ_block(getString(R.string.Fråga1), getString(R.string.Svar1),getString(R.string.source_fohm)));
+            list.add(new FAQ_block(getString(R.string.Fråga2), getString(R.string.Svar2),getString(R.string.source_fohm)));
+            list.add(new FAQ_block(getString(R.string.Fråga3), getString(R.string.Svar3), getString(R.string.source_fohm)));
+            list.add(new FAQ_block(getString(R.string.Fråga4), getString(R.string.Svar4),getString(R.string.source_fohm)));
+            list.add(new FAQ_block(getString(R.string.Fråga5), getString(R.string.Svar5),getString(R.string.source_fohm)));
+            list.add(new FAQ_block(getString(R.string.Fråga6), getString(R.string.Svar6),getString(R.string.source_fohm)));
+            list.add(new FAQ_block(getString(R.string.Fråga7), getString(R.string.Svar7),getString(R.string.source_fohm)));
+            list.add(new FAQ_block(getString(R.string.Fråga8), getString(R.string.Svar8),getString(R.string.source_fohm)));
+            list.add(new FAQ_block(getString(R.string.Fråga9), getString(R.string.Svar9),getString(R.string.source_fohm)));
 
 
 

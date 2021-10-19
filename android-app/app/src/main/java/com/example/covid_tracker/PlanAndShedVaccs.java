@@ -173,7 +173,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
             }
         }
 
-        Toast.makeText(this, "Upload request made", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.upload_request, Toast.LENGTH_LONG).show();
     }
 
     private void serverUpload(String time) {
