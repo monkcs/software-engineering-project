@@ -106,4 +106,10 @@
     <string name="add_dosage_button">Add</string>
     <string name="lager">In Stock</string>
 
+    <!-- general -->
+    <string name="success">In Stock</string>
+    <string name="error_missing_value">Please enter a value</string>
+    <string name="error_msg" translatable="false">Error</string>
+
+
 </resources>

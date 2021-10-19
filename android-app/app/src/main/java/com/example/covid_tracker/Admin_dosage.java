@@ -85,15 +85,12 @@ public class Admin_dosage extends AppCompatActivity {
                     System.out.println("-----------");
 
                     addToDatabase(antal_convert, nameis_spinner);
-
-                    //GetfromDatabase();
                 }
                 else{
 
-                    //do nothing
+                    Toast.makeText(Admin_dosage.this, "@error_missing_value", Toast.LENGTH_LONG).show();
 
                 }
-                //uppdatera listan med getQuestions (update kommando)
             }
         });
 
