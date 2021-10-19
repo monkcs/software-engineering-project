@@ -94,10 +94,10 @@
     <string name="exit">Exit</string>
 
     <string name="scan_qr">Scan Covid Passport</string>
-    <string name="Username">Namn</string>
-    <string name="Dateofbirth">Föddelsedatum</string>
-    <string name="Manufacturer">Tillverkare</string>
-    <string name="Dosetwodate">Datumet för dos två</string>
+    <string name="Username">Name</string>
+    <string name="Dateofbirth">Date of birth</string>
+    <string name="Manufacturer">Manufacturer</string>
+    <string name="Dosetwodate">The second dose date</string>
 
 
 </resources>
