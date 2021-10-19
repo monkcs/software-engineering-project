@@ -67,8 +67,11 @@ dependencies {
     implementation 'com.github.jhonnyx2012:horizontal-picker:1.0.6'
     implementation 'devs.mulham.horizontalcalendar:horizontalcalendar:1.1.7'
 
-
-
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
 
+    //implementation 'com.google.andorid.gms:play-services:20.1.0'
+
+    //https://stackoverflow.com/questions/37747449/no-cached-version-of-com-google-gmsgoogle-services1-x-x-available-for-offline
+    //https://stackoverflow.com/a/59194206 för att ta bort offline work
 }
