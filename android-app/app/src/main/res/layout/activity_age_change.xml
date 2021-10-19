@@ -13,7 +13,7 @@
         android:background="@color/white">
 
         <LinearLayout
-            android:id="@+id/uppcAppoint_ll1"
+            android:id="@+id/agechange_linearlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -22,41 +22,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/change_uppcomming"
-                android:text="Byt"/>
 
             <CalendarView
-                android:id="@+id/calView_uppcAppoint"
+                android:id="@+id/calender_agechange"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <TextView
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:id="@+id/update_agechange"
+                />
+
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="35dp"
-                android:id="@+id/tv_none_booked"/>
+                android:id="@+id/edittext_changeage"
+                android:hint="ålder"
+                android:inputType="number"/>
+
+
+
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            app:layout_constraintTop_toBottomOf="@+id/uppcAppoint_ll1">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_uppc_appoint"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-
-
-                />
-
-        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

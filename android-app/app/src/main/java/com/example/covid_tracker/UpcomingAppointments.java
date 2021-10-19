@@ -1,20 +1,19 @@
 package com.example.covid_tracker;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,13 +28,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
-import java.util.Objects;
 
 public class UpcomingAppointments extends Fragment {
 
     private View view;
     private Context context;
     private RequestQueue queue;
+    private Button change;
 
     CalendarView calView_uppcAppoint;
     RecyclerView recyclerView_uppc_appoint;
@@ -64,6 +63,16 @@ public class UpcomingAppointments extends Fragment {
 
         currDate = getDate();
 
+        change = (Button) view.findViewById(R.id.change_uppcomming);
+        change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ageChanger();
+
+            }
+        });
+
         calView_uppcAppoint.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             @Override
@@ -82,6 +91,13 @@ public class UpcomingAppointments extends Fragment {
         });
 
         return view;
+    }
+
+    private void ageChanger() {
+
+        Intent intent = new Intent(getActivity(), age_change.class);
+        startActivity(intent);
+
     }
 
     private void getBookedTimes(String currDate){
