@@ -1,6 +1,7 @@
 package com.example.covid_tracker;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
@@ -62,13 +63,22 @@ public class Admin_dosage extends AppCompatActivity {
 
                 if(edit_dosage.length() != 0) {
 
+                    String selected_id = "";
+
                     nameis_spinner = spinner.getSelectedItem().toString();
                     antal_doser_som_add = edit_dosage.getText().toString();
                     antal_convert = Integer.parseInt(antal_doser_som_add);
+
+                    /*get the id for this vaccine*/
+                    for(int i = 0; i < list.size(); i++)
+                    {
+                        if(list.get(i).getNamn().equals(nameis_spinner))
+                            selected_id = list.get(i).getId();
+                    }
                     edit_dosage.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     edit_dosage.setText("");
 
-                    addToDatabase(antal_convert, nameis_spinner);
+                    addToDatabase(antal_convert, selected_id);
                 }
                 else{
                     Toast.makeText(Admin_dosage.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
@@ -78,7 +88,7 @@ public class Admin_dosage extends AppCompatActivity {
 
     }
 
-    private void addToDatabase(Integer antal, String namn) {
+    private void addToDatabase(Integer antal, String id) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/vaccine_catalog.php",
                 response -> {
                     Toast.makeText(Admin_dosage.this, getString(R.string.success), Toast.LENGTH_LONG).show();
@@ -89,7 +99,7 @@ public class Admin_dosage extends AppCompatActivity {
             @Override
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("selected_name", namn);
+                params.put("selected_id", id);
                 params.put("input_value", String.valueOf(antal));
                 return params;
             }
