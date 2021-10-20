@@ -1,6 +1,8 @@
 package com.example.covid_tracker;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -80,7 +82,6 @@ public class age_change extends AppCompatActivity {
                 }
                 else{
                     //do nothing
-                    //maybe toast @charlie
                 }
 
             }
@@ -97,6 +98,21 @@ public class age_change extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem i) {
+        switch (i.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, AdminDashboard.class);
+                intent.putExtra("fragment", 12345);
+
+
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(i);
+        }
     }
 
     public void displayToast(View v){

@@ -23,23 +23,24 @@
                 android:id="@+id/update_agechange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Update" />
+                android:text="@string/update_inage" />
 
             <Button
                 android:id="@+id/update_agechange2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Info"
+                android:text="@string/info_inage"
                 android:layout_alignParentRight="true"
             />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/edittext_changeage"
-                android:hint="ålder"
-                android:inputType="number"
-                android:layout_below="@+id/update_agechange"/>
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/update_agechange"
+                android:hint="@string/age_inage"
+                android:inputType="number" />
 
             <CalendarView
                 android:id="@+id/calender_agechange"

@@ -15,7 +15,8 @@
         <activity
             android:name=".age_change"
             android:exported="true"
-            android:parentActivityName=".AdminDashboard"/>
+            android:parentActivityName=".AdminDashboard"
+            />
         <activity
             android:name=".admin_dosage"
             android:exported="true"
