@@ -1,24 +1,6 @@
 <?php
 
-//require 'authenticate.php';
-require 'connect.php';
-
-function prioritizations($connection, $provider, $age)
-{
-    $statement = $connection->prepare("SELECT prioritizations.forthcoming FROM prioritizations WHERE prioritizations.not_younger <= ? AND prioritizations.provider = ? ORDER BY not_younger DESC LIMIT 1");
-    $statement->bind_param("ii", $age, $provider);
-    $statement->execute();
-    $result = $statement->get_result();
-    $statement->close();
-
-    if ($result->num_rows > 0) {
-        return $result->fetch_assoc()["forthcoming"];
-    } else {
-        http_response_code(409);
-        echo "No appointments available because user is not yet eligible\n";
-        exit;
-    }
-}
+require 'authenticate.php';
 
 function age($connection, $identity)
 {
@@ -43,10 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         exit;
     }
 
-    $after = prioritizations($connection, $provider, age($connection, 71));
+    $user_age = age($connection, $identity);
 
-    $statement = $connection->prepare("SELECT * FROM available WHERE NOT EXISTS (SELECT * FROM appointment WHERE appointment.available = available.id) AND available.provider = ? AND available.datetime > CURRENT_DATE AND available.datetime > ?");
-    $statement->bind_param("is", $provider, $after);
+    $statement = $connection->prepare("SELECT * FROM available WHERE NOT EXISTS (SELECT * FROM appointment WHERE appointment.available = available.id) AND available.provider = ? AND available.datetime > CURRENT_DATE AND available.minimum_age > ?");
+    $statement->bind_param("ii", $provider, $user_age);
     $statement->execute();
     $result = $statement->get_result();
     $statement->close();
