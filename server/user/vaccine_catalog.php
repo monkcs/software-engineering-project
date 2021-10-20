@@ -2,22 +2,7 @@
 
 require 'authenticate.php';
 
-if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    /*Return entire list with quantities */
-    $statement = $connection->prepare("SELECT * FROM vaccines");
-    $statement->execute();
-    $result = $statement->get_result();
-    $statement->close();
-
-    if ($result->num_rows == 0) {
-        http_response_code(400);
-        echo "No vaccines available\n";
-    } else {
-        echo json_encode($result->fetch_all(MYSQLI_ASSOC));
-        echo "\n";
-    }
-} 
-else if($_SERVER['REQUEST_METHOD'] == "POST"){
+if($_SERVER['REQUEST_METHOD'] == "POST"){
     /*Here the increment/decrement will take place 
     SQL something like: "UPDATE vaccines SET quantity=quantity + [INPUT_VALUE] where name is [SELECTED_NAME]"*/
     $selected_id = $_POST["selected_id"];

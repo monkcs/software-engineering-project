@@ -3,6 +3,9 @@
     package="com.example.covid_tracker">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:name=".NotificationChannelsEnabler"
@@ -12,7 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Covid_tracker">
-        <activity
+       <activity
+            android:name=".CameraScannerActivity"
+            android:exported="true" />
+
+      <activity
             android:name=".Admin_dosage"
             android:exported="true"
             android:parentActivityName=".AdminDashboard"/>
@@ -55,6 +62,8 @@
             android:exported="true" />
         <activity android:name=".HandlePerson" />
         <activity android:name=".AgePrioritizations" />
+
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
     </application>
 
 </manifest>
