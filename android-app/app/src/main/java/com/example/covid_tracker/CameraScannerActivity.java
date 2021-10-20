@@ -3,33 +3,29 @@ package com.example.covid_tracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.VibrationAttributes;
-import android.os.Vibrator;
 import android.util.SparseArray;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -48,7 +44,7 @@ public class CameraScannerActivity extends AppCompatActivity {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
 
-    private static final int WAITTIME_FOR_PROCESSING = 4000;
+    private static final int WAITTIME_FOR_PROCESSING = 4000; // 4 sek
 
 
 
@@ -103,7 +99,7 @@ public class CameraScannerActivity extends AppCompatActivity {
 
                 if (qrCode.size() != 0){
                     String stringQR = qrCode.valueAt(0).displayValue;
-                    checkqrcode(stringQR);
+                    checkQrCode(stringQR);
                     textView.setText(stringQR);
 
                     try {
@@ -133,26 +129,23 @@ public class CameraScannerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showPopUp() {
 
-        //if tid bokad
-        dialogBuilder = new AlertDialog.Builder(this);
-        final View PopupView = getLayoutInflater().inflate(R.layout.greencheckmark, null);
-
-
-        dialogBuilder.setView(PopupView);
-        dialog = dialogBuilder.create();
-        dialog.show();
-
-        PopupView.setOnClickListener((View.OnClickListener) view -> dialog.dismiss());
-
-    }
-
-
-    private void checkqrcode(String stringQR) {
-        //Toast.makeText(BookingActivity.this, "Questions added", Toast.LENGTH_LONG).show();
+    private void checkQrCode(String stringQR) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/isValidQR.php",
-                System.out::println, error -> Toast.makeText(this, "send qrcode don't work", Toast.LENGTH_LONG).show()) {
+                response -> {
+                    System.out.println(response);
+                    try {
+                        JSONObject object = new JSONObject(response);
+                        boolean responsmessage = Boolean.parseBoolean(object.getString("exist"));
+
+                        printvalidation(responsmessage);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }, error -> Toast.makeText(this, "error with sending qr code or reciving respons", Toast.LENGTH_LONG).show()) {
             @Override
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<>();
@@ -164,10 +157,18 @@ public class CameraScannerActivity extends AppCompatActivity {
                 return WebRequest.credentials(WebRequest.User.username, WebRequest.User.password);
             }
         };
-
         queue.add(request);
-
     }
 
+    private void printvalidation(boolean responsmessage) {
+        View PopupView = responsmessage ? getLayoutInflater().inflate(R.layout.greencheckmark, null) : getLayoutInflater().inflate(R.layout.redcheckmark, null);
 
+        dialogBuilder = new AlertDialog.Builder(this);
+
+        dialogBuilder.setView(PopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        PopupView.setOnClickListener((View.OnClickListener) view -> dialog.dismiss());
+    }
 }
