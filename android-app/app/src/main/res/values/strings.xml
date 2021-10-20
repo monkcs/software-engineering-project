@@ -80,6 +80,7 @@
     <string name="channel_description_1" translatable="false">Datum för dose 2</string>
     <string name="channel_name_2" translatable="false">Get notice for exepted booktime</string>
     <string name="channel_description_2" translatable="false">Get response that booking time is accepted</string>
+
     <string name="yyyy_mm_dd" translatable="false">yyyy-mm-dd</string>
     <string name="template">Template data</string>
     <string name="health_symbol">Health symbol</string>

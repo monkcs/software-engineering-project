@@ -7,10 +7,10 @@
     tools:context=".CameraScannerActivity">
 
     <SurfaceView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
         android:id="@+id/scannercammera"
-        android:layout_centerInParent="true"/>
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="match_parent"

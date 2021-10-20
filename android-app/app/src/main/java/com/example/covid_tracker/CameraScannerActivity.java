@@ -3,22 +3,16 @@ package com.example.covid_tracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.VibrationAttributes;
-import android.os.Vibrator;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +24,9 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -44,11 +41,15 @@ public class CameraScannerActivity extends AppCompatActivity {
     BarcodeDetector barcodeDetector;
     public RequestQueue queue;
 
+    private static AlertDialog dialog;
+    private static AlertDialog.Builder alertDialog;
 
-    private AlertDialog.Builder dialogBuilder;
-    private AlertDialog dialog;
+    private static final int width = 1080;
+    private static final int hight = 1090;
 
-    private static final int WAITTIME_FOR_PROCESSING = 4000;
+
+
+    private static final int WAITTIME_FOR_PROCESSING = 3000; // 3 sek
 
 
 
@@ -63,7 +64,11 @@ public class CameraScannerActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.textviewtemp);
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
-        cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640, 480).setAutoFocusEnabled(true).build();
+        cameraSource = new CameraSource.Builder(this, barcodeDetector)
+                .setRequestedPreviewSize(width, hight)
+                .setAutoFocusEnabled(true)
+                .build();
+
 
 
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -103,8 +108,11 @@ public class CameraScannerActivity extends AppCompatActivity {
 
                 if (qrCode.size() != 0){
                     String stringQR = qrCode.valueAt(0).displayValue;
-                    //checkqrcode(stringQR);
+                    checkQrCode(stringQR);
+
                     textView.setText(stringQR);
+
+
 
                     try {
                         Thread.sleep(WAITTIME_FOR_PROCESSING);
@@ -113,10 +121,8 @@ public class CameraScannerActivity extends AppCompatActivity {
                         e.getLocalizedMessage();
                     }
 
-
-
                 }
-             }
+            }
         });
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
@@ -133,26 +139,29 @@ public class CameraScannerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showPopUp() {
 
-        //if tid bokad
-        dialogBuilder = new AlertDialog.Builder(this);
-        final View PopupView = getLayoutInflater().inflate(R.layout.greencheckmark, null);
+    private void checkQrCode(String stringQR) {
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "general/validate_passport.php",
+                response -> {
+                    System.out.println(response);
+
+                    try {
+                        JSONObject object = new JSONObject(response);
+                        String fullName = object.getString("firstname") + " " + object.getString("surname");
+                        String dateofbirth = object.getString("birthdate");
+
+                        printValidation(true, fullName, dateofbirth);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
 
-        dialogBuilder.setView(PopupView);
-        dialog = dialogBuilder.create();
-        dialog.show();
+                }, error -> {
+            printValidation(false, "", "");
 
-        PopupView.setOnClickListener((View.OnClickListener) view -> dialog.dismiss());
-
-    }
-
-
-    private void checkqrcode(String stringQR) {
-        //Toast.makeText(BookingActivity.this, "Questions added", Toast.LENGTH_LONG).show();
-        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/isValidQR.php",
-                System.out::println, error -> Toast.makeText(this, "send qrcode don't work", Toast.LENGTH_LONG).show()) {
+            Toast.makeText(this, "error with sending qr code or reciving respons", Toast.LENGTH_LONG).show();
+        }) {
             @Override
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<>();
@@ -164,10 +173,30 @@ public class CameraScannerActivity extends AppCompatActivity {
                 return WebRequest.credentials(WebRequest.User.username, WebRequest.User.password);
             }
         };
-
         queue.add(request);
-
     }
 
+    private void printValidation(boolean responsmessage, String fullName, String dateofbirth) {
+        alertDialog = new AlertDialog.Builder( CameraScannerActivity.this);
 
+        View popupView = getLayoutInflater().inflate(R.layout.validationpopup, null);
+        ImageView image = (ImageView) popupView.findViewById(R.id.confirmAppointment);
+        TextView displayUsername = (TextView) popupView.findViewById(R.id.displayusername);
+        TextView displayDateofBirth = (TextView) popupView.findViewById(R.id.displaydateofbirth);
+
+        if (responsmessage){
+            image.setImageResource(R.drawable.greencheckmark);
+            displayUsername.setText(fullName);
+            displayDateofBirth.setText(dateofbirth);
+        }else{
+            image.setImageResource(R.drawable.red_corss);
+            displayUsername.setText(getString(R.string.invalid));
+        }
+
+        alertDialog.setView(popupView);
+        dialog = alertDialog.create();
+        dialog.show();
+
+        popupView.setOnClickListener((View.OnClickListener) view -> dialog.dismiss());
+    }
 }
