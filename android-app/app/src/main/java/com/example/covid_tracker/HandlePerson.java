@@ -242,6 +242,7 @@ public class HandlePerson extends AppCompatActivity {
                     getBookingInfo(id);
 
                 }, error -> {
+            System.out.println(error);
             Toast.makeText(HandlePerson.this, "Not able to book second time", Toast.LENGTH_LONG).show();
         }) {
             @Override
