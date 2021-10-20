@@ -44,9 +44,12 @@ public class CameraScannerActivity extends AppCompatActivity {
     private static AlertDialog dialog;
     private static AlertDialog.Builder alertDialog;
 
+    private static final int width = 1080;
+    private static final int hight = 1090;
 
 
-    private static final int WAITTIME_FOR_PROCESSING = 4000; // 4 sek
+
+    private static final int WAITTIME_FOR_PROCESSING = 3000; // 3 sek
 
 
 
@@ -60,10 +63,11 @@ public class CameraScannerActivity extends AppCompatActivity {
         surfaceView = (SurfaceView) findViewById(R.id.scannercammera);
         textView = (TextView) findViewById(R.id.textviewtemp);
 
-
-
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
-        cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640, 480).setAutoFocusEnabled(true).build();
+        cameraSource = new CameraSource.Builder(this, barcodeDetector)
+                .setRequestedPreviewSize(width, hight)
+                .setAutoFocusEnabled(true)
+                .build();
 
 
 
@@ -116,10 +120,8 @@ public class CameraScannerActivity extends AppCompatActivity {
                         e.getLocalizedMessage();
                     }
 
-
-
                 }
-             }
+            }
         });
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
