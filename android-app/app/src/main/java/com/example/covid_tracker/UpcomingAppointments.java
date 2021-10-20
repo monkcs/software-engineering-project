@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class UpcomingAppointments extends Fragment {
     CalendarView calView_uppcAppoint;
     RecyclerView recyclerView_uppc_appoint;
     TextView tv_none_booked;
+    ImageView imageviewis;
 
     String currDate;
 
@@ -56,6 +58,16 @@ public class UpcomingAppointments extends Fragment {
         context = getActivity();
 
         queue = Volley.newRequestQueue(getActivity());
+
+
+        imageviewis = (ImageView) view.findViewById(R.id.infobuttonuppa);
+        imageviewis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                maketoastinfo();
+            }
+        });
+
 
         calView_uppcAppoint = view.findViewById(R.id.calView_uppcAppoint);
         recyclerView_uppc_appoint = view.findViewById(R.id.recyclerView_uppc_appoint);
@@ -91,6 +103,14 @@ public class UpcomingAppointments extends Fragment {
         });
 
         return view;
+    }
+
+    private void maketoastinfo() {
+
+        Toast t1;
+        t1 = Toast.makeText(getActivity(), "Click here if you want to change the current age group for appointments", Toast.LENGTH_LONG);
+        t1.show();
+
     }
 
     private void ageChanger() {

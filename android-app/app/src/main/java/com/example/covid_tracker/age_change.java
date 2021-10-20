@@ -14,13 +14,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class age_change extends AppCompatActivity {
 
+    private RequestQueue queue;
     private Button update, update2;
     private EditText age_change;
     private CalendarView calv;
@@ -37,6 +46,8 @@ public class age_change extends AppCompatActivity {
         setContentView(R.layout.activity_age_change);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        queue = Volley.newRequestQueue(this);
 
         recyclerview = (RecyclerView) findViewById(R.id.recyclerView_age_age_age);
 
@@ -123,9 +134,42 @@ public class age_change extends AppCompatActivity {
 
     private void getTimesforDatabase() {
 
+        System.out.println("hej inne i gettimes");
         list = new ArrayList<>();
 
-        list.add(new age_change_block("a", "b"+ "\n" + "at" + "\n" + "bas", "c"));
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/available_booking.php", null,
+                response -> {
+
+                    System.out.println("hej inne i response");
+                    for (int i = 0; i < response.length(); i++) {
+
+                        try {
+                            System.out.println(response.getJSONObject(i));
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                            System.out.println("ERRPR CATCH");
+                        }
+
+
+                    }
+                    setRecyclerView();
+                    System.out.println("hej inne i recview");
+                }, error -> {
+        }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+        System.out.println("hej inne i queueadd");
+        queue.add(request);
+
+     //   list.add(new age_change_block("a", "b"+ "\n" + "at" + "\n" + "bas", "c"));
 
     }
 
