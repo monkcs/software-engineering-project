@@ -25,6 +25,20 @@
                                               <map>
                                                 <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="C:\Users\lukas\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="opacityPercent" value="60" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="C:\Users\lukas\OneDrive\Bilder\cross-in-circle-in-red-tom-hill-transparent.png" />
+                                                <entry key="opacityPercent" value="80" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -36,6 +50,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -47,11 +62,21 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\lukas\OneDrive\Bilder\cross-in-circle-in-red-tom-hill-transparent.png" />
+                                      <entry key="outputName" value="redcorss" />
+                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="d42b1c" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -69,6 +94,7 @@
                                               <map>
                                                 <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="C:\Users\lukas\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -82,6 +108,7 @@
                                                 <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="C:\Users\lukas\OneDrive\Bilder\pngaaa.com-382670.png" />
                                                 <entry key="scalingPercent" value="72" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -113,7 +140,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="flaggb" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="outputName" value="Greencheckmark" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -282,6 +310,11 @@
                                 </PersistentState>
                               </value>
                             </entry>
+                          </map>
+                        </option>
+                        <option name="values">
+                          <map>
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

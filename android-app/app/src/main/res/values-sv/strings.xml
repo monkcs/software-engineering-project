@@ -39,6 +39,7 @@
     <!-- general -->
     <string name="success">Lyckades!</string>
     <string name="error_missing_value">Värde saknas</string>
+    <string name="invalid">Användaren finns inte</string>
 
 
 </resources>

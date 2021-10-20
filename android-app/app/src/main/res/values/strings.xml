@@ -110,6 +110,7 @@
     <string name="success">In Stock</string>
     <string name="error_missing_value">Please enter a value</string>
     <string name="error_msg" translatable="false">Error</string>
+    <string name="invalid">User dont exist</string>
 
 
 </resources>

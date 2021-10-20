@@ -6,17 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.vision.CameraSource;
@@ -40,9 +41,10 @@ public class CameraScannerActivity extends AppCompatActivity {
     BarcodeDetector barcodeDetector;
     public RequestQueue queue;
 
+    private static AlertDialog dialog;
+    private static AlertDialog.Builder alertDialog;
 
-    private AlertDialog.Builder dialogBuilder;
-    private AlertDialog dialog;
+
 
     private static final int WAITTIME_FOR_PROCESSING = 4000; // 4 sek
 
@@ -58,8 +60,11 @@ public class CameraScannerActivity extends AppCompatActivity {
         surfaceView = (SurfaceView) findViewById(R.id.scannercammera);
         textView = (TextView) findViewById(R.id.textviewtemp);
 
+
+
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
         cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640, 480).setAutoFocusEnabled(true).build();
+
 
 
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -102,6 +107,8 @@ public class CameraScannerActivity extends AppCompatActivity {
                     checkQrCode(stringQR);
                     textView.setText(stringQR);
 
+
+
                     try {
                         Thread.sleep(WAITTIME_FOR_PROCESSING);
                         // Do some stuff
@@ -131,21 +138,28 @@ public class CameraScannerActivity extends AppCompatActivity {
 
 
     private void checkQrCode(String stringQR) {
-        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/isValidQR.php",
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "general/validate_passport.php",
                 response -> {
                     System.out.println(response);
+                    //printValidation(true, "fullName", "dateofbirth");
+
                     try {
                         JSONObject object = new JSONObject(response);
-                        boolean responsmessage = Boolean.parseBoolean(object.getString("exist"));
+                        String fullName = object.getString("firstname") + " " + object.getString("surname");
+                        String dateofbirth = object.getString("birthdate");
 
-                        printvalidation(responsmessage);
+                        printValidation(true, fullName, dateofbirth);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
 
-                }, error -> Toast.makeText(this, "error with sending qr code or reciving respons", Toast.LENGTH_LONG).show()) {
+                }, error -> {
+            printValidation(false, "", "");
+
+            Toast.makeText(this, "error with sending qr code or reciving respons", Toast.LENGTH_LONG).show();
+        }) {
             @Override
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<>();
@@ -160,15 +174,27 @@ public class CameraScannerActivity extends AppCompatActivity {
         queue.add(request);
     }
 
-    private void printvalidation(boolean responsmessage) {
-        View PopupView = responsmessage ? getLayoutInflater().inflate(R.layout.greencheckmark, null) : getLayoutInflater().inflate(R.layout.redcheckmark, null);
+    private void printValidation(boolean responsmessage, String fullName, String dateofbirth) {
+        alertDialog = new AlertDialog.Builder( CameraScannerActivity.this);
 
-        dialogBuilder = new AlertDialog.Builder(this);
+        View popupView = getLayoutInflater().inflate(R.layout.validationpopup, null);
+        ImageView image = (ImageView) popupView.findViewById(R.id.confirmAppointment);
+        TextView displayUsername = (TextView) popupView.findViewById(R.id.displayusername);
+        TextView displayDateofBirth = (TextView) popupView.findViewById(R.id.displaydateofbirth);
 
-        dialogBuilder.setView(PopupView);
-        dialog = dialogBuilder.create();
+        if (responsmessage){
+            image.setImageResource(R.drawable.greencheckmark);
+            displayUsername.setText(fullName);
+            displayDateofBirth.setText(dateofbirth);
+        }else{
+            image.setImageResource(R.drawable.redcorss);
+            displayUsername.setText(getString(R.string.invalid));
+        }
+
+        alertDialog.setView(popupView);
+        dialog = alertDialog.create();
         dialog.show();
 
-        PopupView.setOnClickListener((View.OnClickListener) view -> dialog.dismiss());
+        popupView.setOnClickListener((View.OnClickListener) view -> dialog.dismiss());
     }
 }
