@@ -116,10 +116,12 @@ public class DigitalHealth extends Fragment {
  
                 response -> {
                     try {
+                        String date = response.getString("Date");
+                        date = date.split(" ")[0];
                         values.add(new FAQ_block(getString(R.string.Username), response.getString("firstname") +" "+ response.getString("surname")));
                         values.add(new FAQ_block(getString(R.string.Dateofbirth), response.getString("birthdate")));
                         values.add(new FAQ_block(getString(R.string.Manufacturer), response.getString("name")));
-                        values.add(new FAQ_block(getString(R.string.Dosetwodate), response.getString("Date")));
+                        values.add(new FAQ_block(getString(R.string.Dosetwodate), date));
                         qrGenerator(response.getString("qrcode"));            
                         setRecyclerView();
                     } catch (JSONException e) {
