@@ -132,7 +132,6 @@ public class BookingStep1Fragment extends Fragment {
                     });
 
 
-
                 }, error -> {
             Toast.makeText(getActivity(), "No clinics available", Toast.LENGTH_LONG).show();
         });

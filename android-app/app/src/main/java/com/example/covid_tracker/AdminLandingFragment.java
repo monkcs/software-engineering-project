@@ -89,7 +89,7 @@ public class AdminLandingFragment extends Fragment {
                     }
 
                 }, error -> {
-            Toast.makeText(getActivity(), R.string.wrong_creeentials, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), R.string.wrong_creeentials, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
