@@ -37,8 +37,9 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\lukas\OneDrive\Bilder\cross-in-circle-in-red-tom-hill-transparent.png" />
+                                                <entry key="imagePath" value="C:\Users\lukas\OneDrive\Bilder\readcorss.png" />
                                                 <entry key="opacityPercent" value="80" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -73,8 +74,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\lukas\OneDrive\Bilder\cross-in-circle-in-red-tom-hill-transparent.png" />
-                                      <entry key="outputName" value="redcorss" />
+                                      <entry key="imageAsset" value="C:\Users\lukas\OneDrive\Bilder\readcorss.png" />
+                                      <entry key="outputName" value="red_corss" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="d42b1c" />
                                     </map>

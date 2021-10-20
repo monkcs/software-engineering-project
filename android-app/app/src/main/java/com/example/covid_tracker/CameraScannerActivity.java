@@ -141,7 +141,6 @@ public class CameraScannerActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "general/validate_passport.php",
                 response -> {
                     System.out.println(response);
-                    //printValidation(true, "fullName", "dateofbirth");
 
                     try {
                         JSONObject object = new JSONObject(response);
@@ -187,7 +186,7 @@ public class CameraScannerActivity extends AppCompatActivity {
             displayUsername.setText(fullName);
             displayDateofBirth.setText(dateofbirth);
         }else{
-            image.setImageResource(R.drawable.redcorss);
+            image.setImageResource(R.drawable.red_corss);
             displayUsername.setText(getString(R.string.invalid));
         }
 
