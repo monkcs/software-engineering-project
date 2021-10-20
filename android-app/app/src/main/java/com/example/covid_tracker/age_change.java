@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class age_change extends AppCompatActivity {
     private EditText age_change;
     private CalendarView calv;
     private String reader;
-    private String dateis;
+    public String dateis;
     private int updateint;
 
     public List<age_change_block> list;
@@ -66,8 +67,14 @@ public class age_change extends AppCompatActivity {
 
                 i1 = i1 + 1;
 
-                dateis = sdf.format(new Date(calv.getDate()));
 
+
+                dateis = i2 + "/" + i1 + "/" + i;
+
+                System.out.println("detta är dateis" + dateis);
+
+                getTimesforDatabase();
+                setRecyclerView();
             }
         });
 
@@ -136,16 +143,26 @@ public class age_change extends AppCompatActivity {
 
         System.out.println("hej inne i gettimes");
         list = new ArrayList<>();
+        System.out.println("detta är dateis inne i database" + dateis);
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/available_booking.php", null,
                 response -> {
+
+                String times = "";
 
                     System.out.println("hej inne i response");
                     for (int i = 0; i < response.length(); i++) {
 
                         try {
-                            System.out.println(response.getJSONObject(i));
 
+                            if(compareIfEqual(dateis, response.getJSONObject(i).getString("datetime"))){
+                                System.out.println(response.getJSONObject(i));
+
+                                JSONObject paket = response.getJSONObject(i);
+
+                                times = times + "\n" + "Tid: " + getTime(paket) + ", Minimum age: " + getMinAge(paket) + "\n";
+
+                            }
 
 
                         } catch (JSONException e) {
@@ -156,8 +173,10 @@ public class age_change extends AppCompatActivity {
 
 
                     }
-                    setRecyclerView();
+
+                    list.add(new age_change_block(dateis, times));
                     System.out.println("hej inne i recview");
+                    setRecyclerView();
                 }, error -> {
         }
         ) {
@@ -169,8 +188,67 @@ public class age_change extends AppCompatActivity {
         System.out.println("hej inne i queueadd");
         queue.add(request);
 
-     //   list.add(new age_change_block("a", "b"+ "\n" + "at" + "\n" + "bas", "c"));
 
+
+    }
+
+    private String getMinAge(JSONObject paket) {
+
+        String returnis = null;
+        try {
+            returnis = paket.getString("minimum_age");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        return returnis;
+    }
+
+    private String getTime(JSONObject paket) {
+
+        String returnis = null;
+        try {
+            returnis = paket.getString("datetime");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        //hämta char 11 till 18
+        returnis = returnis.substring(11,19);
+
+        return returnis;
+    }
+
+    private boolean compareIfEqual(String dateis, String s) {
+
+     //   System.out.println(dateis.charAt(0));
+
+        boolean flagga = true;
+
+        if(dateis.charAt(0) != s.charAt(8) || dateis.charAt(1) != s.charAt(9)){
+
+            //kollar om dagen stämmer överrens
+            flagga = false;
+
+        }
+
+        if(dateis.charAt(3) != s.charAt(5) || dateis.charAt(4) != s.charAt(6)){
+
+            //kollar om månaden är samma
+            flagga = false;
+
+        }
+
+        if(dateis.charAt(8) != s.charAt(2) || dateis.charAt(9) != s.charAt(3)){
+
+            //kollar om året är samma
+            flagga = false;
+
+        }
+
+        return flagga;
     }
 
     private void setRecyclerView() {
