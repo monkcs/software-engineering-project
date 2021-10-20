@@ -141,6 +141,8 @@
     <string name="username">Username</string>
     <string name="birthdate">Birthdate</string>
     <string name="manufacturer">Manufacturer</string>
+    <string name="passport_invalid">Passport is invalid</string>
+
 
 
 </resources>

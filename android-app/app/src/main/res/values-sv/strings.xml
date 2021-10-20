@@ -119,4 +119,8 @@
     <string name="username">Användarnamn</string>
     <string name="birthdate">Födelsedatum</string>
     <string name="manufacturer">Tillverkare</string>
+
+    <string name="passport_invalid">Passportet finns inte</string>
+
+
 </resources>

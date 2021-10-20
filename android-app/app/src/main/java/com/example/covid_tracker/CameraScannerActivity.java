@@ -190,7 +190,7 @@ public class CameraScannerActivity extends AppCompatActivity {
             displayDateofBirth.setText(dateofbirth);
         }else{
             image.setImageResource(R.drawable.red_corss);
-            displayUsername.setText(getString(R.string.invalid));
+            displayUsername.setText(getString(R.string.passport_invalid));
         }
 
         alertDialog.setView(popupView);
