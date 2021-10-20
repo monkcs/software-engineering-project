@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.2703125" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_admin_dosage.xml" value="0.2" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_age_change.xml" value="0.2" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_admin_fragments.xml" value="0.13229166666666667" />
@@ -12,10 +13,12 @@
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_admin_landing.xml" value="0.13229166666666667" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_bookingstep2.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_faq.xml" value="0.18885869565217392" />
-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_uppcomming_apointments.xml" value="0.1" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_uppcomming_apointments.xml" value="0.264" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/lista_row_agechange.xml" value="0.4" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/row.xml" value="0.264" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/upc_appoint_row.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/menu/admin_bottom_navigation.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/menu/bottom_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.2" />

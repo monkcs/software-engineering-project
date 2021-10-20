@@ -106,6 +106,13 @@
     <string name="add_dosage_button">Add</string>
     <string name="lager">In Stock</string>
 
+    <!-- age_change  -->
+    <string name="info_inage">Info</string>
+    <string name="age_inage">Age</string>
+    <string name="update_inage">Update</string>
+    <string name="byt_inage">Change</string>
+
+
     <!-- general -->
     <string name="success">In Stock</string>
     <string name="error_missing_value">Please enter a value</string>

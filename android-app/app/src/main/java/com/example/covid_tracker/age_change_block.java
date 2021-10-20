@@ -2,12 +2,12 @@ package com.example.covid_tracker;
 
 public class age_change_block {
 
-    private String datumText, ageText, listaageText;
+    private String datumText, listaageText;
     private Boolean expandable;
 
-    public age_change_block(String datumText, String ageText, String listaageText) {
+    public age_change_block(String datumText, String listaageText) {
         this.datumText = datumText;
-        this.ageText = ageText;
+
         this.listaageText = listaageText;
 
         this.expandable = false;
@@ -17,7 +17,6 @@ public class age_change_block {
     public String toString() {
         return "age_change_block{" +
                 "datumText='" + datumText + '\'' +
-                ", ageText='" + ageText + '\'' +
                 ", listaageText='" + listaageText + '\'' +
                 ", expandable=" + expandable +
                 '}';
@@ -31,13 +30,6 @@ public class age_change_block {
         this.datumText = datumText;
     }
 
-    public String getAgeText() {
-        return ageText;
-    }
-
-    public void setAgeText(String ageText) {
-        this.ageText = ageText;
-    }
 
     public String getListaageText() {
         return listaageText;

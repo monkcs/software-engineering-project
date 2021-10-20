@@ -36,5 +36,9 @@
     <string name="addlager">Lägg till i lager</string>
     <string name="amount_dosage">Antal doser att lägga till</string>
     <string name="add_dosage_button">Lägg till</string>
+    <string name="info_inage">Info</string>
+    <string name="age_inage">Ålder</string>
+    <string name="update_inage">Update</string>
+    <string name="byt_inage">Byt</string>
 
 </resources>

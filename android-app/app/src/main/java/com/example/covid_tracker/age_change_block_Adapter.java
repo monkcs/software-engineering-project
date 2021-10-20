@@ -34,7 +34,6 @@ public class age_change_block_Adapter  extends RecyclerView.Adapter<age_change_b
         age_change_block blockis = List.get(position);
 
         holder.datumText.setText(blockis.getDatumText());
-        holder.ageText.setText(blockis.getAgeText());
         holder.listaageText.setText(blockis.getListaageText());
 
 
@@ -50,7 +49,7 @@ public class age_change_block_Adapter  extends RecyclerView.Adapter<age_change_b
     public class VersionVH extends RecyclerView.ViewHolder {
 
 
-        TextView datumText, ageText, listaageText;
+        TextView datumText, listaageText;
         RelativeLayout expandable;
         LinearLayout linear;
 
@@ -58,7 +57,6 @@ public class age_change_block_Adapter  extends RecyclerView.Adapter<age_change_b
             super(itemView);
 
             datumText = itemView.findViewById(R.id.Datum_age);
-            ageText = itemView.findViewById(R.id.age_age);
             listaageText = itemView.findViewById(R.id.list_agy);
 
 
