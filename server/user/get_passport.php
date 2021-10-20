@@ -12,7 +12,7 @@ function send_values($connection, $identity)
                                         on available.id = passport.dose_date
                                         inner join vaccines
                                         on vaccines.id = passport.vaccine 
-                                        LIMIT 1");
+                                        ");
     $statement->bind_param("i", $identity);
     $statement->execute();
     $result1 = $statement->get_result();
@@ -26,6 +26,18 @@ function send_values($connection, $identity)
         echo json_encode($result1->fetch_array(MYSQLI_ASSOC));
         echo "\n";
     }
+}
+function delete_questionere($connection, $identity){
+    echo "deleting";
+    $statement = $connection->prepare("DELETE FROM pending 
+                                        where pending.appointment in(
+                                        SELECT dose_one.date_of_shot
+                                        FROM dose_one
+                                        where dose_one.person = ?)");
+    $statement->bind_param("i", $identity);
+    $statement->execute();
+    $statement->close();
+
 }
 $statement = $connection->prepare("SELECT available.datetime as Date from available
                                         inner join passport
@@ -55,7 +67,8 @@ else{
     $diff = $difference->format("%R%a days");
     if($diff >= 14)
     {
-        send_values($connection, $identity); 
+        send_values($connection, $identity);
+        delete_questionere($connection, $identity); 
     }
     else 
     {

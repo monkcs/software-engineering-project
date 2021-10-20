@@ -103,7 +103,7 @@ public class CameraScannerActivity extends AppCompatActivity {
 
                 if (qrCode.size() != 0){
                     String stringQR = qrCode.valueAt(0).displayValue;
-                    checkqrcode(stringQR);
+                    //checkqrcode(stringQR);
                     textView.setText(stringQR);
 
                     try {

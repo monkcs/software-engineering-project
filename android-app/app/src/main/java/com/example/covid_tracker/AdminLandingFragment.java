@@ -81,8 +81,7 @@ public class AdminLandingFragment extends Fragment {
     }
 
     public void uppcApoint(){
-        Intent intent = new Intent(getActivity(), UpcomingAppointments.class);
-        startActivity(intent);
+
     }
 
     public void planAndShedVacc(){

@@ -242,8 +242,8 @@ public class HandlePerson extends AppCompatActivity {
                     getBookingInfo(id);
 
                 }, error -> {
-            /*if no array can be found, look for jsonObject*/
-            Toast.makeText(this, R.string.network_down, Toast.LENGTH_SHORT).show();
+            System.out.println(error);
+            Toast.makeText(HandlePerson.this, "Not able to book second time", Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {

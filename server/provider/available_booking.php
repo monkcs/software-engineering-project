@@ -6,7 +6,6 @@ header('Content-type: application/json');
 require 'authenticate.php';
 
 $statement = $connection->prepare("SELECT * FROM available WHERE NOT EXISTS (SELECT * FROM appointment WHERE appointment.available = available.id)");
-$statement->bind_param("i", $identity);
 $statement->execute();
 $result = $statement->get_result();
 $statement->close();
