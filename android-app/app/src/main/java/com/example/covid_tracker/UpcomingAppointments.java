@@ -103,16 +103,16 @@ public class UpcomingAppointments extends Fragment {
                             setRecyclerView(booked_list);
                         }
                         else{
-                            tv_none_booked.setText("No appointments today");
+                            tv_none_booked.setText(getText(R.string.no_appointments_today));
                             setRecyclerView(booked_list);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }, error -> {
-                    tv_none_booked.setText("No appointments today");
+                    tv_none_booked.setText(getText(R.string.no_appointments_today));
                     setRecyclerView(booked_list);
-                    Toast.makeText(getActivity(), "Currently no booked times", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.no_appointments_today, Toast.LENGTH_SHORT).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {

@@ -78,7 +78,7 @@ public class Login extends Activity implements OnClickListener {
                     startActivity(intent);
 
                 }, error -> {
-            Toast.makeText(Login.this, R.string.wrong_creeentials, Toast.LENGTH_LONG).show();
+            Toast.makeText(Login.this, R.string.incorrect_credentials, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -110,7 +110,7 @@ public class Login extends Activity implements OnClickListener {
                     login();
                 }
                 else
-                    Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.invalid_email, Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btnReg:

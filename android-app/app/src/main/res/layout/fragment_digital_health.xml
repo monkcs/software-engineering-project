@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Your health info"
+            android:text="@string/template"
             android:textColor="#FFE0B2"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,6 @@
             android:layout_height="160dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:contentDescription="@string/todo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="parent"
@@ -67,8 +66,11 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:backgroundTint="@color/green"
-                android:text="@string/scan_qr"
+                android:text="@string/scan_qr_code"
                 android:textColor="@color/white" />
 
         </LinearLayout>

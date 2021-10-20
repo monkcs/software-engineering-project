@@ -94,7 +94,7 @@ public class Admin_dosage extends AppCompatActivity {
                     Toast.makeText(Admin_dosage.this, getString(R.string.success), Toast.LENGTH_LONG).show();
                     GetfromDatabase();
                 }, error -> {
-            Toast.makeText(Admin_dosage.this, getString(R.string.error_msg), Toast.LENGTH_LONG).show();
+            Toast.makeText(Admin_dosage.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
@@ -143,7 +143,7 @@ public class Admin_dosage extends AppCompatActivity {
                         setRecyclerView();
                     }
                 }, error -> {
-            Toast.makeText(Admin_dosage.this, getString(R.string.error_msg), Toast.LENGTH_LONG).show();
+            Toast.makeText(Admin_dosage.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
             setRecyclerView();
         }) {
             @Override

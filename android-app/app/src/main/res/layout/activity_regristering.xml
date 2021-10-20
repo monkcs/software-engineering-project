@@ -78,7 +78,7 @@
                 android:autofillHints="name"
                 android:ems="5"
                 android:gravity="center"
-                android:hint="@string/lastname"
+                android:hint="@string/surname"
                 android:inputType="textPersonName"
                 android:paddingTop="20dp"
                 android:textSize="22sp" />
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="@string/email2"
+            android:hint="@string/email"
             android:paddingTop="20dp"
             android:ems="10"
             android:textSize="22sp"
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:autofillHints="password"
-            android:hint="@string/Password"
+            android:hint="@string/password"
             android:ems="10"
             android:paddingTop="20dp"
             android:textSize="22sp"
@@ -146,7 +146,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="@string/phone_nr"
+            android:hint="@string/telephone_number"
             android:ems="10"
             android:paddingTop="20dp"
             android:autofillHints="phone"
@@ -167,7 +167,7 @@
             android:autofillHints="name"
             android:ems="10"
             android:gravity="center"
-            android:hint="@string/Gata"
+            android:hint="@string/street"
             android:inputType="text"
             android:paddingTop="20dp"
             android:textSize="22sp" />
@@ -191,7 +191,7 @@
             android:autofillHints="postalCode"
             android:ems="10"
             android:gravity="center"
-            android:hint="@string/zipcode"
+            android:hint="@string/postalcode"
             android:inputType="textPostalAddress"
             android:paddingTop="20dp"
             android:textSize="22sp" />
@@ -205,7 +205,7 @@
             android:id="@+id/signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_signUp"
+            android:text="@string/signup"
             android:backgroundTint="@color/light_green"
             android:textColor="@color/black" />
 

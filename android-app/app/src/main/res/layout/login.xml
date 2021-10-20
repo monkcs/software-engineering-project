@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="@string/Password"
+        android:hint="@string/password"
         android:textSize="22sp"
         android:inputType="textPassword"
         android:id="@+id/password"/>
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
-        android:text="@string/button_login"
+        android:text="@string/login"
 
         android:textColor="@color/black"
         android:id="@+id/btnLogIn"/>
@@ -52,7 +52,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/New_user"
+        android:text="@string/new_user"
          />
 
         <Button
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:text="@string/button_signUp"
+            android:text="@string/signup"
             android:textColor="@color/black" />
 
     </LinearLayout>

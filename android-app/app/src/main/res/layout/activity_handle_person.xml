@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Person name goes here"
+                android:text="Person name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </LinearLayout>
 
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Person info"
+                        android:text="@string/personal_information"
                         android:textStyle="bold" />
                 </TableRow>
 
@@ -60,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <TextView android:text="ID: " />
+                    <TextView android:text="@string/internal_id_number" />
 
                     <TextView android:id="@+id/tv_person_id" />
                 </TableRow>
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <TextView android:text="Phone: " />
+                    <TextView android:text="@string/telephone_number" />
 
                     <TextView android:id="@+id/tv_phone" />
                 </TableRow>
@@ -79,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <TextView android:text="Date booked: " />
+                    <TextView android:text="@string/date" />
 
                     <TextView android:id="@+id/tv_bookedDate" />
                 </TableRow>
@@ -88,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <TextView android:text="Booked dose: " />
+                    <TextView android:text="@string/dosage_number" />
 
                     <TextView android:id="@+id/tv_bookedDose" />
                 </TableRow>
@@ -110,14 +110,14 @@
                 android:layout_width="150dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="8dp"
-                android:text="Confirm vaccintation" />
+                android:text="@string/confirm_vaccination" />
 
             <Button
                 android:id="@+id/btn_cancelAppoint"
                 android:layout_width="150dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="8dp"
-                android:text="Cancel Appointment" />
+                android:text="@string/cancel_appointment_warning" />
 
         </LinearLayout>
 

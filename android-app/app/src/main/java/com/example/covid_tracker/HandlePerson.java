@@ -211,11 +211,11 @@ public class HandlePerson extends AppCompatActivity {
     private void CancelAppointment(Integer id) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/cancel_time.php",
                 response -> {
-                    Toast.makeText(HandlePerson.this, "Canceled time for person with ID: " + id, Toast.LENGTH_LONG).show();
+                    Toast.makeText(HandlePerson.this, R.string.canceled_appointment, Toast.LENGTH_LONG).show();
                     tv_bookedDate.append(" (CANCELLED)");
                     //finish();
                 }, error -> {
-            Toast.makeText(HandlePerson.this, "Not able to cancel time", Toast.LENGTH_LONG).show();
+            Toast.makeText(HandlePerson.this, R.string.canceled_appointment_failed, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
@@ -242,6 +242,7 @@ public class HandlePerson extends AppCompatActivity {
                     getBookingInfo(id);
 
                 }, error -> {
+            System.out.println(error);
             Toast.makeText(HandlePerson.this, "Not able to book second time", Toast.LENGTH_LONG).show();
         }) {
             @Override
@@ -264,7 +265,6 @@ public class HandlePerson extends AppCompatActivity {
                 response -> {
                     Toast.makeText(HandlePerson.this, "Success!", Toast.LENGTH_LONG).show();
                 }, error -> {
-            Toast.makeText(HandlePerson.this, "Failed", Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
@@ -284,10 +284,11 @@ public class HandlePerson extends AppCompatActivity {
     public void update_tables(Integer id, Integer dose){
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/dose_taken.php",
                 response -> {
-                    System.out.println(response);
+                    Toast.makeText(HandlePerson.this, R.string.second_dose_appointment_created, Toast.LENGTH_LONG).show();
+                    getBookingInfo(id);
 
                 }, error -> {
-            Toast.makeText(HandlePerson.this, "Failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(HandlePerson.this, R.string.appointment_failed, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
