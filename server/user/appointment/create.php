@@ -43,10 +43,10 @@ function dosage($connection, $identity)
     }
 }
 
-function insert($connection, $appointment, $identity, $dose, $pending)
+function insert($connection, $appointment, $identity, $dose, $pending, $vaccine)
 {
-    $statement = $connection->prepare("INSERT INTO appointment VALUES (?, ?, ?, ?)");
-    $statement->bind_param("iiii", $appointment, $identity, $dose, $pending);
+    $statement = $connection->prepare("INSERT INTO appointment VALUES (?, ?, ?, ?, ?)");
+    $statement->bind_param("iiiii", $appointment, $identity, $dose, $pending, $vaccine);
     $statement->execute();
     $statement->close();
 }
@@ -78,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $appointment = $_POST["appointment"];
         $pending = $_POST["pending"];
+        $vaccine = $_POST["vaccine"];
         if ($appointment == "") {
             http_response_code(400);
             echo "No appointment id specified\n";
@@ -87,9 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (valid($connection, $appointment)) {
 
             if ($current_dosage == 0) {
-                insert($connection, $appointment, $identity, 1, $pending);
+                insert($connection, $appointment, $identity, 1, $pending, $vaccine);
             } else if ($current_dosage == 1) {
-                insert($connection, $appointment, $identity, 2, $pending);
+                insert($connection, $appointment, $identity, 2, $pending, $vaccine);
             } else {
                 http_response_code(409);
                 echo "All dosages already administered\n";

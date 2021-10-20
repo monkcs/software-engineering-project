@@ -80,7 +80,7 @@ public class BookingStep2Fragment extends Fragment {
     }
     private void getVaccine() {
         ArrayList<String> name_vaccine = new ArrayList<>();
-        name_vaccine.add("Choose vaccine:");
+        name_vaccine.add(getString(R.string.select_vaccine_type));
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/vaccines.php", null,
                 response -> {
 
@@ -125,7 +125,7 @@ public class BookingStep2Fragment extends Fragment {
                     });
 
                 }, error -> {
-            Toast.makeText(getActivity(), "No Vaccines available", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.no_vaccine_available), Toast.LENGTH_LONG).show();
         });
         queue.add(request);
     }

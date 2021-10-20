@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Covid Tracker</string>
+    <string name="app_name">Covid-19 Tracker</string>
     <string name="Fråga1">Har vi ett Covid-vaccin?</string>
     <string name="Fråga2">Vad är fördelarna med vaccinet?</string>
     <string name="Fråga3">Är jag fullt skyddad med vaccinet?</string>
@@ -20,5 +20,107 @@
     <string name="Svar8">"Ja, du kan boka hemtest på 1177.se "</string>
     <string name="Svar9">Allvarliga problem: 112, annars 1177</string>
 
-    <string name="network_down" translatable="false">Ingen anslutning till servern är tillgänglig</string>
+    <string name="network_down">Ingen anslutning till servern</string>
+    <string name="login">Logga in</string>
+    <string name="signup">Registrera konto</string>
+    <string name="new_user">Ny användare</string>
+    <string name="password">Lösenord</string>
+    <string name="email">Email</string>
+    <string name="dashboard">Översikt</string>
+    <string name="digital_health">Digital Hälsa</string>
+    <string name="firstname">Förnamn</string>
+    <string name="surname">Efternamn</string>
+    <string name="telephone_number">Telefonnummer</string>
+    <string name="street">Gatunamn</string>
+    <string name="postalcode">Postnummer</string>
+    <string name="city">Stad</string>
+    <string name="doses_delivered">Doser levererade</string>
+    <string name="doses_administered">Doser administrerade</string>
+    <string name="source_fohm">Källa: Folkhälsomyndigheten</string>
+    <string name="total">Total</string>
+    <string name="go_back">Tillbaka</string>
+    <string name="not_provider">Inte vårdgivare</string>
+    <string name="for_provider">"För "</string>
+    <string name="incorrect_credentials">Användarnamnet och/eller lösenordet är inte korrekt</string>
+    <string name="signup_failed">Skapandet av ett konto misslyckades</string>
+    <string name="signup_success">Ett konto har skapats</string>
+    <string name="template">Exempeldata</string>
+    <string name="health_symbol">Hälsosymbol</string>
+    <string name="corona_information">Information on Covid-19</string>
+    <string name="healthcare_guide">1177 Vårdguiden</string>
+    <string name="vaccination_statistics">Vaccinationsstatistik</string>
+    <string name="infection_statistics">Infektionsstatistik</string>
+    <string name="total_cases">Totalt antal fall:</string>
+    <string name="total_deaths">Totalt antal dödsfall:</string>
+    <string name="notice_sweden_age_group_exclusive">Notera: data om olika åldersgrupper är endast tillgängligt för Sverige</string>
+    <string name="yes">Ja</string>
+
+
+
+    <string name="no">Nej</string>
+    <string name="rebook">Omboka</string>
+    <string name="select_vaccine_type">Välj vaccintyp</string>
+    <string name="delete">Radera</string>
+    <string name="canceled_appointment">Tillfälle är avbokat</string>
+    <string name="cancel_appointment_warning">Avboka detta tillfälle?</string>
+    <string name="select_healthcare_provider">Välj vårdgivare</string>
+    <string name="canceled_appointment_failed">Det gick inte att avboka detta tillfälle</string>
+    <string name="second_dose_appointment_created">Bokning for andra dos skapad</string>
+    <string name="login_admin">Vårdgivare inloggning</string>
+    <string name="no_healthcare_provider">Inga vårdgivare tillgängliga</string>
+    <string name="no_vaccine_available">Inga vaccin tillgängliga</string>
+    <string name="select_time">Välj en tid</string>
+    <string name="contact_your_doctor">Kontakta din doktor</string>
+    <string name="answer_all_questions">Svara på alla frågor</string>
+    <string name="appointment_created">Bokning är skapad</string>
+    <string name="appointment_failed">Bokning misslyckades</string>
+    <string name="questions_failed">"Lägga till frågor misslyckades "</string>
+    <string name="time_for_second_dose">Det är dags för din andra dos</string>
+    <string name="invalid_email">Ogiltig epost</string>
+    <string name="upload_request">Uppladning köad</string>
+    <string name="cases">Fall</string>
+    <string name="cases_per_week">Fall per vecka</string>
+    <string name="death">Dödsfall</string>
+    <string name="death_per_week">Dödsfall per vecka</string>
+    <string name="no_appointments_today">Inga bokningar idag</string>
+    <string name="add">Lägg till</string>
+    <string name="age">Ålder</string>
+    <string name="forthcoming">Kommande</string>
+    <string name="next">Nästa</string>
+    <string name="date">Datum</string>
+    <string name="dosage_number">Dos att ta</string>
+    <string name="confirm_vaccination">Bekräfta vaccination</string>
+    <string name="personal_information">Personlig information</string>
+    <string name="internal_id_number">Internt id-nummer</string>
+    <string name="cancel">Avbryt</string>
+    <string name="number_of_users">Antal användare</string>
+    <string name="upcoming_appointments">Kommande bokningar</string>
+    <string name="make_appointment">Skapa bokning</string>
+    <string name="reschedule_appointment">Boka om bokning</string>
+    <string name="current_appointment">Aktuell bokning</string>
+    <string name="fill_out_form">Fyll i formuläret</string>
+    <string name="questions">Frågor</string>
+    <string name="answer">Svar</string>
+    <string name="clear_filter">Rensa filter</string>
+    <string name="search">Sök</string>
+    <string name="sweden">Sverige</string>
+    <string name="doses_administered_percent">Doser administrerade (%)</string>
+    <string name="first_dose_percent">Första dos (%)</string>
+    <string name="Second_dose_percent">Andra dos (%)</string>
+    <string name="time">Tid</string>
+    <string name="information">Information</string>
+    <string name="inventory">Lager</string>
+    <string name="dosage_quantity">Antal doser</string>
+    <string name="add_dosages">Lägg till doser</string>
+    <string name="confirm_appointment">Bekräfta bokning</string>
+    <string name="scan_qr_code">Scanna qr kod</string>
+    <string name="error_missing_value">Inget värde mottaget</string>
+    <string name="success">Lyckades</string>
+    <string name="username">Användarnamn</string>
+    <string name="birthdate">Födelsedatum</string>
+    <string name="manufacturer">Tillverkare</string>
+
+    <string name="passport_invalid">Passportet finns inte</string>
+
+
 </resources>

@@ -85,7 +85,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Clear Filters"
+                android:text="@string/clear_filter"
                 android:textColor="#3F51B5" />
         </LinearLayout>
 
@@ -108,7 +108,7 @@
                 android:layout_marginRight="5dp"
                 android:backgroundTint="@color/green"
                 android:layout_weight="1"
-                android:text="Search" />
+                android:text="@string/search" />
 
 
         </LinearLayout>
@@ -131,7 +131,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="4dp"
                 android:textSize="24dp"
-                android:text="Sweden"/>
+                android:text="@string/sweden"/>
         </LinearLayout>
 
         <LinearLayout
@@ -251,7 +251,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:text="@string/source_folkh_lsomyndigheten" />
+                        android:text="@string/source_fohm" />
 
                 </TableRow>
 
@@ -263,7 +263,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:text="@string/note_data_on_different_age_groups_is_only_available_for_sweden" />
+                        android:text="@string/notice_sweden_age_group_exclusive" />
 
                 </TableRow>
 

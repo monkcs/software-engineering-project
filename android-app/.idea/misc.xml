@@ -26,6 +26,7 @@
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/test_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.19519927536231885" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_admin_dosage.xml" value="0.24230072463768115" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_admin_fragments.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_fragments.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_handle_person.xml" value="0.4" />
@@ -41,6 +42,18 @@
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/menu/admin_bottom_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/menu/bottom_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/activity_administartorlogin.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/activity_camera_scanner.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/confirmpopup.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/deletepopup.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_digital_health.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_faq.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_statistics_menu.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/greencheckmark.xml" value="0.25" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/login.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/test_login.xml" value="0.25" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/mipmap-anydpi-v26/flaggb.xml" value="0.16302083333333334" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/mipmap-anydpi-v26/flaggb_round.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_administartorlogin.xml" value="0.2796875" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_boka_vaccin2.xml" value="0.146875" />
         <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_booking.xml" value="0.2796875" />

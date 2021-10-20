@@ -55,7 +55,7 @@ public class AdminLandingFragment extends Fragment {
         rl3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inboxAdmin();
+                dosage();
             }
         });
 
@@ -64,14 +64,24 @@ public class AdminLandingFragment extends Fragment {
         return view;
     }
 
+    public void dosage() {
+
+
+
+            Intent intent = new Intent(getActivity(), Admin_dosage.class);
+            startActivity(intent);
+
+
+
+    }
+
     public void inboxAdmin(){
         Intent intent = new Intent(getActivity(), inboxAdmin.class);
         startActivity(intent);
     }
 
     public void uppcApoint(){
-        Intent intent = new Intent(getActivity(), UpcomingAppointments.class);
-        startActivity(intent);
+
     }
 
     public void planAndShedVacc(){
@@ -89,7 +99,7 @@ public class AdminLandingFragment extends Fragment {
                     }
 
                 }, error -> {
-            //Toast.makeText(getActivity(), R.string.wrong_creeentials, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.incorrect_credentials, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {

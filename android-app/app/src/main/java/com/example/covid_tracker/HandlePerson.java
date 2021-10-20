@@ -1,7 +1,5 @@
 package com.example.covid_tracker;
 
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -81,9 +78,9 @@ public class HandlePerson extends AppCompatActivity {
             public void onClick(View view) {
                 //person_id = Integer.parseInt((String) tv_person_id.getText());
                 if(firstDose())
-                    firstDoseTaken(person_id);
+                    ConfirmPopUp(person_id, 1);
                 else{
-                    secondDoseTaken(person_id);
+                    ConfirmPopUp(person_id,2);
                 }
             }
         });
@@ -94,7 +91,7 @@ public class HandlePerson extends AppCompatActivity {
                 firstDose();
                 if(tv_person_id.getText().length() > 0) {
                     person_id = Integer.parseInt((String) tv_person_id.getText());
-                    RemoveAppointment(person_id);
+                    CancelPopUp(person_id);
                 }
                 else{
                     Toast.makeText(HandlePerson.this, "Error", Toast.LENGTH_SHORT).show();
@@ -106,71 +103,6 @@ public class HandlePerson extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
     }
 
-    private void firstDoseTaken(Integer id) {
-        dose = 1;
-        update_tables(id, dose);
-        bookSecondDose(id);
-    }
-
-    private void secondDoseTaken(Integer id) {
-        dose = 2;
-        update_tables(id, dose);
-        tv_bookedDate.append(" (CONFIRMED)");
-        Toast.makeText(HandlePerson.this, "Second dose for " + id + ", set timer for passport", Toast.LENGTH_SHORT).show();
-        /*set passport timer functionality*/
-    }
-
-    public void RemoveAppointment(Integer id) {
-        //if tid bokad
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        final View CancelPopupView = getLayoutInflater().inflate(R.layout.deletepopup, null);
-        Button btnDelete = (Button) CancelPopupView.findViewById(R.id.DeleteBtn);
-        Button btnGoBack = (Button) CancelPopupView.findViewById(R.id.GobackBtn);
-
-        dialogBuilder.setView(CancelPopupView);
-        dialog = dialogBuilder.create();
-        dialog.show();
-
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CancelAppointment(id);
-                //finish();
-                dialog.dismiss();
-            }
-        });
-        btnGoBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-    }
-
-    private void CancelAppointment(Integer id) {
-        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/cancel_time.php",
-                response -> {
-                    Toast.makeText(HandlePerson.this, "Canceled time for person with ID: " + id, Toast.LENGTH_LONG).show();
-                    tv_bookedDate.append(" (CANCELLED)");
-                    //finish();
-                }, error -> {
-            Toast.makeText(HandlePerson.this, "Not able to cancel time", Toast.LENGTH_LONG).show();
-        }) {
-            @Override
-            public Map<String, String> getParams()  {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("ID", id.toString());
-
-                return params;
-            }
-            @Override
-            public Map<String, String> getHeaders() {
-                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
-            }
-        };
-
-        queue.add(request);
-    }
 
     private boolean firstDose() {
         if(tv_bookedDose.getText().equals("1")) return true;
@@ -208,19 +140,87 @@ public class HandlePerson extends AppCompatActivity {
         queue.add(request);
     }
 
-    public void update_tables(Integer id, Integer dose){
-        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/dose_taken.php",
-                response -> {
-                    System.out.println(response);
+    public void ConfirmPopUp(Integer id, Integer dose_pop) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        final View ConfirmPopupView = getLayoutInflater().inflate(R.layout.confirmpopup, null);
+        Button btnConfirm = (Button) ConfirmPopupView.findViewById(R.id.confirmBtn);
+        Button btnExit = (Button) ConfirmPopupView.findViewById(R.id.ExitBtn);
 
+        dialogBuilder.setView(ConfirmPopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(dose_pop == 1)
+                    firstDoseTaken(id);
+                else{
+                    secondDoseTaken(id);
+                }
+                dialog.dismiss();
+            }
+        });
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void firstDoseTaken(Integer id) {
+        dose = 1;
+        bookSecondDose(id);
+        update_tables(id, dose);
+    }
+
+    private void secondDoseTaken(Integer id) {
+        dose = 2;
+        setPassportDate(id);
+        update_tables(id, dose);
+        tv_bookedDate.append(" (CONFIRMED)");
+    }
+
+    public void CancelPopUp(Integer id) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        final View CancelPopupView = getLayoutInflater().inflate(R.layout.deletepopup, null);
+        Button btnDelete = (Button) CancelPopupView.findViewById(R.id.DeleteBtn);
+        Button btnGoBack = (Button) CancelPopupView.findViewById(R.id.GobackBtn);
+
+        dialogBuilder.setView(CancelPopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CancelAppointment(id);
+                //finish();
+                dialog.dismiss();
+            }
+        });
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void CancelAppointment(Integer id) {
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/cancel_time.php",
+                response -> {
+                    Toast.makeText(HandlePerson.this, R.string.canceled_appointment, Toast.LENGTH_LONG).show();
+                    tv_bookedDate.append(" (CANCELLED)");
+                    //finish();
                 }, error -> {
-            Toast.makeText(HandlePerson.this, "Failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(HandlePerson.this, R.string.canceled_appointment_failed, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("ID", id.toString());
-                params.put("dose", dose.toString());
 
                 return params;
             }
@@ -242,6 +242,7 @@ public class HandlePerson extends AppCompatActivity {
                     getBookingInfo(id);
 
                 }, error -> {
+            System.out.println(error);
             Toast.makeText(HandlePerson.this, "Not able to book second time", Toast.LENGTH_LONG).show();
         }) {
             @Override
@@ -256,6 +257,53 @@ public class HandlePerson extends AppCompatActivity {
                 return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
             }
         };
+        queue.add(request);
+    }
+
+    public void setPassportDate(Integer id){
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/generate_passport.php",
+                response -> {
+                    Toast.makeText(HandlePerson.this, "Success!", Toast.LENGTH_LONG).show();
+                }, error -> {
+        }) {
+            @Override
+            public Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("ID", id.toString());
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+        queue.add(request);
+    }
+
+    public void update_tables(Integer id, Integer dose){
+        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/dose_taken.php",
+                response -> {
+                    Toast.makeText(HandlePerson.this, R.string.second_dose_appointment_created, Toast.LENGTH_LONG).show();
+                    getBookingInfo(id);
+
+                }, error -> {
+            Toast.makeText(HandlePerson.this, R.string.appointment_failed, Toast.LENGTH_LONG).show();
+        }) {
+            @Override
+            public Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("ID", id.toString());
+                params.put("dose", dose.toString());
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
         queue.add(request);
     }
 
