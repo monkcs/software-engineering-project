@@ -180,6 +180,8 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 DeleteAppointment();
+                /*1. check vaccine product
+                * 2. increment selected product*/
                 dialog.dismiss();
 
             }
@@ -195,7 +197,7 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
     public void DeleteAppointment() {
         StringRequest request = new StringRequest(Request.Method.GET, WebRequest.urlbase + "user/appointment/cancel.php",
                 response -> {
-                    System.out.println("Tog bort bokade tid");
+                    System.out.println(response);
                     Toast.makeText(getActivity(), R.string.time_canceled, Toast.LENGTH_LONG).show();
 
                 }, error -> {
