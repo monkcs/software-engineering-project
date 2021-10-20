@@ -6,21 +6,15 @@ public class FAQ_block {
     private Boolean expandable;
 
 
-    public FAQ_block(String Question, String Answer, String Source) {
+    public FAQ_block(String Question, String Answer) {
         this.Question = Question;
         this.Answer = Answer;
-        this.Source = Source;
+
 
         this.expandable = false;
     }
 
-    public String getSource() {
-        return Source;
-    }
 
-    public void setSource(String Source) {
-        this.Source = Source;
-    }
 
     public String getQuestion() {
         return Question;
@@ -53,7 +47,6 @@ public class FAQ_block {
         return "FAQ_block{" +
                 "Question='" + Question + '\'' +
                 ", Answer='" + Answer + '\'' +
-                ", Source='" + Source + '\'' +
                 '}';
     }
 }

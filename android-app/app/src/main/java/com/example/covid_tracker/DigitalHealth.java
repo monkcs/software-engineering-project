@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.zxing.BarcodeFormat;
@@ -29,6 +31,9 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +45,7 @@ public class DigitalHealth extends Fragment {
     private ImageView qrView;
     private RecyclerView recyclerView;
     private View view;
-    private List<FAQ_block> list;
+    private List<FAQ_block> values;
     private RequestQueue queue;
 
     private static final int CAMERA_PERMISSION_CODE = 100;
@@ -57,11 +62,11 @@ public class DigitalHealth extends Fragment {
         queue = Volley.newRequestQueue(getActivity());
 
 
-        list = new ArrayList<>();
-        setRecyclerView();
-        initUserInfo();
+        values = new ArrayList<>();
 
-        qrGenerator("https://youtu.be/iik25wqIuFo");
+        InitData();
+
+        //qrGenerator("https://youtu.be/iik25wqIuFo");
 
         Button toocamera = view.findViewById(R.id.btn_camera);
         toocamera.setOnClickListener(view -> {
@@ -99,29 +104,32 @@ public class DigitalHealth extends Fragment {
 
     private void setRecyclerView() {
 
-        FAQ_block_Adapter faq_block_adapter = new FAQ_block_Adapter(list);
+        FAQ_block_Adapter faq_block_adapter = new FAQ_block_Adapter(values);
         recyclerView.setAdapter(faq_block_adapter);
         recyclerView.setHasFixedSize(true);
     }
 
-    private void initUserInfo() {
 
-        list.add(new FAQ_block(getString(R.string.Username)         , "Lukas Axelborn",""));
-        list.add(new FAQ_block(getString(R.string.Dateofbirth), "2000 03 21"  ,""));
-        list.add(new FAQ_block(getString(R.string.Manufacturer) , "sputnik"     ,""));
-        list.add(new FAQ_block(getString(R.string.Dosetwodate), " I sommaras" ,""));
+    public void InitData(){
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "user/get_passport.php", null,
 
-    }
-
-    public void TOBEDOOOO(){
-        StringRequest request = new StringRequest(Request.Method.GET, WebRequest.urlbase + "user/appointment/ .php",
+ 
                 response -> {
+                    try {
+                        values.add(new FAQ_block(getString(R.string.Username), response.getString("firstname") +" "+ response.getString("surname")));
+                        values.add(new FAQ_block(getString(R.string.Dateofbirth), response.getString("birthdate")));
+                        values.add(new FAQ_block(getString(R.string.Manufacturer), response.getString("name")));
+                        values.add(new FAQ_block(getString(R.string.Dosetwodate), response.getString("Date")));
+                        qrGenerator(response.getString("qrcode"));            
+                        setRecyclerView();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
-                    Log.i("gDFA", "response: " + response);
+                    //Log.i("gDFC", "response: " + response);
 
 
-
-                }, error -> Log.i("gDFA", "Något blev fel"))
+                }, error -> Log.i("gDFB", "No passport available"))
         {
             @Override
             public Map<String, String> getHeaders() {
