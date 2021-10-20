@@ -112,8 +112,6 @@ public class CameraScannerActivity extends AppCompatActivity {
 
                     textView.setText(stringQR);
 
-
-
                     try {
                         Thread.sleep(WAITTIME_FOR_PROCESSING);
                         // Do some stuff
