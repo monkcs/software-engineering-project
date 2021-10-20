@@ -198,7 +198,7 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
         StringRequest request = new StringRequest(Request.Method.GET, WebRequest.urlbase + "user/appointment/cancel.php",
                 response -> {
                     System.out.println(response);
-                    Toast.makeText(getActivity(), R.string.time_canceled, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.canceled_appointment, Toast.LENGTH_LONG).show();
 
                 }, error -> {
             Toast.makeText(getActivity(), R.string.canceled_appointment_failed, Toast.LENGTH_LONG).show();
