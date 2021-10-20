@@ -18,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
           echo "No passport available\n";
       }
       else{
-        http_response_code(200); 
+      http_response_code(200); 
         echo json_encode($result1->fetch_array(MYSQLI_ASSOC));
         echo "\n";
-      }
+    }  
 } else {
     http_response_code(405);
     echo "Send request using HTTP post\n";
