@@ -84,7 +84,7 @@ public class BookingStep1Fragment extends Fragment {
 
     private void getClinics(){
         ArrayList<String> name_clinic = new ArrayList<>();
-        name_clinic.add("Choose clinic:");
+        name_clinic.add(getString(R.string.select_healthcare_provider));
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/", null,
                 response -> {
@@ -132,9 +132,8 @@ public class BookingStep1Fragment extends Fragment {
                     });
 
 
-
                 }, error -> {
-            Toast.makeText(getActivity(), "No clinics available", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.no_healthcare_provider), Toast.LENGTH_LONG).show();
         });
 
         queue.add(request);

@@ -4,7 +4,7 @@ require 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
-    $statement = $connection->prepare("SELECT * FROM vaccines");
+    $statement = $connection->prepare("SELECT * FROM vaccines WHERE quantity > 0");
     $statement->execute();
     $result = $statement->get_result();
     $statement->close();

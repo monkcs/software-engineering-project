@@ -7,7 +7,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,10 +31,8 @@ public class Admin_dosage extends AppCompatActivity {
     private RecyclerView recyclerview;
     public List<Dosage_block> list;
     public ArrayList<String> lista_spinner;
-    private TextView rubrik;
     private Spinner spinner;
     private EditText edit_dosage;
-    private Button addknapp;
     private RequestQueue queue;
 
     private String nameis_spinner;
@@ -48,69 +45,59 @@ public class Admin_dosage extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
         //byt till getactivity när det fragment
         queue = Volley.newRequestQueue(this);
 
         recyclerview = (RecyclerView) findViewById(R.id.recyclerView_dosage);
-        rubrik = (TextView) findViewById(R.id.lager);
 
         GetfromDatabase();
 
-
-
         edit_dosage = (EditText) findViewById(R.id.edit_amount);
 
-        addknapp = (Button) findViewById(R.id.addknapp);
+        Button addknapp = (Button) findViewById(R.id.addknapp);
         addknapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-              //  System.out.println(edit_dosage.getText());
-
                 if(edit_dosage.length() != 0) {
 
-                    System.out.println("hejsan");
+                    String selected_id = "";
 
                     nameis_spinner = spinner.getSelectedItem().toString();
                     antal_doser_som_add = edit_dosage.getText().toString();
                     antal_convert = Integer.parseInt(antal_doser_som_add);
-                    System.out.println("---Add---");
-                    System.out.println("Antal: " + antal_convert);
-                    System.out.println(nameis_spinner);
+
+                    /*get the id for this vaccine*/
+                    for(int i = 0; i < list.size(); i++)
+                    {
+                        if(list.get(i).getNamn().equals(nameis_spinner))
+                            selected_id = list.get(i).getId();
+                    }
                     edit_dosage.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     edit_dosage.setText("");
-                    System.out.println("-----------");
 
-                    addToDatabase(antal_convert, nameis_spinner);
+                    addToDatabase(antal_convert, selected_id);
                 }
                 else{
-
-                    Toast.makeText(Admin_dosage.this, "@error_missing_value", Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(Admin_dosage.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
                 }
             }
         });
 
     }
 
-    private void addToDatabase(Integer antal, String namn) {
-
-        System.out.println("in add to database before request");
-
+    private void addToDatabase(Integer antal, String id) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/vaccine_catalog.php",
                 response -> {
-                    Toast.makeText(Admin_dosage.this, "Success!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Admin_dosage.this, getString(R.string.success), Toast.LENGTH_LONG).show();
                     GetfromDatabase();
                 }, error -> {
-            Toast.makeText(Admin_dosage.this, "Error", Toast.LENGTH_LONG).show();
+            Toast.makeText(Admin_dosage.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("selected_name", namn);
+                params.put("selected_id", id);
                 params.put("input_value", String.valueOf(antal));
                 return params;
             }
@@ -130,18 +117,12 @@ public class Admin_dosage extends AppCompatActivity {
 
             lista_spinner.add(list.get(i).getNamn());
         }
-
         spinner = this.findViewById(R.id.spinnerVaccine_dosage);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lista_spinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
-
     }
 
-
-    //detta ska bytas ut mot att hämta från databasen
-    //glöm inte att calla set Recyclerview
     private void GetfromDatabase() {
 
         list = new ArrayList<>();
@@ -152,7 +133,7 @@ public class Admin_dosage extends AppCompatActivity {
                     for (int i=0;i<response.length();i++) {
                         try {
                             JSONObject jsonObject = response.getJSONObject(i);
-                            list.add(new Dosage_block(jsonObject.getInt("quantity"), jsonObject.getString("name")));
+                            list.add(new Dosage_block(jsonObject.getString("id"), jsonObject.getInt("quantity"), jsonObject.getString("name")));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -160,11 +141,8 @@ public class Admin_dosage extends AppCompatActivity {
                         setRecyclerView();
                     }
                 }, error -> {
-
-            System.out.println("Error no response");
+            Toast.makeText(Admin_dosage.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
             setRecyclerView();
-
-
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -172,14 +150,7 @@ public class Admin_dosage extends AppCompatActivity {
             }
         };
         queue.add(request);
-
-
-
     }
-
-
-
-
 
     private void setRecyclerView() {
 

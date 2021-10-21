@@ -81,8 +81,7 @@ public class AdminLandingFragment extends Fragment {
     }
 
     public void uppcApoint(){
-        Intent intent = new Intent(getActivity(), UpcomingAppointments.class);
-        startActivity(intent);
+
     }
 
     public void planAndShedVacc(){
@@ -100,7 +99,7 @@ public class AdminLandingFragment extends Fragment {
                     }
 
                 }, error -> {
-            Toast.makeText(getActivity(), R.string.wrong_creeentials, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.incorrect_credentials, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {

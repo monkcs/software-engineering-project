@@ -3,13 +3,22 @@ package com.example.covid_tracker;
 public class Dosage_block {
 
     public int antal;
-    public String namn;
+    public String id, namn;
 
 
-    public Dosage_block(int antal, String namn){
+    public Dosage_block(String id, int antal, String namn){
 
+        this.id = id;
         this.antal = antal;
         this.namn = namn;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getAntal() {
@@ -28,12 +37,11 @@ public class Dosage_block {
         this.namn = namn;
     }
 
-
-
     @Override
     public String toString() {
         return "Dosage_block{" +
                 "antal=" + antal +
+                ", id='" + id + '\'' +
                 ", namn='" + namn + '\'' +
                 '}';
     }

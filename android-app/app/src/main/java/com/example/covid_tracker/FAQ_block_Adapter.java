@@ -36,8 +36,6 @@ public class FAQ_block_Adapter extends RecyclerView.Adapter<FAQ_block_Adapter.Ve
 
         holder.QuestionText.setText(faqblockis.getQuestion());
         holder.AnswerText.setText(faqblockis.getAnswer());
-        holder.SourceText.setText(faqblockis.getSource());
-
 
         boolean isExpandable = FAQ_block_List.get(position).getExpandable();
         holder.expandable.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
