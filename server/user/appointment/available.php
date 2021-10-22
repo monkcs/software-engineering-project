@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     //$after = prioritizations($connection, $provider, age($connection, 71));
 
-    $statement = $connection->prepare("SELECT * FROM available WHERE NOT EXISTS (SELECT * FROM appointment WHERE appointment.available = available.id) AND available.provider = ? AND available.datetime > CURRENT_DATE");
+    $statement = $connection->prepare("SELECT * FROM available WHERE NOT EXISTS (SELECT * FROM appointment WHERE appointment.available = available.id) AND available.provider = ? AND available.datetime > curdate()");
     $statement->bind_param("i", $provider);
     $statement->execute();
     $result = $statement->get_result();
