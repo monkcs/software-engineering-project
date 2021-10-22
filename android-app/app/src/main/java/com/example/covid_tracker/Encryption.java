@@ -14,8 +14,6 @@ public class Encryption {
         mod = mod.replaceAll("Ö", "¤");
         mod = mod.replaceAll("9", "NINE");
 
-        System.out.println("modded string: " + mod);
-
         String reversed = reverseString(mod);
 
         byte[] encrypted = reversed.getBytes(StandardCharsets.UTF_8);
