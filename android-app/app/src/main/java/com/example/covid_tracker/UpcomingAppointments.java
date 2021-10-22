@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -105,6 +106,44 @@ public class UpcomingAppointments extends Fragment {
         return view;
     }
 
+    private String decryptData(String s){
+
+        byte[] decryptedChars = s.getBytes(StandardCharsets.UTF_8);
+
+        for(int i = 0; i < s.length(); i++){
+            decryptedChars[i] = (byte) (decryptedChars[i] - 1);
+        }
+
+        String decryptedWithSpec = reverseString(new String(decryptedChars));
+
+        //check for åäö
+        String decrypted = decryptedWithSpec.replaceAll("%", "å");
+        decrypted = decrypted.replaceAll("&", "å");
+        decrypted = decrypted.replaceAll("#", "ö");
+        decrypted = decrypted.replaceAll("!", "Å");
+        decrypted = decrypted.replaceAll("£", "Ä");
+        decrypted = decrypted.replaceAll("¤", "Ö");
+
+        return decrypted;
+    }
+
+    private String reverseString(String s){
+        // getBytes() method to convert string
+        // into bytes[].
+        byte[] strAsByteArray = s.getBytes();
+
+        byte[] result = new byte[strAsByteArray.length];
+
+        // Store result in reverse order into the
+        // result byte[]
+        for (int i = 0; i < strAsByteArray.length; i++)
+            result[i] = strAsByteArray[strAsByteArray.length - i - 1];
+
+        //System.out.println(new String(result));
+
+        return new String(result);
+    }
+
     private void maketoastinfo() {
 
         Toast t1;
@@ -131,8 +170,8 @@ public class UpcomingAppointments extends Fragment {
                             datetime = jsonObject.getString("datetime");
                             date = getDateAndTime(datetime, 0);
                             if(date.equals(currDate))
-                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), Integer.parseInt(jsonObject.getString("account")), jsonObject.getString("surname"),
-                                        jsonObject.getString("firstname"), jsonObject.getString("telephone"), Integer.parseInt(jsonObject.getString("dose"))));
+                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), Integer.parseInt(jsonObject.getString("account")), decryptData(jsonObject.getString("surname")),
+                                        decryptData(jsonObject.getString("firstname")), decryptData(jsonObject.getString("telephone")), Integer.parseInt(jsonObject.getString("dose"))));
                         }
                         if(booked_list.size() > 0) {
                             tv_none_booked.setText("");

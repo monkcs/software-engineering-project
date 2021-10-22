@@ -57,7 +57,7 @@
             android:name=".Administartorlogin"
             android:exported="true" />
         <activity
-            android:name=".Regristering"
+            android:name=".Registration"
             android:exported="true" />
         <activity
             android:name=".StatisticsVacc"

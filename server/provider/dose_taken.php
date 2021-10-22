@@ -5,9 +5,9 @@ $user = $_POST["ID"];
 $current_dose = $_POST["dose"];
 
 
-function delete_appointment($connection, $user){
-    $statement = $connection->prepare("DELETE from appointment where appointment.account = ?");
-    $statement->bind_param("i", $user);        
+function delete_appointment($connection, $user, $current_dose){
+    $statement = $connection->prepare("DELETE from appointment where appointment.account = ? AND appointment.dose = ?");
+    $statement->bind_param("ii", $user, $current_dose);        
     $statement->execute();
     $statement->close();
 }
@@ -38,7 +38,7 @@ if($current_dose == 1){
     $statement->execute();
     $statement->close();
 
-    delete_appointment($connection, $user);
+    delete_appointment($connection, $user, $current_dose);
 }
 else if($current_dose == 2){
     echo "inserting into dose 2";
@@ -46,7 +46,7 @@ else if($current_dose == 2){
     $statement->bind_param("ii", $user, $date);
     $statement->execute();
     $statement->close();
-    delete_appointment($connection, $user);
+    delete_appointment($connection, $user, $current_dose);
 }
 else{
     http_response_code(401);
