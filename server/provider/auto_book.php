@@ -94,11 +94,10 @@ if ($result->num_rows == 0) {
     create_appointment($connection, $currdate, $provider);
 
     $new_time_id = get_new_time($connection, $currdate);
+    echo $new_time_id;
     
-
-
     $vaccine = get_vaccine($connection);
-    echo $vaccine;
+    
     insert($connection, $new_time_id, $vaccine);
     delete_dose($connection);
     exit;

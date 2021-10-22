@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -63,6 +64,8 @@ public class HandlePerson extends AppCompatActivity {
             lastName = nameArray[0];
             firstName = nameArray[1];
 
+            System.out.println("ID: " + person_id);
+
             tv_personFullName.setText(lastName + ", " + firstName);
         }
 
@@ -76,7 +79,7 @@ public class HandlePerson extends AppCompatActivity {
         btn_confirmVaccine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //person_id = Integer.parseInt((String) tv_person_id.getText());
+                person_id = Integer.parseInt((String) tv_person_id.getText());
                 if(firstDose())
                     ConfirmPopUp(person_id, 1);
                 else{
@@ -103,6 +106,43 @@ public class HandlePerson extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
     }
 
+    private String decryptData(String s){
+
+        byte[] decryptedChars = s.getBytes(StandardCharsets.UTF_8);
+
+        for(int i = 0; i < s.length(); i++){
+            decryptedChars[i] = (byte) (decryptedChars[i] - 1);
+        }
+
+        String decryptedWithSpec = reverseString(new String(decryptedChars));
+
+        //check for åäö
+        String decrypted = decryptedWithSpec.replaceAll("%", "å");
+        decrypted = decrypted.replaceAll("&", "å");
+        decrypted = decrypted.replaceAll("#", "ö");
+        decrypted = decrypted.replaceAll("!", "Å");
+        decrypted = decrypted.replaceAll("£", "Ä");
+        decrypted = decrypted.replaceAll("¤", "Ö");
+
+        return decrypted;
+    }
+
+    private String reverseString(String s){
+        // getBytes() method to convert string
+        // into bytes[].
+        byte[] strAsByteArray = s.getBytes();
+
+        byte[] result = new byte[strAsByteArray.length];
+
+        // Store result in reverse order into the
+        // result byte[]
+        for (int i = 0; i < strAsByteArray.length; i++)
+            result[i] = strAsByteArray[strAsByteArray.length - i - 1];
+
+        //System.out.println(new String(result));
+
+        return new String(result);
+    }
 
     private boolean firstDose() {
         if(tv_bookedDose.getText().equals("1")) return true;
@@ -120,7 +160,7 @@ public class HandlePerson extends AppCompatActivity {
                             JSONObject jsonObject = response.getJSONObject(i);
                             if(String.valueOf(id).equals(jsonObject.getString("account"))){
                                 tv_person_id.setText(jsonObject.getString("account"));
-                                tv_phone.setText(jsonObject.getString("telephone"));
+                                tv_phone.setText(decryptData(jsonObject.getString("telephone")));
                                 tv_bookedDate.setText(jsonObject.getString("datetime"));
                                 tv_bookedDose.setText(jsonObject.getString("dose"));
                             }
@@ -237,9 +277,10 @@ public class HandlePerson extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/auto_book.php",
                 response -> {
                     System.out.println("IN BOOKING DOSE 2:");
-                    System.out.println(response);
+                    System.out.println("Response: " + response);
                     Toast.makeText(HandlePerson.this, "Second dose booked for person with ID: " + id, Toast.LENGTH_LONG).show();
                     getBookingInfo(id);
+
 
                 }, error -> {
             System.out.println(error);
@@ -265,6 +306,8 @@ public class HandlePerson extends AppCompatActivity {
                 response -> {
                     Toast.makeText(HandlePerson.this, "Success!", Toast.LENGTH_LONG).show();
                 }, error -> {
+                    Toast.makeText(HandlePerson.this, "Error", Toast.LENGTH_LONG).show();
+
         }) {
             @Override
             public Map<String, String> getParams()  {
@@ -284,11 +327,7 @@ public class HandlePerson extends AppCompatActivity {
     public void update_tables(Integer id, Integer dose){
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/dose_taken.php",
                 response -> {
-                    Toast.makeText(HandlePerson.this, R.string.second_dose_appointment_created, Toast.LENGTH_LONG).show();
-                    getBookingInfo(id);
-
                 }, error -> {
-            Toast.makeText(HandlePerson.this, R.string.appointment_failed, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
