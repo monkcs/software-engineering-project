@@ -274,7 +274,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
             while (true) {
                 if (calendar.get(Calendar.HOUR) < 10) {
                     server_time_list.add(format_server.format(calendar.getTime()));
-                    //serverUpload(format_server.format(calendar.getTime()));
+                    serverUpload(format_server.format(calendar.getTime()));
                     calendar.add(Calendar.MINUTE, appointment_lenght);
                 } else {
                     break;
@@ -291,6 +291,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/create.php",
                 response -> {
                 }, error -> {
+            System.out.println("That didn't work...");
         }
         ) {
             @Override
@@ -298,6 +299,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
 
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("datetime", time);
+                params.put("minimum_age", String.valueOf(selected_age));
 
                 return params;
             }
