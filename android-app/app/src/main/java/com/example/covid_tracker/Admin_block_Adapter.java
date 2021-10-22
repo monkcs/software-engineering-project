@@ -48,9 +48,9 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
         Admin_block bookingblockis = Admin_block_List.get(position);
 
 
-        holder.PersonText.setText(decryptData(bookingblockis.getPersonen()) + " " + decryptData(bookingblockis.getPersonen2()));
+        holder.PersonText.setText(Encryption.decryptData(bookingblockis.getPersonen()) + " " + Encryption.decryptData(bookingblockis.getPersonen2()));
         holder.SvarText.setText(bookingblockis.getSvaret());
-        holder.telefonText.setText(decryptData(bookingblockis.getTelenmr()));
+        holder.telefonText.setText(Encryption.decryptData(bookingblockis.getTelenmr()));
         holder.datumTidText.setText(bookingblockis.getDatumTid());
 
 
@@ -109,44 +109,6 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
         boolean isExpandable = Admin_block_List.get(position).getExpandable();
         holder.expandable.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
-    }
-
-    private String decryptData(String s){
-
-        byte[] decryptedChars = s.getBytes(StandardCharsets.UTF_8);
-
-        for(int i = 0; i < s.length(); i++){
-            decryptedChars[i] = (byte) (decryptedChars[i] - 1);
-        }
-
-        String decryptedWithSpec = reverseString(new String(decryptedChars));
-
-        //check for åäö
-        String decrypted = decryptedWithSpec.replaceAll("%", "å");
-        decrypted = decrypted.replaceAll("&", "å");
-        decrypted = decrypted.replaceAll("#", "ö");
-        decrypted = decrypted.replaceAll("!", "Å");
-        decrypted = decrypted.replaceAll("£", "Ä");
-        decrypted = decrypted.replaceAll("¤", "Ö");
-
-        return decrypted;
-    }
-
-    private String reverseString(String s){
-        // getBytes() method to convert string
-        // into bytes[].
-        byte[] strAsByteArray = s.getBytes();
-
-        byte[] result = new byte[strAsByteArray.length];
-
-        // Store result in reverse order into the
-        // result byte[]
-        for (int i = 0; i < strAsByteArray.length; i++)
-            result[i] = strAsByteArray[strAsByteArray.length - i - 1];
-
-        //System.out.println(new String(result));
-
-        return new String(result);
     }
 
     private void bokaPendingDatabas(int appointment, Integer ID) {

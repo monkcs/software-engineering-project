@@ -106,7 +106,7 @@ public class UpcomingAppointments extends Fragment {
         return view;
     }
 
-    private String decryptData(String s){
+    /*private String decryptData(String s){
 
         byte[] decryptedChars = s.getBytes(StandardCharsets.UTF_8);
 
@@ -125,7 +125,7 @@ public class UpcomingAppointments extends Fragment {
         decrypted = decrypted.replaceAll("¤", "Ö");
 
         return decrypted;
-    }
+    }*/
 
     private String reverseString(String s){
         // getBytes() method to convert string
@@ -170,8 +170,8 @@ public class UpcomingAppointments extends Fragment {
                             datetime = jsonObject.getString("datetime");
                             date = getDateAndTime(datetime, 0);
                             if(date.equals(currDate))
-                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), Integer.parseInt(jsonObject.getString("account")), decryptData(jsonObject.getString("surname")),
-                                        decryptData(jsonObject.getString("firstname")), decryptData(jsonObject.getString("telephone")), Integer.parseInt(jsonObject.getString("dose"))));
+                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), Integer.parseInt(jsonObject.getString("account")), Encryption.decryptData(jsonObject.getString("surname")),
+                                        Encryption.decryptData(jsonObject.getString("firstname")), Encryption.decryptData(jsonObject.getString("telephone")), Integer.parseInt(jsonObject.getString("dose"))));
                         }
                         if(booked_list.size() > 0) {
                             tv_none_booked.setText("");

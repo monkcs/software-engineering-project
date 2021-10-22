@@ -106,44 +106,6 @@ public class HandlePerson extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
     }
 
-    private String decryptData(String s){
-
-        byte[] decryptedChars = s.getBytes(StandardCharsets.UTF_8);
-
-        for(int i = 0; i < s.length(); i++){
-            decryptedChars[i] = (byte) (decryptedChars[i] - 1);
-        }
-
-        String decryptedWithSpec = reverseString(new String(decryptedChars));
-
-        //check for åäö
-        String decrypted = decryptedWithSpec.replaceAll("%", "å");
-        decrypted = decrypted.replaceAll("&", "å");
-        decrypted = decrypted.replaceAll("#", "ö");
-        decrypted = decrypted.replaceAll("!", "Å");
-        decrypted = decrypted.replaceAll("£", "Ä");
-        decrypted = decrypted.replaceAll("¤", "Ö");
-
-        return decrypted;
-    }
-
-    private String reverseString(String s){
-        // getBytes() method to convert string
-        // into bytes[].
-        byte[] strAsByteArray = s.getBytes();
-
-        byte[] result = new byte[strAsByteArray.length];
-
-        // Store result in reverse order into the
-        // result byte[]
-        for (int i = 0; i < strAsByteArray.length; i++)
-            result[i] = strAsByteArray[strAsByteArray.length - i - 1];
-
-        //System.out.println(new String(result));
-
-        return new String(result);
-    }
-
     private boolean firstDose() {
         if(tv_bookedDose.getText().equals("1")) return true;
         else{
@@ -160,7 +122,7 @@ public class HandlePerson extends AppCompatActivity {
                             JSONObject jsonObject = response.getJSONObject(i);
                             if(String.valueOf(id).equals(jsonObject.getString("account"))){
                                 tv_person_id.setText(jsonObject.getString("account"));
-                                tv_phone.setText(decryptData(jsonObject.getString("telephone")));
+                                tv_phone.setText(Encryption.decryptData(jsonObject.getString("telephone")));
                                 tv_bookedDate.setText(jsonObject.getString("datetime"));
                                 tv_bookedDose.setText(jsonObject.getString("dose"));
                             }
@@ -280,8 +242,7 @@ public class HandlePerson extends AppCompatActivity {
                     System.out.println("Response: " + response);
                     Toast.makeText(HandlePerson.this, "Second dose booked for person with ID: " + id, Toast.LENGTH_LONG).show();
                     getBookingInfo(id);
-
-
+                    finish();
                 }, error -> {
             System.out.println(error);
             Toast.makeText(HandlePerson.this, "Not able to book second time", Toast.LENGTH_LONG).show();

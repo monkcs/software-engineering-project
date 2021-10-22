@@ -52,10 +52,6 @@ public class Registration extends Activity implements OnClickListener{
 
         BtnReg = (Button) findViewById(R.id.signUp);
         BtnReg.setOnClickListener(this);
-        String encr = decryptData("zusfxr");
-        //System.out.println("Encr: " + encr);
-        //String decr = decryptData(encr);
-        System.out.println("Decr: " + encr);
 
     }
 
@@ -73,15 +69,15 @@ public class Registration extends Activity implements OnClickListener{
             @Override
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("email", encryptData(email.getText().toString()));
-                params.put("firstname", encryptData(forename.getText().toString()));
-                params.put("surname", encryptData(lastname.getText().toString()));
-                params.put("password", encryptData(password.getText().toString()));
-                params.put("telephone", encryptData(number.getText().toString()));
+                params.put("email", Encryption.encryptData(email.getText().toString()));
+                params.put("firstname", Encryption.encryptData(forename.getText().toString()));
+                params.put("surname", Encryption.encryptData(lastname.getText().toString()));
+                params.put("password", Encryption.encryptData(password.getText().toString()));
+                params.put("telephone", Encryption.encryptData(number.getText().toString()));
                 params.put("birthdate", birthdate.getText().toString());
-                params.put("street", encryptData(street.getText().toString()));
-                params.put("postalcode", encryptData(zipcode.getText().toString()));
-                params.put("city", encryptData(city.getText().toString()));
+                params.put("street", Encryption.encryptData(street.getText().toString()));
+                params.put("postalcode", Encryption.encryptData(zipcode.getText().toString()));
+                params.put("city", Encryption.encryptData(city.getText().toString()));
                 params.put("country", "55");
 
                 return params;
@@ -89,67 +85,6 @@ public class Registration extends Activity implements OnClickListener{
         };
 
         queue.add(request);
-    }
-
-    private String encryptData(String s){
-
-        //check for åäö
-        String mod = s.replaceAll("å", "%");
-        mod = mod.replaceAll("ä", "&");
-        mod = mod.replaceAll("ö", "#");
-        mod = mod.replaceAll("Å", "!");
-        mod = mod.replaceAll("Ä", "£");
-        mod = mod.replaceAll("Ö", "¤");
-
-        System.out.println("modded string: " + mod);
-
-        String reversed = reverseString(mod);
-
-        byte[] encrypted = reversed.getBytes(StandardCharsets.UTF_8);
-
-        for(int i = 0; i < reversed.length(); i++){
-            encrypted[i] = (byte) (encrypted[i] + 1);
-        }
-
-        return new String(encrypted);
-    }
-
-    public String decryptData(String s){
-
-        byte[] decryptedChars = s.getBytes(StandardCharsets.UTF_8);
-
-        for(int i = 0; i < s.length(); i++){
-            decryptedChars[i] = (byte) (decryptedChars[i] - 1);
-        }
-
-        String decryptedWithSpec = reverseString(new String(decryptedChars));
-
-        //check for åäö
-        String decrypted = decryptedWithSpec.replaceAll("%", "å");
-        decrypted = decrypted.replaceAll("&", "å");
-        decrypted = decrypted.replaceAll("#", "ö");
-        decrypted = decrypted.replaceAll("!", "Å");
-        decrypted = decrypted.replaceAll("£", "Ä");
-        decrypted = decrypted.replaceAll("¤", "Ö");
-
-        return decrypted;
-    }
-
-    private String reverseString(String s){
-        // getBytes() method to convert string
-        // into bytes[].
-        byte[] strAsByteArray = s.getBytes();
-
-        byte[] result = new byte[strAsByteArray.length];
-
-        // Store result in reverse order into the
-        // result byte[]
-        for (int i = 0; i < strAsByteArray.length; i++)
-            result[i] = strAsByteArray[strAsByteArray.length - i - 1];
-
-        //System.out.println(new String(result));
-
-        return new String(result);
     }
 
     @Override

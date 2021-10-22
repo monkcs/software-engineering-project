@@ -68,16 +68,10 @@ public class Login extends Activity implements OnClickListener {
     }
 
     void login() {
-        /*System.out.println("Username: " + user_email.getText().toString());
-        System.out.println("Username encr: " + encryptData(user_email.getText().toString()));
-        System.out.println("Password: " + user_password.getText().toString());
-        System.out.println("Password encr: " + encryptData(user_password.getText().toString()));*/
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "user/information.php", null,
                 response -> {
-                    WebRequest.User.username = encryptData(user_email.getText().toString());
-                    WebRequest.User.password = encryptData(user_password.getText().toString());
-
-                    System.out.println("Response: " + response);
+                    WebRequest.User.username = Encryption.encryptData(user_email.getText().toString());
+                    WebRequest.User.password = Encryption.encryptData(user_password.getText().toString());
 
                     Intent intent = new Intent(Login.this, Dashboard.class);
                     finish();
@@ -88,54 +82,13 @@ public class Login extends Activity implements OnClickListener {
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(encryptData(user_email.getText().toString()), encryptData(user_password.getText().toString()));
+                return WebRequest.credentials(Encryption.encryptData(user_email.getText().toString()), Encryption.encryptData(user_password.getText().toString()));
             }
         };
 
         queue.add(request);
         queue.start();
     }
-
-    private String encryptData(String s){
-
-        //check for åäö
-        String mod = s.replaceAll("å", "%");
-        mod = mod.replaceAll("ä", "&");
-        mod = mod.replaceAll("ö", "#");
-        mod = mod.replaceAll("Å", "!");
-        mod = mod.replaceAll("Ä", "£");
-        mod = mod.replaceAll("Ö", "¤");
-
-        System.out.println("modded string: " + mod);
-
-        String reversed = reverseString(mod);
-
-        byte[] encrypted = reversed.getBytes(StandardCharsets.UTF_8);
-
-        for(int i = 0; i < reversed.length(); i++){
-            encrypted[i] = (byte) (encrypted[i] + 1);
-        }
-
-        return new String(encrypted);
-    }
-
-    private String reverseString(String s){
-        // getBytes() method to convert string
-        // into bytes[].
-        byte[] strAsByteArray = s.getBytes();
-
-        byte[] result = new byte[strAsByteArray.length];
-
-        // Store result in reverse order into the
-        // result byte[]
-        for (int i = 0; i < strAsByteArray.length; i++)
-            result[i] = strAsByteArray[strAsByteArray.length - i - 1];
-
-        //System.out.println(new String(result));
-
-        return new String(result);
-    }
-
 
     public void signup() {
         Intent intent = new Intent(this, Registration.class);
