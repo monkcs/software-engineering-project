@@ -12,6 +12,7 @@ public class Encryption {
         mod = mod.replaceAll("Å", "!");
         mod = mod.replaceAll("Ä", "£");
         mod = mod.replaceAll("Ö", "¤");
+        mod = mod.replaceAll("9", "NINE");
 
         System.out.println("modded string: " + mod);
 
@@ -43,6 +44,7 @@ public class Encryption {
         decrypted = decrypted.replaceAll("!", "Å");
         decrypted = decrypted.replaceAll("£", "Ä");
         decrypted = decrypted.replaceAll("¤", "Ö");
+        decrypted = decrypted.replaceAll("NINE", "9");
 
         return decrypted;
     }
