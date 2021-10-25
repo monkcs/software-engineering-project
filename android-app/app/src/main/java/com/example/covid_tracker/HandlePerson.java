@@ -19,7 +19,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -76,30 +75,24 @@ public class HandlePerson extends AppCompatActivity {
         * use ID to call getBookingInfo when tables are updated */
 
 
-        btn_confirmVaccine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                person_id = Integer.parseInt((String) tv_person_id.getText());
-                if(firstDose())
-                    ConfirmPopUp(person_id, 1);
-                else{
-                    ConfirmPopUp(person_id,2);
-                }
+        btn_confirmVaccine.setOnClickListener(view -> {
+            person_id = Integer.parseInt((String) tv_person_id.getText());
+            if(firstDose())
+                ConfirmPopUp(person_id, 1);
+            else{
+                ConfirmPopUp(person_id,2);
             }
         });
 
-        btn_cancelAppoint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                firstDose();
-                if(tv_person_id.getText().length() > 0) {
-                    person_id = Integer.parseInt((String) tv_person_id.getText());
-                    CancelPopUp(person_id);
-                }
-                else{
-                    Toast.makeText(HandlePerson.this, "Error", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+        btn_cancelAppoint.setOnClickListener(view -> {
+            firstDose();
+            if(tv_person_id.getText().length() > 0) {
+                person_id = Integer.parseInt((String) tv_person_id.getText());
+                CancelPopUp(person_id);
+            }
+            else{
+                Toast.makeText(HandlePerson.this, "Error", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
@@ -107,10 +100,7 @@ public class HandlePerson extends AppCompatActivity {
     }
 
     private boolean firstDose() {
-        if(tv_bookedDose.getText().equals("1")) return true;
-        else{
-            return false;
-        }
+        return tv_bookedDose.getText().equals("1");
     }
 
     private void getBookingInfo(Integer id){
@@ -145,30 +135,22 @@ public class HandlePerson extends AppCompatActivity {
     public void ConfirmPopUp(Integer id, Integer dose_pop) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         final View ConfirmPopupView = getLayoutInflater().inflate(R.layout.confirmpopup, null);
-        Button btnConfirm = (Button) ConfirmPopupView.findViewById(R.id.confirmBtn);
-        Button btnExit = (Button) ConfirmPopupView.findViewById(R.id.ExitBtn);
+        Button btnConfirm = ConfirmPopupView.findViewById(R.id.confirmBtn);
+        Button btnExit = ConfirmPopupView.findViewById(R.id.ExitBtn);
 
         dialogBuilder.setView(ConfirmPopupView);
         dialog = dialogBuilder.create();
         dialog.show();
 
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(dose_pop == 1)
-                    firstDoseTaken(id);
-                else{
-                    secondDoseTaken(id);
-                }
-                dialog.dismiss();
+        btnConfirm.setOnClickListener(view -> {
+            if(dose_pop == 1)
+                firstDoseTaken(id);
+            else{
+                secondDoseTaken(id);
             }
+            dialog.dismiss();
         });
-        btnExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        btnExit.setOnClickListener(view -> dialog.dismiss());
     }
 
     private void firstDoseTaken(Integer id) {
@@ -187,27 +169,19 @@ public class HandlePerson extends AppCompatActivity {
     public void CancelPopUp(Integer id) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         final View CancelPopupView = getLayoutInflater().inflate(R.layout.deletepopup, null);
-        Button btnDelete = (Button) CancelPopupView.findViewById(R.id.DeleteBtn);
-        Button btnGoBack = (Button) CancelPopupView.findViewById(R.id.GobackBtn);
+        Button btnDelete = CancelPopupView.findViewById(R.id.DeleteBtn);
+        Button btnGoBack = CancelPopupView.findViewById(R.id.GobackBtn);
 
         dialogBuilder.setView(CancelPopupView);
         dialog = dialogBuilder.create();
         dialog.show();
 
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CancelAppointment(id);
-                //finish();
-                dialog.dismiss();
-            }
+        btnDelete.setOnClickListener(view -> {
+            CancelAppointment(id);
+            //finish();
+            dialog.dismiss();
         });
-        btnGoBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        btnGoBack.setOnClickListener(view -> dialog.dismiss());
     }
 
     private void CancelAppointment(Integer id) {
@@ -216,12 +190,10 @@ public class HandlePerson extends AppCompatActivity {
                     Toast.makeText(HandlePerson.this, R.string.canceled_appointment, Toast.LENGTH_LONG).show();
                     tv_bookedDate.append(" (CANCELLED)");
                     //finish();
-                }, error -> {
-            Toast.makeText(HandlePerson.this, R.string.canceled_appointment_failed, Toast.LENGTH_LONG).show();
-        }) {
+                }, error -> Toast.makeText(HandlePerson.this, R.string.canceled_appointment_failed, Toast.LENGTH_LONG).show()) {
             @Override
             public Map<String, String> getParams()  {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("ID", id.toString());
 
                 return params;
@@ -244,12 +216,12 @@ public class HandlePerson extends AppCompatActivity {
                     getBookingInfo(id);
                     finish();
                 }, error -> {
-            System.out.println(error);
+            error.getStackTrace();
             Toast.makeText(HandlePerson.this, "Not able to book second time", Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("ID", id.toString());
 
                 return params;
@@ -272,7 +244,7 @@ public class HandlePerson extends AppCompatActivity {
         }) {
             @Override
             public Map<String, String> getParams()  {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("ID", id.toString());
 
                 return params;
@@ -292,7 +264,7 @@ public class HandlePerson extends AppCompatActivity {
         }) {
             @Override
             public Map<String, String> getParams()  {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("ID", id.toString());
                 params.put("dose", dose.toString());
 

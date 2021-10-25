@@ -21,18 +21,17 @@ import java.util.Locale;
 
 public class Faq extends Fragment {
 
-    private View view;
     private boolean language = false;
     RecyclerView recyclerView;
     List<FAQ_block> list;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view  = inflater.inflate(R.layout.fragment_faq, container, false);
+        View view = inflater.inflate(R.layout.fragment_faq, container, false);
         //toppen
         // tex    button = (Button) view.findViewById(R.id.button); viktigt att det står view. för att komma åt element i fragmented
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_faqis);
+        recyclerView = view.findViewById(R.id.recyclerView_faqis);
         FloatingActionButton buttonFAQ = view.findViewById(R.id.buttonFAQ);
 
         setAppLocate("en");
@@ -42,37 +41,28 @@ public class Faq extends Fragment {
         setRecyclerView();
 
 
-        buttonFAQ.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                language = !language;
+        buttonFAQ.setOnClickListener(view1 -> {
+            language = !language;
 
-                for(int i=0;i<list.size();i++){
+            if (list.size() > 0) {
+                list.subList(0, list.size()).clear();
+            }
+            FloatingActionButton buttonFAQ1 = view1.findViewById(R.id.buttonFAQ);
 
-                    list.remove(0);
+            if(language) {
+                buttonFAQ1.setImageResource(R.drawable.flaggb_foreground);
+                setAppLocate("sv");
 
-                }
-
-                if(language) {
-                    FloatingActionButton buttonFAQ = view.findViewById(R.id.buttonFAQ);
-                    buttonFAQ.setImageResource(R.drawable.flaggb_foreground);
-                    setAppLocate("sv");
-
-                }
-                else{
-
-                    FloatingActionButton buttonFAQ = view.findViewById(R.id.buttonFAQ);
-                    buttonFAQ.setImageResource(R.drawable.flagswe_foreground);
-
-                    setAppLocate("en");
-                }
-
-                initQuestions();
-                setRecyclerView();
-
-                System.out.println("HEJ DU KLICKA PÅ SPRÅK");
+            }
+            else{
+                buttonFAQ1.setImageResource(R.drawable.flagswe_foreground);
+                setAppLocate("en");
             }
 
+            initQuestions();
+            setRecyclerView();
+
+            System.out.println("HEJ DU KLICKA PÅ SPRÅK");
         });
         //botten
         return view;
