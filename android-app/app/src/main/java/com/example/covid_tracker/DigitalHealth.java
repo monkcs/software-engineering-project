@@ -11,10 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -22,9 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -33,7 +28,6 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +38,6 @@ public class DigitalHealth extends Fragment {
 
     private ImageView qrView;
     private RecyclerView recyclerView;
-    private View view;
     private List<FAQ_block> values;
     private RequestQueue queue;
 
@@ -55,10 +48,10 @@ public class DigitalHealth extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view  = inflater.inflate(R.layout.fragment_digital_health, container, false);
+        View view1 = inflater.inflate(R.layout.fragment_digital_health, container, false);
 
-        qrView = view.findViewById(R.id.imageviewqr);
-        recyclerView = view.findViewById(R.id.recyclerView_userinfo);
+        qrView = view1.findViewById(R.id.imageviewqr);
+        recyclerView = view1.findViewById(R.id.recyclerView_userinfo);
         queue = Volley.newRequestQueue(getActivity());
 
 
@@ -67,7 +60,7 @@ public class DigitalHealth extends Fragment {
         InitData();
 
 
-        Button toocamera = view.findViewById(R.id.btn_camera);
+        Button toocamera = view1.findViewById(R.id.btn_camera);
         toocamera.setOnClickListener(view -> {
 
             if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -79,7 +72,7 @@ public class DigitalHealth extends Fragment {
 
         });
 
-        return view;
+        return view1;
     }
 
     private void qrGenerator(String code){
