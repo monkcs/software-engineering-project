@@ -38,6 +38,7 @@ public class age_change extends AppCompatActivity {
     public String dateis;
     private int updateint;
 
+    public List<Integer> listIDs;
     public List<age_change_block> list;
     private RecyclerView recyclerview;
 
@@ -97,6 +98,10 @@ public class age_change extends AppCompatActivity {
                     System.out.println("---Update---");
                     System.out.println("detta är ålder: " + updateint);
                     System.out.println("detta är datum: " + dateis);
+                    System.out.println("detta är storlek list: " + listIDs.size());
+
+                    addToDataB(updateint);
+
                 }
                 else{
                     //do nothing
@@ -115,6 +120,12 @@ public class age_change extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void addToDataB(int updateint) {
+
+      //implement
 
     }
 
@@ -149,6 +160,7 @@ public class age_change extends AppCompatActivity {
                 response -> {
 
                 String times = "";
+                listIDs = new ArrayList<>();
 
                     System.out.println("hej inne i response");
                     for (int i = 0; i < response.length(); i++) {
@@ -160,6 +172,7 @@ public class age_change extends AppCompatActivity {
 
                                 JSONObject paket = response.getJSONObject(i);
 
+                                listIDs.add(getIDpack(paket));
                                 times = times + "\n" + "Tid: " + getTime(paket) + ", Minimum age: " + getMinAge(paket) + "\n";
 
                             }
@@ -189,6 +202,20 @@ public class age_change extends AppCompatActivity {
         queue.add(request);
 
 
+
+    }
+
+    private Integer getIDpack(JSONObject paket) {
+
+        Integer returnis = null;
+        try {
+            returnis = paket.getInt("ID");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        return returnis;
 
     }
 
