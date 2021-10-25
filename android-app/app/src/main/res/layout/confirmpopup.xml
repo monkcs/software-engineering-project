@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/confirmAppointment"
-        android:text="@string/confirm"
+        android:text="@string/yes"
         tools:ignore="MissingConstraints"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"/>
@@ -33,7 +33,7 @@
         android:id="@+id/ExitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/exit"
+        android:text="@string/no"
         app:layout_constraintTop_toBottomOf="@id/confirmAppointment"
         app:layout_constraintRight_toRightOf="parent"
         tools:ignore="MissingConstraints"

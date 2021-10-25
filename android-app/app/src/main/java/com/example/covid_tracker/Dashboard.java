@@ -100,7 +100,7 @@ public class Dashboard extends AppCompatActivity {
     public void sendOnChannel1() {
 
         String title = getString(R.string.app_name);
-        String message = "Time to get your second dose!";
+        String message = getString(R.string.time_for_second_dose);
         // Create an explicit intent for an Activity in your app
         Intent intent = new Intent(this, Dashboard.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

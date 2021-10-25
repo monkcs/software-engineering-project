@@ -16,23 +16,56 @@ public class AdminDashboard extends AppCompatActivity {
     boolean extra_info = false;
     String currFragment;
     RelativeLayout buttonis;
+    public BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         Bundle extras = getIntent().getExtras();
 
         setContentView(R.layout.activity_dashboard_admin_fragments);
 
 
-        BottomNavigationView bottomNav = findViewById(R.id.admin_bottom_navigation);
+        bottomNav = findViewById(R.id.admin_bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new AdminLandingFragment()).commit();
 
+
+      ifBackButtonUpcommingApp();
+
+    }
+
+
+
+
+
+
+
+    private void ifBackButtonUpcommingApp() {
+
+        try {
+            System.out.println(getIntent().getExtras().getInt("fragment"));
+
+
+            Fragment selectedFragment;
+            selectedFragment = new UpcomingAppointments();
+
+
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    selectedFragment).commit();
+
+            bottomNav.setOnNavigationItemSelectedListener(navListener);
+            bottomNav.setSelectedItemId(R.id.admin_upcommingAppoint);
+
+        } catch (Exception e) {
+            //do nothing
+        }
 
     }
     @Override

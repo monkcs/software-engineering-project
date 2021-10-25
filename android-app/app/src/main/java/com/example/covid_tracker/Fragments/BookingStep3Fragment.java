@@ -127,7 +127,9 @@ public class BookingStep3Fragment extends Fragment {
                     }
 
                 }, error -> {
-                int mess;
+            System.out.println("Error... no response :(");
+
+            int mess;
         }
         ) {
             @Override

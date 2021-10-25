@@ -24,7 +24,7 @@
                 android:id="@+id/Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Time"
+                android:text="@string/time"
                 android:textSize="20sp"
                 android:padding="14dp"
                 android:textColor="@color/black"
@@ -47,7 +47,7 @@
                 android:id="@+id/LastName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lastname"
+                android:text="@string/surname"
                 android:paddingTop="14dp"
                 android:paddingLeft="14dp"
                 android:paddingBottom="14dp"
@@ -64,7 +64,7 @@
                 android:paddingTop="14dp"
                 android:paddingLeft="5dp"
                 android:paddingBottom="14dp"
-                android:text="Firstname"
+                android:text="@string/firstname"
                 android:textColor="@color/grey"
                 android:textSize="18sp" />
 
@@ -81,7 +81,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_height="50dp"
-                android:text="Info"/>
+                android:text="@string/information"/>
 
 
         </RelativeLayout>

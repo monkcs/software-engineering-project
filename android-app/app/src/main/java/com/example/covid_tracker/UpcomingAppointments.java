@@ -1,20 +1,20 @@
 package com.example.covid_tracker;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,22 +24,24 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
-import java.util.Objects;
 
 public class UpcomingAppointments extends Fragment {
 
     private View view;
     private Context context;
     private RequestQueue queue;
+    private Button change;
 
     CalendarView calView_uppcAppoint;
     RecyclerView recyclerView_uppc_appoint;
     TextView tv_none_booked;
+    ImageView imageviewis;
 
     String currDate;
 
@@ -58,11 +60,31 @@ public class UpcomingAppointments extends Fragment {
 
         queue = Volley.newRequestQueue(getActivity());
 
+
+        imageviewis = (ImageView) view.findViewById(R.id.infobuttonuppa);
+        imageviewis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                maketoastinfo();
+            }
+        });
+
+
         calView_uppcAppoint = view.findViewById(R.id.calView_uppcAppoint);
         recyclerView_uppc_appoint = view.findViewById(R.id.recyclerView_uppc_appoint);
         tv_none_booked = view.findViewById(R.id.tv_none_booked);
 
         currDate = getDate();
+
+        change = (Button) view.findViewById(R.id.change_uppcomming);
+        change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ageChanger();
+
+            }
+        });
 
         calView_uppcAppoint.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
@@ -84,6 +106,59 @@ public class UpcomingAppointments extends Fragment {
         return view;
     }
 
+    /*private String decryptData(String s){
+
+        byte[] decryptedChars = s.getBytes(StandardCharsets.UTF_8);
+
+        for(int i = 0; i < s.length(); i++){
+            decryptedChars[i] = (byte) (decryptedChars[i] - 1);
+        }
+
+        String decryptedWithSpec = reverseString(new String(decryptedChars));
+
+        //check for åäö
+        String decrypted = decryptedWithSpec.replaceAll("%", "å");
+        decrypted = decrypted.replaceAll("&", "å");
+        decrypted = decrypted.replaceAll("#", "ö");
+        decrypted = decrypted.replaceAll("!", "Å");
+        decrypted = decrypted.replaceAll("£", "Ä");
+        decrypted = decrypted.replaceAll("¤", "Ö");
+
+        return decrypted;
+    }*/
+
+    private String reverseString(String s){
+        // getBytes() method to convert string
+        // into bytes[].
+        byte[] strAsByteArray = s.getBytes();
+
+        byte[] result = new byte[strAsByteArray.length];
+
+        // Store result in reverse order into the
+        // result byte[]
+        for (int i = 0; i < strAsByteArray.length; i++)
+            result[i] = strAsByteArray[strAsByteArray.length - i - 1];
+
+        //System.out.println(new String(result));
+
+        return new String(result);
+    }
+
+    private void maketoastinfo() {
+
+        Toast t1;
+        t1 = Toast.makeText(getActivity(), "Click here if you want to change the current age group for appointments", Toast.LENGTH_LONG);
+        t1.show();
+
+    }
+
+    private void ageChanger() {
+
+        Intent intent = new Intent(getActivity(), age_change.class);
+        startActivity(intent);
+
+    }
+
     private void getBookedTimes(String currDate){
         booked_list = new ArrayList<>();
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/today_appointments.php", null,
@@ -95,24 +170,24 @@ public class UpcomingAppointments extends Fragment {
                             datetime = jsonObject.getString("datetime");
                             date = getDateAndTime(datetime, 0);
                             if(date.equals(currDate))
-                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), Integer.parseInt(jsonObject.getString("account")), jsonObject.getString("surname"),
-                                        jsonObject.getString("firstname"), jsonObject.getString("telephone"), Integer.parseInt(jsonObject.getString("dose"))));
+                                booked_list.add(new UpcommingAppointmentsBlock(date, getDateAndTime(datetime, 1), Integer.parseInt(jsonObject.getString("account")), Encryption.decryptData(jsonObject.getString("surname")),
+                                        Encryption.decryptData(jsonObject.getString("firstname")), Encryption.decryptData(jsonObject.getString("telephone")), Integer.parseInt(jsonObject.getString("dose"))));
                         }
                         if(booked_list.size() > 0) {
                             tv_none_booked.setText("");
                             setRecyclerView(booked_list);
                         }
                         else{
-                            tv_none_booked.setText("No appointments today");
+                            tv_none_booked.setText(getText(R.string.no_appointments_today));
                             setRecyclerView(booked_list);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }, error -> {
-                    tv_none_booked.setText("No appointments today");
+                    tv_none_booked.setText(getText(R.string.no_appointments_today));
                     setRecyclerView(booked_list);
-                    Toast.makeText(getActivity(), "Currently no booked times", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.no_appointments_today, Toast.LENGTH_SHORT).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {

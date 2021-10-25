@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,9 +48,9 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
         Admin_block bookingblockis = Admin_block_List.get(position);
 
 
-        holder.PersonText.setText(bookingblockis.getPersonen() + " " + bookingblockis.getPersonen2());
+        holder.PersonText.setText(Encryption.decryptData(bookingblockis.getPersonen()) + " " + Encryption.decryptData(bookingblockis.getPersonen2()));
         holder.SvarText.setText(bookingblockis.getSvaret());
-        holder.telefonText.setText(bookingblockis.getTelenmr());
+        holder.telefonText.setText(Encryption.decryptData(bookingblockis.getTelenmr()));
         holder.datumTidText.setText(bookingblockis.getDatumTid());
 
 

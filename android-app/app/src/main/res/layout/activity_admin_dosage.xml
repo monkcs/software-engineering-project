@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/lager"
             android:textSize="36dp"
-            android:text="@string/lager"
+            android:text="@string/inventory"
             android:gravity="center"
             android:textColor="@color/black"
             />
@@ -41,7 +41,7 @@
             android:layout_below="@+id/recyclerView_dosage"
             android:gravity="center"
             android:padding="12dp"
-            android:text="@string/addlager"
+            android:text="@string/inventory"
             android:textColor="@color/black"
             android:textSize="30dp" />
 
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/spinnerVaccine_dosage"
-            android:hint="@string/amount_dosage"
+            android:hint="@string/dosage_quantity"
             android:inputType="number"
             android:minHeight="48dp"
             android:textSize="14dp" />
@@ -75,7 +75,7 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/edit_amount"
-            android:text="@string/add_dosage_button"
+            android:text="@string/add_dosages"
 
             />
 

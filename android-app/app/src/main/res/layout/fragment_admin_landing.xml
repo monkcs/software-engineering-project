@@ -26,7 +26,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
-            android:text="Digital Health"
+            android:text="@string/digital_health"
             android:textSize="30sp"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="Total number of users: "
+            android:text="@string/number_of_users"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -87,7 +87,7 @@
                         android:layout_below="@id/imageView2"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="0dp"
-                        android:text="Uppcomming Apointments"
+                        android:text="@string/upcoming_appointments"
                         android:textSize="20sp" />
 
                     <ImageView
@@ -127,7 +127,7 @@
                         android:layout_below="@id/imageView3"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="0dp"
-                        android:text="Planning and Schedule vaccination"
+                        android:text="Schedule bookable dates"
                         android:textSize="20sp" />
 
                     <ImageView

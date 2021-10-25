@@ -10,14 +10,19 @@
     <application
         android:name=".NotificationChannelsEnabler"
         android:allowBackup="true"
-        android:icon="@mipmap/newicon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/newicon_round"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Covid_tracker">
        <activity
             android:name=".CameraScannerActivity"
             android:exported="true" />
+        <activity
+            android:name=".age_change"
+            android:exported="true"
+            android:parentActivityName=".AdminDashboard"
+            />
 
       <activity
             android:name=".Admin_dosage"
@@ -52,7 +57,7 @@
             android:name=".Administartorlogin"
             android:exported="true" />
         <activity
-            android:name=".Regristering"
+            android:name=".Registration"
             android:exported="true" />
         <activity
             android:name=".StatisticsVacc"
@@ -62,8 +67,6 @@
             android:exported="true" />
         <activity android:name=".HandlePerson" />
         <activity android:name=".AgePrioritizations" />
-
-        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
     </application>
 
 </manifest>
