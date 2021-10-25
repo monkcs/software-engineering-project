@@ -80,7 +80,7 @@ public class AdminDashboard extends AppCompatActivity {
             item -> {
                 Fragment selectedFragment;
                 switch (item.getItemId()) {
-                    case R.id.admin_statistic:
+                    case R.id.admin_start:
                         selectedFragment = new AdminLandingFragment();
                         break;
 
@@ -92,7 +92,7 @@ public class AdminDashboard extends AppCompatActivity {
                         selectedFragment = new inboxAdmin();
                         break;
 
-                    case R.id.admin_settings:
+                    case R.id.admin_statistic:
                         selectedFragment = new StatisticsMenu();
                         break;
 

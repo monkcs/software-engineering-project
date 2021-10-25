@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/admin_statistic"
-        android:icon="@drawable/ic_baseline_show_chart_24"
-        android:title="Statistics"/>
+        android:id="@+id/admin_start"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Start"/>
 
     <item
         android:tag="admin_upcommingAppoint"
@@ -15,9 +15,9 @@
         android:icon="@drawable/ic_baseline_mail_24"
         android:title="Inbox"/>
     <item
-        android:id="@+id/admin_settings"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="Settings"/>
+        android:id="@+id/admin_statistic"
+        android:icon="@drawable/ic_baseline_show_chart_24"
+        android:title="Statistics"/>
 
 
 </menu>
