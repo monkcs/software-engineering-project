@@ -78,8 +78,8 @@ public class Login extends Activity implements OnClickListener {
     void login() {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "user/information.php", null,
                 response -> {
-                    WebRequest.User.username = user_email.getText().toString();
-                    WebRequest.User.password = user_password.getText().toString();
+                    WebRequest.User.username = Encryption.encryptData(user_email.getText().toString());
+                    WebRequest.User.password = Encryption.encryptData(user_password.getText().toString());
                     Intent intent = new Intent(Login.this, Dashboard.class);
                     finish();
                     startActivity(intent);
@@ -89,7 +89,7 @@ public class Login extends Activity implements OnClickListener {
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(user_email.getText().toString(), user_password.getText().toString());
+                return WebRequest.credentials(Encryption.encryptData(user_email.getText().toString()), Encryption.encryptData(user_password.getText().toString()));
             }
         };
 
