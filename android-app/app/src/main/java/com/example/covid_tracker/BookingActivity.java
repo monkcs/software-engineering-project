@@ -1,4 +1,5 @@
 package com.example.covid_tracker;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,11 +8,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,15 +25,11 @@ import com.example.covid_tracker.Fragments.BookingStep3Fragment;
 import com.example.covid_tracker.Fragments.BookingStep4Fragment;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.viewpager.widget.ViewPager;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class BookingActivity extends AppCompatActivity{
-    private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewpager;
-    private TabLayout tabLayout;
     public RequestQueue queue;
     private Integer pending = 0;
     private Integer Q1 = 0, Q2 = 0, Q3 = 0, Q4 = 0, Q5 = 0;
@@ -43,7 +40,7 @@ public class BookingActivity extends AppCompatActivity{
         queue = Volley.newRequestQueue(this);
         viewpager = findViewById(R.id.viewpager);
 
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         viewPagerAdapter.add(new BookingStep1Fragment(), "clinic");
         viewPagerAdapter.add(new BookingStep2Fragment(), "vaccine");
@@ -51,7 +48,7 @@ public class BookingActivity extends AppCompatActivity{
         viewPagerAdapter.add(new BookingStep4Fragment(), "info");
 
         viewpager.setAdapter(viewPagerAdapter);
-        tabLayout = findViewById(R.id.tab_layout);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
 
             tabLayout.setupWithViewPager(viewpager, true);
             tabLayout.clearOnTabSelectedListeners();
@@ -59,11 +56,7 @@ public class BookingActivity extends AppCompatActivity{
                 v.setEnabled(false);
 
         }
-        viewpager.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View arg0, MotionEvent arg1) {
-                return true;
-            }
-        });
+        viewpager.setOnTouchListener((arg0, arg1) -> true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
@@ -169,7 +162,7 @@ public class BookingActivity extends AppCompatActivity{
         String id_string = String.valueOf(id_vaccine);
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/create.php",
                 response -> {
-                    Toast.makeText(BookingActivity.this, "Booking time successfull", Toast.LENGTH_LONG).show();
+                    Toast.makeText(BookingActivity.this, "Booking time successful", Toast.LENGTH_LONG).show();
                     Log.i("gDFA", "Vaccine id: " + id_vaccine);
                     Log.i("gDFA", response);
                     removeFromCatalog(id_string);
@@ -177,12 +170,10 @@ public class BookingActivity extends AppCompatActivity{
                     finish();
                     startActivity(intent);
 
-                }, error -> {
-            Toast.makeText(BookingActivity.this, R.string.appointment_failed, Toast.LENGTH_LONG).show();
-        }) {
+                }, error -> Toast.makeText(BookingActivity.this, R.string.appointment_failed, Toast.LENGTH_LONG).show()) {
             @Override
             public Map<String, String> getParams()  {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("appointment", id_time.toString());
                 params.put("pending", pending.toString());
                 params.put("vaccine", id_vaccine.toString());
@@ -201,19 +192,17 @@ public class BookingActivity extends AppCompatActivity{
     public void add_questions(){
         SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
         Integer id_clinic =  pref.getInt("clinic_ID", -1);
-        Integer id_time =  pref.getInt("time", 0);;
+        Integer id_time =  pref.getInt("time", 0);
 
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/appointment/health_questions.php",
                 response -> {
                     //Toast.makeText(BookingActivity.this, "Questions added", Toast.LENGTH_LONG).show();
-                    System.out.println(response.toString());
+                    System.out.println(response);
 
-                }, error -> {
-            Toast.makeText(BookingActivity.this, R.string.questions_failed, Toast.LENGTH_LONG).show();
-        }) {
+                }, error -> Toast.makeText(BookingActivity.this, R.string.questions_failed, Toast.LENGTH_LONG).show()) {
             @Override
             public Map<String, String> getParams()  {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("appointment", id_time.toString());
                 params.put("provider", id_clinic.toString());
                 params.put("question1", Q1.toString());
@@ -237,12 +226,10 @@ public class BookingActivity extends AppCompatActivity{
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/vaccine_catalog.php",
                 response -> {
                     //success
-                }, error -> {
-            Toast.makeText(BookingActivity.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
-        }) {
+                }, error -> Toast.makeText(BookingActivity.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show()) {
             @Override
             public Map<String, String> getParams()  {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("selected_id", vaccine_id);
                 params.put("input_value", String.valueOf(-1));
                 return params;

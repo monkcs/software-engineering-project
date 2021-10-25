@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -25,10 +24,7 @@ import java.util.Map;
 public class inboxAdmin extends Fragment {
     List<Admin_block> list;
     private RequestQueue queue;
-    private View view;
-    private Context context;
     private RecyclerView recyclerview;
-    private Button boka;
     private ArrayList<Questions> questions;
 
     @Override
@@ -39,12 +35,12 @@ public class inboxAdmin extends Fragment {
 
         questions = new ArrayList<>();
 
-        view = inflater.inflate(R.layout.fragment_inboxadmin, container, false);
-        context = getActivity();
+        View view = inflater.inflate(R.layout.fragment_inboxadmin, container, false);
+        Context context = getActivity();
         //setContentView(R.layout.fragment_inboxadmin);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        recyclerview = (RecyclerView) view.findViewById(R.id.recyclerView_inboxAdmin);
+        recyclerview = view.findViewById(R.id.recyclerView_inboxAdmin);
 
 
         getQuestions();
@@ -128,9 +124,7 @@ public class inboxAdmin extends Fragment {
                         }
                     }
                     getPendingBookings();
-                }, error -> {
-            String t = "";
-        }
+                }, error -> error.printStackTrace()
         ) {
             @Override
             public Map<String, String> getHeaders() {
