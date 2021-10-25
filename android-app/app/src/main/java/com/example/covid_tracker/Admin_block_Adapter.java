@@ -1,5 +1,6 @@
 package com.example.covid_tracker;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
         return new Admin_block_Adapter.VersionVH(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull Admin_block_Adapter.VersionVH holder, int position) {
 
@@ -54,57 +56,51 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
         holder.datumTidText.setText(bookingblockis.getDatumTid());
 
 
-        holder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.button.setOnClickListener(view -> {
 
-                int Appointment;
-                int ID;
+            int Appointment;
+            int ID;
 
 
-                Appointment = holder.getAdapterPosition();
+            Appointment = holder.getAdapterPosition();
 
 
-                //      System.out.println("Hej detta är account: " + Admin_block_List.get(holder.getAdapterPosition()).getID());
+            //      System.out.println("Hej detta är account: " + Admin_block_List.get(holder.getAdapterPosition()).getID());
 
-                ID = Admin_block_List.get(holder.getAdapterPosition()).getID();
-
-
-                //      System.out.println("Storlek: " + Admin_block_List.size());
-
-                Admin_block_List.remove(holder.getAdapterPosition());
-                notifyItemRemoved(holder.getAdapterPosition());
-
-                //     System.out.println("Storlek: " + Admin_block_List.size());
+            ID = Admin_block_List.get(holder.getAdapterPosition()).getID();
 
 
-                bokaPendingDatabas(Appointment, ID);
+            //      System.out.println("Storlek: " + Admin_block_List.size());
 
-            }
+            Admin_block_List.remove(holder.getAdapterPosition());
+            notifyItemRemoved(holder.getAdapterPosition());
+
+            //     System.out.println("Storlek: " + Admin_block_List.size());
+
+
+            bokaPendingDatabas(Appointment, ID);
+
         });
 
-        holder.button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.button2.setOnClickListener(view -> {
 
-                int Appointment;
-                int ID;
+            int Appointment;
+            int ID;
 
-                Appointment = holder.getAdapterPosition();
+            Appointment = holder.getAdapterPosition();
 
 
-                ID = Admin_block_List.get(holder.getAdapterPosition()).getID();
+            ID = Admin_block_List.get(holder.getAdapterPosition()).getID();
 
-                //    System.out.println("Storlek: " + Admin_block_List.size());
+            //    System.out.println("Storlek: " + Admin_block_List.size());
 
-                Admin_block_List.remove(holder.getAdapterPosition());
-                notifyItemRemoved(holder.getAdapterPosition());
+            Admin_block_List.remove(holder.getAdapterPosition());
+            notifyItemRemoved(holder.getAdapterPosition());
 
-                //   System.out.println("Storlek: " + Admin_block_List.size());
+            //   System.out.println("Storlek: " + Admin_block_List.size());
 
 
-                avbokaPendingDatabas(ID, Appointment);
-            }
+            avbokaPendingDatabas(ID, Appointment);
         });
 
         boolean isExpandable = Admin_block_List.get(position).getExpandable();
@@ -189,13 +185,10 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
             button2 = itemView.findViewById(R.id.CardViewAdmin2);
 
 
-            linear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Admin_block Adminblockis = Admin_block_List.get(getAdapterPosition());
-                    Adminblockis.setExpandable(!Adminblockis.getExpandable());
-                    notifyItemChanged(getAdapterPosition());
-                }
+            linear.setOnClickListener(view -> {
+                Admin_block Adminblockis = Admin_block_List.get(getAdapterPosition());
+                Adminblockis.setExpandable(!Adminblockis.getExpandable());
+                notifyItemChanged(getAdapterPosition());
             });
 
         }

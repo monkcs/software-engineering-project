@@ -1,12 +1,7 @@
 package com.example.covid_tracker;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
@@ -15,6 +10,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -45,11 +44,11 @@ public class CameraScannerActivity extends AppCompatActivity {
     private static AlertDialog.Builder alertDialog;
 
     private static final int width = 1080;
-    private static final int hight = 1090;
+    private static final int height = 1090;
 
 
 
-    private static final int WAITTIME_FOR_PROCESSING = 3000; // 3 sek
+    private static final int WAIT_TIME_FOR_PROCESSING = 3000; // 3 sek
 
 
 
@@ -65,7 +64,7 @@ public class CameraScannerActivity extends AppCompatActivity {
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
         cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(width, hight)
+                .setRequestedPreviewSize(width, height)
                 .setAutoFocusEnabled(true)
                 .build();
 
@@ -112,8 +111,9 @@ public class CameraScannerActivity extends AppCompatActivity {
 
                     textView.setText(stringQR);
 
+                    //noinspection CatchMayIgnoreException
                     try {
-                        Thread.sleep(WAITTIME_FOR_PROCESSING);
+                        Thread.sleep(WAIT_TIME_FOR_PROCESSING);
                         // Do some stuff
                     } catch (Exception e) {
                         e.getLocalizedMessage();
@@ -146,9 +146,9 @@ public class CameraScannerActivity extends AppCompatActivity {
                     try {
                         JSONObject object = new JSONObject(response);
                         String fullName = Encryption.decryptData(object.getString("firstname") + " " + object.getString("surname"));
-                        String dateofbirth = object.getString("birthdate");
+                        String date_of_birth = object.getString("birthdate");
 
-                        printValidation(true, fullName, dateofbirth);
+                        printValidation(true, fullName, date_of_birth);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -174,18 +174,18 @@ public class CameraScannerActivity extends AppCompatActivity {
         queue.add(request);
     }
 
-    private void printValidation(boolean responsmessage, String fullName, String dateofbirth) {
+    private void printValidation(boolean responseMessage, String fullName, String date_of_birth) {
         alertDialog = new AlertDialog.Builder( CameraScannerActivity.this);
 
         View popupView = getLayoutInflater().inflate(R.layout.validationpopup, null);
         ImageView image = popupView.findViewById(R.id.confirmAppointment);
         TextView displayUsername = popupView.findViewById(R.id.displayusername);
-        TextView displayDateofBirth = popupView.findViewById(R.id.displaydateofbirth);
+        TextView displayDateBirth = popupView.findViewById(R.id.displaydateofbirth);
 
-        if (responsmessage){
+        if (responseMessage){
             image.setImageResource(R.drawable.greencheckmark);
             displayUsername.setText(fullName);
-            displayDateofBirth.setText(dateofbirth);
+            displayDateBirth.setText(date_of_birth);
         }else{
             image.setImageResource(R.drawable.red_corss);
             displayUsername.setText(getString(R.string.passport_invalid));

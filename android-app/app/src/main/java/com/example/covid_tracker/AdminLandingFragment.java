@@ -28,33 +28,27 @@ import java.util.Map;
 
 public class AdminLandingFragment extends Fragment {
 
-    private RelativeLayout rl1, rl2, rl3, rl4;
-    private View view;
     private TextView userCount;
     private RequestQueue queue;
     // how to display this in fragments?
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_admin_landing, container, false);
+        View view1 = inflater.inflate(R.layout.fragment_admin_landing, container, false);
         queue = Volley.newRequestQueue(getActivity());
 
         //setContentView(R.layout.fragment_admin_dashboard);
-        rl1= (RelativeLayout) view.findViewById(R.id.Rellay1);
-        /*rl1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                uppcApoint();
-            }
-        });*/
+        //RelativeLayout rl1 = (RelativeLayout) view1.findViewById(R.id.Rellay1);
+        //rl1.setOnClickListener(view -> uppcApoint());
 
-        rl2 = view.findViewById(R.id.Rellay2);
+
+        RelativeLayout rl2 = view1.findViewById(R.id.Rellay2);
         rl2.setOnClickListener(view -> planAndShedVacc());
 
-        rl3 = view.findViewById(R.id.Rellay3);
+        RelativeLayout rl3 = view1.findViewById(R.id.Rellay3);
         rl3.setOnClickListener(view -> dosage());
 
-        rl4 = view.findViewById(R.id.Rellay4);
+        RelativeLayout rl4 = view1.findViewById(R.id.Rellay4);
         rl4.setOnClickListener(view -> {
 
             if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -66,9 +60,9 @@ public class AdminLandingFragment extends Fragment {
 
         });
 
-        userCount = view.findViewById(R.id.adminUserCount);
+        userCount = view1.findViewById(R.id.adminUserCount);
         userCountRequest();
-        return view;
+        return view1;
     }
 
     public void dosage() {
@@ -79,10 +73,6 @@ public class AdminLandingFragment extends Fragment {
     public void inboxAdmin(){
         Intent intent = new Intent(getActivity(), inboxAdmin.class);
         startActivity(intent);
-    }
-
-    public void uppcApoint(){
-
     }
 
     public void planAndShedVacc(){
@@ -99,9 +89,7 @@ public class AdminLandingFragment extends Fragment {
                         e.printStackTrace();
                     }
 
-                }, error -> {
-            Toast.makeText(getActivity(), R.string.incorrect_credentials, Toast.LENGTH_LONG).show();
-        }) {
+                }, error -> Toast.makeText(getActivity(), R.string.incorrect_credentials, Toast.LENGTH_LONG).show()) {
             @Override
             public Map<String, String> getHeaders() {
                 return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);

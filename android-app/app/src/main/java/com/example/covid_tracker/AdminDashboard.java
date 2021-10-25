@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,9 +16,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AdminDashboard extends AppCompatActivity {
 
-    boolean extra_info = false;
-    String currFragment;
-    RelativeLayout buttonis;
     public BottomNavigationView bottomNav;
 
     @Override
