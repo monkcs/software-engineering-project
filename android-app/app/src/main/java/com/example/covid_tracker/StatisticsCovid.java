@@ -2,6 +2,8 @@ package com.example.covid_tracker;
 
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -120,6 +122,12 @@ public class StatisticsCovid extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
     }
 
     @Override

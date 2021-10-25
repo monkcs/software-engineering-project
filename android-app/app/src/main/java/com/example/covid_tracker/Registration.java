@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,20 +16,20 @@ import android.widget.Toast;
 //import androidx.appcompat.app.AppCompatActivity;
 
 
+import androidx.appcompat.widget.Toolbar;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Registration extends Activity implements OnClickListener{
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
-    private ProgressDialog pDialog;
-
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private RequestQueue queue;
 
     private EditText email, email_check, forename, lastname, password, number, birthdate, street, city, zipcode;
@@ -36,7 +39,7 @@ public class Registration extends Activity implements OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regristering);
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_reg);
         queue = Volley.newRequestQueue(this);
 
         email = (EditText) findViewById(R.id.email_1);
@@ -52,8 +55,17 @@ public class Registration extends Activity implements OnClickListener{
 
         BtnReg = (Button) findViewById(R.id.signUp);
         BtnReg.setOnClickListener(this);
+        toolbar.inflateMenu(R.menu.menu);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
 
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                //Anropa för byte av språk
+                return false;
+            }
+        });
     }
+
 
     void signup() {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/signup.php",
@@ -69,15 +81,15 @@ public class Registration extends Activity implements OnClickListener{
             @Override
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("email", Encryption.encryptData(email.getText().toString()));
-                params.put("firstname", Encryption.encryptData(forename.getText().toString()));
-                params.put("surname", Encryption.encryptData(lastname.getText().toString()));
-                params.put("password", Encryption.encryptData(password.getText().toString()));
-                params.put("telephone", Encryption.encryptData(number.getText().toString()));
+                params.put("email", email.getText().toString());
+                params.put("firstname", forename.getText().toString());
+                params.put("surname",lastname.getText().toString() );
+                params.put("password", password.getText().toString());
+                params.put("telephone", number.getText().toString());
                 params.put("birthdate", birthdate.getText().toString());
-                params.put("street", Encryption.encryptData(street.getText().toString()));
-                params.put("postalcode", Encryption.encryptData(zipcode.getText().toString()));
-                params.put("city", Encryption.encryptData(city.getText().toString()));
+                params.put("street", street.getText().toString());
+                params.put("postalcode", zipcode.getText().toString());
+                params.put("city", city.getText().toString());
                 params.put("country", "55");
 
                 return params;
@@ -91,7 +103,15 @@ public class Registration extends Activity implements OnClickListener{
     public void onClick(View view) {
         if(view.getId() == R.id.signUp)
         {
-            signup();
+            if (email.getText().toString().trim().matches(emailPattern) && email_check.getText().toString().trim().matches(emailPattern)) {
+                if (email.getText().toString() == email_check.getText().toString())
+                    signup();
+                else
+                    Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
+            }
+            else
+                Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
+
         }
     }
 }

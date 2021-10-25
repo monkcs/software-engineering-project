@@ -2,8 +2,12 @@ package com.example.covid_tracker;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -11,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
@@ -19,7 +24,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 
@@ -40,13 +44,7 @@ public class Login extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
-        // Sets the Toolbar to act as the ActionBar for this Activity window.
-        // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
-// Get access to the custom title view
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-
         queue = Volley.newRequestQueue(this);
 
         user_email = (EditText) findViewById(R.id.email);
@@ -61,8 +59,18 @@ public class Login extends Activity implements OnClickListener {
         adminloginButton.setOnClickListener(this);
 
         BtnLogin.setOnClickListener(this);
+        toolbar.inflateMenu(R.menu.menu);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                //Anropa för byte av språk
+                return false;
+            }
+        });
 
     }
+
 
     private void setSupportActionBar(Toolbar toolbar) {
     }
@@ -70,19 +78,18 @@ public class Login extends Activity implements OnClickListener {
     void login() {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, WebRequest.urlbase + "user/information.php", null,
                 response -> {
-                    WebRequest.User.username = Encryption.encryptData(user_email.getText().toString());
-                    WebRequest.User.password = Encryption.encryptData(user_password.getText().toString());
-
+                    WebRequest.User.username = user_email.getText().toString();
+                    WebRequest.User.password = user_password.getText().toString();
                     Intent intent = new Intent(Login.this, Dashboard.class);
                     finish();
                     startActivity(intent);
 
                 }, error -> {
-            Toast.makeText(Login.this, R.string.incorrect_credentials, Toast.LENGTH_LONG).show();
+            Toast.makeText(Login.this, R.string.wrong_creeentials, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                return WebRequest.credentials(Encryption.encryptData(user_email.getText().toString()), Encryption.encryptData(user_password.getText().toString()));
+                return WebRequest.credentials(user_email.getText().toString(), user_password.getText().toString());
             }
         };
 
@@ -105,10 +112,11 @@ public class Login extends Activity implements OnClickListener {
 
             case R.id.btnLogIn:
                 if (user_email.getText().toString().trim().matches(emailPattern)) {
+                    //Toast.makeText(getApplicationContext(), "valid email address", Toast.LENGTH_SHORT).show();
                     login();
                 }
                 else
-                    Toast.makeText(getApplicationContext(), R.string.invalid_email, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btnReg:

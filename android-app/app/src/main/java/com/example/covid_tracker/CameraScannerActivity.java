@@ -60,8 +60,8 @@ public class CameraScannerActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
 
 
-        surfaceView = (SurfaceView) findViewById(R.id.scannercammera);
-        textView = (TextView) findViewById(R.id.textviewtemp);
+        surfaceView = findViewById(R.id.scannercammera);
+        textView = findViewById(R.id.textviewtemp);
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
         cameraSource = new CameraSource.Builder(this, barcodeDetector)
@@ -145,7 +145,7 @@ public class CameraScannerActivity extends AppCompatActivity {
 
                     try {
                         JSONObject object = new JSONObject(response);
-                        String fullName = object.getString("firstname") + " " + object.getString("surname");
+                        String fullName = Encryption.decryptData(object.getString("firstname") + " " + object.getString("surname"));
                         String dateofbirth = object.getString("birthdate");
 
                         printValidation(true, fullName, dateofbirth);
@@ -158,7 +158,7 @@ public class CameraScannerActivity extends AppCompatActivity {
                 }, error -> {
             printValidation(false, "", "");
 
-            Toast.makeText(this, "error with sending qr code or reciving respons", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "error with sending qr code or receiving response", Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
@@ -178,9 +178,9 @@ public class CameraScannerActivity extends AppCompatActivity {
         alertDialog = new AlertDialog.Builder( CameraScannerActivity.this);
 
         View popupView = getLayoutInflater().inflate(R.layout.validationpopup, null);
-        ImageView image = (ImageView) popupView.findViewById(R.id.confirmAppointment);
-        TextView displayUsername = (TextView) popupView.findViewById(R.id.displayusername);
-        TextView displayDateofBirth = (TextView) popupView.findViewById(R.id.displaydateofbirth);
+        ImageView image = popupView.findViewById(R.id.confirmAppointment);
+        TextView displayUsername = popupView.findViewById(R.id.displayusername);
+        TextView displayDateofBirth = popupView.findViewById(R.id.displaydateofbirth);
 
         if (responsmessage){
             image.setImageResource(R.drawable.greencheckmark);
@@ -195,6 +195,6 @@ public class CameraScannerActivity extends AppCompatActivity {
         dialog = alertDialog.create();
         dialog.show();
 
-        popupView.setOnClickListener((View.OnClickListener) view -> dialog.dismiss());
+        popupView.setOnClickListener(view -> dialog.dismiss());
     }
 }

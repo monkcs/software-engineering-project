@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id = "@+id/menu_toolbar">
+    <item
+        android:id = "@+id/language_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="right"
+        android:visibility="visible"
+        android:layout_marginRight="30dp"
+        android:icon="@drawable/flagswe_foreground"
+        android:title="språk"
+        app:showAsAction="always"/>
+
+</menu>

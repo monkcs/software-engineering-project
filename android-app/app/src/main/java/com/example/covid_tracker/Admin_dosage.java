@@ -1,12 +1,16 @@
 package com.example.covid_tracker;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -85,6 +89,12 @@ public class Admin_dosage extends AppCompatActivity {
         });
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
 
     private void addToDatabase(Integer antal, String id) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/vaccine_catalog.php",
@@ -92,7 +102,7 @@ public class Admin_dosage extends AppCompatActivity {
                     Toast.makeText(Admin_dosage.this, getString(R.string.success), Toast.LENGTH_LONG).show();
                     GetfromDatabase();
                 }, error -> {
-            Toast.makeText(Admin_dosage.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
+            Toast.makeText(Admin_dosage.this, getString(R.string.error_msg), Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
@@ -141,7 +151,7 @@ public class Admin_dosage extends AppCompatActivity {
                         setRecyclerView();
                     }
                 }, error -> {
-            Toast.makeText(Admin_dosage.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
+            Toast.makeText(Admin_dosage.this, getString(R.string.error_msg), Toast.LENGTH_LONG).show();
             setRecyclerView();
         }) {
             @Override
