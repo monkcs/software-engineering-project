@@ -26,10 +26,14 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.Map;
 
+import papaya.in.sendmail.SendMail;
+
+//import papaya.in.sendmail.SendMail;
+
 
 public class Login extends Activity implements OnClickListener {
     private EditText user_email, user_password;
-    private Button BtnLogin, BtnReg, adminloginButton;
+    private Button BtnLogin, BtnReg, adminloginButton, BtnForgot;
 
     private RequestQueue queue;
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -51,12 +55,14 @@ public class Login extends Activity implements OnClickListener {
         user_password = (EditText) findViewById(R.id.password);
         BtnLogin = (Button) findViewById(R.id.btnLogIn);
         BtnReg = (Button) findViewById(R.id.btnReg);
+        BtnForgot = (Button) findViewById(R.id.btnForgotPsw);
 
         adminloginButton = (Button) findViewById(R.id.adminLogin);
 
 
         BtnReg.setOnClickListener(this);
         adminloginButton.setOnClickListener(this);
+        BtnForgot.setOnClickListener(this);
 
         BtnLogin.setOnClickListener(this);
         toolbar.inflateMenu(R.menu.menu);
@@ -70,7 +76,6 @@ public class Login extends Activity implements OnClickListener {
         });
 
     }
-
 
     private void setSupportActionBar(Toolbar toolbar) {
     }
@@ -106,6 +111,10 @@ public class Login extends Activity implements OnClickListener {
         Intent intent = new Intent(this, Administartorlogin.class);
         startActivity(intent);
     }
+    public void ResetPassword(){
+        Intent intent = new Intent(this, ForgotPassword.class);
+        startActivity(intent);
+    }
 
     public void onClick(View view) {
         switch (view.getId()) {
@@ -125,6 +134,9 @@ public class Login extends Activity implements OnClickListener {
 
             case R.id.adminLogin:
                 loginAdmin();
+                break;
+            case R.id.btnForgotPsw:
+                ResetPassword();
                 break;
         }
     }

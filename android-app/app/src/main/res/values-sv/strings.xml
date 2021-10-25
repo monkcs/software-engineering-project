@@ -129,6 +129,12 @@
     <string name="focus_on_qr_code">Fokusera på QR coden</string>
     <string name="wrong_creeentials">Användarnamnet/lösenordet är inkorrekt</string>
     <string name="error_msg">error</string>
+    <string name="new_account">Nytt konto</string>
+    <string name="msg_reg">Välkommen till Covid Tracker!\n Din inloggningsinformation är:\n användarnamn:</string>
+    <string name="enter_your_email">Skriv in din e-mail</string>
+    <string name="send">skicka</string>
+    <string name="forgot_psw">Glömt ditt lösenord?</string>
+    <string name="msg_forgotpsw">Ditt lösenord är\n</string>
 
 
 </resources>

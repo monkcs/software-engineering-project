@@ -26,6 +26,8 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import papaya.in.sendmail.SendMail;
+
 public class Registration extends Activity implements OnClickListener{
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
@@ -68,6 +70,7 @@ public class Registration extends Activity implements OnClickListener{
                 response -> {
                     Toast.makeText(Registration.this, R.string.signup_success, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Registration.this, Login.class);
+                    sendEmail();
                     finish();
                     startActivity(intent);
 
@@ -91,6 +94,14 @@ public class Registration extends Activity implements OnClickListener{
         };
 
         queue.add(request);
+    }
+    public void sendEmail(){
+        SendMail mail = new SendMail(Util.EMAIL, Util.PASSWORD,
+                email.getText().toString(),
+                getString(R.string.new_account),
+                getString(R.string.msg_reg) + " "+ email.getText().toString()+ "\n" + getString(R.string.password) + " "+ password.getText().toString());
+
+        mail.execute();
     }
 
     @Override
