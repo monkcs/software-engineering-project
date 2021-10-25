@@ -1,5 +1,6 @@
 package com.example.covid_tracker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -27,15 +28,6 @@ import java.util.Map;
 
 
 public class Administartorlogin extends AppCompatActivity implements View.OnClickListener {
-    /*
-        public Administartorlogin(){
-            Spinner dropdown = findViewById(R.id.spinner1);
-            String[] items = new String[]{"bästa Hammarö", "Karlstad", "2 i tabelen"};
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-            dropdown.setAdapter(adapter);
-        }
-
-    */
 
     class Provider
     {
@@ -52,13 +44,13 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
             }
         }
 
+        @NonNull
         public String toString() {
             return name;
         }
-    };
+    }
 
     private RequestQueue queue;
-    private Button loginbutton, gobackbutton;
     private EditText password;
     Spinner dropdown;
 
@@ -76,8 +68,8 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
 
         getProviders();
 
-        loginbutton= findViewById(R.id.adminloginbutton);
-        gobackbutton= findViewById(R.id.gobackbutton);
+        Button loginbutton = findViewById(R.id.adminloginbutton);
+        Button gobackbutton = findViewById(R.id.gobackbutton);
 
         loginbutton.setOnClickListener(this);
         gobackbutton.setOnClickListener(this);
@@ -99,16 +91,14 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
                     try {
                         items.add(new Provider(response.getJSONObject(i)));
                     }
-                    catch (Exception e) { }
+                    catch (Exception e) { e.printStackTrace(); }
                 }
 
-                ArrayAdapter<Provider> adapter = new ArrayAdapter<Provider>(this, android.R.layout.simple_spinner_dropdown_item, items);
+                ArrayAdapter<Provider> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
                 dropdown.setAdapter(adapter);
 
 
-                }, error -> {
-            Toast.makeText(Administartorlogin.this, R.string.network_down, Toast.LENGTH_LONG).show();
-        });
+                }, error -> Toast.makeText(Administartorlogin.this, R.string.network_down, Toast.LENGTH_LONG).show());
 
         queue.add(request);
     }
@@ -122,9 +112,7 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
                     Intent intent = new Intent(this, AdminDashboard.class);
                     startActivity(intent);
 
-                }, error -> {
-            Toast.makeText(Administartorlogin.this, R.string.incorrect_credentials, Toast.LENGTH_LONG).show();
-        }) {
+                }, error -> Toast.makeText(Administartorlogin.this, R.string.incorrect_credentials, Toast.LENGTH_LONG).show()) {
             @Override
             public Map<String, String> getHeaders() {
                 return WebRequest.credentials(((Provider) dropdown.getSelectedItem()).id.toString(), password.getText().toString());

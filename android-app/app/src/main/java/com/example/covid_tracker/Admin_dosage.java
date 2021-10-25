@@ -1,16 +1,13 @@
 package com.example.covid_tracker;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,39 +49,36 @@ public class Admin_dosage extends AppCompatActivity {
         //byt till getactivity när det fragment
         queue = Volley.newRequestQueue(this);
 
-        recyclerview = (RecyclerView) findViewById(R.id.recyclerView_dosage);
+        recyclerview = findViewById(R.id.recyclerView_dosage);
 
         GetfromDatabase();
 
-        edit_dosage = (EditText) findViewById(R.id.edit_amount);
+        edit_dosage = findViewById(R.id.edit_amount);
 
-        Button addknapp = (Button) findViewById(R.id.addknapp);
-        addknapp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        Button addknapp = findViewById(R.id.addknapp);
+        addknapp.setOnClickListener(view -> {
 
-                if(edit_dosage.length() != 0) {
+            if(edit_dosage.length() != 0) {
 
-                    String selected_id = "";
+                String selected_id = "";
 
-                    nameis_spinner = spinner.getSelectedItem().toString();
-                    antal_doser_som_add = edit_dosage.getText().toString();
-                    antal_convert = Integer.parseInt(antal_doser_som_add);
+                nameis_spinner = spinner.getSelectedItem().toString();
+                antal_doser_som_add = edit_dosage.getText().toString();
+                antal_convert = Integer.parseInt(antal_doser_som_add);
 
-                    /*get the id for this vaccine*/
-                    for(int i = 0; i < list.size(); i++)
-                    {
-                        if(list.get(i).getNamn().equals(nameis_spinner))
-                            selected_id = list.get(i).getId();
-                    }
-                    edit_dosage.onEditorAction(EditorInfo.IME_ACTION_DONE);
-                    edit_dosage.setText("");
-
-                    addToDatabase(antal_convert, selected_id);
+                /*get the id for this vaccine*/
+                for(int i = 0; i < list.size(); i++)
+                {
+                    if(list.get(i).getNamn().equals(nameis_spinner))
+                        selected_id = list.get(i).getId();
                 }
-                else{
-                    Toast.makeText(Admin_dosage.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
-                }
+                edit_dosage.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                edit_dosage.setText("");
+
+                addToDatabase(antal_convert, selected_id);
+            }
+            else{
+                Toast.makeText(Admin_dosage.this, getString(R.string.error_missing_value), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -101,12 +95,10 @@ public class Admin_dosage extends AppCompatActivity {
                 response -> {
                     Toast.makeText(Admin_dosage.this, getString(R.string.success), Toast.LENGTH_LONG).show();
                     GetfromDatabase();
-                }, error -> {
-            Toast.makeText(Admin_dosage.this, getString(R.string.error_msg), Toast.LENGTH_LONG).show();
-        }) {
+                }, error -> Toast.makeText(Admin_dosage.this, getString(R.string.error_msg), Toast.LENGTH_LONG).show()) {
             @Override
             public Map<String, String> getParams()  {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("selected_id", id);
                 params.put("input_value", String.valueOf(antal));
                 return params;
@@ -128,7 +120,7 @@ public class Admin_dosage extends AppCompatActivity {
             lista_spinner.add(list.get(i).getNamn());
         }
         spinner = this.findViewById(R.id.spinnerVaccine_dosage);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lista_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, lista_spinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
