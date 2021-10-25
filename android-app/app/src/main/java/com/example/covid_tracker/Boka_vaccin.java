@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -28,33 +27,33 @@ import java.util.Map;
 
 public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
-    private Button buttonBook, buttonRebook, buttonCancel, buttonDisable;
-    private View view;
     private RequestQueue queue;
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
-    private Button BtnDelete, BtnGoBack;
+    private Button BtnGoBack;
 
     RecyclerView recyclerView;
     List<Booking_block> list;
+
+    public Boka_vaccin() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         queue = Volley.newRequestQueue(getActivity());
 
-        view  = inflater.inflate(R.layout.fragment_boka_vaccin, container, false);
-        GreedPerson();
+        View view = inflater.inflate(R.layout.fragment_boka_vaccin, container, false);
 
-        buttonBook = (Button) view.findViewById(R.id.BtnBook);
-        buttonRebook = (Button) view.findViewById(R.id.BtnRebook);
-        buttonCancel = (Button) view.findViewById(R.id.BtnCancel);
+        Button buttonBook = view.findViewById(R.id.BtnBook);
+        Button buttonRebook = view.findViewById(R.id.BtnRebook);
+        Button buttonCancel = view.findViewById(R.id.BtnCancel);
 
         buttonBook.setOnClickListener(this);
         buttonRebook.setOnClickListener(this);
         buttonCancel.setOnClickListener(this);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_bokis);
+        recyclerView = view.findViewById(R.id.recyclerView_bokis);
 
 
         fetch_available_appointmentd();
@@ -72,7 +71,7 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
                        setRecyclerView();
                    } catch (JSONException e) {
-
+                        e.printStackTrace();
                     }
 
 
@@ -107,23 +106,6 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
     }
 
 
-    private void GreedPerson() {
-
-        TextView textView = view.findViewById(R.id.greeding);
-        textView.setText("Hello " + getPerson());
-
-
-    }
-
-    //
-    //Hämta person från databas!!!
-    //
-    private String getPerson() {
-
-        return "Person string blalblalbalb";
-
-    }
-
 
     public void openBooking()
     {
@@ -139,8 +121,8 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
         //if tid bokad
         dialogBuilder = new AlertDialog.Builder(getActivity());
         final View CancelPopupView = getLayoutInflater().inflate(R.layout.deletepopup, null);
-        Button BtnRebook = (Button) CancelPopupView.findViewById(R.id.DeleteBtn);
-        BtnGoBack = (Button) CancelPopupView.findViewById(R.id.GobackBtn);
+        Button BtnRebook = CancelPopupView.findViewById(R.id.DeleteBtn);
+        BtnGoBack = CancelPopupView.findViewById(R.id.GobackBtn);
 
         String string = getString(R.string.rebook);
         BtnRebook.setText(string);
@@ -149,49 +131,33 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
         dialog = dialogBuilder.create();
         dialog.show();
 
-        BtnRebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DeleteAppointment();
-                dialog.dismiss();
-                openBooking();
-            }
+        BtnRebook.setOnClickListener(view -> {
+            DeleteAppointment();
+            dialog.dismiss();
+            openBooking();
         });
-        BtnGoBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        BtnGoBack.setOnClickListener(view -> dialog.dismiss());
     }
     public void removeAppointment() {
 
         //if tid bokad
         dialogBuilder = new AlertDialog.Builder(getActivity());
         final View CancelPopupView = getLayoutInflater().inflate(R.layout.deletepopup, null);
-        BtnDelete = (Button) CancelPopupView.findViewById(R.id.DeleteBtn);
-        BtnGoBack = (Button) CancelPopupView.findViewById(R.id.GobackBtn);
+        Button btnDelete = CancelPopupView.findViewById(R.id.DeleteBtn);
+        BtnGoBack = CancelPopupView.findViewById(R.id.GobackBtn);
 
         dialogBuilder.setView(CancelPopupView);
         dialog = dialogBuilder.create();
         dialog.show();
 
-        BtnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DeleteAppointment();
-                /*1. check vaccine product
-                * 2. increment selected product*/
-                dialog.dismiss();
+        btnDelete.setOnClickListener(view -> {
+            DeleteAppointment();
+            /*1. check vaccine product
+            * 2. increment selected product*/
+            dialog.dismiss();
 
-            }
         });
-        BtnGoBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        BtnGoBack.setOnClickListener(view -> dialog.dismiss());
     }
 
     public void DeleteAppointment() {
@@ -200,9 +166,7 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
                     System.out.println(response);
                     Toast.makeText(getActivity(), R.string.canceled_appointment, Toast.LENGTH_LONG).show();
 
-                }, error -> {
-            Toast.makeText(getActivity(), R.string.canceled_appointment_failed, Toast.LENGTH_LONG).show();
-        }) {
+                }, error -> Toast.makeText(getActivity(), R.string.canceled_appointment_failed, Toast.LENGTH_LONG).show()) {
             @Override
             public Map<String, String> getHeaders() {
                 return WebRequest.credentials(WebRequest.User.username, WebRequest.User.password);

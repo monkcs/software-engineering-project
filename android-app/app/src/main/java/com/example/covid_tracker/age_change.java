@@ -3,14 +3,12 @@ package com.example.covid_tracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,9 +29,7 @@ import java.util.Map;
 public class age_change extends AppCompatActivity {
 
     private RequestQueue queue;
-    private Button update, update2;
     private EditText age_change;
-    private CalendarView calv;
     private String reader;
     public String dateis;
     private int updateint;
@@ -50,9 +46,9 @@ public class age_change extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
-        recyclerview = (RecyclerView) findViewById(R.id.recyclerView_age_age_age);
+        recyclerview = findViewById(R.id.recyclerView_age_age_age);
 
-        calv = (CalendarView) findViewById(R.id.calender_agechange);
+        CalendarView calv = findViewById(R.id.calender_agechange);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         dateis = sdf.format(new Date(calv.getDate()));
@@ -61,58 +57,46 @@ public class age_change extends AppCompatActivity {
         setRecyclerView();
 
 
-        calv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+        calv.setOnDateChangeListener((calendarView, i, i1, i2) -> {
 
-                i1 = i1 + 1;
+            i1 = i1 + 1;
 
 
 
-                dateis = i2 + "/" + i1 + "/" + i;
+            dateis = i2 + "/" + i1 + "/" + i;
 
-                System.out.println("detta är dateis" + dateis);
+            System.out.println("detta är dateis" + dateis);
 
-                getTimesforDatabase();
-                setRecyclerView();
-            }
+            getTimesforDatabase();
+            setRecyclerView();
         });
 
-        age_change = (EditText) findViewById(R.id.edittext_changeage);
+        age_change = findViewById(R.id.edittext_changeage);
 
-        update = (Button) findViewById(R.id.update_agechange);
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        Button update = findViewById(R.id.update_agechange);
+        update.setOnClickListener(view -> {
 
 
 
-                if(age_change.length() != 0) {
-                    reader = age_change.getText().toString();
-                    updateint = Integer.parseInt(reader);
+            if(age_change.length() != 0) {
+                reader = age_change.getText().toString();
+                updateint = Integer.parseInt(reader);
 
-                    age_change.onEditorAction(EditorInfo.IME_ACTION_DONE);
-                    age_change.setText("");
+                age_change.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                age_change.setText("");
 
-                    System.out.println("---Update---");
-                    System.out.println("detta är ålder: " + updateint);
-                    System.out.println("detta är datum: " + dateis);
-                }
-                else{
-                    //do nothing
-                }
-
+                System.out.println("---Update---");
+                System.out.println("detta är ålder: " + updateint);
+                System.out.println("detta är datum: " + dateis);
             }
+
         });
 
-        update2 = (Button) findViewById(R.id.update_agechange2);
-        update2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast t1;
-                t1 = Toast.makeText(age_change.this, "The update button takes the marked date and update the age-group on all the appointment on that day", Toast.LENGTH_LONG);
-                t1.show();
-            }
+        Button update2 = findViewById(R.id.update_agechange2);
+        update2.setOnClickListener(view -> {
+            Toast t1;
+            t1 = Toast.makeText(age_change.this, "The update button takes the marked date and update the age-group on all the appointment on that day", Toast.LENGTH_LONG);
+            t1.show();
         });
 
 
@@ -120,23 +104,15 @@ public class age_change extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem i) {
-        switch (i.getItemId()) {
-            case android.R.id.home:
-                Intent intent = new Intent(this, AdminDashboard.class);
-                intent.putExtra("fragment", 12345);
+        if (i.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, AdminDashboard.class);
+            intent.putExtra("fragment", 12345);
 
 
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(i);
+            startActivity(intent);
+            return true;
         }
-    }
-
-    public void displayToast(View v){
-
-        Toast.makeText(this, "helpis", Toast.LENGTH_LONG);
-        System.out.println("Hej i toast");
+        return super.onOptionsItemSelected(i);
     }
 
     private void getTimesforDatabase() {

@@ -65,13 +65,10 @@ public class age_change_block_Adapter  extends RecyclerView.Adapter<age_change_b
 
 
 
-            linear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    age_change_block blockis = List.get(getAdapterPosition());
-                    blockis.setExpandable(!blockis.getExpandable());
-                    notifyItemChanged(getAdapterPosition());
-                }
+            linear.setOnClickListener(view -> {
+                age_change_block blockis = List.get(getAdapterPosition());
+                blockis.setExpandable(!blockis.getExpandable());
+                notifyItemChanged(getAdapterPosition());
             });
 
         }
