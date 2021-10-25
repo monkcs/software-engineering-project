@@ -48,6 +48,11 @@
                 android:layout_below="@+id/edittext_changeage"
                 android:layout_height="wrap_content" />
 
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressbaris"
+                android:layout_below="@id/calender_agechange"/>
 
 
         <androidx.recyclerview.widget.RecyclerView

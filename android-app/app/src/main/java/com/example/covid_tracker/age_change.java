@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,7 @@ public class age_change extends AppCompatActivity {
 
     public List<Integer> listIDs;
     public List<age_change_block> list;
+    public ProgressBar pb;
     private RecyclerView recyclerview;
 
     @Override
@@ -48,6 +50,10 @@ public class age_change extends AppCompatActivity {
         setContentView(R.layout.activity_age_change);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        pb = (ProgressBar) findViewById(R.id.progressbaris);
+
+        pb.setVisibility(View.GONE);
 
         queue = Volley.newRequestQueue(this);
 
@@ -154,6 +160,8 @@ public class age_change extends AppCompatActivity {
 
         System.out.println("hej inne i gettimes");
         list = new ArrayList<>();
+        pb.setVisibility(View.VISIBLE);
+        android.os.SystemClock.sleep(100);
         System.out.println("detta är dateis inne i database" + dateis);
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/available_booking.php", null,
@@ -189,6 +197,7 @@ public class age_change extends AppCompatActivity {
 
                     list.add(new age_change_block(dateis, times));
                     System.out.println("hej inne i recview");
+                    pb.setVisibility(View.GONE);
                     setRecyclerView();
                 }, error -> {
         }
