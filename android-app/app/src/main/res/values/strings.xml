@@ -150,6 +150,12 @@
     <string name="focus_on_qr_code">Focus on the QR code</string>
     <string name="wrong_creeentials">The username/password is incorrect</string>
     <string name="error_msg">error</string>
+    <string name="new_account">New account</string>
+    <string name="msg_reg">Welcome to Covid Tracker!\n Your login information is:\n username:</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="send">send</string>
+    <string name="forgot_psw">Forgot password</string>
+    <string name="msg_forgotpsw">Your password is\n</string>
 
 
 </resources>
