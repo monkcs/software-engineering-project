@@ -29,7 +29,7 @@ import java.util.Map;
 public class Registration extends Activity implements OnClickListener{
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
-    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private RequestQueue queue;
 
     private EditText email, email_check, forename, lastname, password, number, birthdate, street, city, zipcode;
@@ -39,30 +39,26 @@ public class Registration extends Activity implements OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regristering);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_reg);
+        Toolbar toolbar = findViewById(R.id.toolbar_reg);
         queue = Volley.newRequestQueue(this);
 
-        email = (EditText) findViewById(R.id.email_1);
-        email_check = (EditText) findViewById(R.id.email_check);
-        forename = (EditText) findViewById(R.id.firstname);
-        lastname = (EditText) findViewById(R.id.lastname);
-        password = (EditText) findViewById(R.id.passw);
-        number = (EditText) findViewById(R.id.phone_number);
-        birthdate = (EditText) findViewById(R.id.DOB);
-        street = (EditText) findViewById(R.id.street);
-        city = (EditText) findViewById(R.id.city);
-        zipcode = (EditText) findViewById(R.id.zipCode);
+        email = findViewById(R.id.email_1);
+        email_check = findViewById(R.id.email_check);
+        forename = findViewById(R.id.firstname);
+        lastname = findViewById(R.id.lastname);
+        password = findViewById(R.id.passw);
+        number = findViewById(R.id.phone_number);
+        birthdate = findViewById(R.id.DOB);
+        street = findViewById(R.id.street);
+        city = findViewById(R.id.city);
+        zipcode = findViewById(R.id.zipCode);
 
-        BtnReg = (Button) findViewById(R.id.signUp);
+        BtnReg = findViewById(R.id.signUp);
         BtnReg.setOnClickListener(this);
         toolbar.inflateMenu(R.menu.menu);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
-
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                //Anropa för byte av språk
-                return false;
-            }
+        toolbar.setOnMenuItemClickListener(item -> {
+            //Anropa för byte av språk
+            return false;
         });
     }
 
@@ -75,12 +71,10 @@ public class Registration extends Activity implements OnClickListener{
                     finish();
                     startActivity(intent);
 
-                }, error -> {
-            Toast.makeText(Registration.this, R.string.signup_failed, Toast.LENGTH_LONG).show();
-        }) {
+                }, error -> Toast.makeText(Registration.this, R.string.signup_failed, Toast.LENGTH_LONG).show()) {
             @Override
             public Map<String, String> getParams()  {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("email", email.getText().toString());
                 params.put("firstname", forename.getText().toString());
                 params.put("surname",lastname.getText().toString() );
@@ -93,7 +87,7 @@ public class Registration extends Activity implements OnClickListener{
                 params.put("country", "55");
 
                 return params;
-            };
+            }
         };
 
         queue.add(request);
@@ -104,7 +98,7 @@ public class Registration extends Activity implements OnClickListener{
         if(view.getId() == R.id.signUp)
         {
             if (email.getText().toString().trim().matches(emailPattern) && email_check.getText().toString().trim().matches(emailPattern)) {
-                if (email.getText().toString() == email_check.getText().toString())
+                if (email.getText().toString().equals(email_check.getText().toString()))
                     signup();
                 else
                     Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
