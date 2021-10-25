@@ -16,8 +16,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
+
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_login"
+            android:id="@+id/toolbar_reg"
             android:minHeight="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,6 +36,8 @@
                 />
 
         </androidx.appcompat.widget.Toolbar>
+
+
         <View
             android:id="@+id/header_view"
             android:layout_width="match_parent"

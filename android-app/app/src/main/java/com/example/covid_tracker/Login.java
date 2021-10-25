@@ -2,8 +2,12 @@ package com.example.covid_tracker;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -40,13 +44,7 @@ public class Login extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
-        // Sets the Toolbar to act as the ActionBar for this Activity window.
-        // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
-// Get access to the custom title view
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-
         queue = Volley.newRequestQueue(this);
 
         user_email = (EditText) findViewById(R.id.email);
@@ -61,8 +59,18 @@ public class Login extends Activity implements OnClickListener {
         adminloginButton.setOnClickListener(this);
 
         BtnLogin.setOnClickListener(this);
+        toolbar.inflateMenu(R.menu.menu);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                //Anropa för byte av språk
+                return false;
+            }
+        });
 
     }
+
 
     private void setSupportActionBar(Toolbar toolbar) {
     }
@@ -72,7 +80,6 @@ public class Login extends Activity implements OnClickListener {
                 response -> {
                     WebRequest.User.username = user_email.getText().toString();
                     WebRequest.User.password = user_password.getText().toString();
-
                     Intent intent = new Intent(Login.this, Dashboard.class);
                     finish();
                     startActivity(intent);
@@ -89,7 +96,6 @@ public class Login extends Activity implements OnClickListener {
         queue.add(request);
         queue.start();
     }
-
 
     public void signup() {
         Intent intent = new Intent(this, Regristering.class);

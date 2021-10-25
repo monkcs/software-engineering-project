@@ -1,6 +1,8 @@
 package com.example.covid_tracker;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +34,12 @@ public class AdminDashboard extends AppCompatActivity {
                 new AdminLandingFragment()).commit();
 
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
     }
 
 
