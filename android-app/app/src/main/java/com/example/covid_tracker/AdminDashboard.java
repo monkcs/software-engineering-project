@@ -3,6 +3,8 @@ package com.example.covid_tracker;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -69,6 +71,12 @@ public class AdminDashboard extends AppCompatActivity {
             //do nothing
         }
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
     }
 
 
