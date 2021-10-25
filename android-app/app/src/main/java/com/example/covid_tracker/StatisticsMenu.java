@@ -20,22 +20,12 @@ public class StatisticsMenu extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_statistics_menu, container, false);
 
-        btn_vacc = (Button) view.findViewById(R.id.btn_vacc);
-        btn_cov = (Button) view.findViewById(R.id.btn_cov);
+        btn_vacc = view.findViewById(R.id.btn_vacc);
+        btn_cov = view.findViewById(R.id.btn_cov);
 
-        btn_vacc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openStatVacc();
-            }
-        });
+        btn_vacc.setOnClickListener(view -> openStatVacc());
 
-        btn_cov.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openStatCov();
-            }
-        });
+        btn_cov.setOnClickListener(view -> openStatCov());
         
         return view;
     }

@@ -1,8 +1,12 @@
 package com.example.covid_tracker;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -99,4 +103,25 @@ public class AdminDashboard extends AppCompatActivity {
 
                 return true;
             };
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode,
+                permissions,
+                grantResults);
+
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, CameraScannerActivity.class));
+
+        }
+        else {
+            Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
+            //startActivity(new Intent(this, Dashboard.class));
+
+        }
+    }
 }

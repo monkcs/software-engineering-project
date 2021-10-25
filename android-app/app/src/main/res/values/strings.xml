@@ -136,18 +136,18 @@
     <string name="add_dosages">Add dosages</string>
     <string name="confirm_appointment">Confirm appointment</string>
     <string name="scan_qr_code">Scan qr code</string>
-    <string name="error_missing_value">No value recieved</string>
+    <string name="error_missing_value">No value received</string>
     <string name="success">Success</string>
     <string name="username">Username</string>
     <string name="birthdate">Birthdate</string>
     <string name="manufacturer">Manufacturer</string>
     <string name="passport_invalid">Passport is invalid</string>
 
-    <string name="update">Passport is invalid</string>
     <string name="update_inage">Update</string>
     <string name="info_inage">Info</string>
     <string name="age_inage">Age</string>
     <string name="byt_inage">Change</string>
+    <string name="focus_on_qr_code">Focus on the QR code</string>
 
 
 </resources>

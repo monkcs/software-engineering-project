@@ -120,7 +120,13 @@
     <string name="birthdate">Födelsedatum</string>
     <string name="manufacturer">Tillverkare</string>
 
+    <string name="update_inage">Update</string>
+    <string name="info_inage">Info</string>
+    <string name="age_inage">Ålder</string>
+    <string name="byt_inage">Ändra</string>
+
     <string name="passport_invalid">Passportet finns inte</string>
+    <string name="focus_on_qr_code">Fokusera på QR coden</string>
 
 
 </resources>

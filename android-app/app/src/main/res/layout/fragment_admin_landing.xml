@@ -148,6 +148,7 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="0dp"
             android:layout_height="175dp"
             android:orientation="horizontal"
@@ -184,6 +185,47 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/clipart116446" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
+            android:layout_height="175dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1">
+                <RelativeLayout
+                    android:id="@+id/Rellay4"
+                    android:clickable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/light_green">
+                    <TextView
+                        android:id="@+id/cameraadminundertext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cameraadminicon"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/scan_qr_code"
+                        android:textSize="24sp" />
+                    <ImageView
+                        android:id="@+id/cameraadminicon"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:contentDescription="@string/todo"
+                        app:srcCompat="@android:drawable/ic_menu_camera" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>

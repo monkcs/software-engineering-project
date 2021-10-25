@@ -48,7 +48,7 @@ public class DigitalHealth extends Fragment {
     private List<FAQ_block> values;
     private RequestQueue queue;
 
-    private static final int CAMERA_PERMISSION_CODE = 100;
+    public static final int CAMERA_PERMISSION_CODE = 100;
 
 
 
@@ -58,7 +58,7 @@ public class DigitalHealth extends Fragment {
         view  = inflater.inflate(R.layout.fragment_digital_health, container, false);
 
         qrView = view.findViewById(R.id.imageviewqr);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_userinfo);
+        recyclerView = view.findViewById(R.id.recyclerView_userinfo);
         queue = Volley.newRequestQueue(getActivity());
 
 
@@ -66,7 +66,6 @@ public class DigitalHealth extends Fragment {
 
         InitData();
 
-        //qrGenerator("https://youtu.be/iik25wqIuFo");
 
         Button toocamera = view.findViewById(R.id.btn_camera);
         toocamera.setOnClickListener(view -> {

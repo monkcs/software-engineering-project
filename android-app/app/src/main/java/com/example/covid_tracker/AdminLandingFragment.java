@@ -1,6 +1,10 @@
 package com.example.covid_tracker;
 
+import static com.example.covid_tracker.DigitalHealth.CAMERA_PERMISSION_CODE;
+
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -23,7 +28,7 @@ import java.util.Map;
 
 public class AdminLandingFragment extends Fragment {
 
-    private RelativeLayout rl1, rl2, rl3;
+    private RelativeLayout rl1, rl2, rl3, rl4;
     private View view;
     private TextView userCount;
     private RequestQueue queue;
@@ -43,20 +48,22 @@ public class AdminLandingFragment extends Fragment {
             }
         });*/
 
-        rl2 = (RelativeLayout) view.findViewById(R.id.Rellay2);
-        rl2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                planAndShedVacc();
-            }
-        });
+        rl2 = view.findViewById(R.id.Rellay2);
+        rl2.setOnClickListener(view -> planAndShedVacc());
 
-        rl3 = (RelativeLayout) view.findViewById(R.id.Rellay3);
-        rl3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dosage();
+        rl3 = view.findViewById(R.id.Rellay3);
+        rl3.setOnClickListener(view -> dosage());
+
+        rl4 = view.findViewById(R.id.Rellay4);
+        rl4.setOnClickListener(view -> {
+
+            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+
+            }else{
+                startActivity(new Intent(getActivity(), CameraScannerActivity.class));
             }
+
         });
 
         userCount = view.findViewById(R.id.adminUserCount);
@@ -65,14 +72,8 @@ public class AdminLandingFragment extends Fragment {
     }
 
     public void dosage() {
-
-
-
-            Intent intent = new Intent(getActivity(), Admin_dosage.class);
-            startActivity(intent);
-
-
-
+        Intent intent = new Intent(getActivity(), Admin_dosage.class);
+        startActivity(intent);
     }
 
     public void inboxAdmin(){
