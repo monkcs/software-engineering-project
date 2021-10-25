@@ -26,7 +26,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Regristering extends Activity implements OnClickListener{
+public class Registration extends Activity implements OnClickListener{
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -70,13 +70,13 @@ public class Regristering extends Activity implements OnClickListener{
     void signup() {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "user/signup.php",
                 response -> {
-                    Toast.makeText(Regristering.this, R.string.signup_success, Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(Regristering.this, Login.class);
+                    Toast.makeText(Registration.this, R.string.signup_success, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Registration.this, Login.class);
                     finish();
                     startActivity(intent);
 
                 }, error -> {
-            Toast.makeText(Regristering.this, R.string.signup_failed, Toast.LENGTH_LONG).show();
+            Toast.makeText(Registration.this, R.string.signup_failed, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {

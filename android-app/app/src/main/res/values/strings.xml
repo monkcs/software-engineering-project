@@ -148,6 +148,8 @@
     <string name="age_inage">Age</string>
     <string name="byt_inage">Change</string>
     <string name="focus_on_qr_code">Focus on the QR code</string>
+    <string name="wrong_creeentials">The username/password is incorrect</string>
+    <string name="error_msg">error</string>
 
 
 </resources>

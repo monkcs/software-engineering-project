@@ -98,7 +98,7 @@ public class Login extends Activity implements OnClickListener {
     }
 
     public void signup() {
-        Intent intent = new Intent(this, Regristering.class);
+        Intent intent = new Intent(this, Registration.class);
         startActivity(intent);
     }
 

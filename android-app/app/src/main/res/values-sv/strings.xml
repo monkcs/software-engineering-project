@@ -127,6 +127,8 @@
 
     <string name="passport_invalid">Passportet finns inte</string>
     <string name="focus_on_qr_code">Fokusera på QR coden</string>
+    <string name="wrong_creeentials">Användarnamnet/lösenordet är inkorrekt</string>
+    <string name="error_msg">error</string>
 
 
 </resources>
