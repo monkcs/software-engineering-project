@@ -158,7 +158,7 @@ public class CameraScannerActivity extends AppCompatActivity {
                 }, error -> {
             printValidation(false, "", "");
 
-            Toast.makeText(this, "error with sending qr code or reciving respons", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "error with sending qr code or receiving response", Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
