@@ -44,17 +44,6 @@
 
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Source"
-                android:text="@string/source_fohm"
-                android:padding="8dp"
-                android:textSize="12sp"
-                android:textColor="@color/light_grey"
-                android:layout_below="@+id/Svar"
-
-                />
 
 
 
