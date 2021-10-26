@@ -24,10 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     foreach ($array as $row) {
-        $datetime = $row['id'];
+        $id = $row['id'];
         $minimum_age = $row['minimum_age'];
 
-        update($connection, $datetime, $identity, $minimum_age);
+        update($connection, $minimum_age, $id);
     }
 } else {
     http_response_code(405);

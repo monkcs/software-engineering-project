@@ -21,6 +21,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,18 +33,17 @@ import java.util.Map;
 
 public class age_change extends AppCompatActivity {
 
+    public String dateis;
+    public ArrayList<Integer> listIDs;
+    public List<age_change_block> list;
+    public ProgressBar pb;
     private RequestQueue queue;
     private TextView tw;
     private Button update, update2;
     private EditText age_change;
     private CalendarView calv;
     private String reader;
-    public String dateis;
     private int updateint;
-
-    public List<Integer> listIDs;
-    public List<age_change_block> list;
-    public ProgressBar pb;
     private RecyclerView recyclerview;
 
     @Override
@@ -52,6 +52,8 @@ public class age_change extends AppCompatActivity {
         setContentView(R.layout.activity_age_change);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        listIDs = new ArrayList<>();
 
         pb = (ProgressBar) findViewById(R.id.progressbaris);
 
@@ -77,7 +79,6 @@ public class age_change extends AppCompatActivity {
                 i1 = i1 + 1;
 
 
-
                 dateis = i2 + "/" + i1 + "/" + i;
 
                 System.out.println("detta är dateis" + dateis);
@@ -100,8 +101,7 @@ public class age_change extends AppCompatActivity {
             public void onClick(View view) {
 
 
-
-                if(age_change.length() != 0) {
+                if (age_change.length() != 0) {
                     reader = age_change.getText().toString();
                     updateint = Integer.parseInt(reader);
 
@@ -115,8 +115,7 @@ public class age_change extends AppCompatActivity {
 
                     addToDataB(updateint);
 
-                }
-                else{
+                } else {
                     //do nothing
                 }
 
@@ -136,9 +135,37 @@ public class age_change extends AppCompatActivity {
 
     }
 
-    private void addToDataB(int updateint) {
+    private void addToDataB(int new_minimum_age) {
 
-      //implement
+        JSONArray payload = new JSONArray();
+
+        for (int id : listIDs) {
+            JSONObject temporary = new JSONObject();
+
+            try {
+
+                temporary.put("id", id);
+                temporary.put("minimum_age", new_minimum_age);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            payload.put(temporary);
+        }
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/update.php", payload,
+                response -> {
+                }
+                , error -> {
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
+        queue.add(request);
 
     }
 
@@ -157,7 +184,7 @@ public class age_change extends AppCompatActivity {
         }
     }
 
-    public void displayToast(View v){
+    public void displayToast(View v) {
 
         Toast.makeText(this, "helpis", Toast.LENGTH_LONG);
         System.out.println("Hej i toast");
@@ -174,15 +201,15 @@ public class age_change extends AppCompatActivity {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/available_booking.php", null,
                 response -> {
 
-                String times = "";
-                listIDs = new ArrayList<>();
+                    String times = "";
+                    listIDs.clear();
 
                     System.out.println("hej inne i response");
                     for (int i = 0; i < response.length(); i++) {
 
                         try {
 
-                            if(compareIfEqual(dateis, response.getJSONObject(i).getString("datetime"))){
+                            if (compareIfEqual(dateis, response.getJSONObject(i).getString("datetime"))) {
                                 System.out.println(response.getJSONObject(i));
 
                                 JSONObject paket = response.getJSONObject(i);
@@ -222,14 +249,13 @@ public class age_change extends AppCompatActivity {
         queue.add(request);
 
 
-
     }
 
     private Integer getIDpack(JSONObject paket) {
 
         Integer returnis = null;
         try {
-            returnis = paket.getInt("ID");
+            returnis = paket.getInt("id");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -263,32 +289,32 @@ public class age_change extends AppCompatActivity {
 
 
         //hämta char 11 till 18
-        returnis = returnis.substring(11,19);
+        returnis = returnis.substring(11, 19);
 
         return returnis;
     }
 
     private boolean compareIfEqual(String dateis, String s) {
 
-     //   System.out.println(dateis.charAt(0));
+        //   System.out.println(dateis.charAt(0));
 
         boolean flagga = true;
 
-        if(dateis.charAt(0) != s.charAt(8) || dateis.charAt(1) != s.charAt(9)){
+        if (dateis.charAt(0) != s.charAt(8) || dateis.charAt(1) != s.charAt(9)) {
 
             //kollar om dagen stämmer överrens
             flagga = false;
 
         }
 
-        if(dateis.charAt(3) != s.charAt(5) || dateis.charAt(4) != s.charAt(6)){
+        if (dateis.charAt(3) != s.charAt(5) || dateis.charAt(4) != s.charAt(6)) {
 
             //kollar om månaden är samma
             flagga = false;
 
         }
 
-        if(dateis.charAt(8) != s.charAt(2) || dateis.charAt(9) != s.charAt(3)){
+        if (dateis.charAt(8) != s.charAt(2) || dateis.charAt(9) != s.charAt(3)) {
 
             //kollar om året är samma
             flagga = false;
