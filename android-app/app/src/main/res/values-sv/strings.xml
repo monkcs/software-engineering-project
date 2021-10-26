@@ -137,5 +137,7 @@
     <string name="forgot_psw">Glömt ditt lösenord?</string>
     <string name="msg_forgotpsw">Ditt lösenord är\n</string>
 
+    <string name="age_warning">Du måste vara över 18 för att skapa ett konto</string>
+
 
 </resources>
