@@ -3,11 +3,12 @@
 require 'authenticate.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    $statement = $connection->prepare("SELECT * FROM person INNER JOIN appointment
-                                    ON person.account = appointment.account
-                                    INNER JOIN available
-                                    ON appointment.available = available.id
-                                    AND available.provider = ?");
+    $statement = $connection->prepare("SELECT *, available.id as 'index' FROM person INNER JOIN appointment
+        ON person.account = appointment.account
+        INNER JOIN available
+        ON appointment.available = available.id
+        AND available.provider = ?");
+
     $statement->bind_param("i", $identity);
     $statement->execute();
     $result = $statement->get_result();
