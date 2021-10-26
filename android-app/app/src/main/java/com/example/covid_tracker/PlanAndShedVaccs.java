@@ -22,8 +22,13 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -276,13 +281,13 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         int appointment_lenght = 15;
         ArrayList<Date> result = new ArrayList<>();
 
-        for (int i = 0; i <= index_end; i++) {
+        for (int i = 0; i < sublist_days.size(); i++) {
             result.add(sublist_days.get(i));
         }
 
         SimpleDateFormat format_server = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
-        ArrayList<String> server_time_list = new ArrayList<>();
+        JSONArray payload = new JSONArray();
 
         for (Date date : result) {
             Calendar calendar = Calendar.getInstance();
@@ -293,37 +298,39 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
 
 
             while (true) {
-                if (calendar.get(Calendar.HOUR) < 10) {
-                    server_time_list.add(format_server.format(calendar.getTime()));
-                    serverUpload(format_server.format(calendar.getTime()));
+                if (calendar.get(Calendar.HOUR) < 17) {
+
+                    JSONObject temporary = new JSONObject();
+
+                    try {
+
+                        temporary.put("datetime", format_server.format(calendar.getTime()));
+                        temporary.put("minimum_age", selected_age);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    payload.put(temporary);
+
                     calendar.add(Calendar.MINUTE, appointment_lenght);
                 } else {
                     break;
                 }
             }
         }
-
+        serverUpload(payload);
         Toast.makeText(this, R.string.upload_request, Toast.LENGTH_LONG).show();
     }
 
-    private void serverUpload(String time) {
+    private void serverUpload(JSONArray payload) {
         //the global variable int selected_age should be uploaded somewhere...
 
-        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/create.php",
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/create.php", payload,
                 response -> {
                 }, error -> {
-            System.out.println("That didn't work...");
         }
         ) {
-            @Override
-            public Map<String, String> getParams() {
-
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("datetime", time);
-                params.put("minimum_age", String.valueOf(selected_age));
-
-                return params;
-            }
 
             @Override
             public Map<String, String> getHeaders() {
