@@ -160,7 +160,7 @@ public class Registration extends Activity implements OnClickListener{
                     if(age_check)
                         signup();
                     else{
-                        Toast.makeText(getApplicationContext(), "You must be over 18 to register", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.age_warning, Toast.LENGTH_SHORT).show();
                     }
                 else
                     Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
