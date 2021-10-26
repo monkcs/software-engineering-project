@@ -158,5 +158,6 @@
     <string name="msg_forgotpsw">Your password is\n</string>
 
     <!--  age_change -->
-    <string name="notimesindatab">No Times in Database\n</string>
+    <string name="notimesindatab" translatable="false">No Times in Database\n</string>
+
 </resources>

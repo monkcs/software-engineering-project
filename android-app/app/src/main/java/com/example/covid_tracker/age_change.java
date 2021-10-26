@@ -82,7 +82,7 @@ public class age_change extends AppCompatActivity {
 
                 System.out.println("detta är dateis" + dateis);
 
-
+//change
                 tw.setVisibility(View.GONE);
                 getTimesforDatabase();
                 setRecyclerView();
