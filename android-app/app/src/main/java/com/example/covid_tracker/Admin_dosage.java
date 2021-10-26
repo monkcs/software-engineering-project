@@ -1,8 +1,10 @@
 package com.example.covid_tracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -89,8 +91,31 @@ public class Admin_dosage extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu2, menu);
         return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+
+        if ( id == R.id.item2_menu2){
+            loginScreen();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void loginScreen() {
+
+        Intent intent = new Intent(this, Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
+
     }
 
     private void addToDatabase(Integer antal, String id) {

@@ -1,6 +1,7 @@
 package com.example.covid_tracker;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -49,6 +50,7 @@ public class StatisticsCovid extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.stat_covid);
 
         btn_cov_searchRegion = findViewById(R.id.btn_cov_searchRegion);
@@ -118,7 +120,7 @@ public class StatisticsCovid extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu2, menu);
         return true;
     }
 
@@ -128,7 +130,20 @@ public class StatisticsCovid extends AppCompatActivity {
         if (id == android.R.id.home) {
             finish();
         }
+        if ( id == R.id.item2_menu2){
+
+            loginScreen();
+
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void loginScreen() {
+
+        Intent intent = new Intent(this, Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
     }
 
     private void onClickDeathsCases(String region, String age) {

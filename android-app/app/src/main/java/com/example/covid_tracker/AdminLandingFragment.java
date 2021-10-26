@@ -25,7 +25,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 
 import java.util.Map;
-
 public class AdminLandingFragment extends Fragment {
 
     private TextView userCount;
@@ -64,6 +63,7 @@ public class AdminLandingFragment extends Fragment {
         userCountRequest();
         return view1;
     }
+
 
     public void dosage() {
         Intent intent = new Intent(getActivity(), Admin_dosage.class);
