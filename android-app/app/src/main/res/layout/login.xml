@@ -36,10 +36,11 @@
     <Button
         android:id="@+id/btnForgotPsw"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="48dp"
         android:background="@color/white"
         android:text="@string/forgot_psw"
-        android:textColor="@color/green" />
+        android:textColor="@color/green"
+        android:stateListAnimator="@null"/>
 
     <Button
         android:layout_width="match_parent"
@@ -49,7 +50,7 @@
         android:layout_marginRight="10dp"
         android:background="@color/green"
         android:textColor="@color/white"
-        android:id="@+id/btnLogIn"/>
+        android:id="@+id/btnLogIn" />
 
 
     <LinearLayout
@@ -67,12 +68,14 @@
         <Button
             android:id="@+id/btnReg"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             app:layout_constraintRight_toRightOf="@id/newUser"
             android:layout_marginLeft="10dp"
             android:background="@color/white"
             android:text="@string/signup"
-            android:textColor="@color/green" />
+            android:textColor="@color/green"
+            android:stateListAnimator="@null"/>
+
 
     </LinearLayout>
 
