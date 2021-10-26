@@ -44,9 +44,10 @@ public class Admin_dosage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dosage);
 
+        //Adds "Go-Back" button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //byt till getactivity när det fragment
+        //For Database Request
         queue = Volley.newRequestQueue(this);
 
         recyclerview = findViewById(R.id.recyclerView_dosage);
@@ -55,6 +56,8 @@ public class Admin_dosage extends AppCompatActivity {
 
         edit_dosage = findViewById(R.id.edit_amount);
 
+
+        //Button and it´s actionlistener to add quantity
         Button addknapp = findViewById(R.id.addknapp);
         addknapp.setOnClickListener(view -> {
 

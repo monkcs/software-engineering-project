@@ -22,15 +22,10 @@ public class Admin_block {
         this.available = serialized.getInt("available");
 
         this.svaret = questions;
-
         this.expandable = false;
     }
 
-    public int getID() {
-
-        return this.ID;
-
-    }
+    public int getID() { return this.ID; }
 
     public void setID(int ID) {
         this.ID = ID;

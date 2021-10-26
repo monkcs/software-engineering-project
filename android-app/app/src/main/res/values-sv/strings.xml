@@ -137,5 +137,13 @@
     <string name="forgot_psw">Glömt ditt lösenord?</string>
     <string name="msg_forgotpsw">Ditt lösenord är\n</string>
 
+    <string name="age_warning">Du måste vara över 18 för att skapa ett konto</string>
+
+    <string name="cant_be_empty">Inga lådor får vara tomma</string>
+
+    <string name="phone_number_error">Tel.nr ska vara 10 siffror</string>
+    <string name="email_format_error">Fel format på email</string>
+    <string name="email_match_error">Email matchar inte</string>
+
 
 </resources>
