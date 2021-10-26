@@ -54,6 +54,18 @@
                 android:id="@+id/progressbaris"
                 android:layout_below="@id/calender_agechange"/>
 
+            <TextView
+                android:id="@+id/twdatabase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progressbaris"
+                android:text="@string/notimesindatab"
+                android:textSize="24dp"
+                android:textColor="@color/black"
+                android:layout_centerHorizontal="true"
+
+                />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@+id/calender_agechange"

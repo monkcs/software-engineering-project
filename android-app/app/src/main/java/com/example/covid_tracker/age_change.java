@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ import java.util.Map;
 public class age_change extends AppCompatActivity {
 
     private RequestQueue queue;
+    private TextView tw;
     private Button update, update2;
     private EditText age_change;
     private CalendarView calv;
@@ -80,12 +82,17 @@ public class age_change extends AppCompatActivity {
 
                 System.out.println("detta är dateis" + dateis);
 
+
+                tw.setVisibility(View.GONE);
                 getTimesforDatabase();
                 setRecyclerView();
             }
         });
 
         age_change = (EditText) findViewById(R.id.edittext_changeage);
+        tw = (TextView) findViewById(R.id.twdatabase);
+
+        tw.setVisibility(View.GONE);
 
         update = (Button) findViewById(R.id.update_agechange);
         update.setOnClickListener(new View.OnClickListener() {
@@ -161,7 +168,7 @@ public class age_change extends AppCompatActivity {
         System.out.println("hej inne i gettimes");
         list = new ArrayList<>();
         pb.setVisibility(View.VISIBLE);
-        android.os.SystemClock.sleep(100);
+        //android.os.SystemClock.sleep(100);
         System.out.println("detta är dateis inne i database" + dateis);
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/available_booking.php", null,
@@ -200,6 +207,10 @@ public class age_change extends AppCompatActivity {
                     pb.setVisibility(View.GONE);
                     setRecyclerView();
                 }, error -> {
+
+            pb.setVisibility(View.GONE);
+            tw.setVisibility(View.VISIBLE);
+
         }
         ) {
             @Override
