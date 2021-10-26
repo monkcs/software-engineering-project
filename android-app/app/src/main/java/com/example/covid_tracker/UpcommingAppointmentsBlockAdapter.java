@@ -41,8 +41,8 @@ public class UpcommingAppointmentsBlockAdapter extends RecyclerView.Adapter<Upco
 
         holder.Time.setText(ua_block.getTime());
         holder.Id.setText(String.valueOf(ua_block.getId()));
-        holder.LastName.setText(Encryption.decryptData(ua_block.getLastname()));
-        holder.FirstName.setText(Encryption.decryptData(ua_block.getFirstname()));
+        holder.LastName.setText(ua_block.getLastname());
+        holder.FirstName.setText(ua_block.getFirstname());
 
 
         boolean isExpandable = UA_block_list.get(position).getExpandable();
