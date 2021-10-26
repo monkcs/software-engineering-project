@@ -32,8 +32,6 @@ public class FAQ_block {
         this.Answer = Answer;
     }
 
-
-
     public Boolean getExpandable() {
         return expandable;
     }

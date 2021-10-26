@@ -83,7 +83,7 @@ public class age_change extends AppCompatActivity {
 
                 System.out.println("detta är dateis" + dateis);
 
-//change
+
                 tw.setVisibility(View.GONE);
                 getTimesforDatabase();
                 setRecyclerView();
@@ -203,11 +203,11 @@ public class age_change extends AppCompatActivity {
 
     private void getTimesforDatabase() {
 
-        System.out.println("hej inne i gettimes");
+
         list = new ArrayList<>();
         pb.setVisibility(View.VISIBLE);
-        //android.os.SystemClock.sleep(100);
-        System.out.println("detta är dateis inne i database" + dateis);
+
+
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/available_booking.php", null,
                 response -> {
@@ -215,13 +215,13 @@ public class age_change extends AppCompatActivity {
                     String times = "";
                     listIDs.clear();
 
-                    System.out.println("hej inne i response");
+
                     for (int i = 0; i < response.length(); i++) {
 
                         try {
 
                             if (compareIfEqual(dateis, response.getJSONObject(i).getString("datetime"))) {
-                                System.out.println(response.getJSONObject(i));
+
 
                                 JSONObject paket = response.getJSONObject(i);
 
@@ -234,14 +234,14 @@ public class age_change extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
 
-                            System.out.println("ERRPR CATCH");
+
                         }
 
 
                     }
 
                     list.add(new age_change_block(dateis, times));
-                    System.out.println("hej inne i recview");
+
                     pb.setVisibility(View.GONE);
                     setRecyclerView();
                 }, error -> {
@@ -256,7 +256,7 @@ public class age_change extends AppCompatActivity {
                 return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
             }
         };
-        System.out.println("hej inne i queueadd");
+
         queue.add(request);
 
 

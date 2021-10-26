@@ -37,8 +37,7 @@ public class inboxAdmin extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_inboxadmin, container, false);
         Context context = getActivity();
-        //setContentView(R.layout.fragment_inboxadmin);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
 
         recyclerview = view.findViewById(R.id.recyclerView_inboxAdmin);
 
@@ -78,7 +77,7 @@ public class inboxAdmin extends Fragment {
                         try {
                             String test = appointment_question(response.getJSONObject(i).getInt("available"));
                             list.add(new Admin_block(response.getJSONObject(i), appointment_question(response.getJSONObject(i).getInt("available"))));
-                            String test2 = "";
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

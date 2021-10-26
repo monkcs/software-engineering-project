@@ -33,8 +33,6 @@ public class Booking_block {
         this.Dos = Dos;
     }
 
-
-
     public Boolean getExpandable() {
         return expandable;
     }

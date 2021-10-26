@@ -17,7 +17,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,22 +61,12 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
             int ID;
 
 
+
+            //Functions for getting information about which appointment and removes "Cardview" from the UI, then books the appointment
             Appointment = holder.getAdapterPosition();
-
-
-            //      System.out.println("Hej detta är account: " + Admin_block_List.get(holder.getAdapterPosition()).getID());
-
             ID = Admin_block_List.get(holder.getAdapterPosition()).getID();
-
-
-            //      System.out.println("Storlek: " + Admin_block_List.size());
-
             Admin_block_List.remove(holder.getAdapterPosition());
             notifyItemRemoved(holder.getAdapterPosition());
-
-            //     System.out.println("Storlek: " + Admin_block_List.size());
-
-
             bokaPendingDatabas(Appointment, ID);
 
         });
@@ -86,27 +75,26 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
 
             int Appointment;
             int ID;
-
+            //Functions for getting information about which appointment and removes "Cardview" from the UI, then denies the appointment
             Appointment = holder.getAdapterPosition();
-
-
             ID = Admin_block_List.get(holder.getAdapterPosition()).getID();
-
-            //    System.out.println("Storlek: " + Admin_block_List.size());
-
             Admin_block_List.remove(holder.getAdapterPosition());
             notifyItemRemoved(holder.getAdapterPosition());
-
-            //   System.out.println("Storlek: " + Admin_block_List.size());
 
 
             avbokaPendingDatabas(ID, Appointment);
         });
 
+
+        //This is updating the "Cardview" so the user can see an expandable version of the card with more data
         boolean isExpandable = Admin_block_List.get(position).getExpandable();
         holder.expandable.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
+
+
     }
 
+
+    //Books the appointment that was in review by the Admin
     private void bokaPendingDatabas(int appointment, Integer ID) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/pending/approve.php",
                 response -> {
@@ -132,6 +120,7 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
         queue.add(request);
     }
 
+    //Cancels the appointment that was in review by the Admin
     private void avbokaPendingDatabas(Integer ID, int appointment) {
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/pending/decline.php",
                 response -> {
@@ -172,6 +161,8 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
         public VersionVH(@NonNull View itemView) {
             super(itemView);
 
+
+            //put the info on the card
             PersonText = itemView.findViewById(R.id.Personen);
 
             SvarText = itemView.findViewById(R.id.Svaren);
@@ -185,6 +176,8 @@ public class Admin_block_Adapter extends RecyclerView.Adapter<Admin_block_Adapte
             button2 = itemView.findViewById(R.id.CardViewAdmin2);
 
 
+
+            //Handles the closing and opening of the card
             linear.setOnClickListener(view -> {
                 Admin_block Adminblockis = Admin_block_List.get(getAdapterPosition());
                 Adminblockis.setExpandable(!Adminblockis.getExpandable());
