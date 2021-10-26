@@ -145,6 +145,12 @@ public class Registration extends Activity implements OnClickListener{
         return dateFormat.format(date);
     }
 
+    private boolean errorCheck(){
+        boolean check_ok = true;
+
+        return check_ok;
+    }
+
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.signUp)
@@ -154,6 +160,10 @@ public class Registration extends Activity implements OnClickListener{
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+
+            /*if(errorCheck()){
+                signup();
+            }*/
 
             if (email.getText().toString().trim().matches(emailPattern) && email_check.getText().toString().trim().matches(emailPattern)) {
                 if (email.getText().toString().equals(email_check.getText().toString()))
