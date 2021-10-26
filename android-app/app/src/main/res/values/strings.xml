@@ -105,6 +105,7 @@
     <string name="death">Deaths</string>
     <string name="death_per_week">Death per week</string>
     <string name="no_appointments_today">No appointments today</string>
+    <string name="no_appointments_found">No appointments found</string>
     <string name="add">Add</string>
     <string name="age">Age</string>
     <string name="forthcoming">Forthcoming</string>

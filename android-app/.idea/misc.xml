@@ -29,6 +29,7 @@
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/test_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.19519927536231885" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_age_change.xml" value="0.23278985507246377" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_admin_fragments.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_fragments.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_handle_person.xml" value="0.4" />
@@ -39,8 +40,11 @@
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_admin_landing.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_statistics_menu.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_uppcomming_apointments.xml" value="0.2463768115942029" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/lista_row_agechange.xml" value="0.23278985507246377" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/login.xml" value="0.23278985507246377" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/stat_covid.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/stat_vaccinations.xml" value="0.2" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/test_login.xml" value="0.23278985507246377" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/upc_appoint_row.xml" value="0.20516304347826086" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/menu/admin_bottom_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/menu/bottom_navigation.xml" value="0.25416666666666665" />

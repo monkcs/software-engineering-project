@@ -83,6 +83,7 @@
     <string name="death">Dödsfall</string>
     <string name="death_per_week">Dödsfall per vecka</string>
     <string name="no_appointments_today">Inga bokningar idag</string>
+    <string name="no_appointments_found">Inga bokningar hittades</string>
     <string name="add">Lägg till</string>
     <string name="age">Ålder</string>
     <string name="forthcoming">Kommande</string>

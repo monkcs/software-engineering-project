@@ -10,6 +10,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,6 +31,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterView.OnItemSelectedListener, View.OnClickListener*/ {
 
@@ -77,7 +79,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
             String selected = (String) adapterView.getItemAtPosition(i);
             selected_age = Integer.parseInt(selected);
 
-            Toast.makeText(PlanAndShedVaccs.this, selected , Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -213,12 +214,24 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
                 picker.show();
             }
         });
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /*
@@ -327,7 +340,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         age_list.add("45");
         age_list.add("35");
         age_list.add("18");
-        age_list.add("12");
         age_list.add("0");
 
     }
