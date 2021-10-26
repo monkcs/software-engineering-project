@@ -39,6 +39,7 @@ public class Registration extends Activity implements OnClickListener{
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
     private final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private final String datePattern = "[0-9]+-[a-z]+\\.+[a-z]+";
     private RequestQueue queue;
 
     private boolean age_check;
@@ -146,38 +147,74 @@ public class Registration extends Activity implements OnClickListener{
     }
 
     private boolean errorCheck(){
-        boolean check_ok = true;
+        if(emptyBoxes()){
+            Toast.makeText(getApplicationContext(), "No boxes can be empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
-        return check_ok;
+        try {
+            age_check = checkAge(birthdate.getText().toString());
+            if(!age_check) {
+                Toast.makeText(getApplicationContext(), R.string.age_warning, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        } catch (ParseException e) {
+            Toast.makeText(getApplicationContext(), "Invalid date-format", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            return false;
+        }
+
+        if(number.getText().toString().length() < 10 || number.getText().toString().length() > 10) {
+            Toast.makeText(getApplicationContext(), R.string.phone_number_error, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!email.getText().toString().trim().matches(emailPattern) || !email_check.getText().toString().trim().matches(emailPattern)) {
+            Toast.makeText(getApplicationContext(), R.string.email_format_error, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!email.getText().toString().equals(email_check.getText().toString())){
+            Toast.makeText(getApplicationContext(), R.string.email_match_error, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean emptyBoxes() {
+
+        if(email.getText().toString().equals(""))
+            return true;
+        if(email_check.getText().toString().equals(""))
+            return true;
+        if(forename.getText().toString().equals(""))
+            return true;
+        if(lastname.getText().toString().equals(""))
+            return true;
+        if(password.getText().toString().equals(""))
+            return true;
+        if(number.getText().toString().equals(""))
+            return true;
+        if(birthdate.getText().toString().equals(""))
+            return true;
+        if(street.getText().toString().equals(""))
+            return true;
+        if(city.getText().toString().equals(""))
+            return true;
+        if(zipcode.getText().toString().equals(""))
+            return true;
+
+        return false;
     }
 
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.signUp)
         {
-            try {
-                age_check = checkAge(birthdate.getText().toString());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            /*if(errorCheck()){
+            if(errorCheck()){
                 signup();
-            }*/
-
-            if (email.getText().toString().trim().matches(emailPattern) && email_check.getText().toString().trim().matches(emailPattern)) {
-                if (email.getText().toString().equals(email_check.getText().toString()))
-                    if(age_check)
-                        signup();
-                    else{
-                        Toast.makeText(getApplicationContext(), R.string.age_warning, Toast.LENGTH_SHORT).show();
-                    }
-                else
-                    Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
             }
-            else
-                Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
-
         }
     }
 }

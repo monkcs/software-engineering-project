@@ -64,7 +64,7 @@ public class ForgotPassword extends Activity implements View.OnClickListener {
                     try {
                         JSONObject object = new JSONObject(response);
                         password = object.getString("password");
-                        sendEmail(password);
+                        sendEmail(Encryption.decryptData(password));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -75,12 +75,12 @@ public class ForgotPassword extends Activity implements View.OnClickListener {
                     startActivity(intent);
 
                     },error -> {
-            Toast.makeText(ForgotPassword.this, R.string.signup_failed, Toast.LENGTH_LONG).show();
+            Toast.makeText(ForgotPassword.this, R.string.error_msg, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("email", email.getText().toString());
+                params.put("email", Encryption.encryptData(email.getText().toString()));
 
                 return params;
             };

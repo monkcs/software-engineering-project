@@ -160,6 +160,15 @@
 
     <string name="age_warning">You must be over 18 to register</string>
 
+    <string name="cant_be_empty">No boxes can be empty</string>
+
+    <string name="phone_number_error">Phone number needs to be 10 digits</string>
+    <string name="email_format_error">Wrong email format</string>
+    <string name="email_match_error">Emails didnt match</string>
+
+
+
+
     <!--  age_change -->
     <string name="notimesindatab" translatable="false">No Times in Database\n</string>
 
