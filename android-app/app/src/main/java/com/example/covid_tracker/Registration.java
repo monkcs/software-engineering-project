@@ -26,6 +26,8 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import papaya.in.sendmail.SendMail;
+
 public class Registration extends Activity implements OnClickListener{
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
@@ -68,6 +70,7 @@ public class Registration extends Activity implements OnClickListener{
                 response -> {
                     Toast.makeText(Registration.this, R.string.signup_success, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Registration.this, Login.class);
+                    sendEmail();
                     finish();
                     startActivity(intent);
 
@@ -75,15 +78,15 @@ public class Registration extends Activity implements OnClickListener{
             @Override
             public Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<>();
-                params.put("email", email.getText().toString());
-                params.put("firstname", forename.getText().toString());
-                params.put("surname",lastname.getText().toString() );
-                params.put("password", password.getText().toString());
-                params.put("telephone", number.getText().toString());
+                params.put("email", Encryption.encryptData(email.getText().toString()));
+                params.put("firstname", Encryption.encryptData(forename.getText().toString()));
+                params.put("surname", Encryption.encryptData(lastname.getText().toString()));
+                params.put("password", Encryption.encryptData(password.getText().toString()));
+                params.put("telephone", Encryption.encryptData(number.getText().toString()));
                 params.put("birthdate", birthdate.getText().toString());
-                params.put("street", street.getText().toString());
-                params.put("postalcode", zipcode.getText().toString());
-                params.put("city", city.getText().toString());
+                params.put("street", Encryption.encryptData(street.getText().toString()));
+                params.put("postalcode", Encryption.encryptData(zipcode.getText().toString()));
+                params.put("city", Encryption.encryptData(city.getText().toString()));
                 params.put("country", "55");
 
                 return params;
@@ -91,6 +94,14 @@ public class Registration extends Activity implements OnClickListener{
         };
 
         queue.add(request);
+    }
+    public void sendEmail(){
+        SendMail mail = new SendMail(Util.EMAIL, Util.PASSWORD,
+                email.getText().toString(),
+                getString(R.string.new_account),
+                getString(R.string.msg_reg) + " "+ email.getText().toString()+ "\n" + getString(R.string.password) + " "+ password.getText().toString());
+
+        mail.execute();
     }
 
     @Override

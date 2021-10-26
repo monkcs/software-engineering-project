@@ -13,15 +13,22 @@ function insert($connection, $datetime, $provider, $minimum_age)
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $datetime = $_POST["datetime"];
-    $minimum_age = $_POST["minimum_age"];
-    if ($datetime == "" || $minimum_age == "") {
+    $body = file_get_contents('php://input');
+
+    $array = json_decode($body, true);
+
+    if ($array == null) {
         http_response_code(400);
-        echo "No datetime specified\n";
+        echo "No json array submitted\n";
         exit;
     }
 
-    insert($connection, $datetime, $identity, $minimum_age);
+    foreach ($array as $row) {
+        $datetime = $row['datetime'];
+        $minimum_age = $row['minimum_age'];
+
+        insert($connection, $datetime, $identity, $minimum_age);
+    }
 } else {
     http_response_code(405);
     echo "Send request using HTTP post\n";

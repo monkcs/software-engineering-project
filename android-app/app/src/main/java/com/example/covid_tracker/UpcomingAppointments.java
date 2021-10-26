@@ -106,27 +106,6 @@ public class UpcomingAppointments extends Fragment {
         return view;
     }
 
-    /*private String decryptData(String s){
-
-        byte[] decryptedChars = s.getBytes(StandardCharsets.UTF_8);
-
-        for(int i = 0; i < s.length(); i++){
-            decryptedChars[i] = (byte) (decryptedChars[i] - 1);
-        }
-
-        String decryptedWithSpec = reverseString(new String(decryptedChars));
-
-        //check for åäö
-        String decrypted = decryptedWithSpec.replaceAll("%", "å");
-        decrypted = decrypted.replaceAll("&", "å");
-        decrypted = decrypted.replaceAll("#", "ö");
-        decrypted = decrypted.replaceAll("!", "Å");
-        decrypted = decrypted.replaceAll("£", "Ä");
-        decrypted = decrypted.replaceAll("¤", "Ö");
-
-        return decrypted;
-    }*/
-
     private String reverseString(String s){
         // getBytes() method to convert string
         // into bytes[].
