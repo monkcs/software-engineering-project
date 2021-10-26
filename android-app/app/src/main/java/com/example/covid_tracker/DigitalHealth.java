@@ -110,7 +110,7 @@ public class DigitalHealth extends Fragment {
                     try {
                         String date = response.getString("Date");
                         date = date.split(" ")[0];
-                        values.add(new FAQ_block(getString(R.string.username), response.getString("firstname") +" "+ response.getString("surname")));
+                        values.add(new FAQ_block(getString(R.string.username), Encryption.decryptData(response.getString("firstname")) +" "+ Encryption.decryptData(response.getString("surname"))));
                         values.add(new FAQ_block(getString(R.string.birthdate), response.getString("birthdate")));
                         values.add(new FAQ_block(getString(R.string.manufacturer), response.getString("name")));
                         values.add(new FAQ_block(getString(R.string.time_for_second_dose), date));

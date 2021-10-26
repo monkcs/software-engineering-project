@@ -49,7 +49,7 @@ public class FAQ_block_Adapter extends RecyclerView.Adapter<FAQ_block_Adapter.Ve
     public class VersionVH extends RecyclerView.ViewHolder {
 
 
-        TextView QuestionText, AnswerText, SourceText;
+        TextView QuestionText, AnswerText;
         RelativeLayout expandable;
         LinearLayout linear;
 
@@ -58,7 +58,6 @@ public class FAQ_block_Adapter extends RecyclerView.Adapter<FAQ_block_Adapter.Ve
 
             QuestionText = itemView.findViewById(R.id.Question);
             AnswerText = itemView.findViewById(R.id.Svar);
-            SourceText = itemView.findViewById(R.id.Source);
 
 
            linear = itemView.findViewById(R.id.linear_layout_row);

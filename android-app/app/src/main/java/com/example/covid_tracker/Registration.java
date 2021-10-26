@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,8 +24,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import papaya.in.sendmail.SendMail;
 
@@ -33,6 +40,8 @@ public class Registration extends Activity implements OnClickListener{
     private static final String TAG_SUC = "success";
     private final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private RequestQueue queue;
+
+    private boolean age_check;
 
     private EditText email, email_check, forename, lastname, password, number, birthdate, street, city, zipcode;
     private Button BtnReg;
@@ -58,6 +67,7 @@ public class Registration extends Activity implements OnClickListener{
         BtnReg = findViewById(R.id.signUp);
         BtnReg.setOnClickListener(this);
         toolbar.inflateMenu(R.menu.menu);
+
         toolbar.setOnMenuItemClickListener(item -> {
             //Anropa för byte av språk
             return false;
@@ -104,13 +114,64 @@ public class Registration extends Activity implements OnClickListener{
         mail.execute();
     }
 
+    private boolean checkAge(String birthdate) throws ParseException {
+        boolean age_ok = false;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date currDate = sdf.parse(getDate());
+        Date parsed_birthDate = sdf.parse(birthdate);
+
+        long diffInMillies = Math.abs(currDate.getTime() - parsed_birthDate.getTime());
+        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+
+        double age = diff / 365.25;
+
+
+        if(age >= 18)
+            age_ok = true;
+        else{
+            age_ok = false;
+        }
+
+
+        return age_ok;
+    }
+
+    private String getDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+
+
+        return dateFormat.format(date);
+    }
+
+    private boolean errorCheck(){
+        boolean check_ok = true;
+
+        return check_ok;
+    }
+
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.signUp)
         {
+            try {
+                age_check = checkAge(birthdate.getText().toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            /*if(errorCheck()){
+                signup();
+            }*/
+
             if (email.getText().toString().trim().matches(emailPattern) && email_check.getText().toString().trim().matches(emailPattern)) {
                 if (email.getText().toString().equals(email_check.getText().toString()))
-                    signup();
+                    if(age_check)
+                        signup();
+                    else{
+                        Toast.makeText(getApplicationContext(), R.string.age_warning, Toast.LENGTH_SHORT).show();
+                    }
                 else
                     Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
             }

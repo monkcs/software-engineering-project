@@ -158,6 +158,8 @@
     <string name="forgot_psw">Forgot password</string>
     <string name="msg_forgotpsw">Your password is\n</string>
 
+    <string name="age_warning">You must be over 18 to register</string>
+
     <!--  age_change -->
     <string name="notimesindatab" translatable="false">No Times in Database\n</string>
 

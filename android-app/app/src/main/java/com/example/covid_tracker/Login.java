@@ -36,7 +36,7 @@ public class Login extends Activity implements OnClickListener {
     private Button BtnLogin, BtnReg, adminloginButton, BtnForgot;
 
     private RequestQueue queue;
-    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
     private ProgressDialog pDialog;
@@ -47,17 +47,17 @@ public class Login extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_login);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
+        Toolbar toolbar = findViewById(R.id.toolbar_login);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
 
-        user_email = (EditText) findViewById(R.id.email);
-        user_password = (EditText) findViewById(R.id.password);
-        BtnLogin = (Button) findViewById(R.id.btnLogIn);
-        BtnReg = (Button) findViewById(R.id.btnReg);
-        BtnForgot = (Button) findViewById(R.id.btnForgotPsw);
+        user_email = findViewById(R.id.email);
+        user_password = findViewById(R.id.password);
+        BtnLogin = findViewById(R.id.btnLogIn);
+        BtnReg = findViewById(R.id.btnReg);
+        BtnForgot = findViewById(R.id.btnForgotPsw);
 
-        adminloginButton = (Button) findViewById(R.id.adminLogin);
+        adminloginButton = findViewById(R.id.adminLogin);
 
 
         BtnReg.setOnClickListener(this);
