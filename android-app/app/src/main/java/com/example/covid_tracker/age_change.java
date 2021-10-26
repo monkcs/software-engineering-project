@@ -156,8 +156,17 @@ public class age_change extends AppCompatActivity {
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/update.php", payload,
                 response -> {
+
+            //should not enter here
+                    getTimesforDatabase();
+                    setRecyclerView();
+
                 }
                 , error -> {
+
+            getTimesforDatabase();
+            setRecyclerView();
+
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -166,6 +175,8 @@ public class age_change extends AppCompatActivity {
         };
 
         queue.add(request);
+
+
 
     }
 
