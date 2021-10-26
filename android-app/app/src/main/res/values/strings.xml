@@ -171,5 +171,7 @@
 
     <!--  age_change -->
     <string name="notimesindatab" translatable="false">No Times in Database\n</string>
+    <string name="sign_out">Sign out</string>
+    <string name="item1_menu">Other</string>
 
 </resources>

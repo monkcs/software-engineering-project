@@ -1,10 +1,7 @@
 package com.example.covid_tracker;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,12 +10,14 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -153,7 +152,7 @@ public class StatisticsVacc extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu2, menu);
         return true;
     }
 
@@ -163,7 +162,20 @@ public class StatisticsVacc extends AppCompatActivity {
         if (id == android.R.id.home) {
             finish();
         }
+
+        if ( id == R.id.item2_menu2){
+            loginScreen();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void loginScreen() {
+
+        Intent intent = new Intent(this, Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
+
     }
 
     private int calcIntPercent(int a, int b) {

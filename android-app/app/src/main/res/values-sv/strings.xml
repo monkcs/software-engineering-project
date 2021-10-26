@@ -144,6 +144,8 @@
     <string name="phone_number_error">Tel.nr ska vara 10 siffror</string>
     <string name="email_format_error">Fel format på email</string>
     <string name="email_match_error">Email matchar inte</string>
+    <string name="item1_menu">Annat</string>
+    <string name="sign_out">Logga ut</string>
 
 
 </resources>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,7 +39,6 @@ public class Dashboard extends AppCompatActivity {
         notificationManager = NotificationManagerCompat.from(this);
         queue = Volley.newRequestQueue(this);
 
-
         //kör notice
         getDateForAppointmentNotice();
 
@@ -54,8 +54,39 @@ public class Dashboard extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu2, menu);
         return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.item2_menu2:
+                System.out.println("hejsan du logga");
+                loginScreen();
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+
+        }
+
+
+
+    }
+
+    private void loginScreen() {
+
+        Intent intent = new Intent(this, Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        Dashboard.this.finish();
+
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =

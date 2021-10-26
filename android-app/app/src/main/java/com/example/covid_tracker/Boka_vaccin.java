@@ -49,6 +49,8 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
         Button buttonRebook = view.findViewById(R.id.BtnRebook);
         Button buttonCancel = view.findViewById(R.id.BtnCancel);
 
+
+
         buttonBook.setOnClickListener(this);
         buttonRebook.setOnClickListener(this);
         buttonCancel.setOnClickListener(this);
@@ -60,6 +62,8 @@ public class Boka_vaccin extends Fragment implements View.OnClickListener {
 
         return view;
     }
+
+
 
 
     void fetch_available_appointmentd() {
