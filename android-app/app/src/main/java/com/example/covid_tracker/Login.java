@@ -4,7 +4,12 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,12 +29,15 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.Locale;
 import java.util.Map;
 
 
 public class Login extends Activity implements OnClickListener {
     private EditText user_email, user_password;
     private Button BtnLogin, BtnReg, adminloginButton;
+    private ChangeLanguage cl= new ChangeLanguage();
+
 
     private RequestQueue queue;
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -40,18 +48,28 @@ public class Login extends Activity implements OnClickListener {
     private static final String LOGIN_URL = "https://hex.cse.kau.se/~charhabo100/vaccine-tracker/information.php";
 
     @Override
+    protected void onResume() {
+
+        super.onResume();
+        refreshlocaltext();
+        this.onCreate(null);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //setAppLocate("sv");
+        cl.setLanguage(Login.this, cl.getLanguage());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
 
+
         user_email = (EditText) findViewById(R.id.email);
         user_password = (EditText) findViewById(R.id.password);
         BtnLogin = (Button) findViewById(R.id.btnLogIn);
         BtnReg = (Button) findViewById(R.id.btnReg);
-
         adminloginButton = (Button) findViewById(R.id.adminLogin);
 
 
@@ -59,16 +77,43 @@ public class Login extends Activity implements OnClickListener {
         adminloginButton.setOnClickListener(this);
 
         BtnLogin.setOnClickListener(this);
+
         toolbar.inflateMenu(R.menu.menu);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
 
+            //Anropa för byte av språk
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                //Anropa för byte av språk
+
+                if(cl.is_swedish){
+                    item.setIcon(R.drawable.flaggb_foreground);
+                    cl.setLanguage(Login.this, "en");
+                    //setAppLocate("en");
+                    //onResume();// flaggbyte fungerar ej har...
+                    refreshlocaltext();
+                    //finish();
+                    //startActivity(getIntent());
+                    //recreate();
+                }
+                else {
+                    item.setIcon(R.drawable.flagswe_foreground);
+                    cl.setLanguage(Login.this, "sv");
+                    //setAppLocate("sv");
+                    //onResume();//flaggbyte fungerar ej har...
+                    refreshlocaltext();
+                    //finish();
+                    //startActivity(getIntent());
+                    //recreate();
+                }
                 return false;
             }
         });
 
+    }
+
+    private void refreshlocaltext() {
+        user_email.setHint(R.string.email);
+        user_password.setHint(R.string.password);
     }
 
 
@@ -127,6 +172,26 @@ public class Login extends Activity implements OnClickListener {
                 loginAdmin();
                 break;
         }
+    }
+
+    public void setAppLocate(String language){
+
+
+        Resources re = getResources();
+        DisplayMetrics dm = re.getDisplayMetrics();
+        Configuration config = re.getConfiguration();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1){
+            config.setLocale(new Locale(language.toLowerCase()));
+        }
+        else{
+
+            config.locale = new Locale(language.toLowerCase());
+
+        }
+
+
+        re.updateConfiguration(config, dm);
     }
 }
 
