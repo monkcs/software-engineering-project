@@ -94,7 +94,7 @@
     <string name="personal_information">Personlig information</string>
     <string name="internal_id_number">Internt id-nummer</string>
     <string name="cancel">Avbryt</string>
-    <string name="number_of_users">Antal användare</string>
+    <string name="number_of_users">Antal användare: </string>
     <string name="upcoming_appointments">Kommande bokningar</string>
     <string name="make_appointment">Skapa bokning</string>
     <string name="reschedule_appointment">Boka om bokning</string>
@@ -147,6 +147,8 @@
     <string name="item1_menu">Annat</string>
     <string name="sign_out">Logga ut</string>
     <string name="spr_k">språk</string>
+    <string name="product_catalog">Produkt-katalog</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
 
 
 </resources>

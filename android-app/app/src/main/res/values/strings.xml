@@ -116,7 +116,7 @@
     <string name="personal_information">Personal information</string>
     <string name="internal_id_number">Internal id number</string>
     <string name="cancel">Cancel</string>
-    <string name="number_of_users">Number of users</string>
+    <string name="number_of_users">Number of users: </string>
     <string name="upcoming_appointments">Upcoming appointments</string>
     <string name="make_appointment">Make appointment</string>
     <string name="reschedule_appointment">Reschedule appointment</string>
@@ -174,5 +174,7 @@
     <string name="sign_out">Sign out</string>
     <string name="item1_menu">Other</string>
     <string name="spr_k">language</string>
+    <string name="product_catalog">Product Catalog</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
 
 </resources>
