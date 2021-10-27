@@ -227,7 +227,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
                     try {
 
                         temporary.put("datetime", format_server.format(calendar.getTime()));
-                       // temporary.put("provider", 1);
+                        temporary.put("provider", 1);
                         temporary.put("minimum_age", selected_age);
 
                     } catch (JSONException e) {
