@@ -39,7 +39,7 @@ import papaya.in.sendmail.SendMail;
 
 public class Login extends Activity implements OnClickListener {
     private EditText user_email, user_password;
-    private Button BtnLogin, BtnReg, adminloginButton;
+    private Button BtnLogin, BtnReg, BtnForgot, adminloginButton;
     private ChangeLanguage cl= new ChangeLanguage();
     private TextView new_user_tv;
 
@@ -75,6 +75,7 @@ public class Login extends Activity implements OnClickListener {
         user_password = (EditText) findViewById(R.id.password);
         BtnLogin = (Button) findViewById(R.id.btnLogIn);
         new_user_tv = (TextView) findViewById(R.id.new_user_TextView);
+        BtnForgot = (Button) findViewById(R.id.btnForgotPsw);
         BtnReg = (Button) findViewById(R.id.btnReg);
         adminloginButton = (Button) findViewById(R.id.adminLogin);
 

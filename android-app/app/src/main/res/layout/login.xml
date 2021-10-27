@@ -62,14 +62,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/new_user"
-        android:id ="@+id/newUser"
          />
 
         <Button
             android:id="@+id/btnReg"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            app:layout_constraintRight_toRightOf="@id/newUser"
+            app:layout_constraintRight_toRightOf="@id/new_user_TextView"
             android:layout_marginLeft="10dp"
             android:background="@color/white"
             android:text="@string/signup"
