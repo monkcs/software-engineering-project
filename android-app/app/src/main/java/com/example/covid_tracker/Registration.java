@@ -2,6 +2,7 @@ package com.example.covid_tracker;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +47,18 @@ public class Registration extends Activity implements OnClickListener{
 
     private EditText email, email_check, forename, lastname, password, number, birthdate, street, city, zipcode;
     private Button BtnReg;
+    private Menu menu;
+    private MenuItem flagitem;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        this.menu = menu;
+        flagitem = menu.getItem(0);
+        flagitem.setIcon(R.drawable.flaggb_foreground);
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +84,15 @@ public class Registration extends Activity implements OnClickListener{
 
         toolbar.setOnMenuItemClickListener(item -> {
             //Anropa för byte av språk
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                String value = extras.getString("language");
+                if (value == "en"){
+                    item.setIcon(R.drawable.flaggb_foreground);
+                }
+                else {item.setIcon(R.drawable.flagswe_foreground);}
+                //The key argument here must match that used in the other activity
+            }
             return false;
         });
     }
