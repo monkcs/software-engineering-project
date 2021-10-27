@@ -150,7 +150,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
                                     make_end_date_possible();
                                 }
                                 else {
-                                    editText_start_date.setText("Select start date");
+                                    editText_start_date.setText(R.string.select_start_date);
                                     Toast.makeText(PlanAndShedVaccs.this, "Invalid date, please try again", Toast.LENGTH_LONG).show();
 
                                 }
@@ -278,7 +278,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
 
         editText_end_date=(EditText) findViewById(R.id.editText_end_date);
         editText_end_date.setInputType(InputType.TYPE_NULL);
-        if (end_cal != null) {editText_end_date.setText("Select end date");}
+        if (end_cal != null) {editText_end_date.setText(R.string.select_end_date);}
 
         end_cal = (Calendar) start_cal.clone();
         editText_end_date.setOnClickListener(new View.OnClickListener() {
@@ -312,7 +312,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
                                     updateSublistDays();
                                 }
                                 else {
-                                    editText_end_date.setText("Select end date");
+                                    editText_end_date.setText(R.string.select_end_date);
                                     Toast.makeText(PlanAndShedVaccs.this, "Invalid date, please try again", Toast.LENGTH_LONG).show();
 
                                 }
