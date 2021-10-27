@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,6 +29,8 @@ import java.util.Map;
 
 
 public class Administartorlogin extends AppCompatActivity implements View.OnClickListener {
+
+    ChangeLanguage cl;
 
     class Provider
     {
@@ -60,6 +63,11 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_administartorlogin);
+        Bundle extras = getIntent().getExtras();
+        Intent i = getIntent();
+        if (extras != null) {
+            cl = (ChangeLanguage) extras.getSerializable("change_language");
+        }
 
         queue = Volley.newRequestQueue(this);
         dropdown = findViewById(R.id.clinics);
@@ -78,6 +86,8 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+        MenuItem flag_item= menu.findItem(R.id.language_button);
+        flag_item.setIcon(cl.getFlagIcon());
         return true;
     }
 

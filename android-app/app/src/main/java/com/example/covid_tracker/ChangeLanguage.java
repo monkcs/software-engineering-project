@@ -1,37 +1,39 @@
 package com.example.covid_tracker;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.widget.Button;
 
+import java.io.Serializable;
 import java.util.Locale;
 
-public class ChangeLanguage {
+public class ChangeLanguage implements Serializable {
     static String swedish = "sv";
     static String english= "en";
+    static int english_flag = R.drawable.flaggb_foreground;
+    static int swedish_flag = R.drawable.flagswe_foreground;
+    int current_flag;
     Boolean is_swedish;
-    String languageStr= getLanguage();
+    String current_language = getLanguage();
 
     public String getLanguage(){
         //get if any language is selected from server
         //if not get native language from the phone
         String language;
-        language = downloadSelectedLanguage();
+        language = current_language;//downloadSelectedLanguage();
 
-        if (language.isEmpty() ||language == swedish){
+        if (language == null ||language.isEmpty() ||language == swedish){
             language = swedish;
             is_swedish=true;
+            current_flag= swedish_flag;
         }
 
         else {
             language = english;
             is_swedish=false;
-            //Log.i("local language: ", getNativeLanguage());
+            current_flag= english_flag;
         }
 
     return  language;
@@ -42,17 +44,22 @@ public class ChangeLanguage {
         //then upload selected language to server
 
         //change language code here
+
         if (language == swedish){
             setAppLocate(context, swedish);
             is_swedish=true;
+            current_language = language;
+            current_flag = swedish_flag;
         }
         else {
             setAppLocate(context, english);
             is_swedish=false;
+            current_language =language;
+            current_flag= english_flag;
         }
 
         //------------------------
-        uploadSelectedLanguage(languageStr);
+        uploadSelectedLanguage(current_language);
     }
     private void uploadSelectedLanguage(String strLanguage){
         //code for uploading to server
@@ -62,6 +69,10 @@ public class ChangeLanguage {
         String selectedLanguage = "";
         //getting info from database
         return selectedLanguage;
+    }
+
+    public int getFlagIcon(){
+        return current_flag;
     }
 
     private String getNativeLanguage(){

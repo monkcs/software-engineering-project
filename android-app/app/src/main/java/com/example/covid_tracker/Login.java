@@ -88,8 +88,8 @@ public class Login extends Activity implements OnClickListener {
             public boolean onMenuItemClick(MenuItem item) {
 
                 if(cl.is_swedish){
-                    item.setIcon(R.drawable.flaggb_foreground);
                     cl.setLanguage(Login.this, "en");
+                    item.setIcon(cl.getFlagIcon());
                     //setAppLocate("en");
                     //onResume();// flaggbyte fungerar ej har...
                     refreshlocaltext();
@@ -98,8 +98,8 @@ public class Login extends Activity implements OnClickListener {
                     //recreate();
                 }
                 else {
-                    item.setIcon(R.drawable.flagswe_foreground);
                     cl.setLanguage(Login.this, "sv");
+                    item.setIcon(cl.getFlagIcon());
                     //setAppLocate("sv");
                     //onResume();//flaggbyte fungerar ej har...
                     refreshlocaltext();
@@ -151,13 +151,14 @@ public class Login extends Activity implements OnClickListener {
     public void signup() {
         //Intent intent = new Intent(this, Registration.class);
         //startActivity(intent);
-        Intent i = new Intent(this, Registration.class);
-        i.putExtra("language",cl.getLanguage());
-        startActivity(i);
+        Intent intent = new Intent(this, Registration.class);
+        intent.putExtra("change_language",cl);
+        startActivity(intent);
     }
 
     public void loginAdmin() {
         Intent intent = new Intent(this, Administartorlogin.class);
+        intent.putExtra("change_language",cl);
         startActivity(intent);
     }
 
