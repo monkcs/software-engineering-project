@@ -214,13 +214,13 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         for (Date date : result) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
-            calendar.set(Calendar.HOUR, 7);
+            calendar.set(Calendar.HOUR, 6);
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
 
 
             while (true) {
-                if (calendar.get(Calendar.HOUR) < 17) {
+                if (calendar.get(Calendar.HOUR) < 11) {
 
                     JSONObject temporary = new JSONObject();
 
