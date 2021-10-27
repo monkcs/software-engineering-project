@@ -55,15 +55,15 @@ public class age_change extends AppCompatActivity {
 
         listIDs = new ArrayList<>();
 
-        pb = (ProgressBar) findViewById(R.id.progressbaris);
+        pb = findViewById(R.id.progressbaris);
 
         pb.setVisibility(View.GONE);
 
         queue = Volley.newRequestQueue(this);
 
-        recyclerview = (RecyclerView) findViewById(R.id.recyclerView_age_age_age);
+        recyclerview = findViewById(R.id.recyclerView_age_age_age);
 
-        calv = (CalendarView) findViewById(R.id.calender_agechange);
+        calv = findViewById(R.id.calender_agechange);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         dateis = sdf.format(new Date(calv.getDate()));
@@ -90,39 +90,34 @@ public class age_change extends AppCompatActivity {
             }
         });
 
-        age_change = (EditText) findViewById(R.id.edittext_changeage);
-        tw = (TextView) findViewById(R.id.twdatabase);
+        age_change = findViewById(R.id.edittext_changeage);
+        tw = findViewById(R.id.twdatabase);
 
         tw.setVisibility(View.GONE);
 
-        update = (Button) findViewById(R.id.update_agechange);
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        update = findViewById(R.id.update_agechange);
+        update.setOnClickListener(view -> {
 
 
-                if (age_change.length() != 0) {
-                    reader = age_change.getText().toString();
-                    updateint = Integer.parseInt(reader);
+            if (age_change.length() != 0) {
+                reader = age_change.getText().toString();
+                updateint = Integer.parseInt(reader);
 
-                    age_change.onEditorAction(EditorInfo.IME_ACTION_DONE);
-                    age_change.setText("");
+                age_change.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                age_change.setText("");
 
-                    System.out.println("---Update---");
-                    System.out.println("detta är ålder: " + updateint);
-                    System.out.println("detta är datum: " + dateis);
-                    System.out.println("detta är storlek list: " + listIDs.size());
+                System.out.println("---Update---");
+                System.out.println("detta är ålder: " + updateint);
+                System.out.println("detta är datum: " + dateis);
+                System.out.println("detta är storlek list: " + listIDs.size());
 
-                    addToDataB(updateint);
-
-                } else {
-                    //do nothing
-                }
+                addToDataB(updateint);
 
             }
+
         });
 
-        update2 = (Button) findViewById(R.id.update_agechange2);
+        update2 = findViewById(R.id.update_agechange2);
         update2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
