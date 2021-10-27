@@ -17,7 +17,7 @@ function product($connection, $user){
     $statement = $connection->prepare("SELECT appointment.vaccine as vaccine from  appointment
                 where appointment.account = ?"); 
     $statement->bind_param("i", $user); 
-    $statement->bind_param("i", $user);        
+   // $statement->bind_param("i", $user);        
     $statement->execute();
     $result = $statement->get_result();
     if ($result->num_rows == 0) {
@@ -41,7 +41,7 @@ function dose2_date($connection, $user)
     $statement->execute();
     $result = $statement->get_result();
     if ($result->num_rows == 0) {
-        http_response_code(400);
+        http_response_code(401);
         echo "No appointment booked\n";
         exit;
     }
