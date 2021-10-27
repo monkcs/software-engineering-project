@@ -37,6 +37,7 @@ public class Login extends Activity implements OnClickListener {
     private EditText user_email, user_password;
     private Button BtnLogin, BtnReg, adminloginButton;
     private ChangeLanguage cl= new ChangeLanguage();
+    private TextView new_user_tv;
 
 
     private RequestQueue queue;
@@ -69,6 +70,7 @@ public class Login extends Activity implements OnClickListener {
         user_email = (EditText) findViewById(R.id.email);
         user_password = (EditText) findViewById(R.id.password);
         BtnLogin = (Button) findViewById(R.id.btnLogIn);
+        new_user_tv = (TextView) findViewById(R.id.new_user_TextView);
         BtnReg = (Button) findViewById(R.id.btnReg);
         adminloginButton = (Button) findViewById(R.id.adminLogin);
 
@@ -114,6 +116,10 @@ public class Login extends Activity implements OnClickListener {
     private void refreshlocaltext() {
         user_email.setHint(R.string.email);
         user_password.setHint(R.string.password);
+        BtnLogin.setText(R.string.login);
+        new_user_tv.setText(R.string.new_user);
+        BtnReg.setText(R.string.signup);
+        adminloginButton.setText(R.string.login_admin);
     }
 
 
@@ -143,8 +149,11 @@ public class Login extends Activity implements OnClickListener {
     }
 
     public void signup() {
-        Intent intent = new Intent(this, Registration.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, Registration.class);
+        //startActivity(intent);
+        Intent i = new Intent(this, Registration.class);
+        i.putExtra("language",cl.getLanguage());
+        startActivity(i);
     }
 
     public void loginAdmin() {
