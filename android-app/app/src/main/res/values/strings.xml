@@ -166,6 +166,9 @@
     <string name="email_format_error">Wrong email format</string>
     <string name="email_match_error">Emails didn\'t match</string>
 
+    <string name="select_start_date">Select start date</string>
+    <string name="select_end_date">Select end date</string>
+
 
 
 
@@ -176,5 +179,7 @@
     <string name="spr_k">language</string>
     <string name="product_catalog">Product Catalog</string>
     <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="state_minium_age_start_date">State minium age, start date, end date and time slot</string>
+    <string name="upload_times_to_server">Upload times to server</string>
 
 </resources>
