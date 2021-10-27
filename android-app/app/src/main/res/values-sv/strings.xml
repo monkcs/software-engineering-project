@@ -146,6 +146,7 @@
     <string name="email_match_error">Email matchar inte</string>
     <string name="item1_menu">Annat</string>
     <string name="sign_out">Logga ut</string>
+    <string name="spr_k">språk</string>
 
 
 </resources>

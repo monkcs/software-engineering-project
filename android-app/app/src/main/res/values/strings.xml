@@ -97,7 +97,7 @@
     <string name="appointment_created">Appointment is created</string>
     <string name="appointment_failed">Appointment creation failed</string>
     <string name="questions_failed">Adding questions failed</string>
-    <string name="time_for_second_dose">It\'s time time for your second dose</string>
+    <string name="time_for_second_dose">It\'s time for your second dose</string>
     <string name="invalid_email">Invalid email</string>
     <string name="upload_request">Upload request sent</string>
     <string name="cases">Cases</string>
@@ -164,7 +164,7 @@
 
     <string name="phone_number_error">Phone number needs to be 10 digits</string>
     <string name="email_format_error">Wrong email format</string>
-    <string name="email_match_error">Emails didnt match</string>
+    <string name="email_match_error">Emails didn\'t match</string>
 
 
 
@@ -173,5 +173,6 @@
     <string name="notimesindatab" translatable="false">No Times in Database\n</string>
     <string name="sign_out">Sign out</string>
     <string name="item1_menu">Other</string>
+    <string name="spr_k">language</string>
 
 </resources>

@@ -10,14 +10,14 @@
         android:visibility="visible"
         android:layout_marginRight="30dp"
         android:icon="@drawable/flagswe_foreground"
-        android:title="språk"
-        app:showAsAction="always"/>
+        android:title="@string/spr_k"
+        app:showAsAction="ifRoom"/>
 
-    <item
+    <!--item
         android:id="@+id/item1_menu2"
         android:title="@string/item1_menu"
         app:showAsAction="never"
-        />
+        /-->
 
     <item
         android:id="@+id/item2_menu2"
