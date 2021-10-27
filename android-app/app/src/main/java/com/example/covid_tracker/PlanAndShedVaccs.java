@@ -92,34 +92,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
             }
         });
 
-        /*
-        start_date_spinner = (Spinner) findViewById(R.id.start_date_spinner);
-
-        start_date_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int index, long l) {
-                index_start = index;
-                updateEndTimeSpinner(index);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
-        end_date_spinner = (Spinner) findViewById(R.id.end_date_spinner);
-        end_date_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int index, long l) {
-                index_end = index;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
-         */
 
         add_time_button = (Button) findViewById(R.id.add_time_button);
         add_time_button.setOnClickListener((new View.OnClickListener() {
@@ -128,18 +100,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
                 uploadAppointments();
             }
         }));
-
-        /*
-        change_booking_time_button = (Button) findViewById(R.id.change_booking_time_button);
-        change_booking_time_button.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PlanAndShedVaccs.this, AgePrioritizations.class);
-                startActivity(intent);
-            }
-        }));
-
-         */
 
         Calendar start_calendar = Calendar.getInstance();
         start_calendar.add(Calendar.DATE, 1);
@@ -153,30 +113,11 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         sublist_days_text = new ArrayList<>();
         sublist_days = new ArrayList<>();
 
-        /*
-        for (Calendar temporary = (Calendar) start_calendar.clone(); temporary.before(end_calendar); temporary.add(Calendar.DATE, 1)) {
-            all_days.add(temporary.getTime());
-            all_days_text.add(format.format(temporary.getTime()));
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, all_days_text);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        start_date_spinner.setAdapter(adapter);
-
-        updateEndTimeSpinner(0);
-
-         */
 
         //-----------------------------------------   NYTT  sprint 4 ----------------------------------------
 
         editText_start_date=(EditText) findViewById(R.id.editText_start_date);
         editText_start_date.setInputType(InputType.TYPE_NULL);
-
-        /*
-        editText_end_date=(EditText) findViewById(R.id.editText_end_date);
-        editText_end_date.setInputType(InputType.TYPE_NULL);
-
-         */
 
         start_cal = Calendar.getInstance();
         int tomorrow = start_cal.get(Calendar.DAY_OF_MONTH) +1;
@@ -238,25 +179,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         }
         return super.onOptionsItemSelected(item);
     }
-
-    /*
-    private void updateEndTimeSpinner(int index) {
-        sublist_days = new ArrayList<>();
-        for (int i = index; i < all_days.size(); i++) {
-            sublist_days.add(all_days.get(i));
-        }
-
-        sublist_days_text = new ArrayList<>();
-        for (Date date : sublist_days) {
-            sublist_days_text.add(format.format(date.getTime()));
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sublist_days_text);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        end_date_spinner.setAdapter(adapter);
-    }
-
-     */
 
     private void updateSublistDays(){
         Calendar temp_cal = (Calendar) start_cal.clone();
