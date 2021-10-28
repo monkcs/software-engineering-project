@@ -38,7 +38,8 @@ public class DigitalHealth extends Fragment {
 
     private ImageView qrView;
     private RecyclerView recyclerView;
-    private List<FAQ_block> values;
+    //private List<FAQ_block> values;
+    private List<DigitalHealthBlock> values;
     private RequestQueue queue;
 
     public static final int CAMERA_PERMISSION_CODE = 100;
@@ -96,8 +97,12 @@ public class DigitalHealth extends Fragment {
 
     private void setRecyclerView() {
 
-        FAQ_block_Adapter faq_block_adapter = new FAQ_block_Adapter(values);
+        /*FAQ_block_Adapter faq_block_adapter = new FAQ_block_Adapter(values);
         recyclerView.setAdapter(faq_block_adapter);
+        recyclerView.setHasFixedSize(true);*/
+
+        DigitalHealthBlockAdapter digitalHealthBlockAdapter = new DigitalHealthBlockAdapter(values);
+        recyclerView.setAdapter(digitalHealthBlockAdapter);
         recyclerView.setHasFixedSize(true);
     }
 
@@ -110,10 +115,10 @@ public class DigitalHealth extends Fragment {
                     try {
                         String date = response.getString("Date");
                         date = date.split(" ")[0];
-                        values.add(new FAQ_block(getString(R.string.namn), Encryption.decryptData(response.getString("firstname")) +" "+ Encryption.decryptData(response.getString("surname"))));
-                        values.add(new FAQ_block(getString(R.string.birthdate), response.getString("birthdate")));
-                        values.add(new FAQ_block(getString(R.string.manufacturer), response.getString("name")));
-                        values.add(new FAQ_block(getString(R.string.date_for_second_dose), date));
+                        values.add(new DigitalHealthBlock(getString(R.string.namn), Encryption.decryptData(response.getString("firstname")) +" "+ Encryption.decryptData(response.getString("surname"))));
+                        values.add(new DigitalHealthBlock(getString(R.string.birthdate), response.getString("birthdate")));
+                        values.add(new DigitalHealthBlock(getString(R.string.manufacturer), response.getString("name")));
+                        values.add(new DigitalHealthBlock(getString(R.string.date_for_second_dose), date));
                         qrGenerator(response.getString("qrcode"));            
                         setRecyclerView();
                     } catch (JSONException e) {
