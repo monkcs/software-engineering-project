@@ -47,16 +47,19 @@ public class Registration extends Activity implements OnClickListener{
 
     private EditText email, email_check, forename, lastname, password, number, birthdate, street, city, zipcode;
     private Button BtnReg;
+
     private Menu menu;
     private MenuItem flagitem;
+    private ChangeLanguage cl;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        this.menu = menu;
+        /*this.menu = menu;
         flagitem = menu.getItem(0);
         flagitem.setIcon(R.drawable.flaggb_foreground);
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);*/
+
         return true;
     }
 
@@ -82,17 +85,30 @@ public class Registration extends Activity implements OnClickListener{
         BtnReg.setOnClickListener(this);
         toolbar.inflateMenu(R.menu.menu);
 
+        Bundle extras = getIntent().getExtras();
+        Intent i = getIntent();
+        if (extras != null) {
+            //cl = (ChangeLanguage) extras.getSerializable("change_language");
+            cl = (ChangeLanguage) i.getSerializableExtra("change_language");//visar ej ratt sprak har fast det gor det i Administratorlogin
+            //Toast.makeText(getApplicationContext(), cl.getLanguage(), Toast.LENGTH_SHORT).show();
+        }
+        menu =toolbar.getMenu();
+        flagitem = menu.findItem(R.id.language_button);
+        //flagitem.setIcon(cl.getFlagIcon());
+        flagitem.setVisible(false);
+      
         toolbar.setOnMenuItemClickListener(item -> {
             //Anropa för byte av språk
-            Bundle extras = getIntent().getExtras();
+            /*Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 String value = extras.getString("language");
+                Log.i("DG_reg", value);
                 if (value == "en"){
                     item.setIcon(R.drawable.flaggb_foreground);
                 }
                 else {item.setIcon(R.drawable.flagswe_foreground);}
                 //The key argument here must match that used in the other activity
-            }
+            }*/
             return false;
         });
     }

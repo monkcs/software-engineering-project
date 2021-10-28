@@ -1,0 +1,892 @@
+Index: .idea/gradle.xml
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+deleted file mode 100644
+--- a/.idea/gradle.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,20 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="GradleMigrationSettings" migrationVersion="1" />
+-  <component name="GradleSettings">
+-    <option name="linkedExternalProjectsSettings">
+-      <GradleProjectSettings>
+-        <option name="testRunner" value="GRADLE" />
+-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+-        <option name="modules">
+-          <set>
+-            <option value="$PROJECT_DIR$" />
+-            <option value="$PROJECT_DIR$/app" />
+-          </set>
+-        </option>
+-        <option name="resolveModulePerSourceSet" value="false" />
+-      </GradleProjectSettings>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml b/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,11 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.arch.core:core-common:2.1.0">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/80ac2d7c8e6400ce2fbc663cd1a7e1cbef38c4b8/core-common-2.1.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/assetWizardSettings.xml
+===================================================================
+diff --git a/.idea/assetWizardSettings.xml b/.idea/assetWizardSettings.xml
+deleted file mode 100644
+--- a/.idea/assetWizardSettings.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,370 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="WizardSettings">
+-    <option name="children">
+-      <map>
+-        <entry key="imageWizard">
+-          <value>
+-            <PersistentState>
+-              <option name="children">
+-                <map>
+-                  <entry key="imageAssetPanel">
+-                    <value>
+-                      <PersistentState>
+-                        <option name="children">
+-                          <map>
+-                            <entry key="actionbar">
+-                              <value>
+-                                <PersistentState>
+-                                  <option name="children">
+-                                    <map>
+-                                      <entry key="clipArt">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                                <entry key="imagePath" value="C:\Users\lukas\AppData\Local\Temp\ic_android_black_24dp.xml" />
+-                                                <entry key="opacityPercent" value="60" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="image">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                                <entry key="imagePath" value="C:\Users\lukas\OneDrive\Bilder\readcorss.png" />
+-                                                <entry key="opacityPercent" value="80" />
+-                                                <entry key="trimmed" value="true" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="text">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                                <entry key="opacityPercent" value="60" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="textAsset">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                                <entry key="opacityPercent" value="60" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                    </map>
+-                                  </option>
+-                                  <option name="values">
+-                                    <map>
+-                                      <entry key="assetType" value="IMAGE" />
+-                                      <entry key="imageAsset" value="C:\Users\lukas\OneDrive\Bilder\readcorss.png" />
+-                                      <entry key="outputName" value="red_corss" />
+-                                      <entry key="theme" value="CUSTOM" />
+-                                      <entry key="themeColor" value="d42b1c" />
+-                                    </map>
+-                                  </option>
+-                                </PersistentState>
+-                              </value>
+-                            </entry>
+-                            <entry key="launcher">
+-                              <value>
+-                                <PersistentState>
+-                                  <option name="children">
+-                                    <map>
+-                                      <entry key="foregroundClipArt">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                                <entry key="imagePath" value="C:\Users\lukas\AppData\Local\Temp\ic_android_black_24dp.xml" />
+-                                                <entry key="trimmed" value="true" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="foregroundImage">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                                <entry key="imagePath" value="C:\Users\lukas\OneDrive\Bilder\pngaaa.com-382670.png" />
+-                                                <entry key="scalingPercent" value="72" />
+-                                                <entry key="trimmed" value="true" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="foregroundText">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="foregroundTextAsset">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                    </map>
+-                                  </option>
+-                                  <option name="values">
+-                                    <map>
+-                                      <entry key="backgroundAssetType" value="COLOR" />
+-                                      <entry key="outputName" value="Greencheckmark" />
+-                                    </map>
+-                                  </option>
+-                                </PersistentState>
+-                              </value>
+-                            </entry>
+-                            <entry key="launcherLegacy">
+-                              <value>
+-                                <PersistentState>
+-                                  <option name="children">
+-                                    <map>
+-                                      <entry key="clipArt">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                                <entry key="imagePath" value="C:\Users\lukas\AppData\Local\Temp\ic_android_black_24dp.xml" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="text">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="textAsset">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                    </map>
+-                                  </option>
+-                                </PersistentState>
+-                              </value>
+-                            </entry>
+-                            <entry key="notification">
+-                              <value>
+-                                <PersistentState>
+-                                  <option name="children">
+-                                    <map>
+-                                      <entry key="clipArt">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                                <entry key="imagePath" value="C:\Users\lukas\AppData\Local\Temp\ic_android_black_24dp.xml" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="text">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="textAsset">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                    </map>
+-                                  </option>
+-                                </PersistentState>
+-                              </value>
+-                            </entry>
+-                            <entry key="tvBanner">
+-                              <value>
+-                                <PersistentState>
+-                                  <option name="children">
+-                                    <map>
+-                                      <entry key="foregroundText">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                    </map>
+-                                  </option>
+-                                </PersistentState>
+-                              </value>
+-                            </entry>
+-                            <entry key="tvChannel">
+-                              <value>
+-                                <PersistentState>
+-                                  <option name="children">
+-                                    <map>
+-                                      <entry key="foregroundClipArt">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="imagePath" value="C:\Users\lukas\AppData\Local\Temp\ic_android_black_24dp.xml" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="foregroundImage">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="foregroundText">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                      <entry key="foregroundTextAsset">
+-                                        <value>
+-                                          <PersistentState>
+-                                            <option name="values">
+-                                              <map>
+-                                                <entry key="color" value="000000" />
+-                                              </map>
+-                                            </option>
+-                                          </PersistentState>
+-                                        </value>
+-                                      </entry>
+-                                    </map>
+-                                  </option>
+-                                </PersistentState>
+-                              </value>
+-                            </entry>
+-                          </map>
+-                        </option>
+-                        <option name="values">
+-                          <map>
+-                            <entry key="outputIconType" value="ACTIONBAR" />
+-                          </map>
+-                        </option>
+-                      </PersistentState>
+-                    </value>
+-                  </entry>
+-                </map>
+-              </option>
+-            </PersistentState>
+-          </value>
+-        </entry>
+-        <entry key="vectorWizard">
+-          <value>
+-            <PersistentState>
+-              <option name="children">
+-                <map>
+-                  <entry key="vectorAssetStep">
+-                    <value>
+-                      <PersistentState>
+-                        <option name="children">
+-                          <map>
+-                            <entry key="clipartAsset">
+-                              <value>
+-                                <PersistentState>
+-                                  <option name="values">
+-                                    <map>
+-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/info/baseline_info_24.xml" />
+-                                    </map>
+-                                  </option>
+-                                </PersistentState>
+-                              </value>
+-                            </entry>
+-                          </map>
+-                        </option>
+-                        <option name="values">
+-                          <map>
+-                            <entry key="color" value="ffffff" />
+-                            <entry key="outputName" value="ic_baseline_info_24" />
+-                            <entry key="sourceFile" value="C:\Users\lukas\OneDrive\Universitetet\Software Engineering\Labb\android-app" />
+-                          </map>
+-                        </option>
+-                      </PersistentState>
+-                    </value>
+-                  </entry>
+-                </map>
+-              </option>
+-            </PersistentState>
+-          </value>
+-        </entry>
+-      </map>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/jarRepositories.xml
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+deleted file mode 100644
+--- a/.idea/jarRepositories.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,20 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RemoteRepositoriesConfiguration">
+-    <remote-repository>
+-      <option name="id" value="central" />
+-      <option name="name" value="Maven Central repository" />
+-      <option name="url" value="https://repo1.maven.org/maven2" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="jboss.community" />
+-      <option name="name" value="JBoss Community repository" />
+-      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="maven" />
+-      <option name="name" value="maven" />
+-      <option name="url" value="https://jitpack.io" />
+-    </remote-repository>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_jsoup_jsoup_1_14_2.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_jsoup_jsoup_1_14_2.xml b/.idea/libraries/Gradle__org_jsoup_jsoup_1_14_2.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__org_jsoup_jsoup_1_14_2.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: org.jsoup:jsoup:1.14.2">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.14.2/5504b065b7582af4291826ecef463ff6729c5054/jsoup-1.14.2.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.14.2/2b4b391241279eb6d0261f6d8f69ce9175aacec/jsoup-1.14.2-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.14.2/2f6a57ec305fffce526c6cc891bd795f6373f103/jsoup-1.14.2-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__junit_junit_4_12.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__junit_junit_4_12.xml b/.idea/libraries/Gradle__junit_junit_4_12.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__junit_junit_4_12.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: junit:junit:4.12">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/941a8be4506c65f0a9001c08812fb7da1e505e21/junit-4.12-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3.xml b/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: org.hamcrest:hamcrest-integration:1.3">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/5de0c73fef18917cd85d0ab70bb23818685e4dfd/hamcrest-integration-1.3.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/cc5884d4138d3376f574f6a3992acceedfc37bea/hamcrest-integration-1.3-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/ae7787a563e6a1b1f17fd4ac43be3a3c8830cfda/hamcrest-integration-1.3-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_squareup_javawriter_2_1_1.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1.xml b/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.squareup:javawriter:2.1.1">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/67ff45d9ae02e583d0f9b3432a5ebbe05c30c966/javawriter-2.1.1.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/f591a105db78771d0a1e7a277b3747556c528c22/javawriter-2.1.1-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/5b31387d839a5cdaf5b6de3990da01f7f2b963c5/javawriter-2.1.1-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/misc.xml
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+--- a/.idea/misc.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,77 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="DesignSurface">
+-    <option name="filePathToZoomLevelMap">
+-      <map>
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_admin_dosage.xml" value="0.2" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_admin_fragments.xml" value="0.13229166666666667" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_fragments.xml" value="0.13229166666666667" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/booking_card_row.xml" value="0.18885869565217392" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/dosage_row.xml" value="0.25416666666666665" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_admin_landing.xml" value="0.13229166666666667" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_bookingstep2.xml" value="0.25416666666666665" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_faq.xml" value="0.18885869565217392" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/upc_appoint_row.xml" value="0.25416666666666665" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.2" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout-w936dp/activity_login.xml" value="0.536" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/Login_user.xml" value="0.264" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/activity_login.xml" value="0.2" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/activity_main.xml" value="0.264" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/layout.xml" value="0.25416666666666665" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/login.xml" value="0.264" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/mail_menu.xml" value="0.13020833333333334" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/test_login.xml" value="0.25416666666666665" />
+-        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.19519927536231885" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_admin_fragments.xml" value="0.2504528985507246" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_fragments.xml" value="0.2504528985507246" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_handle_person.xml" value="0.4" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/admin_inbox_row.xml" value="0.13020833333333334" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/confirmpopup.xml" value="0.2509057971014493" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/deletepopup.xml" value="0.19519927536231885" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_admin_dashboard.xml" value="0.13020833333333334" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_admin_landing.xml" value="0.25416666666666665" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_statistics_menu.xml" value="0.13020833333333334" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_uppcomming_apointments.xml" value="0.2463768115942029" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/stat_covid.xml" value="0.25416666666666665" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/stat_vaccinations.xml" value="0.2" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/upc_appoint_row.xml" value="0.20516304347826086" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/menu/admin_bottom_navigation.xml" value="0.25416666666666665" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/menu/bottom_navigation.xml" value="0.25416666666666665" />
+-        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/app/src/main/res/layout/activity_main.xml" value="0.1" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/activity_administartorlogin.xml" value="0.146875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_digital_health.xml" value="0.2796875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_faq.xml" value="0.146875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_statistics_menu.xml" value="0.2796875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/login.xml" value="0.146875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/test_login.xml" value="0.25" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_administartorlogin.xml" value="0.2796875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_boka_vaccin2.xml" value="0.146875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_booking.xml" value="0.2796875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_plan_and_shed_vaccs.xml" value="0.2796875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_regristering.xml" value="0.25" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/deletepopup.xml" value="0.146875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/fragment_bookingstep1.xml" value="0.2796875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/fragment_bookingstep3.xml" value="0.2015625" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/fragment_digital_health.xml" value="0.2796875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/fragment_statistics_menu.xml" value="0.2796875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/login.xml" value="0.2796875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/row.xml" value="0.2796875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/stat_vaccinations.xml" value="0.2796875" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/temp_regristration.xml" value="0.335" />
+-        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/test_login.xml" value="0.2796875" />
+-        <entry key="app/src/main/res/layout/activity_age_prioritizations.xml" value="0.1" />
+-        <entry key="app/src/main/res/layout/activity_plan_and_shed_vaccs.xml" value="0.13854166666666667" />
+-        <entry key="app/src/main/res/layout/fragment_admin_landing.xml" value="0.22" />
+-      </map>
+-    </option>
+-  </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/build/classes" />
+-  </component>
+-  <component name="ProjectType">
+-    <option name="id" value="Android" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_zxing_core_3_4_1.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_zxing_core_3_4_1.xml b/.idea/libraries/Gradle__com_google_zxing_core_3_4_1.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_zxing_core_3_4_1.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.zxing:core:3.4.1">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.4.1/1869da97e9b2b60b5ff2fcaf55899174b93ae25d/core-3.4.1.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.4.1/919cbf27eefc15c8b0d1de842bdffcc2c1c0e963/core-3.4.1-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.4.1/cb2b657bad6c933cef09fa57bfe79fb6867d929e/core-3.4.1-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_collection_collection_1_1_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_collection_collection_1_1_0.xml b/.idea/libraries/Gradle__androidx_collection_collection_1_1_0.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_collection_collection_1_1_0.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,11 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.collection:collection:1.1.0">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/bae67b0019fbb38498198fcc2d0282a340b71c5b/collection-1.1.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_databinding_viewbinding_7_0_2_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_databinding_viewbinding_7_0_2_aar.xml b/.idea/libraries/Gradle__androidx_databinding_viewbinding_7_0_2_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_databinding_viewbinding_7_0_2_aar.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.databinding:viewbinding:7.0.2@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/314e1866fb012a7eb1eea66695bd9e77/transformed/jetified-viewbinding-7.0.2/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/314e1866fb012a7eb1eea66695bd9e77/transformed/jetified-viewbinding-7.0.2/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/314e1866fb012a7eb1eea66695bd9e77/transformed/jetified-viewbinding-7.0.2/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.databinding/viewbinding/7.0.2/84052b2267a0c31ab5dad19635729a84dc834a6f/viewbinding-7.0.2-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__junit_junit_4_13_2.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__junit_junit_4_13_2.xml b/.idea/libraries/Gradle__junit_junit_4_13_2.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__junit_junit_4_13_2.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: junit:junit:4.13.2">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.13.2/8ac9e16d933b6fb43bc7f576336b8f4d7eb5ba12/junit-4.13.2.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.13.2/f2f3f384dacd2ade2ddf7aa7e0f4360dfee38672/junit-4.13.2-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.13.2/33987872a811fe4d4001ed494b07854822257f42/junit-4.13.2-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_code_findbugs_jsr305_2_0_1.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_2_0_1.xml b/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_2_0_1.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_2_0_1.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,9 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.code.findbugs:jsr305:2.0.1">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3.xml b/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: org.hamcrest:hamcrest-library:1.3">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4324046c5f99f3dc91b5370899fa3ae65fd137d2/hamcrest-library-1.3-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/47a7ee46628ab7133129cd7cef1e92657bc275e/hamcrest-library-1.3-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml b/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: org.hamcrest:hamcrest-core:1.3">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/ad09811315f1d4f5756986575b0ea16b99cd686f/hamcrest-core-1.3-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__joda_time_joda_time_2_9_7.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__joda_time_joda_time_2_9_7.xml b/.idea/libraries/Gradle__joda_time_joda_time_2_9_7.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__joda_time_joda_time_2_9_7.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: joda-time:joda-time:2.9.7">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.9.7/6eb2e87ddb09e944bb88f06f19ba0638d4607ffd/joda-time-2.9.7.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.9.7/6550aee9dcf793ace4511b76e3cc9875c481b294/joda-time-2.9.7-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.9.7/7099392eb30172b794b270401c2462e1a27ae63/joda-time-2.9.7-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__javax_inject_javax_inject_1.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml b/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: javax.inject:javax.inject:1">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/70ec961c25111ed9015d1af77772d96383c2d238/javax.inject-1-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/a00123f261762a7c5e0ec916a2c7c8298d29c400/javax.inject-1-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/encodings.xml
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+deleted file mode 100644
+--- a/.idea/encodings.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="Encoding">
+-    <file url="file://$PROJECT_DIR$/app/src/main/res/raw/data_vaccine_uptake_fhm_210914.csv" charset="UTF-8" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_3_1.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_3_1.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_3_1.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_3_1.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,11 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-common:2.3.1">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.3.1/fc466261d52f4433863642fb40d12441ae274a98/lifecycle-common-2.3.1.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.3.1/36a4f870521a07778cf045be0274793c6298ec6/lifecycle-common-2.3.1-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml b/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: commons-logging:commons-logging:1.2">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/83033ee697035dfb9ce3503e1ac0c5a33021e503/commons-logging-1.2-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/ecf26c7507d67782a3bbd148d170b31dfad001aa/commons-logging-1.2-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/compiler.xml
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+deleted file mode 100644
+--- a/.idea/compiler.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="CompilerConfiguration">
+-    <bytecodeTargetLevel target="11" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_annotation_annotation_1_2_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_annotation_annotation_1_2_0.xml b/.idea/libraries/Gradle__androidx_annotation_annotation_1_2_0.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_annotation_annotation_1_2_0.xml	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
++++ /dev/null	(revision d914accd62db7cf63173da8c13d4af48dcbb3057)
+@@ -1,11 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.annotation:annotation:1.2.0">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.2.0/57136ff68ee784c6e19db34ed4a175338fadfde1/annotation-1.2.0.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.2.0/8945212022e5276658ab7864714ced3553ea724a/annotation-1.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
