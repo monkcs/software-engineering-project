@@ -76,13 +76,14 @@ public class Registration extends Activity implements OnClickListener{
         Bundle extras = getIntent().getExtras();
         Intent i = getIntent();
         if (extras != null) {
-            cl = (ChangeLanguage) extras.getSerializable("change_language");
-            //cl = (ChangeLanguage) i.getSerializableExtra("change_language");
-            Toast.makeText(getApplicationContext(), cl.getLanguage(), Toast.LENGTH_SHORT).show();
+            //cl = (ChangeLanguage) extras.getSerializable("change_language");
+            cl = (ChangeLanguage) i.getSerializableExtra("change_language");//visar ej ratt sprak har fast det gor det i Administratorlogin
+            //Toast.makeText(getApplicationContext(), cl.getLanguage(), Toast.LENGTH_SHORT).show();
         }
         menu =toolbar.getMenu();
         flagitem = menu.findItem(R.id.language_button);
-        flagitem.setIcon(cl.getFlagIcon());
+        //flagitem.setIcon(cl.getFlagIcon());
+        flagitem.setVisible(false);
         toolbar.setOnMenuItemClickListener(item -> {
             //Anropa för byte av språk
             /*Bundle extras = getIntent().getExtras();

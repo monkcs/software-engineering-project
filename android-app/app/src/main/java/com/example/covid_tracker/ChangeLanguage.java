@@ -42,7 +42,6 @@ public class ChangeLanguage implements Serializable {
     public void setLanguage(Context context, String language){
         //change language to the selected
         //then upload selected language to server
-
         //change language code here
 
         if (language == swedish){

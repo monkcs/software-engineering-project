@@ -2,6 +2,7 @@ package com.example.covid_tracker;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -68,7 +69,6 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
         if (extras != null) {
             cl = (ChangeLanguage) extras.getSerializable("change_language");
         }
-
         queue = Volley.newRequestQueue(this);
         dropdown = findViewById(R.id.clinics);
 
@@ -146,6 +146,7 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
             case R.id.gobackbutton:
                 goback();
                 break;
+
         }
     }
 }
