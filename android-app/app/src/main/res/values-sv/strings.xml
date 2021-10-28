@@ -155,5 +155,7 @@
     <string name="state_minium_age_start_date">Välj minsta ålder, startdatum och slutdatum</string>
     <string name="upload_times_to_server">Ladda upp tider till server</string>
     <string name="cancel_appointment">Avboka</string>
+    <string name="date_for_second_dose">Datumet för dose två</string>
+    <string name="namn">Namn</string>
 
 </resources>

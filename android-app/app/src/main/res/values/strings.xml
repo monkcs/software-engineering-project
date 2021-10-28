@@ -182,5 +182,7 @@
     <string name="state_minium_age_start_date">State minium age, start date, end date and time slot</string>
     <string name="upload_times_to_server">Upload times to server</string>
     <string name="cancel_appointment">Cancel</string>
+    <string name="date_for_second_dose">Second dose taken</string>
+    <string name="namn">Name</string>
 
 </resources>
