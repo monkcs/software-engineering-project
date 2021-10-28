@@ -2,16 +2,19 @@ package com.example.covid_tracker;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,6 +31,8 @@ import java.util.Map;
 
 
 public class Administartorlogin extends AppCompatActivity implements View.OnClickListener {
+
+    ChangeLanguage cl;
 
     class Provider
     {
@@ -53,6 +58,8 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
     private RequestQueue queue;
     private EditText password;
     Spinner dropdown;
+    private Button loginbutton,gobackbutton;
+    private TextView admin_login_textview;
 
     private ArrayList<Provider> items = new ArrayList<>();
 
@@ -60,6 +67,12 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_administartorlogin);
+        Bundle extras = getIntent().getExtras();
+        Intent i = getIntent();
+        if (extras != null) {
+            cl = (ChangeLanguage) extras.getSerializable("change_language");
+        }
+        admin_login_textview = (TextView) findViewById(R.id.admin_login_textview);
 
         queue = Volley.newRequestQueue(this);
         dropdown = findViewById(R.id.clinics);
@@ -68,8 +81,8 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
 
         getProviders();
 
-        Button loginbutton = findViewById(R.id.adminloginbutton);
-        Button gobackbutton = findViewById(R.id.gobackbutton);
+        loginbutton = findViewById(R.id.adminloginbutton);
+        gobackbutton = findViewById(R.id.gobackbutton);
 
         loginbutton.setOnClickListener(this);
         gobackbutton.setOnClickListener(this);
@@ -78,7 +91,32 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+        MenuItem flag_item= menu.findItem(R.id.language_button);
+        flag_item.setIcon(cl.getFlagIcon());
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.language_button:
+
+                if(cl.is_swedish){
+                    cl.setLanguage(Administartorlogin.this, "en");
+                    item.setIcon(cl.getFlagIcon());
+                    refreshlocaltext();
+                }
+                else {
+                    cl.setLanguage(Administartorlogin.this, "sv");
+                    item.setIcon(cl.getFlagIcon());
+                    refreshlocaltext();
+                }
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     void getProviders() {
@@ -136,6 +174,14 @@ public class Administartorlogin extends AppCompatActivity implements View.OnClic
             case R.id.gobackbutton:
                 goback();
                 break;
+
         }
+    }
+    private void refreshlocaltext(){
+        password.setHint(R.string.password);
+        loginbutton.setText(R.string.login);
+        admin_login_textview.setText(R.string.not_provider);
+        gobackbutton.setText(R.string.go_back);
+
     }
 }
