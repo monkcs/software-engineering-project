@@ -113,13 +113,6 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="\n\n\nTodo here: \n maybe: add info about booked appointments
-                                \n along with user name and stuff" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

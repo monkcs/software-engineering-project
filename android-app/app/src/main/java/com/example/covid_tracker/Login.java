@@ -126,6 +126,7 @@ public class Login extends Activity implements OnClickListener {
         new_user_tv.setText(R.string.new_user);
         BtnReg.setText(R.string.signup);
         adminloginButton.setText(R.string.login_admin);
+        BtnForgot.setText(R.string.forgot_psw);
     }
 
 

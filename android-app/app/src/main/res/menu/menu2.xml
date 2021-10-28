@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id = "@+id/menu_toolbar">
-    <item
+    <!---item
         android:id = "@+id/language_button2"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="right"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_marginRight="30dp"
         android:icon="@drawable/flagswe_foreground"
         android:title="@string/spr_k"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"/-->
 
     <!--item
         android:id="@+id/item1_menu2"
