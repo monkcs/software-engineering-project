@@ -106,27 +106,6 @@ public class UpcomingAppointments extends Fragment {
         return view;
     }
 
-    /*private String decryptData(String s){
-
-        byte[] decryptedChars = s.getBytes(StandardCharsets.UTF_8);
-
-        for(int i = 0; i < s.length(); i++){
-            decryptedChars[i] = (byte) (decryptedChars[i] - 1);
-        }
-
-        String decryptedWithSpec = reverseString(new String(decryptedChars));
-
-        //check for åäö
-        String decrypted = decryptedWithSpec.replaceAll("%", "å");
-        decrypted = decrypted.replaceAll("&", "å");
-        decrypted = decrypted.replaceAll("#", "ö");
-        decrypted = decrypted.replaceAll("!", "Å");
-        decrypted = decrypted.replaceAll("£", "Ä");
-        decrypted = decrypted.replaceAll("¤", "Ö");
-
-        return decrypted;
-    }*/
-
     private String reverseString(String s){
         // getBytes() method to convert string
         // into bytes[].
@@ -178,16 +157,16 @@ public class UpcomingAppointments extends Fragment {
                             setRecyclerView(booked_list);
                         }
                         else{
-                            tv_none_booked.setText(getText(R.string.no_appointments_today));
+                            tv_none_booked.setText(getText(R.string.no_appointments_found));
                             setRecyclerView(booked_list);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }, error -> {
-                    tv_none_booked.setText(getText(R.string.no_appointments_today));
+                    tv_none_booked.setText(getText(R.string.no_appointments_found));
                     setRecyclerView(booked_list);
-                    Toast.makeText(getActivity(), R.string.no_appointments_today, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.no_appointments_found, Toast.LENGTH_SHORT).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {

@@ -25,14 +25,25 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import papaya.in.sendmail.SendMail;
 
 public class Registration extends Activity implements OnClickListener{
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
     private final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private final String datePattern = "[0-9]+-[a-z]+\\.+[a-z]+";
     private RequestQueue queue;
+
+    private boolean age_check;
 
     private EditText email, email_check, forename, lastname, password, number, birthdate, street, city, zipcode;
     private Button BtnReg;
@@ -73,6 +84,7 @@ public class Registration extends Activity implements OnClickListener{
         BtnReg = findViewById(R.id.signUp);
         BtnReg.setOnClickListener(this);
         toolbar.inflateMenu(R.menu.menu);
+
         Bundle extras = getIntent().getExtras();
         Intent i = getIntent();
         if (extras != null) {
@@ -84,6 +96,7 @@ public class Registration extends Activity implements OnClickListener{
         flagitem = menu.findItem(R.id.language_button);
         //flagitem.setIcon(cl.getFlagIcon());
         flagitem.setVisible(false);
+      
         toolbar.setOnMenuItemClickListener(item -> {
             //Anropa för byte av språk
             /*Bundle extras = getIntent().getExtras();
@@ -106,6 +119,7 @@ public class Registration extends Activity implements OnClickListener{
                 response -> {
                     Toast.makeText(Registration.this, R.string.signup_success, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Registration.this, Login.class);
+                    sendEmail();
                     finish();
                     startActivity(intent);
 
@@ -130,20 +144,115 @@ public class Registration extends Activity implements OnClickListener{
 
         queue.add(request);
     }
+    public void sendEmail(){
+        SendMail mail = new SendMail(Util.EMAIL, Util.PASSWORD,
+                email.getText().toString(),
+                getString(R.string.new_account),
+                getString(R.string.msg_reg) + " "+ email.getText().toString()+ "\n" + getString(R.string.password) + " "+ password.getText().toString());
+
+        mail.execute();
+    }
+
+    private boolean checkAge(String birthdate) throws ParseException {
+        boolean age_ok = false;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date currDate = sdf.parse(getDate());
+        Date parsed_birthDate = sdf.parse(birthdate);
+
+        long diffInMillies = Math.abs(currDate.getTime() - parsed_birthDate.getTime());
+        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+
+        double age = diff / 365.25;
+
+
+        if(age >= 18)
+            age_ok = true;
+        else{
+            age_ok = false;
+        }
+
+
+        return age_ok;
+    }
+
+    private String getDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+
+
+        return dateFormat.format(date);
+    }
+
+    private boolean errorCheck(){
+        if(emptyBoxes()){
+            Toast.makeText(getApplicationContext(), "No boxes can be empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        try {
+            age_check = checkAge(birthdate.getText().toString());
+            if(!age_check) {
+                Toast.makeText(getApplicationContext(), R.string.age_warning, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        } catch (ParseException e) {
+            Toast.makeText(getApplicationContext(), "Invalid date-format", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            return false;
+        }
+
+        if(number.getText().toString().length() < 10 || number.getText().toString().length() > 10) {
+            Toast.makeText(getApplicationContext(), R.string.phone_number_error, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!email.getText().toString().trim().matches(emailPattern) || !email_check.getText().toString().trim().matches(emailPattern)) {
+            Toast.makeText(getApplicationContext(), R.string.email_format_error, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!email.getText().toString().equals(email_check.getText().toString())){
+            Toast.makeText(getApplicationContext(), R.string.email_match_error, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean emptyBoxes() {
+
+        if(email.getText().toString().equals(""))
+            return true;
+        if(email_check.getText().toString().equals(""))
+            return true;
+        if(forename.getText().toString().equals(""))
+            return true;
+        if(lastname.getText().toString().equals(""))
+            return true;
+        if(password.getText().toString().equals(""))
+            return true;
+        if(number.getText().toString().equals(""))
+            return true;
+        if(birthdate.getText().toString().equals(""))
+            return true;
+        if(street.getText().toString().equals(""))
+            return true;
+        if(city.getText().toString().equals(""))
+            return true;
+        if(zipcode.getText().toString().equals(""))
+            return true;
+
+        return false;
+    }
 
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.signUp)
         {
-            if (email.getText().toString().trim().matches(emailPattern) && email_check.getText().toString().trim().matches(emailPattern)) {
-                if (email.getText().toString().equals(email_check.getText().toString()))
-                    signup();
-                else
-                    Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
+            if(errorCheck()){
+                signup();
             }
-            else
-                Toast.makeText(getApplicationContext(), "invalid email address", Toast.LENGTH_SHORT).show();
-
         }
     }
 }

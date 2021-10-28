@@ -30,7 +30,6 @@ public class age_change_block {
         this.datumText = datumText;
     }
 
-
     public String getListaageText() {
         return listaageText;
     }

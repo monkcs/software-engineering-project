@@ -97,7 +97,7 @@
     <string name="appointment_created">Appointment is created</string>
     <string name="appointment_failed">Appointment creation failed</string>
     <string name="questions_failed">Adding questions failed</string>
-    <string name="time_for_second_dose">It\'s time time for your second dose</string>
+    <string name="time_for_second_dose">It\'s time for your second dose</string>
     <string name="invalid_email">Invalid email</string>
     <string name="upload_request">Upload request sent</string>
     <string name="cases">Cases</string>
@@ -105,6 +105,7 @@
     <string name="death">Deaths</string>
     <string name="death_per_week">Death per week</string>
     <string name="no_appointments_today">No appointments today</string>
+    <string name="no_appointments_found">No appointments found</string>
     <string name="add">Add</string>
     <string name="age">Age</string>
     <string name="forthcoming">Forthcoming</string>
@@ -115,7 +116,7 @@
     <string name="personal_information">Personal information</string>
     <string name="internal_id_number">Internal id number</string>
     <string name="cancel">Cancel</string>
-    <string name="number_of_users">Number of users</string>
+    <string name="number_of_users">Number of users: </string>
     <string name="upcoming_appointments">Upcoming appointments</string>
     <string name="make_appointment">Make appointment</string>
     <string name="reschedule_appointment">Reschedule appointment</string>
@@ -150,6 +151,36 @@
     <string name="focus_on_qr_code">Focus on the QR code</string>
     <string name="wrong_creeentials">The username/password is incorrect</string>
     <string name="error_msg">error</string>
+    <string name="new_account">New account</string>
+    <string name="msg_reg">Welcome to Covid Tracker!\n Your login information is:\n username:</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="send">send</string>
+    <string name="forgot_psw">Forgot password</string>
+    <string name="msg_forgotpsw">Your password is\n</string>
 
+    <string name="age_warning">You must be over 18 to register</string>
+
+    <string name="cant_be_empty">No boxes can be empty</string>
+
+    <string name="phone_number_error">Phone number needs to be 10 digits</string>
+    <string name="email_format_error">Wrong email format</string>
+    <string name="email_match_error">Emails didn\'t match</string>
+
+    <string name="select_start_date">Select start date</string>
+    <string name="select_end_date">Select end date</string>
+
+
+
+
+    <!--  age_change -->
+    <string name="notimesindatab" translatable="false">No Times in Database\n</string>
+    <string name="sign_out">Sign out</string>
+    <string name="item1_menu">Other</string>
+    <string name="spr_k">language</string>
+    <string name="product_catalog">Product Catalog</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="state_minium_age_start_date">State minium age, start date, end date and time slot</string>
+    <string name="upload_times_to_server">Upload times to server</string>
+    <string name="cancel_appointment">Cancel</string>
 
 </resources>

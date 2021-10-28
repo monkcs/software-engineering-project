@@ -10,6 +10,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,8 +22,13 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +36,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterView.OnItemSelectedListener, View.OnClickListener*/ {
 
@@ -77,7 +84,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
             String selected = (String) adapterView.getItemAtPosition(i);
             selected_age = Integer.parseInt(selected);
 
-            Toast.makeText(PlanAndShedVaccs.this, selected , Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -86,34 +92,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
             }
         });
 
-        /*
-        start_date_spinner = (Spinner) findViewById(R.id.start_date_spinner);
-
-        start_date_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int index, long l) {
-                index_start = index;
-                updateEndTimeSpinner(index);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
-        end_date_spinner = (Spinner) findViewById(R.id.end_date_spinner);
-        end_date_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int index, long l) {
-                index_end = index;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
-         */
 
         add_time_button = (Button) findViewById(R.id.add_time_button);
         add_time_button.setOnClickListener((new View.OnClickListener() {
@@ -122,18 +100,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
                 uploadAppointments();
             }
         }));
-
-        /*
-        change_booking_time_button = (Button) findViewById(R.id.change_booking_time_button);
-        change_booking_time_button.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PlanAndShedVaccs.this, AgePrioritizations.class);
-                startActivity(intent);
-            }
-        }));
-
-         */
 
         Calendar start_calendar = Calendar.getInstance();
         start_calendar.add(Calendar.DATE, 1);
@@ -147,30 +113,11 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         sublist_days_text = new ArrayList<>();
         sublist_days = new ArrayList<>();
 
-        /*
-        for (Calendar temporary = (Calendar) start_calendar.clone(); temporary.before(end_calendar); temporary.add(Calendar.DATE, 1)) {
-            all_days.add(temporary.getTime());
-            all_days_text.add(format.format(temporary.getTime()));
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, all_days_text);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        start_date_spinner.setAdapter(adapter);
-
-        updateEndTimeSpinner(0);
-
-         */
 
         //-----------------------------------------   NYTT  sprint 4 ----------------------------------------
 
         editText_start_date=(EditText) findViewById(R.id.editText_start_date);
         editText_start_date.setInputType(InputType.TYPE_NULL);
-
-        /*
-        editText_end_date=(EditText) findViewById(R.id.editText_end_date);
-        editText_end_date.setInputType(InputType.TYPE_NULL);
-
-         */
 
         start_cal = Calendar.getInstance();
         int tomorrow = start_cal.get(Calendar.DAY_OF_MONTH) +1;
@@ -203,7 +150,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
                                     make_end_date_possible();
                                 }
                                 else {
-                                    editText_start_date.setText("Select start date");
+                                    editText_start_date.setText(R.string.select_start_date);
                                     Toast.makeText(PlanAndShedVaccs.this, "Invalid date, please try again", Toast.LENGTH_LONG).show();
 
                                 }
@@ -213,6 +160,8 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
                 picker.show();
             }
         });
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -221,24 +170,15 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         return true;
     }
 
-    /*
-    private void updateEndTimeSpinner(int index) {
-        sublist_days = new ArrayList<>();
-        for (int i = index; i < all_days.size(); i++) {
-            sublist_days.add(all_days.get(i));
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
         }
-
-        sublist_days_text = new ArrayList<>();
-        for (Date date : sublist_days) {
-            sublist_days_text.add(format.format(date.getTime()));
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sublist_days_text);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        end_date_spinner.setAdapter(adapter);
+        return super.onOptionsItemSelected(item);
     }
-
-     */
 
     private void updateSublistDays(){
         Calendar temp_cal = (Calendar) start_cal.clone();
@@ -263,54 +203,56 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         int appointment_lenght = 15;
         ArrayList<Date> result = new ArrayList<>();
 
-        for (int i = 0; i <= index_end; i++) {
+        for (int i = 0; i < sublist_days.size(); i++) {
             result.add(sublist_days.get(i));
         }
 
         SimpleDateFormat format_server = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
-        ArrayList<String> server_time_list = new ArrayList<>();
+        JSONArray payload = new JSONArray();
 
         for (Date date : result) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
-            calendar.set(Calendar.HOUR, 7);
+            calendar.set(Calendar.HOUR, 6);
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
 
 
             while (true) {
-                if (calendar.get(Calendar.HOUR) < 10) {
-                    server_time_list.add(format_server.format(calendar.getTime()));
-                    serverUpload(format_server.format(calendar.getTime()));
+                if (calendar.get(Calendar.HOUR) < 11) {
+
+                    JSONObject temporary = new JSONObject();
+
+                    try {
+
+                        temporary.put("datetime", format_server.format(calendar.getTime()));
+                        temporary.put("minimum_age", selected_age);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    payload.put(temporary);
+
                     calendar.add(Calendar.MINUTE, appointment_lenght);
                 } else {
                     break;
                 }
             }
         }
-
+        serverUpload(payload);
         Toast.makeText(this, R.string.upload_request, Toast.LENGTH_LONG).show();
     }
 
-    private void serverUpload(String time) {
+    private void serverUpload(JSONArray payload) {
         //the global variable int selected_age should be uploaded somewhere...
 
-        StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/create.php",
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/create.php", payload,
                 response -> {
                 }, error -> {
-            System.out.println("That didn't work...");
         }
         ) {
-            @Override
-            public Map<String, String> getParams() {
-
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("datetime", time);
-                params.put("minimum_age", String.valueOf(selected_age));
-
-                return params;
-            }
 
             @Override
             public Map<String, String> getHeaders() {
@@ -327,7 +269,6 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         age_list.add("45");
         age_list.add("35");
         age_list.add("18");
-        age_list.add("12");
         age_list.add("0");
 
     }
@@ -336,7 +277,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
 
         editText_end_date=(EditText) findViewById(R.id.editText_end_date);
         editText_end_date.setInputType(InputType.TYPE_NULL);
-        if (end_cal != null) {editText_end_date.setText("Select end date");}
+        if (end_cal != null) {editText_end_date.setText(R.string.select_end_date);}
 
         end_cal = (Calendar) start_cal.clone();
         editText_end_date.setOnClickListener(new View.OnClickListener() {
@@ -370,7 +311,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
                                     updateSublistDays();
                                 }
                                 else {
-                                    editText_end_date.setText("Select end date");
+                                    editText_end_date.setText(R.string.select_end_date);
                                     Toast.makeText(PlanAndShedVaccs.this, "Invalid date, please try again", Toast.LENGTH_LONG).show();
 
                                 }

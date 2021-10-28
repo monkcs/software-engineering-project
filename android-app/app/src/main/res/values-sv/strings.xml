@@ -83,6 +83,7 @@
     <string name="death">Dödsfall</string>
     <string name="death_per_week">Dödsfall per vecka</string>
     <string name="no_appointments_today">Inga bokningar idag</string>
+    <string name="no_appointments_found">Inga bokningar hittades</string>
     <string name="add">Lägg till</string>
     <string name="age">Ålder</string>
     <string name="forthcoming">Kommande</string>
@@ -93,7 +94,7 @@
     <string name="personal_information">Personlig information</string>
     <string name="internal_id_number">Internt id-nummer</string>
     <string name="cancel">Avbryt</string>
-    <string name="number_of_users">Antal användare</string>
+    <string name="number_of_users">Antal användare: </string>
     <string name="upcoming_appointments">Kommande bokningar</string>
     <string name="make_appointment">Skapa bokning</string>
     <string name="reschedule_appointment">Boka om bokning</string>
@@ -129,6 +130,30 @@
     <string name="focus_on_qr_code">Fokusera på QR coden</string>
     <string name="wrong_creeentials">Användarnamnet/lösenordet är inkorrekt</string>
     <string name="error_msg">error</string>
+    <string name="new_account">Nytt konto</string>
+    <string name="msg_reg">Välkommen till Covid Tracker!\n Din inloggningsinformation är:\n användarnamn:</string>
+    <string name="enter_your_email">Skriv in din e-mail</string>
+    <string name="send">skicka</string>
+    <string name="forgot_psw">Glömt ditt lösenord?</string>
+    <string name="msg_forgotpsw">Ditt lösenord är\n</string>
 
+    <string name="age_warning">Du måste vara över 18 för att skapa ett konto</string>
+
+    <string name="cant_be_empty">Inga lådor får vara tomma</string>
+
+    <string name="phone_number_error">Tel.nr ska vara 10 siffror</string>
+    <string name="email_format_error">Fel format på email</string>
+    <string name="email_match_error">Email matchar inte</string>
+    <string name="item1_menu">Annat</string>
+    <string name="sign_out">Logga ut</string>
+    <string name="spr_k">språk</string>
+    <string name="product_catalog">Produkt-katalog</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+
+    <string name="select_start_date">Välj startdatum</string>
+    <string name="select_end_date">Välj slutdatum</string>
+    <string name="state_minium_age_start_date">Välj minsta ålder, startdatum och slutdatum</string>
+    <string name="upload_times_to_server">Ladda upp tider till server</string>
+    <string name="cancel_appointment">Avboka</string>
 
 </resources>

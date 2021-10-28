@@ -145,7 +145,9 @@ public class CameraScannerActivity extends AppCompatActivity {
 
                     try {
                         JSONObject object = new JSONObject(response);
-                        String fullName = Encryption.decryptData(object.getString("firstname") + " " + object.getString("surname"));
+                        String firstname = Encryption.decryptData(object.getString("firstname"));
+                        String lastname =  Encryption.decryptData(object.getString("surname"));
+                        String fullName = firstname + " " + lastname;
                         String date_of_birth = object.getString("birthdate");
 
                         printValidation(true, fullName, date_of_birth);

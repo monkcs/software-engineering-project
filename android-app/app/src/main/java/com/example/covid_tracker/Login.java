@@ -32,16 +32,20 @@ import com.android.volley.toolbox.Volley;
 import java.util.Locale;
 import java.util.Map;
 
+import papaya.in.sendmail.SendMail;
+
+//import papaya.in.sendmail.SendMail;
+
 
 public class Login extends Activity implements OnClickListener {
     private EditText user_email, user_password;
-    private Button BtnLogin, BtnReg, adminloginButton;
+    private Button BtnLogin, BtnReg, BtnForgot, adminloginButton;
     private ChangeLanguage cl= new ChangeLanguage();
     private TextView new_user_tv;
 
 
     private RequestQueue queue;
-    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private static final String TAG_MSG = "message";
     private static final String TAG_SUC = "success";
     private ProgressDialog pDialog;
@@ -62,7 +66,7 @@ public class Login extends Activity implements OnClickListener {
         cl.setLanguage(Login.this, cl.getLanguage());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_login);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
+        Toolbar toolbar = findViewById(R.id.toolbar_login);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
 
@@ -71,12 +75,14 @@ public class Login extends Activity implements OnClickListener {
         user_password = (EditText) findViewById(R.id.password);
         BtnLogin = (Button) findViewById(R.id.btnLogIn);
         new_user_tv = (TextView) findViewById(R.id.new_user_TextView);
+        BtnForgot = (Button) findViewById(R.id.btnForgotPsw);
         BtnReg = (Button) findViewById(R.id.btnReg);
         adminloginButton = (Button) findViewById(R.id.adminLogin);
 
 
         BtnReg.setOnClickListener(this);
         adminloginButton.setOnClickListener(this);
+        BtnForgot.setOnClickListener(this);
 
         BtnLogin.setOnClickListener(this);
 
@@ -162,6 +168,10 @@ public class Login extends Activity implements OnClickListener {
         intent.putExtra("change_language",cl);
         startActivity(intent);
     }
+    public void ResetPassword(){
+        Intent intent = new Intent(this, ForgotPassword.class);
+        startActivity(intent);
+    }
 
     public void onClick(View view) {
         switch (view.getId()) {
@@ -181,6 +191,9 @@ public class Login extends Activity implements OnClickListener {
 
             case R.id.adminLogin:
                 loginAdmin();
+                break;
+            case R.id.btnForgotPsw:
+                ResetPassword();
                 break;
         }
     }

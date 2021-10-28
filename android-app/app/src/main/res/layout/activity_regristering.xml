@@ -195,7 +195,7 @@
             android:ems="10"
             android:gravity="center"
             android:hint="@string/postalcode"
-            android:inputType="textPostalAddress"
+            android:inputType="phone"
             android:paddingTop="20dp"
             android:textSize="22sp" />
 

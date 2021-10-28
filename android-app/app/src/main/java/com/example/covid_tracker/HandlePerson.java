@@ -122,7 +122,7 @@ public class HandlePerson extends AppCompatActivity {
                     }
                 }, error -> {
             /*if no array can be found, look for jsonObject*/
-            Toast.makeText(this, "No response from server, could not retrieve personal info", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_msg, Toast.LENGTH_SHORT).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -156,13 +156,11 @@ public class HandlePerson extends AppCompatActivity {
     private void firstDoseTaken(Integer id) {
         dose = 1;
         bookSecondDose(id);
-        update_tables(id, dose);
     }
 
     private void secondDoseTaken(Integer id) {
         dose = 2;
         setPassportDate(id);
-        update_tables(id, dose);
         tv_bookedDate.append(" (CONFIRMED)");
     }
 
@@ -171,6 +169,8 @@ public class HandlePerson extends AppCompatActivity {
         final View CancelPopupView = getLayoutInflater().inflate(R.layout.deletepopup, null);
         Button btnDelete = CancelPopupView.findViewById(R.id.DeleteBtn);
         Button btnGoBack = CancelPopupView.findViewById(R.id.GobackBtn);
+
+        //test comment for branch
 
         dialogBuilder.setView(CancelPopupView);
         dialog = dialogBuilder.create();
@@ -210,14 +210,11 @@ public class HandlePerson extends AppCompatActivity {
     public void bookSecondDose(Integer id){
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/auto_book.php",
                 response -> {
-                    System.out.println("IN BOOKING DOSE 2:");
-                    System.out.println("Response: " + response);
-                    Toast.makeText(HandlePerson.this, "Second dose booked for person with ID: " + id, Toast.LENGTH_LONG).show();
-                    getBookingInfo(id);
+                    update_tables(id, dose);
                     finish();
                 }, error -> {
             error.getStackTrace();
-            Toast.makeText(HandlePerson.this, "Not able to book second time", Toast.LENGTH_LONG).show();
+            Toast.makeText(HandlePerson.this, R.string.error_msg, Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getParams()  {
@@ -237,9 +234,10 @@ public class HandlePerson extends AppCompatActivity {
     public void setPassportDate(Integer id){
         StringRequest request = new StringRequest(Request.Method.POST, WebRequest.urlbase + "provider/generate_passport.php",
                 response -> {
-                    Toast.makeText(HandlePerson.this, "Success!", Toast.LENGTH_LONG).show();
+                    update_tables(id, dose);
+                    Toast.makeText(HandlePerson.this, R.string.success, Toast.LENGTH_LONG).show();
                 }, error -> {
-                    Toast.makeText(HandlePerson.this, "Error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(HandlePerson.this, R.string.error_msg, Toast.LENGTH_LONG).show();
 
         }) {
             @Override

@@ -7,8 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    >
+    android:gravity="center">
 
     <TextView
         android:layout_width="match_parent"
@@ -33,15 +32,24 @@
         android:textSize="22sp"
         android:inputType="textPassword"
         android:id="@+id/password"/>
+    <Button
+        android:id="@+id/btnForgotPsw"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:text="@string/forgot_psw"
+        android:textColor="@color/green"
+        android:stateListAnimator="@null"/>
 
     <Button
-        android:layout_width="wrap_content"
-
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login"
-
-        android:textColor="@color/black"
-        android:id="@+id/btnLogIn"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/green"
+        android:textColor="@color/white"
+        android:id="@+id/btnLogIn" />
 
 
     <LinearLayout
@@ -59,10 +67,14 @@
         <Button
             android:id="@+id/btnReg"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            app:layout_constraintRight_toRightOf="@id/new_user_TextView"
+            android:layout_marginLeft="10dp"
             android:background="@color/white"
             android:text="@string/signup"
-            android:textColor="@color/black" />
+            android:textColor="@color/green"
+            android:stateListAnimator="@null"/>
+
 
     </LinearLayout>
 

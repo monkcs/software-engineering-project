@@ -8,6 +8,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,16 +33,17 @@ import java.util.Map;
 
 public class age_change extends AppCompatActivity {
 
+    public String dateis;
+    public ArrayList<Integer> listIDs;
+    public List<age_change_block> list;
+    public ProgressBar pb;
     private RequestQueue queue;
+    private TextView tw;
     private Button update, update2;
     private EditText age_change;
     private CalendarView calv;
     private String reader;
-    public String dateis;
     private int updateint;
-
-    public List<Integer> listIDs;
-    public List<age_change_block> list;
     private RecyclerView recyclerview;
 
     @Override
@@ -49,11 +53,17 @@ public class age_change extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        listIDs = new ArrayList<>();
+
+        pb = findViewById(R.id.progressbaris);
+
+        pb.setVisibility(View.GONE);
+
         queue = Volley.newRequestQueue(this);
 
-        recyclerview = (RecyclerView) findViewById(R.id.recyclerView_age_age_age);
+        recyclerview = findViewById(R.id.recyclerView_age_age_age);
 
-        calv = (CalendarView) findViewById(R.id.calender_agechange);
+        calv = findViewById(R.id.calender_agechange);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         dateis = sdf.format(new Date(calv.getDate()));
@@ -69,48 +79,45 @@ public class age_change extends AppCompatActivity {
                 i1 = i1 + 1;
 
 
-
                 dateis = i2 + "/" + i1 + "/" + i;
 
                 System.out.println("detta är dateis" + dateis);
 
+
+                tw.setVisibility(View.GONE);
                 getTimesforDatabase();
                 setRecyclerView();
             }
         });
 
-        age_change = (EditText) findViewById(R.id.edittext_changeage);
+        age_change = findViewById(R.id.edittext_changeage);
+        tw = findViewById(R.id.twdatabase);
 
-        update = (Button) findViewById(R.id.update_agechange);
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        tw.setVisibility(View.GONE);
+
+        update = findViewById(R.id.update_agechange);
+        update.setOnClickListener(view -> {
 
 
+            if (age_change.length() != 0) {
+                reader = age_change.getText().toString();
+                updateint = Integer.parseInt(reader);
 
-                if(age_change.length() != 0) {
-                    reader = age_change.getText().toString();
-                    updateint = Integer.parseInt(reader);
+                age_change.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                age_change.setText("");
 
-                    age_change.onEditorAction(EditorInfo.IME_ACTION_DONE);
-                    age_change.setText("");
+                System.out.println("---Update---");
+                System.out.println("detta är ålder: " + updateint);
+                System.out.println("detta är datum: " + dateis);
+                System.out.println("detta är storlek list: " + listIDs.size());
 
-                    System.out.println("---Update---");
-                    System.out.println("detta är ålder: " + updateint);
-                    System.out.println("detta är datum: " + dateis);
-                    System.out.println("detta är storlek list: " + listIDs.size());
-
-                    addToDataB(updateint);
-
-                }
-                else{
-                    //do nothing
-                }
+                addToDataB(updateint);
 
             }
+
         });
 
-        update2 = (Button) findViewById(R.id.update_agechange2);
+        update2 = findViewById(R.id.update_agechange2);
         update2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,9 +130,48 @@ public class age_change extends AppCompatActivity {
 
     }
 
-    private void addToDataB(int updateint) {
+    private void addToDataB(int new_minimum_age) {
 
-      //implement
+        JSONArray payload = new JSONArray();
+
+        for (int id : listIDs) {
+            JSONObject temporary = new JSONObject();
+
+            try {
+
+                temporary.put("id", id);
+                temporary.put("minimum_age", new_minimum_age);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            payload.put(temporary);
+        }
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, WebRequest.urlbase + "provider/appointment/update.php", payload,
+                response -> {
+
+            //should not enter here
+                    getTimesforDatabase();
+                    setRecyclerView();
+
+                }
+                , error -> {
+
+            getTimesforDatabase();
+            setRecyclerView();
+
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
+            }
+        };
+
+        queue.add(request);
+
+
 
     }
 
@@ -144,7 +190,7 @@ public class age_change extends AppCompatActivity {
         }
     }
 
-    public void displayToast(View v){
+    public void displayToast(View v) {
 
         Toast.makeText(this, "helpis", Toast.LENGTH_LONG);
         System.out.println("Hej i toast");
@@ -152,23 +198,25 @@ public class age_change extends AppCompatActivity {
 
     private void getTimesforDatabase() {
 
-        System.out.println("hej inne i gettimes");
+
         list = new ArrayList<>();
-        System.out.println("detta är dateis inne i database" + dateis);
+        pb.setVisibility(View.VISIBLE);
+
+
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, WebRequest.urlbase + "provider/available_booking.php", null,
                 response -> {
 
-                String times = "";
-                listIDs = new ArrayList<>();
+                    String times = "";
+                    listIDs.clear();
 
-                    System.out.println("hej inne i response");
+
                     for (int i = 0; i < response.length(); i++) {
 
                         try {
 
-                            if(compareIfEqual(dateis, response.getJSONObject(i).getString("datetime"))){
-                                System.out.println(response.getJSONObject(i));
+                            if (compareIfEqual(dateis, response.getJSONObject(i).getString("datetime"))) {
+
 
                                 JSONObject paket = response.getJSONObject(i);
 
@@ -181,16 +229,21 @@ public class age_change extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
 
-                            System.out.println("ERRPR CATCH");
+
                         }
 
 
                     }
 
                     list.add(new age_change_block(dateis, times));
-                    System.out.println("hej inne i recview");
+
+                    pb.setVisibility(View.GONE);
                     setRecyclerView();
                 }, error -> {
+
+            pb.setVisibility(View.GONE);
+            tw.setVisibility(View.VISIBLE);
+
         }
         ) {
             @Override
@@ -198,9 +251,8 @@ public class age_change extends AppCompatActivity {
                 return WebRequest.credentials(WebRequest.Provider.username, WebRequest.Provider.password);
             }
         };
-        System.out.println("hej inne i queueadd");
-        queue.add(request);
 
+        queue.add(request);
 
 
     }
@@ -209,7 +261,7 @@ public class age_change extends AppCompatActivity {
 
         Integer returnis = null;
         try {
-            returnis = paket.getInt("ID");
+            returnis = paket.getInt("id");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -243,32 +295,32 @@ public class age_change extends AppCompatActivity {
 
 
         //hämta char 11 till 18
-        returnis = returnis.substring(11,19);
+        returnis = returnis.substring(11, 19);
 
         return returnis;
     }
 
     private boolean compareIfEqual(String dateis, String s) {
 
-     //   System.out.println(dateis.charAt(0));
+        //   System.out.println(dateis.charAt(0));
 
         boolean flagga = true;
 
-        if(dateis.charAt(0) != s.charAt(8) || dateis.charAt(1) != s.charAt(9)){
+        if (dateis.charAt(0) != s.charAt(8) || dateis.charAt(1) != s.charAt(9)) {
 
             //kollar om dagen stämmer överrens
             flagga = false;
 
         }
 
-        if(dateis.charAt(3) != s.charAt(5) || dateis.charAt(4) != s.charAt(6)){
+        if (dateis.charAt(3) != s.charAt(5) || dateis.charAt(4) != s.charAt(6)) {
 
             //kollar om månaden är samma
             flagga = false;
 
         }
 
-        if(dateis.charAt(8) != s.charAt(2) || dateis.charAt(9) != s.charAt(3)){
+        if (dateis.charAt(8) != s.charAt(2) || dateis.charAt(9) != s.charAt(3)) {
 
             //kollar om året är samma
             flagga = false;

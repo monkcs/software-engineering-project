@@ -1,10 +1,11 @@
 package com.example.covid_tracker.Fragments;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -12,27 +13,22 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.covid_tracker.Login;
 import com.example.covid_tracker.R;
 import com.example.covid_tracker.WebRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 public class BookingStep1Fragment extends Fragment {
@@ -53,6 +49,7 @@ public class BookingStep1Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         queue = Volley.newRequestQueue(getActivity());
     }
 
@@ -80,6 +77,36 @@ public class BookingStep1Fragment extends Fragment {
         {
             return name;
         }
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.item2_menu2:
+                System.out.println("hejsan du loggades");
+                loginScreen();
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+
+        }
+
+
+
+    }
+
+    private void loginScreen() {
+
+        Intent intent = new Intent(getActivity(), Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
     }
 
     private void getClinics(){

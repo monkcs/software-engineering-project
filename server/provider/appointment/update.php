@@ -3,10 +3,10 @@
 require 'authenticate.php';
 
 
-function insert($connection, $datetime, $provider, $minimum_age)
+function update($connection, $minimum_age, $id)
 {
-    $statement = $connection->prepare("INSERT INTO available (datetime, provider, minimum_age) VALUES (?, ?, ?)");
-    $statement->bind_param("sii", $datetime, $provider, $minimum_age);
+    $statement = $connection->prepare("UPDATE available SET minimum_age=? WHERE available.id=?");
+    $statement->bind_param("ii", $minimum_age, $id);
     $statement->execute();
     $statement->close();
 }
@@ -24,10 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     foreach ($array as $row) {
-        $datetime = $row['datetime'];
+        $id = $row['id'];
         $minimum_age = $row['minimum_age'];
 
-        insert($connection, $datetime, $identity, $minimum_age);
+        update($connection, $minimum_age, $id);
     }
 } else {
     http_response_code(405);

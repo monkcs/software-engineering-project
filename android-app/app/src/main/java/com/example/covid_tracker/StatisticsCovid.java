@@ -1,11 +1,11 @@
 package com.example.covid_tracker;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -51,6 +50,7 @@ public class StatisticsCovid extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.stat_covid);
 
         btn_cov_searchRegion = findViewById(R.id.btn_cov_searchRegion);
@@ -93,31 +93,25 @@ public class StatisticsCovid extends AppCompatActivity {
         getDeathsCases("");
         onClickSetGraph("");
 
-        btn_cov_searchRegion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String input_age = spinner_cov_age.getSelectedItem().toString();
-                String input_region = spinner_cov_searchRegion.getSelectedItem().toString();
+        btn_cov_searchRegion.setOnClickListener(view -> {
+            String input_age = spinner_cov_age.getSelectedItem().toString();
+            String input_region = spinner_cov_searchRegion.getSelectedItem().toString();
 
 
-                onClickDeathsCases(input_region, input_age);
-                onClickSetGraph(input_region);
-                //notify graph about new data
-                lc_casesperweek.notifyDataSetChanged();
-                lc_casesperweek.invalidate();
-                lc_deathsperweek.notifyDataSetChanged();
-                lc_deathsperweek.invalidate();
-            }
+            onClickDeathsCases(input_region, input_age);
+            onClickSetGraph(input_region);
+            //notify graph about new data
+            lc_casesperweek.notifyDataSetChanged();
+            lc_casesperweek.invalidate();
+            lc_deathsperweek.notifyDataSetChanged();
+            lc_deathsperweek.invalidate();
         });
 
-        tv_clearfilters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                spinner_cov_age.setSelection(0);
-                spinner_cov_searchRegion.setSelection(0);
+        tv_clearfilters.setOnClickListener(view -> {
+            spinner_cov_age.setSelection(0);
+            spinner_cov_searchRegion.setSelection(0);
 
-                btn_cov_searchRegion.performClick();
-            }
+            btn_cov_searchRegion.performClick();
         });
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
@@ -126,7 +120,7 @@ public class StatisticsCovid extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu2, menu);
         return true;
     }
 
@@ -136,7 +130,20 @@ public class StatisticsCovid extends AppCompatActivity {
         if (id == android.R.id.home) {
             finish();
         }
+        if ( id == R.id.item2_menu2){
+
+            loginScreen();
+
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void loginScreen() {
+
+        Intent intent = new Intent(this, Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
     }
 
     private void onClickDeathsCases(String region, String age) {
@@ -207,7 +214,7 @@ public class StatisticsCovid extends AppCompatActivity {
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
 
-        String line = "";
+        String line;
 
         reader.readLine();
 
@@ -243,7 +250,7 @@ public class StatisticsCovid extends AppCompatActivity {
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
 
-        String line = "";
+        String line;
 
         reader.readLine();
 
@@ -287,7 +294,7 @@ public class StatisticsCovid extends AppCompatActivity {
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
 
-        String line = "";
+        String line;
 
         reader.readLine();
 
@@ -324,8 +331,7 @@ public class StatisticsCovid extends AppCompatActivity {
     }
 
     private boolean validElement(String string) {
-        if(string.equals(".") || string.length() < 1) return false;
-        return true;
+        return !string.equals(".") && string.length() >= 1;
     }
 
     private String search_csv_valid(String s){
@@ -354,7 +360,7 @@ public class StatisticsCovid extends AppCompatActivity {
     }
 
     private void onClickSetGraph(String region){
-        int deaths = 0, cases = 0, week = 0;
+        int deaths = 0, cases = 0, week;
 
         ArrayList<Entry> yValues_lcCases = new ArrayList<>();
         ArrayList<Entry> yValues_lcDeaths = new ArrayList<>();

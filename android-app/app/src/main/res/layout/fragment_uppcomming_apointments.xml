@@ -31,10 +31,11 @@
                 >
 
                 <Button
+                    android:id="@+id/change_uppcomming"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/change_uppcomming"
-                    android:text="@string/byt_inage"/>
+                    android:text="@string/byt_inage"
+                    android:layout_marginLeft="10dp"/>
 
                 <ImageView
                     android:id="@+id/infobuttonuppa"

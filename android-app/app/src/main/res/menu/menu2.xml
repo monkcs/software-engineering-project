@@ -3,16 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id = "@+id/menu_toolbar">
     <item
-        android:id = "@+id/language_button"
+        android:id = "@+id/language_button2"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="right"
         android:visibility="visible"
         android:layout_marginRight="30dp"
         android:icon="@drawable/flagswe_foreground"
-        android:title="språk"
-        app:showAsAction="always"/>
+        android:title="@string/spr_k"
+        app:showAsAction="ifRoom"/>
 
+    <!--item
+        android:id="@+id/item1_menu2"
+        android:title="@string/item1_menu"
+        app:showAsAction="never"
+        /-->
+
+    <item
+        android:id="@+id/item2_menu2"
+        android:title="@string/sign_out"
+        app:showAsAction="never"
+        />
 
 
 

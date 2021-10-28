@@ -52,18 +52,15 @@
         android:orientation="vertical">
         <include layout="@layout/login"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/todo"/>
 
         <Button
             android:id="@+id/adminLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
             android:layout_gravity="center"
-            android:textColor="@color/black"
+            android:background="@color/green"
+            android:textColor="@color/white"
             android:text="@string/login_admin" />
 
     </LinearLayout>

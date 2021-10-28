@@ -2,14 +2,13 @@ package com.example.covid_tracker;
 
 public class FAQ_block {
 
-    private String Question, Answer, Source;
+    private String Question, Answer;
     private Boolean expandable;
 
 
     public FAQ_block(String Question, String Answer) {
         this.Question = Question;
         this.Answer = Answer;
-
 
         this.expandable = false;
     }
@@ -31,8 +30,6 @@ public class FAQ_block {
     public void setAnswer(String Answer) {
         this.Answer = Answer;
     }
-
-
 
     public Boolean getExpandable() {
         return expandable;

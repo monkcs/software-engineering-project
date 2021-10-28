@@ -3,12 +3,85 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_administartorlogin.xml" value="0.2015625" />
-        <entry key="app/src/main/res/layout/activity_dashboard_admin_fragments.xml" value="0.2015625" />
-        <entry key="app/src/main/res/layout/activity_dashboard_fragments.xml" value="0.2015625" />
-        <entry key="app/src/main/res/menu/menu.xml" value="0.2015625" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.16614583333333333" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_admin_dosage.xml" value="0.2" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_age_change.xml" value="0.1621376811594203" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_admin_fragments.xml" value="0.13229166666666667" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_fragments.xml" value="0.13229166666666667" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/booking_card_row.xml" value="0.18885869565217392" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/dosage_row.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_admin_landing.xml" value="0.13229166666666667" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_bookingstep2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_faq.xml" value="0.18885869565217392" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/fragment_uppcomming_apointments.xml" value="0.1621376811594203" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/layout/upc_appoint_row.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/android-app/app/src/main/res/menu/admin_bottom_navigation.xml" value="0.15" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout-w936dp/activity_login.xml" value="0.536" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/Login_user.xml" value="0.264" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/login.xml" value="0.264" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/mail_menu.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/layout/test_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Calle/AndroidStudioProjects/software-engineering-project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.19519927536231885" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_age_change.xml" value="0.23278985507246377" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_admin_fragments.xml" value="0.2504528985507246" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_dashboard_fragments.xml" value="0.2504528985507246" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_handle_person.xml" value="0.4" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/activity_plan_and_shed_vaccs.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/admin_inbox_row.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/confirmpopup.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/deletepopup.xml" value="0.19519927536231885" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_admin_dashboard.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_admin_landing.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_statistics_menu.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/fragment_uppcomming_apointments.xml" value="0.2463768115942029" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/lista_row_agechange.xml" value="0.23278985507246377" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/login.xml" value="0.23278985507246377" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/stat_covid.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/stat_vaccinations.xml" value="0.2" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/test_login.xml" value="0.23278985507246377" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/layout/upc_appoint_row.xml" value="0.20516304347826086" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/menu/admin_bottom_navigation.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/android-app/app/src/main/res/menu/bottom_navigation.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/axela/Documents/covid_project/software-engineering-project/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/activity_administartorlogin.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_digital_health.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_faq.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/fragment_statistics_menu.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/login.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/LAbb/android-app/app/src/main/res/layout/test_login.xml" value="0.25" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_administartorlogin.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_boka_vaccin2.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_booking.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_plan_and_shed_vaccs.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/activity_regristering.xml" value="0.25" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/deletepopup.xml" value="0.146875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/fragment_bookingstep1.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/fragment_bookingstep3.xml" value="0.2015625" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/fragment_digital_health.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/fragment_statistics_menu.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/login.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/row.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/stat_vaccinations.xml" value="0.2796875" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/temp_regristration.xml" value="0.335" />
+        <entry key="..\:/Users/lukas/OneDrive/Universitetet/Software Engineering/labb/android-app/app/src/main/res/layout/test_login.xml" value="0.2796875" />
+        <entry key="app/src/main/res/layout/activity_age_prioritizations.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_plan_and_shed_vaccs.xml" value="0.13854166666666667" />
+        <entry key="app/src/main/res/layout/fragment_admin_landing.xml" value="0.22" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
 </project>
