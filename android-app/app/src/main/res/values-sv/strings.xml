@@ -154,5 +154,6 @@
     <string name="select_end_date">Välj slutdatum</string>
     <string name="state_minium_age_start_date">Välj minsta ålder, startdatum och slutdatum</string>
     <string name="upload_times_to_server">Ladda upp tider till server</string>
+    <string name="cancel_appointment">Avboka</string>
 
 </resources>
