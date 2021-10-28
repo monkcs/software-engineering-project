@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_administartorlogin.xml" value="0.2015625" />
+        <entry key="app/src/main/res/layout/activity_dashboard_admin_fragments.xml" value="0.2015625" />
+        <entry key="app/src/main/res/layout/activity_dashboard_fragments.xml" value="0.2015625" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>
