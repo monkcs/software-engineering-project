@@ -222,17 +222,16 @@ public class BookingStep3Fragment extends Fragment {
     }
 
     private String getdateortime(String source, int part){
-        String leftover = "";
         switch (part){
             case 1:
-                leftover =  source.split(" ")[0];
-                break;
+                return source.split(" ")[0];
             case 2:
-                leftover = source.split(" ")[1].substring(0,5);
-                break;
+                String time = source.split(" ")[1];
+                return time.substring(0,5); //hours minutes
+                //return source.split(" ")[1].substring(0,5);
+            default:
+                return "";
         }
-
-        return leftover;
     }
 
 
