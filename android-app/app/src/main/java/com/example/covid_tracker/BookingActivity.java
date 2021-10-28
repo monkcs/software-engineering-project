@@ -60,12 +60,12 @@ public class BookingActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
-    }
+    }*/
     public void next_fragment(View view) {
         SharedPreferences pref = this.getSharedPreferences("Booking", Context.MODE_PRIVATE);
 

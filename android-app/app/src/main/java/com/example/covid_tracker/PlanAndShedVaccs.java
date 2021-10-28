@@ -170,7 +170,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
         return true;
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub
         int id = item.getItemId();
@@ -178,7 +178,7 @@ public class PlanAndShedVaccs extends AppCompatActivity  /*implements AdapterVie
             finish();
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     private void updateSublistDays(){
         Calendar temp_cal = (Calendar) start_cal.clone();
