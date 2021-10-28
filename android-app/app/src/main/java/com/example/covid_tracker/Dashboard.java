@@ -27,13 +27,19 @@ import java.util.Map;
 public class Dashboard extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
     private RequestQueue queue;
-
+    private ChangeLanguage cl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_dashboard_fragments);
+
+        Bundle extras = getIntent().getExtras();
+        Intent i = getIntent();
+        if (extras != null) {
+            cl = (ChangeLanguage) extras.getSerializable("change_language");
+        }
 
         notificationManager = NotificationManagerCompat.from(this);
         queue = Volley.newRequestQueue(this);

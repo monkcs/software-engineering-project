@@ -132,6 +132,7 @@ public class Login extends Activity implements OnClickListener {
                     WebRequest.User.username = Encryption.encryptData(user_email.getText().toString());
                     WebRequest.User.password = Encryption.encryptData(user_password.getText().toString());
                     Intent intent = new Intent(Login.this, Dashboard.class);
+                    intent.putExtra("change_language",cl);
                     finish();
                     startActivity(intent);
 
