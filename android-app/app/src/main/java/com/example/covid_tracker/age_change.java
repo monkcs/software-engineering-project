@@ -76,10 +76,21 @@ public class age_change extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
 
+
                 i1 = i1 + 1;
 
+                String month = String.valueOf(i1);
+                String day = String.valueOf(i2);
 
-                dateis = i2 + "/" + i1 + "/" + i;
+                if(i2<10){
+                    day = "0"+String.valueOf(i2);
+                }
+                if(i1<10){
+                    month = "0"+String.valueOf(i1);
+                }
+
+
+                dateis = day + "/" + month + "/" + i;
 
                 System.out.println("detta är dateis" + dateis);
 
@@ -302,7 +313,7 @@ public class age_change extends AppCompatActivity {
 
     private boolean compareIfEqual(String dateis, String s) {
 
-        //   System.out.println(dateis.charAt(0));
+           System.out.println(dateis);
 
         boolean flagga = true;
 
